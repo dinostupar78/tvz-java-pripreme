@@ -1,5 +1,7 @@
 package hr.java.restaurant.model;
 
+import java.math.BigDecimal;
+
 public class Order {
     private Restaurant restaurant;
     private Meal[] meals;
@@ -34,6 +36,16 @@ public class Order {
 
     public void setDeliverer(Deliverer deliverer) {
         this.deliverer = deliverer;
+    }
+
+    public BigDecimal getTotalPrice() {
+        BigDecimal total = BigDecimal.ZERO; // Initialize total as zero
+        for (Meal meal : meals) {
+            if (meal != null) {
+                total = total.add(meal.getPrice()); // Add meal price
+            }
+        }
+        return total;
     }
 
 

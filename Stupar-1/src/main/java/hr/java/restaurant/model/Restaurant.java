@@ -3,12 +3,12 @@ package hr.java.restaurant.model;
 public class Restaurant {
     private String name;
     private Address address;
-    private Meal meals;
-    private Chef chefs;
-    private Waiter waiters;
-    private Deliverer deliverers;
+    private Meal[] meals;
+    private Chef[] chefs;
+    private Waiter[] waiters;
+    private Deliverer[] deliverers;
 
-    public Restaurant(String name, Address address, Meal meals, Chef chefs, Waiter waiters, Deliverer deliverers) {
+    public Restaurant(String name, Address address, Meal[] meals, Chef[] chefs, Waiter[] waiters, Deliverer[] deliverers) {
         this.name = name;
         this.address = address;
         this.meals = meals;
@@ -21,47 +21,47 @@ public class Restaurant {
         return name;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public Meal getMeals() {
-        return meals;
-    }
-
-    public Chef getChefs() {
-        return chefs;
-    }
-
-    public Waiter getWaiters() {
-        return waiters;
-    }
-
-    public Deliverer getDeliverers() {
-        return deliverers;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Address getAddress() {
+        return address;
     }
 
     public void setAddress(Address address) {
         this.address = address;
     }
 
-    public void setMeals(Meal meals) {
+    public Meal[] getMeals() {
+        return meals;
+    }
+
+    public void setMeals(Meal[] meals) {
         this.meals = meals;
     }
 
-    public void setChefs(Chef chefs) {
+    public Chef[] getChefs() {
+        return chefs;
+    }
+
+    public void setChefs(Chef[] chefs) {
         this.chefs = chefs;
     }
 
-    public void setWaiters(Waiter waiters) {
+    public Waiter[] getWaiters() {
+        return waiters;
+    }
+
+    public void setWaiters(Waiter[] waiters) {
         this.waiters = waiters;
     }
 
-    public void setDeliverers(Deliverer deliverers) {
+    public Deliverer[] getDeliverers() {
+        return deliverers;
+    }
+
+    public void setDeliverers(Deliverer[] deliverers) {
         this.deliverers = deliverers;
     }
 }

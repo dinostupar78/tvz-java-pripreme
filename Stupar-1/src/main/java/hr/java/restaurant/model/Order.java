@@ -1,49 +1,40 @@
 package hr.java.restaurant.model;
 
-import java.time.LocalDateTime;
-
 public class Order {
     private Restaurant restaurant;
-    private Meal meals;
-    private Deliverer deliverers;
-    private LocalDateTime deliveryDateAndTime;
+    private Meal[] meals;
+    private Deliverer deliverer;
 
-    public Order(Restaurant restaurant, Meal meals, Deliverer deliverers, LocalDateTime deliveryDateAndTime) {
+    public Order(Restaurant restaurant, Meal[] meals, Deliverer deliverer) {
         this.restaurant = restaurant;
         this.meals = meals;
-        this.deliverers = deliverers;
-        this.deliveryDateAndTime = deliveryDateAndTime;
+        this.deliverer = deliverer;
+
     }
 
     public Restaurant getRestaurant() {
         return restaurant;
     }
 
-    public Meal getMeals() {
-        return meals;
-    }
-
-    public Deliverer getDeliverers() {
-        return deliverers;
-    }
-
-    public LocalDateTime getDeliveryDateAndTime() {
-        return deliveryDateAndTime;
-    }
-
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
 
-    public void setMeals(Meal meals) {
+    public Meal[] getMeals() {
+        return meals;
+    }
+
+    public void setMeals(Meal[] meals) {
         this.meals = meals;
     }
 
-    public void setDeliverers(Deliverer deliverers) {
-        this.deliverers = deliverers;
+    public Deliverer getDeliverer() {
+        return deliverer;
     }
 
-    public void setDeliveryDateAndTime(LocalDateTime deliveryDateAndTime) {
-        this.deliveryDateAndTime = deliveryDateAndTime;
+    public void setDeliverer(Deliverer deliverer) {
+        this.deliverer = deliverer;
     }
+
+
 }

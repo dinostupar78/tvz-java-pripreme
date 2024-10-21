@@ -5,10 +5,10 @@ import java.math.BigDecimal;
 public class Meal {
     private String name;
     private Category category;
-    private Ingredient ingredient;
+    private Ingredient[] ingredient;
     private BigDecimal price;
 
-    public Meal(String name, Category category, Ingredient ingredient, BigDecimal price) {
+    public Meal(String name, Category category, Ingredient[] ingredient, BigDecimal price) {
         this.name = name;
         this.category = category;
         this.ingredient = ingredient;
@@ -23,7 +23,7 @@ public class Meal {
         return category;
     }
 
-    public Ingredient getIngredient() {
+    public Ingredient[] getIngredient() {
         return ingredient;
     }
 
@@ -39,7 +39,7 @@ public class Meal {
         this.category = category;
     }
 
-    public void setIngredient(Ingredient ingredient) {
+    public void setIngredient(Ingredient[] ingredient) {
         this.ingredient = ingredient;
     }
 

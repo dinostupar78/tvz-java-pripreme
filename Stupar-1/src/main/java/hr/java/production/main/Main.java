@@ -6,15 +6,15 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Main {
-    private static final Integer numberOfCategories = 2; // 3 JE PRAVI UNOS -------------
-    private static final Integer numberOfIngredients = 2; // 2 JE PRAVI UNOS -------------
-    private static final Integer numberOfMeals = 3; // 3 JE PRAVI UNOS -------------
-    private static final Integer numberOfChefs = 2; // 3 JE PRAVI UNOS -------------
-    private static final Integer numberOfWaiters = 2; // 3 JE PRAVI UNOS -------------
-    private static final Integer numberOfDeliverers = 2; // 3 JE PRAVI UNOS -------------
-    private static final Integer numberOfRestaurants = 3; // 3 JE PRAVI UNOS -------------
-    private static final Integer restaurantAddress = 3; // 3 JE PRAVI UNOS -------------
-    private static final Integer numberOfOrders = 3; // 3 JE PRAVI UNOS -------------
+    private static final Integer numberOfCategories = 3;
+    private static final Integer numberOfIngredients = 5;
+    private static final Integer numberOfMeals = 3;
+    private static final Integer numberOfChefs = 3;
+    private static final Integer numberOfWaiters = 3;
+    private static final Integer numberOfDeliverers = 3;
+    private static final Integer numberOfRestaurants = 3;
+    private static final Integer restaurantAddress = 3;
+    private static final Integer numberOfOrders = 3;
 
     public static void main(String[] args) {
         Category[] categories = new Category[numberOfCategories];
@@ -498,13 +498,6 @@ public class Main {
                     jeIspravan = false;
                 }
 
-                // Ponovi prikaz nakon odabira
-                System.out.println("Popis jela, birate jela dok ne unesete 0 ");
-                for (int i = 0; i < meals.length; i++) {
-                    if (meals[i] != null) { // Provjeravaj da jelo nije null
-                        System.out.println((i + 1) + ". " + meals[i].getName());
-                    }
-                }
                 mealChoice = scanner.nextInt();
                 scanner.nextLine();
             }
@@ -591,8 +584,8 @@ public class Main {
     public static Order orderInput(Scanner scanner, Restaurant[] restaurants, Meal[] meals, Deliverer[] deliverers) {
 
         Restaurant selectedRestaurant = null;
-        Meal[] selectedMeals = new Meal[10]; // Assuming a maximum of 10 meals can be selected
-        int mealCount = 0; // To keep track of the number of meals selected
+        Meal[] selectedMeals = new Meal[10];
+        int mealCount = 0;
         Deliverer selectedDeliverer = null;
         boolean jeIspravan;
 
@@ -605,7 +598,7 @@ public class Main {
             }
 
             int restaurantChoice = scanner.nextInt();
-            scanner.nextLine(); // Čisti ulazni tok
+            scanner.nextLine();
 
             if (restaurantChoice >= 1 && restaurantChoice <= restaurants.length) {
                 selectedRestaurant = restaurants[restaurantChoice - 1];
@@ -619,23 +612,22 @@ public class Main {
         do {
             jeIspravan = true;
 
-            // Provjeriti je li selectedRestaurant null
             if (selectedRestaurant == null) {
                 System.out.println("Odabrani restoran je nevažeći. Pokušajte ponovo.");
                 jeIspravan = false;
                 continue;
             }
 
-            Meal[] availableMeals = selectedRestaurant.getMeals(); // Jela iz odabranog restorana
+            Meal[] availableMeals = selectedRestaurant.getMeals();
             if (availableMeals == null || availableMeals.length == 0) {
                 System.out.println("Nema dostupnih jela za restoran " + selectedRestaurant.getName());
                 jeIspravan = false;
                 continue;
             }
 
-            System.out.println("Popis jela za restoran " + selectedRestaurant.getName() + ", odaberite jedan brojem 1-" + availableMeals.length + " ili 0 za završetak: ");
+            System.out.println("Popis jela za restoran " + selectedRestaurant.getName() + ", odaberite jedan brojem 1-" + availableMeals.length);
             for (int i = 0; i < availableMeals.length; i++) {
-                if (availableMeals[i] != null) { // Ensure the meal is not null
+                if (availableMeals[i] != null) {
                     System.out.println((i + 1) + ". " + availableMeals[i].getName());
                 }
             }
@@ -649,9 +641,9 @@ public class Main {
             }
 
             if (mealChoice >= 1 && mealChoice <= availableMeals.length) {
-                if (mealCount < selectedMeals.length) { // Check if there is space in the selectedMeals array
-                    selectedMeals[mealCount] = availableMeals[mealChoice - 1]; // Add selected meal to the array
-                    mealCount++; // Increment meal count
+                if (mealCount < selectedMeals.length) {
+                    selectedMeals[mealCount] = availableMeals[mealChoice - 1];
+                    mealCount++;
                 } else {
                     System.out.println("Prekoračili ste maksimalni broj jela (10).");
                     jeIspravan = false;
@@ -675,7 +667,7 @@ public class Main {
 
             if (delivererChoice >= 1 && delivererChoice <= deliverers.length) {
                 selectedDeliverer = deliverers[delivererChoice - 1];
-                selectedDeliverer.incrementDostave();  // Povećaj broj dostava za odabranog dostavljača
+                selectedDeliverer.incrementDostave();
             } else {
                 System.out.println("Krivi unos, pokušajte ponovo.");
                 jeIspravan = false;
@@ -688,34 +680,30 @@ public class Main {
             finalSelectedMeals[i] = selectedMeals[i];
         }
 
-        // Vraćanje novog Order objekta
         return new Order(selectedRestaurant, finalSelectedMeals, selectedDeliverer);
     }
 
     public static void nadiRestoranSaNajvecomNarudzbom(Order[] orders) {
         BigDecimal highestPrice = BigDecimal.ZERO;
-        Restaurant[] highestRestaurants = new Restaurant[orders.length]; // Assume maximum number of restaurants equals number of orders
-        int restaurantCount = 0; // To keep track of number of restaurants with the highest price
+        Restaurant[] highestRestaurants = new Restaurant[orders.length];
+        int restaurantCount = 0;
 
-        // Iterate through all orders
         for (Order order : orders) {
             BigDecimal currentPrice = order.getTotalPrice();
             Restaurant restaurant = order.getRestaurant();
 
             if (currentPrice.compareTo(highestPrice) > 0) {
-                highestPrice = currentPrice; // Update highest price
-                restaurantCount = 0; // Reset the count
-                highestRestaurants[restaurantCount++] = restaurant; // Add new restaurant
+                highestPrice = currentPrice;
+                restaurantCount = 0;
+                highestRestaurants[restaurantCount++] = restaurant;
             } else if (currentPrice.compareTo(highestPrice) == 0) {
-                highestRestaurants[restaurantCount++] = restaurant; // Add restaurant with the same price
+                highestRestaurants[restaurantCount++] = restaurant;
             }
         }
 
-        // Print results
         System.out.println("Restorani s najskupljom narudžbom (cijena: " + highestPrice + "):");
         for (int i = 0; i < restaurantCount; i++) {
             System.out.println("Restoran: " + highestRestaurants[i].getName());
-            // You can add more details about the restaurant here
         }
     }
 
@@ -724,18 +712,16 @@ public class Main {
         Deliverer[] najDostavljaci = new Deliverer[deliverers.length];
         int brojNajDostavljaca = 0;
 
-        // Pronađi dostavljača s najviše dostava
         for (Deliverer deliverer : deliverers) {
             if (deliverer.getBrojDostava() > maxDostave) {
                 maxDostave = deliverer.getBrojDostava();
-                brojNajDostavljaca = 0;  // Resetiraj broj jer imamo novog lidera
+                brojNajDostavljaca = 0;
                 najDostavljaci[brojNajDostavljaca++] = deliverer;
             } else if (deliverer.getBrojDostava() == maxDostave) {
-                najDostavljaci[brojNajDostavljaca++] = deliverer;  // Dodaj ako je isti broj dostava
+                najDostavljaci[brojNajDostavljaca++] = deliverer;
             }
         }
 
-        // Ispis rezultata
         System.out.println("Dostavljači s najviše dostava (" + maxDostave + "):");
         for (int i = 0; i < brojNajDostavljaca; i++) {
             Deliverer dostavljac = najDostavljaci[i];

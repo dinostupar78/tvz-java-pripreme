@@ -79,7 +79,7 @@ public class Main {
 
         nadiRestoranSaNajvecomNarudzbom(orderers);
 
-
+        nadiDostavljacaSaNajviseDostava(deliverers);
 
 
     }
@@ -641,7 +641,7 @@ public class Main {
             }
 
             int mealChoice = scanner.nextInt();
-            scanner.nextLine(); // Čisti ulazni tok
+            scanner.nextLine();
 
             if (mealChoice == 0) {
                 // User chose to finish selecting meals
@@ -660,7 +660,7 @@ public class Main {
                 System.out.println("Krivi unos, pokušajte ponovo.");
                 jeIspravan = false;
             }
-        } while (!jeIspravan || mealCount == 0); // Ensure at least one meal is selected
+        } while (!jeIspravan || mealCount == 0);
 
         // Odabir dostavljača
         do {
@@ -675,6 +675,7 @@ public class Main {
 
             if (delivererChoice >= 1 && delivererChoice <= deliverers.length) {
                 selectedDeliverer = deliverers[delivererChoice - 1];
+                selectedDeliverer.incrementDostave();  // Povećaj broj dostava za odabranog dostavljača
             } else {
                 System.out.println("Krivi unos, pokušajte ponovo.");
                 jeIspravan = false;
@@ -718,15 +719,28 @@ public class Main {
         }
     }
 
+    public static void nadiDostavljacaSaNajviseDostava(Deliverer[] deliverers) {
+        int maxDostave = 0;
+        Deliverer[] najDostavljaci = new Deliverer[deliverers.length];
+        int brojNajDostavljaca = 0;
 
+        // Pronađi dostavljača s najviše dostava
+        for (Deliverer deliverer : deliverers) {
+            if (deliverer.getBrojDostava() > maxDostave) {
+                maxDostave = deliverer.getBrojDostava();
+                brojNajDostavljaca = 0;  // Resetiraj broj jer imamo novog lidera
+                najDostavljaci[brojNajDostavljaca++] = deliverer;
+            } else if (deliverer.getBrojDostava() == maxDostave) {
+                najDostavljaci[brojNajDostavljaca++] = deliverer;  // Dodaj ako je isti broj dostava
+            }
+        }
 
-
-
-
-
-
-
-
-
+        // Ispis rezultata
+        System.out.println("Dostavljači s najviše dostava (" + maxDostave + "):");
+        for (int i = 0; i < brojNajDostavljaca; i++) {
+            Deliverer dostavljac = najDostavljaci[i];
+            System.out.println(dostavljac.getFirstName() + " " + dostavljac.getLastName() + ", Plaća: " + dostavljac.getSalary());
+        }
+    }
 
 }

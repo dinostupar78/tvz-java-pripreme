@@ -3,6 +3,9 @@ package hr.java.production.main;
 import hr.java.restaurant.model.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Main {
@@ -588,6 +591,7 @@ public class Main {
         int mealCount = 0;
         Deliverer selectedDeliverer = null;
         boolean jeIspravan;
+        LocalDateTime vrijemeDostave = null;
 
         // Odabir restorana
         do {
@@ -680,7 +684,29 @@ public class Main {
             finalSelectedMeals[i] = selectedMeals[i];
         }
 
-        return new Order(selectedRestaurant, finalSelectedMeals, selectedDeliverer);
+        do {
+            jeIspravan = true;
+            System.out.println("Unesite vrijeme dostave (u formatu: yyyy-MM-dd HH:mm): ");
+            String vrijemeDostaveInput = scanner.nextLine();
+
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                vrijemeDostave = LocalDateTime.parse(vrijemeDostaveInput, formatter);
+
+                // Provjera da li je vrijeme u budućnosti
+                if (vrijemeDostave.isBefore(LocalDateTime.now())) {
+                    System.out.println("Vrijeme dostave mora biti u budućnosti. Pokušajte ponovo.");
+                    jeIspravan = false;
+                }
+
+            } catch (DateTimeParseException e) {
+                System.out.println("Neispravan format datuma i vremena. Pokušajte ponovo.");
+                jeIspravan = false;
+            }
+
+        } while (!jeIspravan);
+
+        return new Order(selectedRestaurant, finalSelectedMeals, selectedDeliverer, vrijemeDostave);
     }
 
     public static void nadiRestoranSaNajvecomNarudzbom(Order[] orders) {
@@ -728,5 +754,7 @@ public class Main {
             System.out.println(dostavljac.getFirstName() + " " + dostavljac.getLastName() + ", Plaća: " + dostavljac.getSalary());
         }
     }
+
+
 
 }

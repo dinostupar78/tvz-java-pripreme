@@ -14,6 +14,7 @@ public class Deliverer {
         this.salary = salary;
         this.brojDostava = 0;
     }
+
     public void incrementDostave() {
         this.brojDostava++;
     }

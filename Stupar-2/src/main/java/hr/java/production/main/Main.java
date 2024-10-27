@@ -738,6 +738,7 @@ public class Main {
             }
         }
 
+
         System.out.println("Restorani s najskupljom narudžbom (cijena: " + highestPrice + "):");
         for (int i = 0; i < restaurantCount; i++) {
             System.out.println("Restoran: " + highestRestaurants[i].getName());

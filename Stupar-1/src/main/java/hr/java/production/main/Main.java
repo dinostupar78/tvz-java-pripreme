@@ -680,6 +680,7 @@ public class Main {
             }
         } while (!jeIspravan);
 
+
         // Trim the selectedMeals array to the number of meals actually selected
         Meal[] finalSelectedMeals = new Meal[mealCount];
         for (int i = 0; i < mealCount; i++) {

@@ -100,7 +100,7 @@ public class Main {
     public static Category categoryInput(Scanner scanner) {
         String imeKategorije;
         String opisKategorije;
-        Boolean jeIspravan;
+        boolean jeIspravan;
 
         do {
             jeIspravan = true;
@@ -126,7 +126,7 @@ public class Main {
     }
 
     public static Ingredient ingredientInput(Scanner scanner, Category[] categories) {
-        BigDecimal kcal;
+        BigDecimal kcal = BigDecimal.valueOf(0);
         String metodaPreparacije;
         Category odabranaKategorija = new Category("None", "No description");
         int categoryChoice;
@@ -161,13 +161,15 @@ public class Main {
             }
         } while (!jeIspravan);
 
+
+
         do {
             jeIspravan = true;
             System.out.println("Unesite broj kcal: ");
             kcal = scanner.nextBigDecimal();
             scanner.nextLine();
             if (kcal.compareTo(BigDecimal.ZERO) < 0 || kcal.compareTo(BigDecimal.valueOf(1000)) > 0) {
-                System.out.println("Krivi unos, unesite točan broj kcal.");
+                System.out.println("Krivi unos, unesite broj kcal u rasponu od 0 do 1000.");
                 jeIspravan = false;
             }
 
@@ -190,7 +192,7 @@ public class Main {
 
     public static Meal mealsInput(Scanner scanner, Category[] categories, Ingredient[] ingredients){
         String imeJela;
-        Category odabranaKategorija = new Category("None", "No description");;
+        Category odabranaKategorija = new Category("None", "No description");
         Ingredient[] odabraniSastojak = new Ingredient[numberOfIngredients];
         BigDecimal price;
         Boolean jeIspravan;

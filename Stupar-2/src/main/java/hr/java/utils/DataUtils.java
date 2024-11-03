@@ -35,7 +35,7 @@ public class DataUtils {
             }
         } while (!jeIspravan);
 
-        return new Category(imeKategorije, opisKategorije);
+        return new Category(0L, imeKategorije, opisKategorije);
     }
 
     public static Ingredient ingredientInput(Scanner scanner, Category[] categories) {
@@ -89,7 +89,7 @@ public class DataUtils {
 
         } while (!jeIspravan);
 
-        return new Ingredient(imeSastojka, odabranaKategorija, kcal, metodaPreparacije);
+        return new Ingredient(0L, imeSastojka, odabranaKategorija, kcal, metodaPreparacije);
     }
 
     public static Meal mealsInput(Scanner scanner, Category[] categories, Ingredient[] ingredients){
@@ -125,7 +125,7 @@ public class DataUtils {
 
         }while(!jeIspravan);
 
-        return new Meal(imeJela, odabranaKategorija, odabraniSastojak, price);
+        return new Meal(0L, imeJela, odabranaKategorija, odabraniSastojak, price);
     }
 
     public static Address addressInput(Scanner scanner){
@@ -176,6 +176,6 @@ public class DataUtils {
 
         }while(!jeIspravan);
 
-        return new Address(ulica, brojKucneAdrese, grad, postanskiBroj);
+        return new Address(0L, ulica, brojKucneAdrese, grad, postanskiBroj);
     }
 }

@@ -33,7 +33,7 @@ public class RestaurantUtils {
 
         Deliverer[] odabraniDostavljac = SelectedUtils.selectedDeliverers(scanner, deliverers);
 
-        return new Restaurant(imeRestorana, adresaRestorana, odabranoJelo, odabraniKuhar, odabraniKonobar, odabraniDostavljac);
+        return new Restaurant(0L, imeRestorana, adresaRestorana, odabranoJelo, odabraniKuhar, odabraniKonobar, odabraniDostavljac);
 
     }
 
@@ -158,6 +158,6 @@ public class RestaurantUtils {
 
         } while (!jeIspravan);
 
-        return new Order(selectedRestaurant, finalSelectedMeals, selectedDeliverer, vrijemeDostave);
+        return new Order(0L, selectedRestaurant, finalSelectedMeals, selectedDeliverer, vrijemeDostave);
     }
 }

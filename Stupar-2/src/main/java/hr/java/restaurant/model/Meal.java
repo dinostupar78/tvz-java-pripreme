@@ -2,13 +2,14 @@ package hr.java.restaurant.model;
 
 import java.math.BigDecimal;
 
-public class Meal {
+public class Meal extends Entity {
     private String name;
     private Category category;
     private Ingredient[] ingredient;
     private BigDecimal price;
 
-    public Meal(String name, Category category, Ingredient[] ingredient, BigDecimal price) {
+    public Meal(Long id, String name, Category category, Ingredient[] ingredient, BigDecimal price) {
+        super(id);
         this.name = name;
         this.category = category;
         this.ingredient = ingredient;

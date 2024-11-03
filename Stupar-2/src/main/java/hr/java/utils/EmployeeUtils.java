@@ -53,7 +53,7 @@ public class EmployeeUtils {
 
         }while(!jeIspravan);
 
-        return new Chef(imeKuhara, prezimeKuhara, placaKuhara);
+        return new Chef(0L, imeKuhara, prezimeKuhara, placaKuhara);
     }
 
     public static Waiter waiterInput(Scanner scanner){
@@ -101,7 +101,7 @@ public class EmployeeUtils {
 
         }while(!jeIspravan);
 
-        return new Waiter(imeKonobara, prezimeKonobara, placaKonobara);
+        return new Waiter(0L, imeKonobara, prezimeKonobara, placaKonobara);
     }
 
     public static Deliverer delivererInput(Scanner scanner){
@@ -149,6 +149,6 @@ public class EmployeeUtils {
 
         }while(!jeIspravan);
 
-        return new Deliverer(imeDostavljaca, prezimeDostavljaca, placaDostavljaca);
+        return new Deliverer(0L, imeDostavljaca, prezimeDostavljaca, placaDostavljaca);
     }
 }

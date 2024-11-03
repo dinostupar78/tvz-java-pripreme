@@ -3,13 +3,14 @@ package hr.java.restaurant.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class Order {
+public class Order extends Entity{
     private Restaurant restaurant;
     private Meal[] meals;
     private Deliverer deliverer;
     private LocalDateTime deliveryDateAndTime;
 
-    public Order(Restaurant restaurant, Meal[] meals, Deliverer deliverer, LocalDateTime deliveryDateAndTime) {
+    public Order(Long id, Restaurant restaurant, Meal[] meals, Deliverer deliverer, LocalDateTime deliveryDateAndTime) {
+        super(id);
         this.restaurant = restaurant;
         this.meals = meals;
         this.deliverer = deliverer;

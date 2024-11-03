@@ -1,6 +1,6 @@
 package hr.java.restaurant.model;
 
-public class Restaurant {
+public class Restaurant extends Entity {
     private String name;
     private Address address;
     private Meal[] meals;
@@ -8,7 +8,8 @@ public class Restaurant {
     private Waiter[] waiters;
     private Deliverer[] deliverers;
 
-    public Restaurant(String name, Address address, Meal[] meals, Chef[] chefs, Waiter[] waiters, Deliverer[] deliverers) {
+    public Restaurant(Long id, String name, Address address, Meal[] meals, Chef[] chefs, Waiter[] waiters, Deliverer[] deliverers) {
+        super(id);
         this.name = name;
         this.address = address;
         this.meals = meals;

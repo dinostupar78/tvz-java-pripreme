@@ -1,12 +1,13 @@
 package hr.java.restaurant.model;
 
-public class Address {
+public class Address extends Entity{
     private String street;
     private String houseNumber;
     private String city;
     private String postalCode;
 
-    public Address(String street, String houseNumber, String city, String postalCode) {
+    public Address(Long id, String street, String houseNumber, String city, String postalCode) {
+        super(id);
         this.street = street;
         this.houseNumber = houseNumber;
         this.city = city;

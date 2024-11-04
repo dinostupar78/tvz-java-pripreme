@@ -1,15 +1,15 @@
 package hr.java.restaurant.model;
 
-import java.math.BigDecimal;
-
 public class Deliverer extends Person {
-    private BigDecimal salary;
+    private Contract contract;
     private int brojDostava;
+    private Bonus bonusDostavljaca;
 
-    public Deliverer(Long id, String firstName, String lastName, BigDecimal salary) {
+    private Deliverer(Long id, String firstName, String lastName, Contract contract, Bonus bonusDostavljaca) {
         super(id, firstName, lastName);
-        this.salary = salary;
+        this.contract = contract;
         this.brojDostava = 0;
+        this.bonusDostavljaca = bonusDostavljaca;
     }
 
     public void incrementDostave() {
@@ -20,12 +20,60 @@ public class Deliverer extends Person {
         return brojDostava;
     }
 
-    public BigDecimal getSalary() {
-        return salary;
+    public void setBrojDostava(int brojDostava) {
+        this.brojDostava = brojDostava;
     }
 
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract salary) {
+        this.contract = salary;
+    }
+
+    public Bonus getBonusDostavljaca() {
+        return bonusDostavljaca;
+    }
+
+    public void setBonusDostavljaca(Bonus bonusDostavljaca) {
+        this.bonusDostavljaca = bonusDostavljaca;
+    }
+
+    public static class BuilderDeliverer {
+        private Long id;
+        private String firstName;
+        private String lastName;
+        private Contract contract;
+        private Bonus bonusDostavljaca;
+
+        public BuilderDeliverer(Long id) {
+            this.id = id;
+        }
+
+        public BuilderDeliverer delivererFirstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public BuilderDeliverer delivererLastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public BuilderDeliverer delivererContract(Contract contract) {
+            this.contract = contract;
+            return this;
+        }
+
+        public BuilderDeliverer delivererBonusDostavljaca(Bonus bonusDostavljaca) {
+            this.bonusDostavljaca = bonusDostavljaca;
+            return this;
+        }
+
+        public Deliverer build() {
+            return new Deliverer(id, firstName, lastName, contract, bonusDostavljaca);
+        }
     }
 }
 

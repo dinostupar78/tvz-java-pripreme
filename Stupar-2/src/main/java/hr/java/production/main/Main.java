@@ -1,9 +1,12 @@
 package hr.java.production.main;
+
 import hr.java.restaurant.model.*;
 import hr.java.utils.DataUtils;
 import hr.java.utils.EmployeeUtils;
 import hr.java.utils.RestaurantUtils;
+
 import java.util.Scanner;
+
 import static hr.java.utils.RestaurantUtils.restoranInput;
 
 public class Main {
@@ -77,6 +80,8 @@ public class Main {
             Order order = orderInput(scanner, restaurants, meals, deliverers);
             orderers[i] = order;
         }
+
+
     }
 
     public static Category categoryInput(Scanner scanner) {

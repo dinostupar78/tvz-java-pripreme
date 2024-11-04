@@ -1,9 +1,7 @@
 package hr.java.utils;
-import hr.java.restaurant.model.Chef;
-import hr.java.restaurant.model.Deliverer;
-import hr.java.restaurant.model.Waiter;
-
+import hr.java.restaurant.model.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -12,6 +10,8 @@ public class EmployeeUtils {
         String imeKuhara, prezimeKuhara;
         BigDecimal placaKuhara = null;
         Boolean jeIspravan = false;
+        LocalDate pocetakUgovora = LocalDate.now();
+        LocalDate zavrsetakUgovora;
 
         do {
             jeIspravan = true;
@@ -53,13 +53,28 @@ public class EmployeeUtils {
 
         }while(!jeIspravan);
 
-        return new Chef(0L, imeKuhara, prezimeKuhara, placaKuhara);
+        System.out.println("Unesite datum završetka ugovora (YYYY-MM-DD): ");
+        String zavrsetakUgovoraInput = scanner.nextLine();
+        zavrsetakUgovora = LocalDate.parse(zavrsetakUgovoraInput);
+
+        Contract ugovorKuhara = new Contract(placaKuhara, pocetakUgovora, zavrsetakUgovora, Contract.FULL_TIME);
+
+        Bonus bonusKuhara = new Bonus(new BigDecimal(100.00));
+
+        return new Chef.BuilderChef(0L)
+                .chefFirstName(imeKuhara)
+                .chefLastName(prezimeKuhara)
+                .chefContract(ugovorKuhara)
+                .chefBonusKuhara(bonusKuhara)
+                .build();
     }
 
     public static Waiter waiterInput(Scanner scanner){
         String imeKonobara, prezimeKonobara;
         BigDecimal placaKonobara = null;
         Boolean jeIspravan = false;
+        LocalDate pocetakUgovora = LocalDate.now();
+        LocalDate zavrsetakUgovora;
 
         do {
             jeIspravan = true;
@@ -101,13 +116,28 @@ public class EmployeeUtils {
 
         }while(!jeIspravan);
 
-        return new Waiter(0L, imeKonobara, prezimeKonobara, placaKonobara);
+        System.out.println("Unesite datum završetka ugovora (YYYY-MM-DD): ");
+        String zavrsetakUgovoraInput = scanner.nextLine();
+        zavrsetakUgovora = LocalDate.parse(zavrsetakUgovoraInput);
+
+        Contract ugovorKonobara = new Contract(placaKonobara, pocetakUgovora, zavrsetakUgovora, Contract.FULL_TIME);
+
+        Bonus bonusKonobara = new Bonus(new BigDecimal(100.00));
+
+        return new Waiter.BuilderWaiter(0L)
+                .waiterFirstName(imeKonobara)
+                .waiterLastName(prezimeKonobara)
+                .waiterContract(ugovorKonobara)
+                .waiterBonusKonobara(bonusKonobara)
+                .build();
     }
 
     public static Deliverer delivererInput(Scanner scanner){
         String imeDostavljaca, prezimeDostavljaca;
         BigDecimal placaDostavljaca = null;
         Boolean jeIspravan = false;
+        LocalDate pocetakUgovora = LocalDate.now();
+        LocalDate zavrsetakUgovora;
 
         do {
             jeIspravan = true;
@@ -137,18 +167,31 @@ public class EmployeeUtils {
                 scanner.nextLine();
 
             }catch(InputMismatchException badData){
-                System.out.println(Messages.INVALID_CHEF_INPUT);
+                System.out.println(Messages.INVALID_DELIVERER_INPUT);
                 scanner.nextLine();
                 jeIspravan = false;
                 continue;
             }
             if (placaDostavljaca.compareTo(BigDecimal.ZERO) < 0 || placaDostavljaca.compareTo(BigDecimal.valueOf(10000)) > 0) {
-                System.out.println(Messages.INVALID_CHEF_INPUT);
+                System.out.println(Messages.INVALID_DELIVERER_INPUT);
                 jeIspravan = false;
             }
 
         }while(!jeIspravan);
 
-        return new Deliverer(0L, imeDostavljaca, prezimeDostavljaca, placaDostavljaca);
+        System.out.println("Unesite datum završetka ugovora (YYYY-MM-DD): ");
+        String zavrsetakUgovoraInput = scanner.nextLine();
+        zavrsetakUgovora = LocalDate.parse(zavrsetakUgovoraInput);
+
+        Contract ugovorDostavljaca = new Contract(placaDostavljaca, pocetakUgovora, zavrsetakUgovora, Contract.FULL_TIME);
+
+        Bonus bonusDostavljaca = new Bonus(new BigDecimal(100.00));
+
+        return new Deliverer.BuilderDeliverer(0L)
+                .delivererFirstName(imeDostavljaca)
+                .delivererLastName(prezimeDostavljaca)
+                .delivererContract(ugovorDostavljaca)
+                .delivererBonusDostavljaca(bonusDostavljaca)
+                .build();
     }
 }

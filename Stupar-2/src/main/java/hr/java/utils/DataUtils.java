@@ -176,6 +176,11 @@ public class DataUtils {
 
         }while(!jeIspravan);
 
-        return new Address(0L, ulica, brojKucneAdrese, grad, postanskiBroj);
+        return new Address.BuilderAddress(0L)
+                .atStreet(ulica)
+                .atHouseNumber(brojKucneAdrese)
+                .atCity(grad)
+                .atPostalCode(postanskiBroj)
+                .build();
     }
 }

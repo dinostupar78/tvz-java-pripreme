@@ -6,7 +6,7 @@ public class Address extends Entity{
     private String city;
     private String postalCode;
 
-    public Address(Long id, String street, String houseNumber, String city, String postalCode) {
+    private Address(Long id, String street, String houseNumber, String city, String postalCode) {
         super(id);
         this.street = street;
         this.houseNumber = houseNumber;
@@ -44,5 +44,41 @@ public class Address extends Entity{
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public static class BuilderAddress{
+        private Long id;
+        private String street;
+        private String houseNumber;
+        private String city;
+        private String postalCode;
+
+        public BuilderAddress(Long id){
+            this.id = id;
+        }
+
+        public BuilderAddress atStreet(String street){
+            this.street = street;
+            return this;
+        }
+
+        public BuilderAddress atHouseNumber(String houseNumber){
+            this.houseNumber = houseNumber;
+            return this;
+        }
+
+        public BuilderAddress atCity(String city){
+            this.city = city;
+            return this;
+        }
+
+        public BuilderAddress atPostalCode(String postalCode){
+            this.postalCode = postalCode;
+            return this;
+        }
+
+        public Address build(){
+            return new Address(id, street, houseNumber, city, postalCode);
+        }
     }
 }

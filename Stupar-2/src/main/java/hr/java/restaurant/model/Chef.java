@@ -1,22 +1,67 @@
 package hr.java.restaurant.model;
 
-import java.math.BigDecimal;
-
 public class Chef extends Person{
 
-    private BigDecimal salary;
+    private Contract contract;
+    private Bonus BonusKuhara;
 
-    public Chef(Long id, String firstName, String lastName, BigDecimal salary) {
+    private Chef(Long id, String firstName, String lastName, Contract contract, Bonus BonusKuhara) {
         super(id, firstName, lastName);
-        this.salary = salary;
+        this.contract = contract;
+        this.BonusKuhara = BonusKuhara;
     }
 
-    public BigDecimal getSalary() {
-        return salary;
+    public Contract getContract() {
+        return contract;
     }
 
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
+
+    public Bonus getBonusKuhara() {
+        return BonusKuhara;
+    }
+
+    public void setBonusKuhara(Bonus BonusKuhara) {
+        this.BonusKuhara = BonusKuhara;
+    }
+
+    public static class BuilderChef{
+        private Long id;
+        private String firstName;
+        private String lastName;
+        private Contract contract;
+        private Bonus BonusKuhara;
+
+        public BuilderChef(Long id){
+            this.id = id;
+        }
+
+        public BuilderChef chefFirstName(String firstName){
+            this.firstName = firstName;
+            return this;
+        }
+
+        public BuilderChef chefLastName(String lastName){
+            this.lastName = lastName;
+            return this;
+        }
+
+        public BuilderChef chefContract(Contract contract){
+            this.contract = contract;
+            return this;
+        }
+
+        public BuilderChef chefBonusKuhara(Bonus BonusKuhara){
+            this.BonusKuhara = BonusKuhara;
+            return this;
+        }
+
+        public Chef build(){
+            return new Chef(id, firstName, lastName, contract, BonusKuhara);
+        }
+
     }
 }
 

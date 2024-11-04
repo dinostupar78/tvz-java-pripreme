@@ -25,4 +25,8 @@ public abstract class Person extends Entity {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public abstract Contract getContract();
+
+
 }

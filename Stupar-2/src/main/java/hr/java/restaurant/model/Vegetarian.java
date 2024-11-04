@@ -1,8 +1,10 @@
 package hr.java.restaurant.model;
 
-public sealed interface Vegetarian permits Bruschetta {
+public sealed interface Vegetarian permits PastaMeal {
 
-    Boolean isVegetarianFriendly();
+    boolean isAlDente();
+
+    String getSauceRecommendation();
 
     boolean isLowPrice();
 }

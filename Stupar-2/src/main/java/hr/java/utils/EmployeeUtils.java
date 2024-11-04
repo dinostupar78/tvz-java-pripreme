@@ -6,11 +6,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class EmployeeUtils {
-    public static Chef chefInput(Scanner scanner){
+    private static long chefIdCounter = 0, waiterIdCounter = 0, delivererIdCounter = 0;
+
+    public static Chef chefInput(Scanner scanner) {
         String imeKuhara, prezimeKuhara;
         BigDecimal placaKuhara = null;
         Boolean jeIspravan = false;
-        LocalDate pocetakUgovora = LocalDate.now();
+        LocalDate pocetakUgovora;
         LocalDate zavrsetakUgovora;
 
         do {
@@ -33,14 +35,14 @@ public class EmployeeUtils {
             }
         } while (!jeIspravan);
 
-        do{
+        do {
             jeIspravan = true;
             System.out.println("Unesite plaću: ");
-            try{
+            try {
                 placaKuhara = scanner.nextBigDecimal();
                 scanner.nextLine();
 
-            }catch(InputMismatchException badData){
+            } catch (InputMismatchException badData) {
                 System.out.println(Messages.INVALID_CHEF_INPUT);
                 scanner.nextLine();
                 jeIspravan = false;
@@ -51,17 +53,39 @@ public class EmployeeUtils {
                 jeIspravan = false;
             }
 
-        }while(!jeIspravan);
+        } while (!jeIspravan);
+
+        System.out.println("Unesite datum početka ugovora (YYYY-MM-DD): ");
+        String pocetakUgovoraInput = scanner.nextLine();
+        pocetakUgovora = LocalDate.parse(pocetakUgovoraInput);
 
         System.out.println("Unesite datum završetka ugovora (YYYY-MM-DD): ");
         String zavrsetakUgovoraInput = scanner.nextLine();
         zavrsetakUgovora = LocalDate.parse(zavrsetakUgovoraInput);
 
-        Contract ugovorKuhara = new Contract(placaKuhara, pocetakUgovora, zavrsetakUgovora, Contract.FULL_TIME);
+        String tipUgovora = "";
+        do {
+            jeIspravan = true;
+            System.out.println("Unesite tip ugovora (0 za FULL_TIME, 1 za PART_TIME): ");
+            int tipUgovoraInput = scanner.nextInt();
+            scanner.nextLine();
+            if (tipUgovoraInput == 0) {
+                tipUgovora = Contract.FULL_TIME;
+            } else if (tipUgovoraInput == 1) {
+                tipUgovora = Contract.PART_TIME;
+            } else {
+                System.out.println(Messages.INVALID_CONTRACT_INPUT);
+                jeIspravan = false;
+            }
+        } while (!jeIspravan);
+
+        Contract ugovorKuhara = new Contract(placaKuhara, pocetakUgovora, zavrsetakUgovora, tipUgovora);
 
         Bonus bonusKuhara = new Bonus(new BigDecimal(100.00));
 
-        return new Chef.BuilderChef(0L)
+        long id = chefIdCounter++;
+
+        return new Chef.BuilderChef(id)
                 .chefFirstName(imeKuhara)
                 .chefLastName(prezimeKuhara)
                 .chefContract(ugovorKuhara)
@@ -73,7 +97,7 @@ public class EmployeeUtils {
         String imeKonobara, prezimeKonobara;
         BigDecimal placaKonobara = null;
         Boolean jeIspravan = false;
-        LocalDate pocetakUgovora = LocalDate.now();
+        LocalDate pocetakUgovora;
         LocalDate zavrsetakUgovora;
 
         do {
@@ -116,15 +140,37 @@ public class EmployeeUtils {
 
         }while(!jeIspravan);
 
+        System.out.println("Unesite datum početka ugovora (YYYY-MM-DD): ");
+        String pocetakUgovoraInput = scanner.nextLine();
+        pocetakUgovora = LocalDate.parse(pocetakUgovoraInput);
+
         System.out.println("Unesite datum završetka ugovora (YYYY-MM-DD): ");
         String zavrsetakUgovoraInput = scanner.nextLine();
         zavrsetakUgovora = LocalDate.parse(zavrsetakUgovoraInput);
 
-        Contract ugovorKonobara = new Contract(placaKonobara, pocetakUgovora, zavrsetakUgovora, Contract.FULL_TIME);
+        String tipUgovora = "";
+        do {
+            jeIspravan = true;
+            System.out.println("Unesite tip ugovora (0 za FULL_TIME, 1 za PART_TIME): ");
+            int tipUgovoraInput = scanner.nextInt();
+            scanner.nextLine();
+            if (tipUgovoraInput == 0) {
+                tipUgovora = Contract.FULL_TIME;
+            } else if (tipUgovoraInput == 1) {
+                tipUgovora = Contract.PART_TIME;
+            } else {
+                System.out.println(Messages.INVALID_CONTRACT_INPUT);
+                jeIspravan = false;
+            }
+        } while (!jeIspravan);
+
+        Contract ugovorKonobara = new Contract(placaKonobara, pocetakUgovora, zavrsetakUgovora, tipUgovora);
 
         Bonus bonusKonobara = new Bonus(new BigDecimal(100.00));
 
-        return new Waiter.BuilderWaiter(0L)
+        long id = waiterIdCounter++;
+
+        return new Waiter.BuilderWaiter(id)
                 .waiterFirstName(imeKonobara)
                 .waiterLastName(prezimeKonobara)
                 .waiterContract(ugovorKonobara)
@@ -136,7 +182,7 @@ public class EmployeeUtils {
         String imeDostavljaca, prezimeDostavljaca;
         BigDecimal placaDostavljaca = null;
         Boolean jeIspravan = false;
-        LocalDate pocetakUgovora = LocalDate.now();
+        LocalDate pocetakUgovora;
         LocalDate zavrsetakUgovora;
 
         do {
@@ -179,15 +225,37 @@ public class EmployeeUtils {
 
         }while(!jeIspravan);
 
+        System.out.println("Unesite datum početka ugovora (YYYY-MM-DD): ");
+        String pocetakUgovoraInput = scanner.nextLine();
+        pocetakUgovora = LocalDate.parse(pocetakUgovoraInput);
+
         System.out.println("Unesite datum završetka ugovora (YYYY-MM-DD): ");
         String zavrsetakUgovoraInput = scanner.nextLine();
         zavrsetakUgovora = LocalDate.parse(zavrsetakUgovoraInput);
 
-        Contract ugovorDostavljaca = new Contract(placaDostavljaca, pocetakUgovora, zavrsetakUgovora, Contract.FULL_TIME);
+        String tipUgovora = "";
+        do {
+            jeIspravan = true;
+            System.out.println("Unesite tip ugovora (0 za FULL_TIME, 1 za PART_TIME): ");
+            int tipUgovoraInput = scanner.nextInt();
+            scanner.nextLine();
+            if (tipUgovoraInput == 0) {
+                tipUgovora = Contract.FULL_TIME;
+            } else if (tipUgovoraInput == 1) {
+                tipUgovora = Contract.PART_TIME;
+            } else {
+                System.out.println(Messages.INVALID_CONTRACT_INPUT);
+                jeIspravan = false;
+            }
+        } while (!jeIspravan);
+
+        Contract ugovorDostavljaca = new Contract(placaDostavljaca, pocetakUgovora, zavrsetakUgovora, tipUgovora);
 
         Bonus bonusDostavljaca = new Bonus(new BigDecimal(100.00));
 
-        return new Deliverer.BuilderDeliverer(0L)
+        long id = delivererIdCounter++;
+
+        return new Deliverer.BuilderDeliverer(id)
                 .delivererFirstName(imeDostavljaca)
                 .delivererLastName(prezimeDostavljaca)
                 .delivererContract(ugovorDostavljaca)

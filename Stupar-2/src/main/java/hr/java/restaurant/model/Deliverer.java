@@ -24,6 +24,7 @@ public class Deliverer extends Person {
         this.brojDostava = brojDostava;
     }
 
+    @Override
     public Contract getContract() {
         return contract;
     }

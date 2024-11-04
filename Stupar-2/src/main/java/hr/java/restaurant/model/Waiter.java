@@ -10,6 +10,7 @@ public class Waiter extends Person{
         this.bonusKonobara = bonusKonobara;
     }
 
+    @Override
     public Contract getContract() {
         return contract;
     }

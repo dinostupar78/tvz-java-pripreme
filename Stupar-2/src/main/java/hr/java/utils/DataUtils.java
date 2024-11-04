@@ -10,6 +10,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class DataUtils {
+    private static long categoryIdCounter = 0;
+    private static long ingredientIdCounter = 0;
+    private static long mealIdCounter = 0;
+    private static long addressIdCounter = 0;
 
     public static Category categoryInput(Scanner scanner) {
         String imeKategorije, opisKategorije;
@@ -35,7 +39,9 @@ public class DataUtils {
             }
         } while (!jeIspravan);
 
-        return new Category(0L, imeKategorije, opisKategorije);
+        long id = categoryIdCounter++;
+
+        return new Category(id, imeKategorije, opisKategorije);
     }
 
     public static Ingredient ingredientInput(Scanner scanner, Category[] categories) {
@@ -89,14 +95,16 @@ public class DataUtils {
 
         } while (!jeIspravan);
 
-        return new Ingredient(0L, imeSastojka, odabranaKategorija, kcal, metodaPreparacije);
+        long id = ingredientIdCounter++;
+
+        return new Ingredient(id, imeSastojka, odabranaKategorija, kcal, metodaPreparacije);
     }
 
     public static Meal mealsInput(Scanner scanner, Category[] categories, Ingredient[] ingredients){
         Category odabranaKategorija = null;
         Boolean jeIspravan = false;
         BigDecimal price = null;
-        int brojSastojka = 0;
+        Integer brojSastojka = 0, calories = 0;
         String imeJela;
 
         do{
@@ -125,7 +133,20 @@ public class DataUtils {
 
         }while(!jeIspravan);
 
-        return new Meal(0L, imeJela, odabranaKategorija, odabraniSastojak, price);
+        do {
+            jeIspravan = true;
+            System.out.println("Unesite broj kilokalorija: ");
+            calories = scanner.nextInt(); // Use nextInt for calorie input
+            scanner.nextLine();
+            if (calories < 0) {
+                System.out.println("Krivi unos, unesite točan broj kilokalorija.");
+                jeIspravan = false;
+            }
+        } while (!jeIspravan);
+
+        long id = mealIdCounter++;
+
+        return new Meal(id, imeJela, odabranaKategorija, odabraniSastojak, price, calories);
     }
 
     public static Address addressInput(Scanner scanner){
@@ -176,7 +197,9 @@ public class DataUtils {
 
         }while(!jeIspravan);
 
-        return new Address.BuilderAddress(0L)
+        long id = addressIdCounter++;
+
+        return new Address.BuilderAddress(id)
                 .atStreet(ulica)
                 .atHouseNumber(brojKucneAdrese)
                 .atCity(grad)

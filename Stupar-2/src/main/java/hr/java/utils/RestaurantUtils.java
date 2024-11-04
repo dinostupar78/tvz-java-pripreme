@@ -6,6 +6,9 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class RestaurantUtils {
+    private static long restaurantIdCounter = 0;
+    private static long orderIdCounter = 0;
+
     public static Restaurant restoranInput(Scanner scanner, Address[] addresses, Meal[] meals, Chef[] chefs, Waiter[] waiters, Deliverer[] deliverers) {
         Address adresaRestorana = null;
         String imeRestorana;
@@ -33,7 +36,9 @@ public class RestaurantUtils {
 
         Deliverer[] odabraniDostavljac = SelectedUtils.selectedDeliverers(scanner, deliverers);
 
-        return new Restaurant(0L, imeRestorana, adresaRestorana, odabranoJelo, odabraniKuhar, odabraniKonobar, odabraniDostavljac);
+        long id = restaurantIdCounter++;
+
+        return new Restaurant(id, imeRestorana, adresaRestorana, odabranoJelo, odabraniKuhar, odabraniKonobar, odabraniDostavljac);
 
     }
 
@@ -158,6 +163,8 @@ public class RestaurantUtils {
 
         } while (!jeIspravan);
 
-        return new Order(0L, selectedRestaurant, finalSelectedMeals, selectedDeliverer, vrijemeDostave);
+        long id = orderIdCounter++;
+
+        return new Order(id, selectedRestaurant, finalSelectedMeals, selectedDeliverer, vrijemeDostave);
     }
 }

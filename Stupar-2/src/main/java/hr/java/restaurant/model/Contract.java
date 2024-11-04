@@ -16,7 +16,7 @@ public class Contract {
         this.salary = salary;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.contractType = contractType;
+        setContractType(contractType);
     }
 
     public BigDecimal getSalary() {

@@ -1,9 +1,10 @@
 package hr.java.restaurant.model;
 
-public sealed interface Vegan permits QuinoaSalad {
-    boolean isVeganFriendly();
+public sealed interface Vegan permits SaladMeal {
 
-    boolean isGlutenFree();
+    String displayDressing();
+
+    boolean containsAllergens();
 
     boolean isLowPrice();
 }

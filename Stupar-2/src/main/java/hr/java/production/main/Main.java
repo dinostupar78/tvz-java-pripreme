@@ -1,24 +1,23 @@
 package hr.java.production.main;
-
 import hr.java.restaurant.model.*;
 import hr.java.utils.DataUtils;
 import hr.java.utils.EmployeeUtils;
+import hr.java.utils.Messages;
 import hr.java.utils.RestaurantUtils;
-
+import java.math.BigDecimal;
 import java.util.Scanner;
-
 import static hr.java.utils.RestaurantUtils.restoranInput;
 
 public class Main {
-    private static final Integer numberOfCategories = 3;
-    private static final Integer numberOfIngredients = 3;
-    private static final Integer numberOfMeals = 3;
-    private static final Integer numberOfChefs = 3;
-    private static final Integer numberOfWaiters = 3;
-    private static final Integer numberOfDeliverers = 3;
-    private static final Integer numberOfRestaurants = 3;
-    private static final Integer restaurantAddress = 3;
-    private static final Integer numberOfOrders = 3;
+    private static final Integer numberOfCategories = 1; // 3
+    private static final Integer numberOfIngredients = 2; // 3
+    private static final Integer numberOfMeals = 2; // 3
+    private static final Integer numberOfChefs = 1; // 3
+    private static final Integer numberOfWaiters = 1; // 3
+    private static final Integer numberOfDeliverers = 1; // 3
+    private static final Integer numberOfRestaurants = 1; // 3
+    private static final Integer restaurantAddress = 1; // 3
+    private static final Integer numberOfOrders = 1; // 3
 
     public static void main(String[] args) {
         Category[] categories = new Category[numberOfCategories];
@@ -30,6 +29,7 @@ public class Main {
         Restaurant[] restaurants = new Restaurant[numberOfRestaurants];
         Address[] addresses = new Address[restaurantAddress];
         Order[] orderers = new Order[numberOfOrders];
+        Person[] employees = new Person[numberOfChefs + numberOfWaiters + numberOfDeliverers];
 
         Scanner scanner = new Scanner(System.in);
 
@@ -81,6 +81,29 @@ public class Main {
             orderers[i] = order;
         }
 
+        int index = 0;
+        for (int i = 0; i < chefs.length; i++) {
+            employees[index++] = chefs[i];
+        }
+
+        for (int i = 0; i < waiters.length; i++) {
+            employees[index++] = waiters[i];
+        }
+
+        for (int i = 0; i < deliverers.length; i++) {
+            employees[index++] = deliverers[i];
+        }
+
+        Person highestPaidEmployee = findHighestPaidEmployee(employees);
+        System.out.println("\nZaposlenik s najvećom plaćom:");
+        printEmployeeInfo(highestPaidEmployee);
+
+        Person longestContractEmployee = findLongestContractEmployee(employees);
+        System.out.println("\nZaposlenik s najdužim ugovorom:");
+        printEmployeeInfo(longestContractEmployee);
+
+        Meal[] SelectedMeals = createMeals();
+        printMealWithMinMaxCalories(meals);
 
     }
 
@@ -120,4 +143,105 @@ public class Main {
         return RestaurantUtils.orderInput(scanner, restaurants, meals, deliverers);
     }
 
+    private static BigDecimal getSalary(Person employee) {
+        return employee.getContract().getSalary();
+    }
+
+    public static Person findHighestPaidEmployee(Person[] employees) {
+        Person highestPaid = employees[0];
+        BigDecimal highestSalary = getSalary(highestPaid);
+
+        for (Person employee : employees) {
+            if (employee != null) {
+                BigDecimal salary = getSalary(employee);
+                if (salary.compareTo(highestSalary) > 0) {
+                    highestPaid = employee;
+                    highestSalary = salary;
+                }
+            }
+        }
+        return highestPaid;
+    }
+
+    public static Person findLongestContractEmployee(Person[] employees) {
+        Person longestContractEmployee = null;
+        long longestDuration = Long.MIN_VALUE;
+
+        for (Person employee : employees) {
+            if (employee != null) {
+                long duration = employee.getContract().getEndTime().toEpochDay() - employee.getContract().getStartTime().toEpochDay();
+
+                if (longestContractEmployee == null || duration > longestDuration || (duration == longestDuration && employee.getContract().getStartTime().isBefore(longestContractEmployee.getContract().getStartTime()))){
+                    longestContractEmployee = employee;
+                    longestDuration = duration;
+                }
+            }
+        }
+        return longestContractEmployee;
+    }
+
+    private static void printEmployeeInfo(Person employee) {
+        String firstName = employee.getFirstName();
+        String lastName = employee.getLastName();
+        Contract contract = employee.getContract();
+
+        System.out.println(String.format(Messages.EMPLOYEE_INFO_MESSAGE, firstName, lastName, contract.getSalary(), contract.getStartTime(), contract.getEndTime()));
+    }
+
+    public static Meal[] createMeals() {
+        Meal[] meals = new Meal[9];
+
+        Category veganCategory = new Category(1L, "Vegan", "Dishes that do not contain any animal products.");
+        Category vegetarianCategory = new Category(2L, "Vegetarian", "Dishes that do not contain meat but may contain dairy or eggs.");
+        Category meatCategory = new Category(3L, "Meat", "Dishes that contain meat.");
+
+        // Create Vegan Meals
+        meals[0] = new SaladMeal(1L, "Vegan Salad", veganCategory, new Ingredient[]{}, BigDecimal.valueOf(50), true, 200);
+        meals[1] = new SaladMeal(2L, "Quinoa Salad", veganCategory, new Ingredient[]{}, BigDecimal.valueOf(60), true, 250);
+        meals[2] = new SaladMeal(3L, "Fruit Salad", veganCategory, new Ingredient[]{}, BigDecimal.valueOf(30), true, 150);
+
+        // Create Vegetarian Meals
+        meals[3] = new PastaMeal(4L, "Vegetarian Pasta", vegetarianCategory, new Ingredient[]{}, BigDecimal.valueOf(70), true, 400);
+        meals[4] = new PastaMeal(5L, "Vegetable Lasagna", vegetarianCategory, new Ingredient[]{}, BigDecimal.valueOf(80), true, 450);
+        meals[5] = new PastaMeal(6L, "Stuffed Peppers", vegetarianCategory, new Ingredient[]{}, BigDecimal.valueOf(90), true, 350);
+
+        // Create Meat Meals
+        meals[6] = new BeefMeal(7L, "Beef Steak", meatCategory, new Ingredient[]{}, BigDecimal.valueOf(120), true, 700);
+        meals[7] = new BeefMeal(8L, "Grilled Chicken", meatCategory, new Ingredient[]{}, BigDecimal.valueOf(100), true, 600);
+        meals[8] = new BeefMeal(9L, "Pork Chops", meatCategory, new Ingredient[]{}, BigDecimal.valueOf(110), true, 650);
+
+        return meals;
+    }
+
+    public static void printMealWithMinMaxCalories(Meal[] meals) {
+        if (meals == null || meals.length == 0) {
+            System.out.println("No meals available.");
+            return;
+        }
+
+        Meal maxCalorieMeal = meals[0];
+        Meal minCalorieMeal = meals[0];
+
+        for (Meal meal : meals) {
+            if (meal.getCalories() > maxCalorieMeal.getCalories()) {
+                maxCalorieMeal = meal;
+            }
+            if (meal.getCalories() < minCalorieMeal.getCalories()) {
+                minCalorieMeal = meal;
+            }
+        }
+        System.out.println("Meal with Maximum Calories: ");
+        printMealInfo(maxCalorieMeal);
+        System.out.println("Meal with Minimum Calories: ");
+        printMealInfo(minCalorieMeal);
+    }
+
+    private static void printMealInfo(Meal meal) {
+        System.out.println(String.format(Messages.MEAL_INFO_MESSAGE,
+                meal.getName(),
+                meal.getCategory().getName(),
+                meal.getPrice(),
+                meal.getCalories()));
+
+    }
 }

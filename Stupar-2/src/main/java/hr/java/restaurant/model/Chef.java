@@ -11,6 +11,7 @@ public class Chef extends Person{
         this.BonusKuhara = BonusKuhara;
     }
 
+    @Override
     public Contract getContract() {
         return contract;
     }

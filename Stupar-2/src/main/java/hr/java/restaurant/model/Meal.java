@@ -7,13 +7,15 @@ public class Meal extends Entity {
     private Category category;
     private Ingredient[] ingredient;
     private BigDecimal price;
+    private Integer calories;
 
-    public Meal(Long id, String name, Category category, Ingredient[] ingredient, BigDecimal price) {
+    public Meal(Long id, String name, Category category, Ingredient[] ingredient, BigDecimal price, Integer calories) {
         super(id);
         this.name = name;
         this.category = category;
         this.ingredient = ingredient;
         this.price = price;
+        this.calories = calories;
     }
 
     public String getName() {
@@ -46,5 +48,18 @@ public class Meal extends Entity {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Integer getCalories() {
+        return calories;
+    }
+
+    public void setCalories(Integer calories) {
+        this.calories = calories;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + ", Calories: " + calories;
     }
 }

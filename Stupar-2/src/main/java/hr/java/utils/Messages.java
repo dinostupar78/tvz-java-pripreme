@@ -25,6 +25,20 @@ public class Messages {
     public static final String
             INVALID_RESTAURANT_INPUT = "Krivi unos, unesite ispravne podatke za restoran.";
 
+    public static String
+            INVALID_CONTRACT_INPUT = "Krivi unos, unesite ispravne podatke za ugovor.";
+
+    public static final String
+            EMPLOYEE_INFO_MESSAGE = "Ime: %s, Prezime: %s, Plaća: %s, Datum početka ugovora: %s, Datum završetka ugovora: %s";
+
+    public static final String
+            MEAL_INFO_MESSAGE = "Jelo: %s, Kategorija: %s, Cijena: %s, Kalorije: %d";
+
+
+
+
+
+
 
 
 

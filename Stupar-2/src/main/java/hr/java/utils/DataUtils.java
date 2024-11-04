@@ -1,10 +1,8 @@
 package hr.java.utils;
-
 import hr.java.restaurant.model.Address;
 import hr.java.restaurant.model.Category;
 import hr.java.restaurant.model.Ingredient;
 import hr.java.restaurant.model.Meal;
-
 import java.math.BigDecimal;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -40,7 +38,6 @@ public class DataUtils {
         } while (!jeIspravan);
 
         long id = categoryIdCounter++;
-
         return new Category(id, imeKategorije, opisKategorije);
     }
 
@@ -59,7 +56,6 @@ public class DataUtils {
                 System.out.println(Messages.INVALID_INGREDIENT_INPUT);
                 jeIspravan = false;
             }
-
         } while (!jeIspravan);
 
         odabranaKategorija = SelectedUtils.selectedCategory(scanner, categories);
@@ -81,7 +77,6 @@ public class DataUtils {
                 System.out.println(Messages.INVALID_INGREDIENT_INPUT);
                 jeIspravan = false;
             }
-
         } while (!jeIspravan);
 
         do {
@@ -92,11 +87,9 @@ public class DataUtils {
                 System.out.println(Messages.INVALID_INGREDIENT_INPUT);
                 jeIspravan = false;
             }
-
         } while (!jeIspravan);
 
         long id = ingredientIdCounter++;
-
         return new Ingredient(id, imeSastojka, odabranaKategorija, kcal, metodaPreparacije);
     }
 
@@ -145,7 +138,6 @@ public class DataUtils {
         } while (!jeIspravan);
 
         long id = mealIdCounter++;
-
         return new Meal(id, imeJela, odabranaKategorija, odabraniSastojak, price, calories);
     }
 
@@ -161,7 +153,6 @@ public class DataUtils {
                 System.out.println(Messages.INVALID_ADDRESS_INPUT);
                 jeIspravan = false;
             }
-
         }while(!jeIspravan);
 
         do{
@@ -172,7 +163,6 @@ public class DataUtils {
                 System.out.println(Messages.INVALID_ADDRESS_INPUT);
                 jeIspravan = false;
             }
-
         }while(!jeIspravan);
 
         do{
@@ -183,7 +173,6 @@ public class DataUtils {
                 System.out.println(Messages.INVALID_ADDRESS_INPUT);
                 jeIspravan = false;
             }
-
         }while(!jeIspravan);
 
         do{
@@ -194,7 +183,6 @@ public class DataUtils {
                 System.out.println(Messages.INVALID_ADDRESS_INPUT);
                 jeIspravan = false;
             }
-
         }while(!jeIspravan);
 
         long id = addressIdCounter++;

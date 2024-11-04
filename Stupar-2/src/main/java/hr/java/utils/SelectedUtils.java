@@ -15,11 +15,9 @@ public class SelectedUtils {
             for (int i = 0; i < categories.length; i++) {
                 System.out.println((i + 1) + ". " + categories[i].getName());
             }
-
             try {
                 categoryChoice = scanner.nextInt();
                 scanner.nextLine();
-
                 if (categoryChoice >= 1 && categoryChoice <= categories.length) {
                     odabranaKategorija = categories[categoryChoice - 1];
                 } else {
@@ -31,7 +29,6 @@ public class SelectedUtils {
                 scanner.nextLine();
                 jeIspravan = false;
             }
-
         } while (!jeIspravan);
 
         return odabranaKategorija;
@@ -86,7 +83,6 @@ public class SelectedUtils {
     }
 
     public static Meal[] selectedMeals(Scanner scanner, Meal[] meals){
-
         Meal[] hranaRestorana = new Meal[meals.length];
         Boolean jeIspravan = false;
         int brojJela = 0;
@@ -116,7 +112,6 @@ public class SelectedUtils {
         } while (!jeIspravan);
 
         Meal[] jelo = new Meal[brojJela];
-
         for(int i=0; i<brojJela; i++){
             jelo[i] = hranaRestorana[i];
         }
@@ -127,7 +122,6 @@ public class SelectedUtils {
         Boolean jeIspravan = false;
         Chef[] kuhariRestorana = new Chef[chefs.length];
         int brojKuhara = 0;
-
         do{
             jeIspravan = true;
             System.out.println("Popis kuhara, birate kuhare dok ne unesete 0 ");
@@ -146,7 +140,6 @@ public class SelectedUtils {
                 System.out.println(Messages.INVALID_CHEF_INPUT);
                 jeIspravan = false;
             }
-
         }while(!jeIspravan);
 
         Chef[] kuhar = new Chef[brojKuhara];
@@ -212,7 +205,6 @@ public class SelectedUtils {
         }while(!jeIspravan);
 
         Deliverer[] dostavljac = new Deliverer[brojDostavljaca];
-
         for(int i = 0; i < brojDostavljaca; i++){
             dostavljac[i] = dostavljaciRestorana[i];
         }

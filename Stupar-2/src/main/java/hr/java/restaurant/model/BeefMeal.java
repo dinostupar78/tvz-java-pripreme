@@ -33,6 +33,4 @@ public final class BeefMeal extends Meal implements Meat{
         return getPrice().compareTo(BigDecimal.valueOf(300)) < 0;
     }
 
-
-
 }

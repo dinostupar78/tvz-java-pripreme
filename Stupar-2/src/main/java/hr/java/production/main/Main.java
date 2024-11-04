@@ -9,15 +9,15 @@ import java.util.Scanner;
 import static hr.java.utils.RestaurantUtils.restoranInput;
 
 public class Main {
-    private static final Integer numberOfCategories = 1; // 3
-    private static final Integer numberOfIngredients = 2; // 3
-    private static final Integer numberOfMeals = 2; // 3
-    private static final Integer numberOfChefs = 1; // 3
-    private static final Integer numberOfWaiters = 1; // 3
-    private static final Integer numberOfDeliverers = 1; // 3
-    private static final Integer numberOfRestaurants = 1; // 3
-    private static final Integer restaurantAddress = 1; // 3
-    private static final Integer numberOfOrders = 1; // 3
+    private static final Integer numberOfCategories = 3; // 3
+    private static final Integer numberOfIngredients = 3; // 3
+    private static final Integer numberOfMeals = 3; // 3
+    private static final Integer numberOfChefs = 3; // 3
+    private static final Integer numberOfWaiters = 3; // 3
+    private static final Integer numberOfDeliverers = 3; // 3
+    private static final Integer numberOfRestaurants = 3; // 3
+    private static final Integer restaurantAddress = 3; // 3
+    private static final Integer numberOfOrders = 3; // 3
 
     public static void main(String[] args) {
         Category[] categories = new Category[numberOfCategories];
@@ -214,11 +214,6 @@ public class Main {
     }
 
     public static void printMealWithMinMaxCalories(Meal[] meals) {
-        if (meals == null || meals.length == 0) {
-            System.out.println("No meals available.");
-            return;
-        }
-
         Meal maxCalorieMeal = meals[0];
         Meal minCalorieMeal = meals[0];
 
@@ -230,9 +225,9 @@ public class Main {
                 minCalorieMeal = meal;
             }
         }
-        System.out.println("Meal with Maximum Calories: ");
+        System.out.println("Jelo sa najviše kalorija: ");
         printMealInfo(maxCalorieMeal);
-        System.out.println("Meal with Minimum Calories: ");
+        System.out.println("Jelo sa najmanje kalorija: ");
         printMealInfo(minCalorieMeal);
     }
 

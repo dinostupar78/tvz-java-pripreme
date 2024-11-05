@@ -112,8 +112,9 @@ public class Main {
         System.out.println("\nZaposlenik s najdužim ugovorom:");
         printEmployeeInfo(longestContractEmployee);
 
-
         printMealWithMinMaxCalories(specialMeals);
+
+        printVeganMealsWithIngredient(meals, "Kupus");
 
     }
 
@@ -229,4 +230,52 @@ public class Main {
                 specialMeals.getCalories()));
 
     }
+
+    public static void printVeganMealsWithIngredient(Meal[] meals, String ingredient) {
+        System.out.println("Veganska jela koja sadrže sastojak '" + ingredient + "':");
+        for (Meal meal : meals) {
+            if (meal.getCategory().getName().equalsIgnoreCase("VEGAN")) {
+                for (Ingredient ing : meal.getIngredient()) {
+                    if (ing.getName().equalsIgnoreCase(ingredient)) {
+                        System.out.println(meal.getName());
+                    }
+                }
+            }
+        }
+    }
+
+    public static Person findEmployeeWithSmallestSalaryBonusDifference(Person[] employees) {
+        Person closestEmployee = employees[0];
+        double smallestDifference = Math.abs(getSalary(closestEmployee).doubleValue() - closestEmployee.getBonus().iznosBonusaNaOsnovnuPlacu().doubleValue());
+
+        for (Person employee : employees) {
+            if (employee != null) {
+                double difference = Math.abs(getSalary(employee).doubleValue() - employee.getBonus().iznosBonusaNaOsnovnuPlacu().doubleValue());
+                if (difference < smallestDifference) {
+                    closestEmployee = employee;
+                    smallestDifference = difference;
+                }
+            }
+        }
+
+        return closestEmployee;
+    }
+
+    public static void printEmployeesWithContractLessThan(Person[] employees, long months) {
+        System.out.println("Zaposlenici s ugovorom kraćim od " + months + " mjeseci:");
+        for (Person employee : employees) {
+            if (employee != null) {
+                long duration = employee.getContract().getEndTime().toEpochDay() - employee.getContract().getStartTime().toEpochDay();
+                if (duration < months * 30) {
+                    printEmployeeInfo(employee);
+                }
+            }
+        }
+    }
+
+
+
+
+
+
 }

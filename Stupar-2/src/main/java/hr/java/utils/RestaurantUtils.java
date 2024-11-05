@@ -165,6 +165,8 @@ public class RestaurantUtils {
 
         long id = orderIdCounter++;
 
+        System.out.println("Uspješna narudžba!");
+
         return new Order(id, selectedRestaurant, finalSelectedMeals, selectedDeliverer, vrijemeDostave);
     }
 }

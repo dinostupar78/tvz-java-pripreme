@@ -18,6 +18,7 @@ public class Main {
     private static final Integer numberOfRestaurants = 3; // 3
     private static final Integer restaurantAddress = 3; // 3
     private static final Integer numberOfOrders = 3; // 3
+    private static final Integer numberOfSpecialMeals = 3;
 
     public static void main(String[] args) {
         Category[] categories = new Category[numberOfCategories];
@@ -30,6 +31,7 @@ public class Main {
         Address[] addresses = new Address[restaurantAddress];
         Order[] orderers = new Order[numberOfOrders];
         Person[] employees = new Person[numberOfChefs + numberOfWaiters + numberOfDeliverers];
+        Meal[] specialMeals = new Meal[numberOfSpecialMeals];
 
         Scanner scanner = new Scanner(System.in);
 
@@ -49,6 +51,14 @@ public class Main {
             System.out.println("Unesite podatke za " + (i+1) + " jelo");
             Meal jela = mealsInput(scanner, categories, ingredients);
             meals[i] = jela;
+        }
+
+        String[] mealTypes = {"vegansko", "vegetarijansko", "mesno"};
+
+        for(int i = 0; i < specialMeals.length; i++){
+            System.out.println("Unesite podatke za " + mealTypes[i] + " jelo");
+            Meal jela = inputSpecialMeal(scanner, mealTypes[i], categories, ingredients);
+            specialMeals[i] = jela;
         }
 
         for(int i = 0; i < chefs.length; i++){
@@ -102,8 +112,8 @@ public class Main {
         System.out.println("\nZaposlenik s najdužim ugovorom:");
         printEmployeeInfo(longestContractEmployee);
 
-        Meal[] SelectedMeals = createMeals();
-        printMealWithMinMaxCalories(meals);
+
+        printMealWithMinMaxCalories(specialMeals);
 
     }
 
@@ -117,6 +127,10 @@ public class Main {
 
     public static Meal mealsInput(Scanner scanner, Category[] categories, Ingredient[] ingredients){
         return DataUtils.mealsInput(scanner, categories, ingredients);
+    }
+
+    public static Meal inputSpecialMeal(Scanner scanner, String mealType, Category[] categories, Ingredient[] ingredients) {
+        return mealsInput(scanner, categories, ingredients);
     }
 
     public static Chef chefInput(Scanner scanner){
@@ -188,36 +202,12 @@ public class Main {
         System.out.println(String.format(Messages.EMPLOYEE_INFO_MESSAGE, firstName, lastName, contract.getSalary(), contract.getStartTime(), contract.getEndTime()));
     }
 
-    public static Meal[] createMeals() {
-        Meal[] meals = new Meal[9];
 
-        Category veganCategory = new Category(1L, "Vegan", "Dishes that do not contain any animal products.");
-        Category vegetarianCategory = new Category(2L, "Vegetarian", "Dishes that do not contain meat but may contain dairy or eggs.");
-        Category meatCategory = new Category(3L, "Meat", "Dishes that contain meat.");
+    public static void printMealWithMinMaxCalories(Meal[] specialMeals) {
+        Meal maxCalorieMeal = specialMeals[0];
+        Meal minCalorieMeal = specialMeals[0];
 
-        // Create Vegan Meals
-        meals[0] = new SaladMeal(1L, "Vegan Salad", veganCategory, new Ingredient[]{}, BigDecimal.valueOf(50), true, 200);
-        meals[1] = new SaladMeal(2L, "Quinoa Salad", veganCategory, new Ingredient[]{}, BigDecimal.valueOf(60), true, 250);
-        meals[2] = new SaladMeal(3L, "Fruit Salad", veganCategory, new Ingredient[]{}, BigDecimal.valueOf(30), true, 150);
-
-        // Create Vegetarian Meals
-        meals[3] = new PastaMeal(4L, "Vegetarian Pasta", vegetarianCategory, new Ingredient[]{}, BigDecimal.valueOf(70), true, 400);
-        meals[4] = new PastaMeal(5L, "Vegetable Lasagna", vegetarianCategory, new Ingredient[]{}, BigDecimal.valueOf(80), true, 450);
-        meals[5] = new PastaMeal(6L, "Stuffed Peppers", vegetarianCategory, new Ingredient[]{}, BigDecimal.valueOf(90), true, 350);
-
-        // Create Meat Meals
-        meals[6] = new BeefMeal(7L, "Beef Steak", meatCategory, new Ingredient[]{}, BigDecimal.valueOf(120), true, 700);
-        meals[7] = new BeefMeal(8L, "Grilled Chicken", meatCategory, new Ingredient[]{}, BigDecimal.valueOf(100), true, 600);
-        meals[8] = new BeefMeal(9L, "Pork Chops", meatCategory, new Ingredient[]{}, BigDecimal.valueOf(110), true, 650);
-
-        return meals;
-    }
-
-    public static void printMealWithMinMaxCalories(Meal[] meals) {
-        Meal maxCalorieMeal = meals[0];
-        Meal minCalorieMeal = meals[0];
-
-        for (Meal meal : meals) {
+        for (Meal meal : specialMeals) {
             if (meal.getCalories() > maxCalorieMeal.getCalories()) {
                 maxCalorieMeal = meal;
             }
@@ -231,12 +221,12 @@ public class Main {
         printMealInfo(minCalorieMeal);
     }
 
-    private static void printMealInfo(Meal meal) {
+    private static void printMealInfo(Meal specialMeals) {
         System.out.println(String.format(Messages.MEAL_INFO_MESSAGE,
-                meal.getName(),
-                meal.getCategory().getName(),
-                meal.getPrice(),
-                meal.getCalories()));
+                specialMeals.getName(),
+                specialMeals.getCategory().getName(),
+                specialMeals.getPrice(),
+                specialMeals.getCalories()));
 
     }
 }

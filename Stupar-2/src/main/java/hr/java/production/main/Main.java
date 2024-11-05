@@ -114,8 +114,6 @@ public class Main {
 
         printMealWithMinMaxCalories(specialMeals);
 
-        printVeganMealsWithIngredient(meals, "Kupus");
-
     }
 
     public static Category categoryInput(Scanner scanner) {
@@ -203,7 +201,6 @@ public class Main {
         System.out.println(String.format(Messages.EMPLOYEE_INFO_MESSAGE, firstName, lastName, contract.getSalary(), contract.getStartTime(), contract.getEndTime()));
     }
 
-
     public static void printMealWithMinMaxCalories(Meal[] specialMeals) {
         Meal maxCalorieMeal = specialMeals[0];
         Meal minCalorieMeal = specialMeals[0];
@@ -230,61 +227,4 @@ public class Main {
                 specialMeals.getCalories()));
 
     }
-
-    public static void printVeganMealsWithIngredient(Meal[] meals, String ingredient) {
-        System.out.println("Veganska jela koja sadrže sastojak '" + ingredient + "':");
-        for (Meal meal : meals) {
-            if (meal.getCategory().getName().equalsIgnoreCase("VEGAN")) {
-                for (Ingredient ing : meal.getIngredient()) {
-                    if (ing.getName().equalsIgnoreCase(ingredient)) {
-                        System.out.println(meal.getName());
-                    }
-                }
-            }
-        }
-    }
-
-    public static Person findEmployeeWithSmallestSalaryBonusDifference(Person[] employees) {
-        Person closestEmployee = employees[0];
-        double smallestDifference = Math.abs(getSalary(closestEmployee).doubleValue() - closestEmployee.getBonus().iznosBonusaNaOsnovnuPlacu().doubleValue());
-
-        for (Person employee : employees) {
-            if (employee != null) {
-                double difference = Math.abs(getSalary(employee).doubleValue() - employee.getBonus().iznosBonusaNaOsnovnuPlacu().doubleValue());
-                if (difference < smallestDifference) {
-                    closestEmployee = employee;
-                    smallestDifference = difference;
-                }
-            }
-        }
-
-        return closestEmployee;
-    }
-
-    public static void printEmployeesWithContractLessThan(Person[] employees, long months) {
-        System.out.println("Zaposlenici s ugovorom kraćim od " + months + " mjeseci:");
-        for (Person employee : employees) {
-            if (employee != null) {
-                long duration = employee.getContract().getEndTime().toEpochDay() - employee.getContract().getStartTime().toEpochDay();
-                if (duration < months * 30) {
-                    printEmployeeInfo(employee);
-                }
-            }
-        }
-    }
-
-    public static void printAverageMealPrice(Meal[] meals) {
-        BigDecimal totalPrice = BigDecimal.ZERO;
-        for (Meal meal : meals) {
-            totalPrice = totalPrice.add(meal.getPrice());
-        }
-        BigDecimal averagePrice = totalPrice.divide(BigDecimal.valueOf(meals.length), BigDecimal.ROUND_HALF_UP);
-        System.out.println("Prosječna cijena jela: " + averagePrice);
-    }
-
-
-
-
-
-
 }

@@ -273,6 +273,15 @@ public class Main {
         }
     }
 
+    public static void printAverageMealPrice(Meal[] meals) {
+        BigDecimal totalPrice = BigDecimal.ZERO;
+        for (Meal meal : meals) {
+            totalPrice = totalPrice.add(meal.getPrice());
+        }
+        BigDecimal averagePrice = totalPrice.divide(BigDecimal.valueOf(meals.length), BigDecimal.ROUND_HALF_UP);
+        System.out.println("Prosječna cijena jela: " + averagePrice);
+    }
+
 
 
 

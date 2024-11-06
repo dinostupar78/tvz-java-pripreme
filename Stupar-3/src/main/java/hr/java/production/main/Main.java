@@ -33,6 +33,7 @@ public class Main {
         Person[] employees = new Person[numberOfChefs + numberOfWaiters + numberOfDeliverers];
         Meal[] specialMeals = new Meal[numberOfSpecialMeals];
 
+
         Scanner scanner = new Scanner(System.in);
 
         for(int i = 0; i < categories.length; i++){

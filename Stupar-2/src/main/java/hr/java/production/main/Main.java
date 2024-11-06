@@ -114,7 +114,6 @@ public class Main {
 
         printMealWithMinMaxCalories(specialMeals);
 
-
     }
 
     public static Category categoryInput(Scanner scanner) {

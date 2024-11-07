@@ -195,8 +195,7 @@ public class Main {
     }
 
     private static void printEmployeeInfo(Person employee) {
-        String firstName = employee.getFirstName();
-        String lastName = employee.getLastName();
+        String firstName = employee.getFirstName(), lastName = employee.getLastName();
         Contract contract = employee.getContract();
 
         System.out.println(String.format(Messages.EMPLOYEE_INFO_MESSAGE, firstName, lastName, contract.getSalary(), contract.getStartTime(), contract.getEndTime()));

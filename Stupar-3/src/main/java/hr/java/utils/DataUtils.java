@@ -114,23 +114,40 @@ public class DataUtils {
 
         Ingredient[] odabraniSastojak = SelectedUtils.selectedIngredients(scanner, categories, ingredients);
 
-        do{
-            jeIspravan = true;
-            System.out.println("Unesite cijenu: ");
-            price = scanner.nextBigDecimal();
-            scanner.nextLine();
-            if(price.compareTo(BigDecimal.ZERO) < 0 || price.compareTo(BigDecimal.valueOf(10000)) > 0){
-                System.out.println("Krivi unos, unesite točnu cijenu.");
-                jeIspravan = false;
-            }
+       do{
+           jeIspravan = true;
+           System.out.println("Unesite cijenu: ");
+           try{
+               price = scanner.nextBigDecimal();
+               scanner.nextLine();
+           }catch (InputMismatchException badData){
+               System.out.println(Messages.INVALID_MEAL_INPUT);
+               scanner.nextLine();
+               jeIspravan = false;
+               continue;
+           }
+           if(price.compareTo(BigDecimal.ZERO) < 0 || price.compareTo(BigDecimal.valueOf(10000)) > 0){
+               System.out.println("Krivi unos, unesite točnu cijenu.");
+               jeIspravan = false;
+           }
 
-        }while(!jeIspravan);
+       }while(!jeIspravan);
+
+
 
         do {
             jeIspravan = true;
             System.out.println("Unesite broj kilokalorija: ");
-            calories = scanner.nextInt(); // Use nextInt for calorie input
-            scanner.nextLine();
+            try{
+                calories = scanner.nextInt();
+                scanner.nextLine();
+
+            }catch(InputMismatchException badData){
+                System.out.println(Messages.INVALID_MEAL_INPUT);
+                scanner.nextLine();
+                jeIspravan = false;
+                continue;
+            }
             if (calories < 0) {
                 System.out.println("Krivi unos, unesite točan broj kilokalorija.");
                 jeIspravan = false;

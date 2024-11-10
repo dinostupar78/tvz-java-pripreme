@@ -24,7 +24,7 @@ public class SelectedUtils {
                     System.out.println(Messages.INVALID_CATEGORY_INPUT);
                     jeIspravan = false;
                 }
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException badData) {
                 System.out.println(Messages.INVALID_CATEGORY_INPUT);
                 scanner.nextLine();
                 jeIspravan = false;
@@ -95,19 +95,24 @@ public class SelectedUtils {
                     System.out.println((i + 1) + ". " + meals[i].getName());
                 }
             }
-            int mealChoice = scanner.nextInt();
-            scanner.nextLine();
-
-            while (mealChoice != 0) {
-                if (mealChoice >= 1 && mealChoice <= meals.length && meals[mealChoice - 1] != null) {
-                    hranaRestorana[brojJela] = meals[mealChoice - 1];
-                    brojJela++; // Inkrementiraj broj jela
-                } else {
-                    System.out.println(Messages.INVALID_RESTAURANT_INPUT);
-                    jeIspravan = false;
-                }
-                mealChoice = scanner.nextInt();
+            try {
+                int mealChoice = scanner.nextInt();
                 scanner.nextLine();
+                while (mealChoice != 0) {
+                    if (mealChoice >= 1 && mealChoice <= meals.length && meals[mealChoice - 1] != null) {
+                        hranaRestorana[brojJela] = meals[mealChoice - 1];
+                        brojJela++; // Inkrementiraj broj jela
+                    } else {
+                        System.out.println(Messages.INVALID_RESTAURANT_INPUT);
+                        jeIspravan = false;
+                    }
+                    mealChoice = scanner.nextInt();
+                    scanner.nextLine();
+                }
+            }catch(InputMismatchException badData){
+                System.out.println(Messages.INVALID_MEAL_INPUT);
+                scanner.nextLine();
+                jeIspravan = false;
             }
         } while (!jeIspravan);
 
@@ -128,16 +133,22 @@ public class SelectedUtils {
             for(int i=0; i < chefs.length; i++) {
                 System.out.println((i + 1) + ". " + chefs[i].getFirstName() + " " + chefs[i].getLastName());
             }
+            try{
+                int chefChoice = scanner.nextInt();
+                scanner.nextLine();
 
-            int chefChoice = scanner.nextInt();
-            scanner.nextLine();
+                if(chefChoice >= 1 && chefChoice <= chefs.length){
+                    kuhariRestorana[brojKuhara] = chefs[chefChoice - 1];
+                    brojKuhara++;
 
-            if(chefChoice >= 1 && chefChoice <= chefs.length){
-                kuhariRestorana[brojKuhara] = chefs[chefChoice - 1];
-                brojKuhara++;
+                } else {
+                    System.out.println(Messages.INVALID_CHEF_INPUT);
+                    jeIspravan = false;
+                }
 
-            } else {
+            }catch(InputMismatchException badData){
                 System.out.println(Messages.INVALID_CHEF_INPUT);
+                scanner.nextLine();
                 jeIspravan = false;
             }
         }while(!jeIspravan);
@@ -160,15 +171,19 @@ public class SelectedUtils {
             for (int i = 0; i < waiters.length; i++) {
                 System.out.println((i + 1) + ". " + waiters[i].getFirstName() + " " + waiters[i].getLastName());
             }
-
-            int waiterChoice = scanner.nextInt();
-            scanner.nextLine();
-
-            if (waiterChoice >= 1 && waiterChoice <= waiters.length) {
-                konobariRestorana[brojKonobara] = waiters[waiterChoice - 1];
-                brojKonobara++;
-            } else {
+            try{
+                int waiterChoice = scanner.nextInt();
+                scanner.nextLine();
+                if (waiterChoice >= 1 && waiterChoice <= waiters.length) {
+                    konobariRestorana[brojKonobara] = waiters[waiterChoice - 1];
+                    brojKonobara++;
+                } else {
+                    System.out.println(Messages.INVALID_WAITER_INPUT);
+                    jeIspravan = false;
+                }
+            }catch(InputMismatchException badData){
                 System.out.println(Messages.INVALID_WAITER_INPUT);
+                scanner.nextLine();
                 jeIspravan = false;
             }
         }while(!jeIspravan);
@@ -191,15 +206,20 @@ public class SelectedUtils {
             for (int i = 0; i < deliverers.length; i++) {
                 System.out.println((i + 1) + ". " + deliverers[i].getFirstName() + " " + deliverers[i].getLastName());
             }
+            try{
+                int delivererChoice = scanner.nextInt();
+                scanner.nextLine();
 
-            int delivererChoice = scanner.nextInt();
-            scanner.nextLine();
-
-            if (delivererChoice >= 1 && delivererChoice <= deliverers.length) {
-                dostavljaciRestorana[brojDostavljaca] = deliverers[delivererChoice - 1];
-                brojDostavljaca++;
-            } else {
+                if (delivererChoice >= 1 && delivererChoice <= deliverers.length) {
+                    dostavljaciRestorana[brojDostavljaca] = deliverers[delivererChoice - 1];
+                    brojDostavljaca++;
+                } else {
+                    System.out.println(Messages.INVALID_DELIVERER_INPUT);
+                    jeIspravan = false;
+                }
+            }catch(InputMismatchException badData){
                 System.out.println(Messages.INVALID_DELIVERER_INPUT);
+                scanner.nextLine();
                 jeIspravan = false;
             }
         }while(!jeIspravan);

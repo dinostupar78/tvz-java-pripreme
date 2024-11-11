@@ -3,7 +3,7 @@ import hr.java.restaurant.model.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class SelectedUtils {
+public class SelectedInputUtils {
 
     public static Category selectedCategory(Scanner scanner, Category[] categories) {
         Category odabranaKategorija = null;

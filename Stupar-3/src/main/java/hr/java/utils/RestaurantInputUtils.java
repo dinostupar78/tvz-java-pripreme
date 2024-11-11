@@ -1,44 +1,54 @@
 package hr.java.utils;
+import hr.java.restaurant.exception.DuplicateEntityException;
 import hr.java.restaurant.model.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-public class RestaurantUtils {
+import static hr.java.utils.ExceptionUtils.checkDuplicateRestaurantData;
+
+public class RestaurantInputUtils {
     private static long restaurantIdCounter = 0;
     private static long orderIdCounter = 0;
 
     public static Restaurant restoranInput(Scanner scanner, Address[] addresses, Meal[] meals, Chef[] chefs, Waiter[] waiters, Deliverer[] deliverers) {
-        Address adresaRestorana = null;
-        String imeRestorana;
+        Address restaurantAddress = null;
+        String restaurantName;
         int brojDostavljaca = 0, brojKonobara = 0, brojKuhara = 0, brojJela = 0;
-        Boolean jeIspravan = false;
+        Boolean isValid = false;
 
         do{
-            jeIspravan = true;
+            isValid = true;
             System.out.println("Unesite ime restorana: ");
-            imeRestorana = scanner.nextLine();
-            if (imeRestorana.isEmpty() || imeRestorana.length() < 3) {
+            restaurantName = scanner.nextLine();
+            if (restaurantName.isEmpty() || restaurantName.length() < 3) {
                 System.out.println(Messages.INVALID_RESTAURANT_INPUT);
-                jeIspravan = false;
+                isValid = false;
+            } else {
+                try{
+                    checkDuplicateRestaurantData(restaurantName);
+                } catch(DuplicateEntityException badData){
+                    System.out.println(badData.getMessage());
+                    isValid = false;
+                }
             }
 
-        }while(!jeIspravan);
+        }while(!isValid);
 
-        adresaRestorana = DataUtils.addressInput(scanner);
+        restaurantAddress = DataInputUtils.addressInput(scanner);
 
-        Meal[] odabranoJelo = SelectedUtils.selectedMeals(scanner, meals);
+        Meal[] selecetedMeal = SelectedInputUtils.selectedMeals(scanner, meals);
 
-        Chef[] odabraniKuhar = SelectedUtils.selectedChefs(scanner, chefs);
+        Chef[] selectedChef = SelectedInputUtils.selectedChefs(scanner, chefs);
 
-        Waiter[] odabraniKonobar = SelectedUtils.selectedWaiters(scanner, waiters);
+        Waiter[] selectedWaiter = SelectedInputUtils.selectedWaiters(scanner, waiters);
 
-        Deliverer[] odabraniDostavljac = SelectedUtils.selectedDeliverers(scanner, deliverers);
+        Deliverer[] selectedDeliverer = SelectedInputUtils.selectedDeliverers(scanner, deliverers);
 
         long id = restaurantIdCounter++;
 
-        return new Restaurant(id, imeRestorana, adresaRestorana, odabranoJelo, odabraniKuhar, odabraniKonobar, odabraniDostavljac);
+        return new Restaurant(id, restaurantName, restaurantAddress, selecetedMeal, selectedChef, selectedWaiter, selectedDeliverer);
 
     }
 
@@ -50,7 +60,6 @@ public class RestaurantUtils {
         boolean jeIspravan = false;
         int mealCount = 0;
 
-        // Odabir restorana
         do {
             jeIspravan = true;
             System.out.println("Popis restorana, odaberite jedan brojem 1-" + restaurants.length + ": ");

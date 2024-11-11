@@ -1,5 +1,11 @@
 package hr.java.utils;
 
+/**
+ * Klasa koja sadrži statičke konstante za poruke koje se koriste u aplikaciji.
+ * Poruke su definirane za različite vrste neispravnih unosa i za formatiranje informacija o objektima poput zaposlenika i jela.
+ * Ova klasa služi za centralizirano upravljanje svim tekstualnim porukama koje aplikacija koristi.
+ */
+
 public class Messages {
 
     public static final String

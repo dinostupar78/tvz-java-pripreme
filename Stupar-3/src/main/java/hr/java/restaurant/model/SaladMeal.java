@@ -1,9 +1,25 @@
 package hr.java.restaurant.model;
-
 import java.math.BigDecimal;
+
+/**
+ * Klasa koja predstavlja salatu kao obrok u restoranu.
+ * Ova klasa implementira interfejs {@link Vegan} i proširuje klasu {@link Meal}.
+ * Koristi se za upravljanje salatama koje su veganske, sadrže hranjive sastojke i informacije o alergijama.
+ */
 
 public final class SaladMeal extends Meal implements Vegan{
     private boolean veganFriendly;
+
+    /**
+     * Konstruktor koji inicijalizira salatu s osnovnim informacijama.
+     * @param id jedinstveni identifikator obroka
+     * @param name ime obroka
+     * @param category kategorija obroka (npr. predjelo, glavno jelo)
+     * @param ingredients lista sastojaka koji čine salatu
+     * @param price cijena obroka
+     * @param veganFriendly označava je li salata veganska
+     * @param calories broj kalorija u obroku
+     */
 
     public SaladMeal(Long id, String name, Category category, Ingredient[] ingredients, BigDecimal price, Boolean veganFriendly, Integer calories) {
         super(id, name, category, ingredients, price, calories);

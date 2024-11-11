@@ -1,8 +1,24 @@
 package hr.java.restaurant.model;
 
+/**
+ * Klasa koja predstavlja konobara u restoranu.
+ * Konobar je zaposlenik koji ima ugovor o radu, bonus, te osobne podatke kao što su ime i prezime.
+ * Klasa omogućuje pristup podacima konobara i njegovim atributima vezanim uz ugovor i bonus.
+ * Također, omogućuje kreiranje objekata konobara pomoću obrasca dizajnera (Builder pattern).
+ */
+
 public class Waiter extends Person{
     private Contract contract;
     private Bonus bonusKonobara;
+
+    /**
+     * Konstruktor koji inicijalizira podatke konobara.
+     * @param id jedinstveni identifikator konobara
+     * @param firstName ime konobara
+     * @param lastName prezime konobara
+     * @param contract ugovor konobara
+     * @param bonusKonobara bonus koji konobar prima
+     */
 
     private Waiter(Long id, String firstName, String lastName, Contract contract, Bonus bonusKonobara) {
         super(id, firstName, lastName);
@@ -27,6 +43,9 @@ public class Waiter extends Person{
         this.bonusKonobara = bonusKonobara;
     }
 
+    /**
+     * Builder obrazac za izgradnju objekta klase Deliverer.
+     */
 
     public static class BuilderWaiter {
         private Long id;

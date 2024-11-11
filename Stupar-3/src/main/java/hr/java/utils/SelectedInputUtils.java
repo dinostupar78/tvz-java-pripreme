@@ -4,7 +4,20 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import static hr.java.production.main.Main.log;
 
+/**
+ * Pomoćna klasa koja pruža metode za odabir kategorija, sastojaka, jela, kuhara, konobara i dostavljača.
+ * Ove metode vode korisnika kroz niz unosa kako bi odabrao odgovarajuće opcije, te provode validaciju unosa.
+ * Metode osiguravaju ispravan unos podataka i obrađuju neispravne unose s odgovarajućim porukama o pogrešci.
+ */
 public class SelectedInputUtils {
+
+    /**
+     * Potiče korisnika da odabere kategoriju iz popisa dostupnih kategorija.
+     * Provodi validaciju unosa korisnika i vraća odabranu kategoriju.
+     * @param scanner Objekt Scanner koji se koristi za unos od strane korisnika.
+     * @param categories Niz dostupnih objekata kategorija iz kojih korisnik može odabrati.
+     * @return Odabrani objekt kategorije.
+     */
 
     public static Category selectedCategory(Scanner scanner, Category[] categories) {
         Category selectedCategory = null;
@@ -34,6 +47,15 @@ public class SelectedInputUtils {
 
         return selectedCategory;
     }
+
+    /**
+     * Potiče korisnika da odabere sastojke iz popisa dostupnih sastojaka.
+     * Korisnik može odabrati više sastojaka ili završiti unos unosom 0.
+     * @param scanner Objekt Scanner koji se koristi za unos od strane korisnika.
+     * @param categories Niz dostupnih kategorija u restoranu (ne koristi se u ovoj metodi, ali je uključen za kompatibilnost).
+     * @param ingredients Niz dostupnih sastojaka iz kojih korisnik može odabrati.
+     * @return Niz odabranih sastojaka.
+     */
 
     public static Ingredient[] selectedIngredients(Scanner scanner, Category[] categories, Ingredient[] ingredients){
         Boolean isValid = false;
@@ -87,6 +109,14 @@ public class SelectedInputUtils {
         return ingredient;
     }
 
+    /**
+     * Potiče korisnika da odabere jela iz popisa dostupnih jela u restoranu.
+     * Korisnik može odabrati više jela ili završiti unos unosom 0.
+     * @param scanner Objekt Scanner koji se koristi za unos od strane korisnika.
+     * @param meals Niz dostupnih jela u restoranu iz kojih korisnik može odabrati.
+     * @return Niz odabranih jela.
+     */
+
     public static Meal[] selectedMeals(Scanner scanner, Meal[] meals){
         Meal[] restaurantMeal = new Meal[meals.length];
         Boolean isValid = false;
@@ -128,6 +158,14 @@ public class SelectedInputUtils {
         return jelo;
     }
 
+    /**
+     * Potiče korisnika da odabere kuhare iz popisa dostupnih kuhara.
+     * Korisnik može odabrati više kuhara.
+     * @param scanner Objekt Scanner koji se koristi za unos od strane korisnika.
+     * @param chefs Niz dostupnih kuhara iz kojih korisnik može odabrati.
+     * @return Niz odabranih kuhara.
+     */
+
     public static Chef[] selectedChefs(Scanner scanner, Chef[] chefs){
         Boolean isValid = false;
         Chef[] restaurantChefs = new Chef[chefs.length];
@@ -163,6 +201,14 @@ public class SelectedInputUtils {
         return chef;
     }
 
+    /**
+     * Potiče korisnika da odabere konobare iz popisa dostupnih konobara.
+     * Korisnik može odabrati više konobara.
+     * @param scanner Objekt Scanner koji se koristi za unos od strane korisnika.
+     * @param waiters Niz dostupnih konobara iz kojih korisnik može odabrati.
+     * @return  Niz odabranih konobara.
+     */
+
     public static Waiter[] selectedWaiters (Scanner scanner, Waiter[] waiters){
         Boolean isValid = false;
         Waiter[] restaurantWaiters = new Waiter[waiters.length];
@@ -197,6 +243,14 @@ public class SelectedInputUtils {
         }
         return waiter;
     }
+
+    /**
+     * Potiče korisnika da odabere dostavljače iz popisa dostupnih dostavljača.
+     * Korisnik može odabrati više dostavljača.
+     * @param scanner Objekt Scanner koji se koristi za unos od strane korisnika.
+     * @param deliverers Niz dostupnih dostavljača iz kojih korisnik može odabrati.
+     * @return Niz odabranih dostavljača.
+     */
 
     public static Deliverer[] selectedDeliverers(Scanner scanner, Deliverer[] deliverers){
         Boolean isValid = false;

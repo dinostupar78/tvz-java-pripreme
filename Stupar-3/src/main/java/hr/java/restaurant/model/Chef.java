@@ -1,9 +1,24 @@
 package hr.java.restaurant.model;
 
+/**
+ * Predstavlja kuhara u restoranskom sustavu.
+ * Kuhar je zaposlenik restorana s ugovorom o radu i mogućim bonusom.
+ * Klasa nasljeđuje klasu {@link Person} i dodaje specifične atribute kao što su ugovor i bonus kuhara.
+ */
+
 public class Chef extends Person{
 
     private Contract contract;
     private Bonus BonusKuhara;
+
+    /**
+     * Konstruktor za stvaranje novog kuhara s danim atributima.
+     * @param id jedinstveni identifikator kuhara.
+     * @param firstName ime kuhara.
+     * @param lastName prezime kuhara.
+     * @param contract ugovor o radu kuhara.
+     * @param BonusKuhara bonus kuhara.
+     */
 
     private Chef(Long id, String firstName, String lastName, Contract contract, Bonus BonusKuhara) {
         super(id, firstName, lastName);
@@ -27,6 +42,10 @@ public class Chef extends Person{
     public void setBonusKuhara(Bonus BonusKuhara) {
         this.BonusKuhara = BonusKuhara;
     }
+
+    /**
+     * Builder obrazac za izgradnju objekta klase Chef.
+     */
 
     public static class BuilderChef{
         private Long id;

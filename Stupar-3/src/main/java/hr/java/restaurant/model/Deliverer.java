@@ -1,9 +1,24 @@
 package hr.java.restaurant.model;
 
+/**
+ * Predstavlja dostavljača u restoranskom sustavu.
+ * Klasa sadrži informacije o ugovoru dostavljača, broju dostava koje je obavio
+ * te bonusu koji je dodijeljen dostavljaču.
+ */
+
 public class Deliverer extends Person {
     private Contract contract;
     private int brojDostava;
     private Bonus bonusDostavljaca;
+
+    /**
+     * Privatni konstruktor za stvaranje instanci klase Deliverer.
+     * @param id identifikacijski broj dostavljača.
+     * @param firstName ime dostavljača.
+     * @param lastName prezime dostavljača.
+     * @param contract ugovor dostavljača.
+     * @param bonusDostavljaca bonus dostavljača.
+     */
 
     private Deliverer(Long id, String firstName, String lastName, Contract contract, Bonus bonusDostavljaca) {
         super(id, firstName, lastName);
@@ -40,6 +55,10 @@ public class Deliverer extends Person {
     public void setBonusDostavljaca(Bonus bonusDostavljaca) {
         this.bonusDostavljaca = bonusDostavljaca;
     }
+
+    /**
+     * Builder obrazac za izgradnju objekta klase Deliverer.
+     */
 
     public static class BuilderDeliverer {
         private Long id;

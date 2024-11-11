@@ -1,6 +1,10 @@
 package hr.java.restaurant.model;
-
 import java.math.BigDecimal;
+
+/**
+ * Klasa koja predstavlja obrok u restoranu. Obrok se sastoji od naziva, kategorije, sastojaka, cijene i kalorijske vrijednosti.
+ * Ova klasa omogućuje pohranu i manipulaciju informacijama o obrocima koji se nude u restoranu.
+ */
 
 public class Meal extends Entity {
     private String name;
@@ -8,6 +12,16 @@ public class Meal extends Entity {
     private Ingredient[] ingredient;
     private BigDecimal price;
     private Integer calories;
+
+    /**
+     * Konstruktor koji inicijalizira obrok s potrebnim atributima.
+     * @param id jedinstveni identifikator obroka.
+     * @param name naziv obroka.
+     * @param category kategorija obroka (npr. predjelo, glavno jelo, desert).
+     * @param ingredient niz sastojaka koji čine obrok.
+     * @param price cijena obroka.
+     * @param calories kalorijska vrijednost obroka.
+     */
 
     public Meal(Long id, String name, Category category, Ingredient[] ingredient, BigDecimal price, Integer calories) {
         super(id);

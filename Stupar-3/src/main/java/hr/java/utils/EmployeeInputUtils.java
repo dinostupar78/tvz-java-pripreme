@@ -9,8 +9,20 @@ import java.util.Scanner;
 import static hr.java.production.main.Main.log;
 import static hr.java.utils.ExceptionUtils.*;
 
+/**
+ * Utility klasa koja omogućuje unos podataka za različite vrste zaposlenika u restoranu, uključujući kuhare, konobare i dostavljače.
+ * Klasa sadrži metode za unos imena, prezimena, plaće, datuma početka i završetka ugovora, te tipa ugovora,
+ * a također provodi validaciju podataka kako bi osigurala ispravnost unesenih vrijednosti.
+ */
+
 public class EmployeeInputUtils {
     private static long chefIdCounter = 0, waiterIdCounter = 0, delivererIdCounter = 0;
+
+    /**
+     * Unos podataka za kuhara. Provodi validaciju unosa, uključujući provjeru duplikata.
+     * @param scanner Scanner za unos s tipkovnice
+     * @return novokreirani objekt {@link hr.java.restaurant.model.Chef}
+     */
 
     public static Chef chefInput(Scanner scanner)  {
         String chefName, chefSurname;
@@ -105,6 +117,12 @@ public class EmployeeInputUtils {
                 .build();
     }
 
+    /**
+     * Unos podataka za konobara. Provodi validaciju unosa, uključujući provjeru duplikata.
+     * @param scanner Scanner za unos s tipkovnice
+     * @return novokreirani objekt {@link hr.java.restaurant.model.Waiter}
+     */
+
     public static Waiter waiterInput(Scanner scanner){
         String waiterName, waiterSurname;
         BigDecimal waiterSalary = new BigDecimal(0);
@@ -198,6 +216,12 @@ public class EmployeeInputUtils {
                 .waiterBonusKonobara(waiterBonus)
                 .build();
     }
+
+    /**
+     * Unos podataka za dostavljača. Provodi validaciju unosa, uključujući provjeru duplikata.
+     * @param scanner Scanner za unos s tipkovnice
+     * @return novokreirani objekt {@link hr.java.restaurant.model.Deliverer}
+     */
 
     public static Deliverer delivererInput(Scanner scanner){
         String delivererName, delivererSurname;

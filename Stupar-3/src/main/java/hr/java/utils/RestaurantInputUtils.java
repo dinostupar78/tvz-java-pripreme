@@ -2,19 +2,33 @@ package hr.java.utils;
 
 import hr.java.restaurant.exception.DuplicateEntityException;
 import hr.java.restaurant.model.*;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import static hr.java.production.main.Main.log;
 import static hr.java.utils.ExceptionUtils.checkDuplicateRestaurantData;
+
+/**
+ * Utility klasa koja pruža statičke metode za unos podataka vezanih uz restorane i narudžbe.
+ */
 
 public class RestaurantInputUtils {
     private static long restaurantIdCounter = 0;
     private static long orderIdCounter = 0;
+
+    /**
+     * Unosi podatke za restoran, uključujući ime, adresu, jela, kuhare, konobare i dostavljače.
+     * Ova metoda provodi provjere unosa, uključujući provjeru duplikata imena restorana.
+     * @param scanner Scanner objekt za unos podataka
+     * @param addresses Array adresa koje su dostupne za restorane
+     * @param meals Array jela koja su dostupna za restorane
+     * @param chefs Array kuhara koji su dostupni za restorane
+     * @param waiters Array konobara koji su dostupni za restorane
+     * @param deliverers Array dostavljača koji su dostupni za restorane
+     * @return Novi restoran s unesenim podacima
+     */
 
     public static Restaurant restoranInput(Scanner scanner, Address[] addresses, Meal[] meals, Chef[] chefs, Waiter[] waiters, Deliverer[] deliverers) {
         Address restaurantAddress = null;
@@ -50,6 +64,16 @@ public class RestaurantInputUtils {
         return new Restaurant(id, restaurantName, restaurantAddress, selecetedMeal, selectedChef, selectedWaiter, selectedDeliverer);
 
     }
+
+    /**
+     * Unosi podatke za narudžbu, uključujući odabir restorana, jela, dostavljača i vremena dostave.
+     * Ova metoda također provodi provjere unosa i validira format vremena dostave.
+     * @param scanner Scanner objekt za unos podataka
+     * @param restaurants Array restorana koji su dostupni za narudžbe
+     * @param meals Array jela koja su dostupna za narudžbe
+     * @param deliverers Array dostavljača koji su dostupni za narudžbe
+     * @return Nova narudžba s unesenim podacima
+     */
 
     public static Order orderInput(Scanner scanner, Restaurant[] restaurants, Meal[] meals, Deliverer[] deliverers) {
         Meal[] selectedMeals = new Meal[meals.length];

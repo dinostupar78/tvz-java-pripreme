@@ -11,11 +11,24 @@ import java.util.Scanner;
 import static hr.java.production.main.Main.log;
 import static hr.java.utils.ExceptionUtils.*;
 
+/**
+ * Utility klasa koja pruža metode za unos podataka vezanih uz kategorije, sastojke, jela i adrese.
+ * Svi unosi provode osnovnu validaciju podataka, kao što su provjera duplikata i minimalne duljine unosa,
+ * te omogućuju korisnicima unos podataka putem konzole.
+ */
+
 public class DataInputUtils {
     private static long categoryIdCounter = 0;
     private static long ingredientIdCounter = 0;
     private static long mealIdCounter = 0;
     private static long addressIdCounter = 0;
+
+    /**
+     * Metoda za unos podataka o kategoriji. Traži od korisnika da unese ime i opis kategorije.
+     * Provjerava da li uneseni podaci zadovoljavaju minimalne uvjete i provodi validaciju da li kategorija već postoji.
+     * @param scanner Scanner objekt za unos od strane korisnika.
+     * @return nova instanca klase {@link Category} s unesenim podacima.
+     */
 
     public static Category categoryInput(Scanner scanner) {
         String categoryName, categoryDescription;
@@ -51,6 +64,14 @@ public class DataInputUtils {
         long id = categoryIdCounter++;
         return new Category(id, categoryName, categoryDescription);
     }
+
+    /**
+     * Metoda za unos podataka o sastojku. Traži od korisnika da unese ime, kategoriju, broj kilokalorija i metodu pripreme sastojka.
+     * Provodi validaciju podataka i provjerava da li sastojak već postoji.
+     * @param scanner Scanner objekt za unos od strane korisnika.
+     * @param categories Niz kategorija iz kojeg korisnik bira kategoriju za sastojak.
+     * @return nova instanca klase {@link Ingredient} s unesenim podacima.
+     */
 
     public static Ingredient ingredientInput(Scanner scanner, Category[] categories) {
         String ingredientName, preparationMethod;
@@ -108,6 +129,15 @@ public class DataInputUtils {
         long id = ingredientIdCounter++;
         return new Ingredient(id, ingredientName, selectedCategory, kcal, preparationMethod);
     }
+
+    /**
+     * Metoda za unos podataka o jelu. Traži od korisnika da unese ime jela, kategoriju, sastojke, cijenu i broj kilokalorija.
+     * Metoda za unos podataka o jelu. Traži od korisnika da unese ime jela, kategoriju, sastojke, cijenu i broj kilokalorija.
+     * @param scanner Scanner objekt za unos od strane korisnika.
+     * @param categories Niz kategorija za izbor.
+     * @param ingredients Niz sastojaka iz kojeg korisnik može odabrati sastojke za jelo.
+     * @return nova instanca klase {@link Meal} s unesenim podacima.
+     */
 
     public static Meal mealsInput(Scanner scanner, Category[] categories, Ingredient[] ingredients){
         Category selectedCategory = null;
@@ -173,6 +203,13 @@ public class DataInputUtils {
         long id = mealIdCounter++;
         return new Meal(id, mealName, selectedCategory, selectedIngredient, price, calories);
     }
+
+    /**
+     * Metoda za unos podataka o adresi. Traži od korisnika da unese ulicu, kućni broj, grad i poštanski broj.
+     * Provodi validaciju podataka da bi se osigurao ispravan unos.
+     * @param scanner Scanner objekt za unos od strane korisnika.
+     * @return nova instanca klase {@link Address} s unesenim podacima.
+     */
 
     public static Address addressInput(Scanner scanner){
         String street, houseNumber, city, postalCode;

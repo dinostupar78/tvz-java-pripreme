@@ -1,10 +1,26 @@
 package hr.java.restaurant.model;
 
+/**
+ * Predstavlja adresu u sustavu.
+ * Klasa se koristi za pohranu podataka o ulici, broju kuće, gradu i poštanskoj broju.
+ * Adresa se koristi za različite entitete u aplikaciji kao što su restoran i zaposlenici.
+ * Ova klasa također koristi dizajner (Builder pattern) za jednostavno stvaranje objekta Adresa.
+ */
+
 public class Address extends Entity{
     private String street;
     private String houseNumber;
     private String city;
     private String postalCode;
+
+    /**
+     * Privatni konstruktor koji se koristi unutar Buildera za stvaranje instanci klase Address.
+     * @param id Jedinstveni identifikator adrese.
+     * @param street Ulica adrese.
+     * @param houseNumber Broj kuće adrese.
+     * @param city Grad adrese.
+     * @param postalCode Poštanski broj adrese.
+     */
 
     private Address(Long id, String street, String houseNumber, String city, String postalCode) {
         super(id);

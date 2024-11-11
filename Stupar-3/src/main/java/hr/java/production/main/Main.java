@@ -8,8 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.BigDecimal;
 import java.util.Scanner;
-
 import static hr.java.utils.RestaurantInputUtils.restoranInput;
+
+/**
+ * Glavna klasa aplikacije koja upravlja unosom podataka u sustav te obradom tih podataka.
+ * Program omogućava unos podataka za različite entitete kao što su kategorije, sastojci, jela, kuhari, konobari, dostavljači, restorani i narudžbe.
+ * Nakon unosa podataka, aplikacija pronalazi zaposlenika s najvećom plaćom, zaposlenika s najdužim ugovorom te ispisuje jelo s najviše i najmanje kalorija.
+ * Aplikacija koristi različite pomoćne klase za unos podataka i izračune, te logira ključne akcije tijekom rada.
+ */
 
 public class Main {
     public static final Integer numberOfCategories = 3; // 3
@@ -24,6 +30,13 @@ public class Main {
     public static final Integer numberOfSpecialMeals = 3;
 
     public static Logger log = LoggerFactory.getLogger(Main.class);
+
+    /**
+     * Glavna metoda aplikacije koja pokreće cijeli proces unos podataka u sustav.
+     * Korisnik unosi podatke za različite entitete, uključujući kategorije, sastojke, jela, kuhare, konobare, dostavljače, restorane i narudžbe.
+     * Nakon unosa podataka, aplikacija pronalazi zaposlenika s najvećom plaćom i zaposlenika s najdužim ugovorom, te ispisuje jelo s najviše i najmanje kalorija.
+     * @param args
+     */
 
     public static void main(String[] args) {
         Category[] categories = new Category[numberOfCategories];
@@ -166,6 +179,14 @@ public class Main {
         return employee.getContract().getSalary();
     }
 
+    /**
+     * Pronalaženje zaposlenika s najvećom plaćom.
+     * Ova metoda iterira kroz sve zaposlenike, uspoređuje njihove plaće i vraća zaposlenika s najvišom plaćom.
+     * Ako je više zaposlenika s jednakim najvišim plaćama, prvi zaposlenik u redu bit će odabran.
+     * @param employees Polje zaposlenika za kojeg se traži onaj s najvećom plaćom.
+     * @return Zaposlenik s najvećom plaćom.
+     */
+
     public static Person findHighestPaidEmployee(Person[] employees) {
         Person highestPaid = employees[0];
         BigDecimal highestSalary = getSalary(highestPaid);
@@ -181,6 +202,15 @@ public class Main {
         }
         return highestPaid;
     }
+
+    /**
+     * Pronalaženje zaposlenika s najdužim ugovorom.
+     * Ova metoda iterira kroz sve zaposlenike, izračunava trajanje ugovora za svakog zaposlenika,
+     * i vraća zaposlenika s najdužim trajanjem ugovora. Ako su trajanja ugovora jednaka,
+     * preferira se zaposlenik čiji je ugovor počeo ranije.
+     * @param employees Polje zaposlenika za kojeg se traži onaj s najdužim ugovorom.
+     * @return Zaposlenik s najdužim ugovorom.
+     */
 
     public static Person findLongestContractEmployee(Person[] employees) {
         Person longestContractEmployee = null;
@@ -199,12 +229,24 @@ public class Main {
         return longestContractEmployee;
     }
 
+    /**
+     * Ispisivanje informacija o zaposleniku, uključujući ime, prezime, plaću i datume početka i završetka ugovora.
+     * Ispis koristi predložak iz klase {@link Messages}.
+     * @param employee Zaposlenik za kojeg se ispisuju podaci.
+     */
+
     private static void printEmployeeInfo(Person employee) {
         String firstName = employee.getFirstName(), lastName = employee.getLastName();
         Contract contract = employee.getContract();
 
         System.out.println(String.format(Messages.EMPLOYEE_INFO_MESSAGE, firstName, lastName, contract.getSalary(), contract.getStartTime(), contract.getEndTime()));
     }
+
+    /**
+     * Ispisivanje jela s najviše i najmanje kalorija iz danog niza jela.
+     * Metoda pronalazi jelo s najviše kalorija i jelo s najmanje kalorija te ispisuje njihove podatke.
+     * @param specialMeals Polje jela za koja se traže ona s najviše i najmanje kalorija.
+     */
 
     public static void printMealWithMinMaxCalories(Meal[] specialMeals) {
         Meal maxCalorieMeal = specialMeals[0];
@@ -224,12 +266,17 @@ public class Main {
         printMealInfo(minCalorieMeal);
     }
 
+    /**
+     * Ispisivanje informacija o jelu, uključujući ime, kategoriju, cijenu i kalorije.
+     * Ispis koristi predložak iz klase {@link Messages}.
+     * @param specialMeals Jelo za koje se ispisuju podaci.
+     */
+
     private static void printMealInfo(Meal specialMeals) {
         System.out.println(String.format(Messages.MEAL_INFO_MESSAGE,
                 specialMeals.getName(),
                 specialMeals.getCategory().getName(),
                 specialMeals.getPrice(),
                 specialMeals.getCalories()));
-
     }
 }

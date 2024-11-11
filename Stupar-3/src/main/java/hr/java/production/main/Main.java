@@ -1,5 +1,4 @@
 package hr.java.production.main;
-
 import hr.java.restaurant.model.*;
 import hr.java.utils.DataInputUtils;
 import hr.java.utils.EmployeeInputUtils;
@@ -7,16 +6,15 @@ import hr.java.utils.Messages;
 import hr.java.utils.RestaurantInputUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.math.BigDecimal;
 import java.util.Scanner;
 
 import static hr.java.utils.RestaurantInputUtils.restoranInput;
 
 public class Main {
-    public static final Integer numberOfCategories = 1; // 3
-    public static final Integer numberOfIngredients = 1; // 3
-    public static final Integer numberOfMeals = 4; // 3
+    public static final Integer numberOfCategories = 3; // 3
+    public static final Integer numberOfIngredients = 3; // 3
+    public static final Integer numberOfMeals = 3; // 3
     public static final Integer numberOfChefs = 3; // 3
     public static final Integer numberOfWaiters = 3; // 3
     public static final Integer numberOfDeliverers = 3; // 3

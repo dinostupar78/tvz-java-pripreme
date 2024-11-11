@@ -14,7 +14,7 @@ public class EmployeeInputUtils {
 
     public static Chef chefInput(Scanner scanner)  {
         String chefName, chefSurname;
-        BigDecimal chefSalary = null;
+        BigDecimal chefSalary = new BigDecimal(0);;
         Boolean isValid = false;
         LocalDate contractStartTime, contractEndTime;
 
@@ -58,6 +58,7 @@ public class EmployeeInputUtils {
             try {
                 chefSalary = scanner.nextBigDecimal();
                 scanner.nextLine();
+                validateSalary(chefSalary);
             } catch (InputMismatchException badData) {
                 log.info(Messages.INVALID_CHEF_INPUT);
                 scanner.nextLine();
@@ -106,7 +107,7 @@ public class EmployeeInputUtils {
 
     public static Waiter waiterInput(Scanner scanner){
         String waiterName, waiterSurname;
-        BigDecimal chefSalary = new BigDecimal(0);
+        BigDecimal waiterSalary = new BigDecimal(0);
         Boolean isValid = false;
         LocalDate contractStartTime;
         LocalDate contractEndTime;
@@ -149,8 +150,9 @@ public class EmployeeInputUtils {
             isValid = true;
             System.out.println("Unesite plaću: ");
             try{
-                chefSalary = scanner.nextBigDecimal();
+                waiterSalary = scanner.nextBigDecimal();
                 scanner.nextLine();
+                validateSalary(waiterSalary);
             }catch(InputMismatchException badData){
                 log.info(Messages.INVALID_WAITER_INPUT);
                 scanner.nextLine();
@@ -185,7 +187,7 @@ public class EmployeeInputUtils {
             }
         } while(!isValid);
 
-        Contract waiterContract = new Contract(chefSalary, contractStartTime, contractEndTime, contractType);
+        Contract waiterContract = new Contract(waiterSalary, contractStartTime, contractEndTime, contractType);
         Bonus waiterBonus = new Bonus(new BigDecimal(100.00));
         long id = waiterIdCounter++;
 
@@ -199,7 +201,7 @@ public class EmployeeInputUtils {
 
     public static Deliverer delivererInput(Scanner scanner){
         String delivererName, delivererSurname;
-        BigDecimal delivererSalary = null;
+        BigDecimal delivererSalary = new BigDecimal(0);;
         Boolean isValid = false;
         LocalDate contractStartTime;
         LocalDate contractEndTime;
@@ -244,7 +246,7 @@ public class EmployeeInputUtils {
             try{
                 delivererSalary = scanner.nextBigDecimal();
                 scanner.nextLine();
-
+                validateSalary(delivererSalary);
             }catch(InputMismatchException badData){
                 log.info(Messages.INVALID_DELIVERER_INPUT);
                 scanner.nextLine();

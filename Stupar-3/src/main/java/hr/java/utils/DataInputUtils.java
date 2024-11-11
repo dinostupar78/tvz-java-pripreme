@@ -160,7 +160,6 @@ public class DataInputUtils {
             try{
                 calories = scanner.nextInt();
                 scanner.nextLine();
-
             }catch(InputMismatchException badData){
                 System.out.println(Messages.INVALID_MEAL_INPUT);
                 scanner.nextLine();

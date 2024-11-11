@@ -14,6 +14,7 @@ public class DataUtils {
     private static long addressIdCounter = 0;
 
     public static Category categoryInput(Scanner scanner) {
+
         String imeKategorije, opisKategorije;
         boolean jeIspravan = false;
 

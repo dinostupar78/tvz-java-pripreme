@@ -38,52 +38,52 @@ public class Main {
 
         for(int i = 0; i < categories.length; i++){
             System.out.println("Unesite podatke za " + (i + 1) + " kategoriju");
-            Category kategorija = categoryInput(scanner);
-            categories[i] = kategorija;
+            Category category = categoryInput(scanner);
+            categories[i] = category;
         }
 
         for(int i = 0; i < ingredients.length; i++){
             System.out.println("Unesite podatke za " + (i + 1) + " sastojak");
-            Ingredient sastojak = ingredientInput(scanner, categories);
-            ingredients[i] = sastojak;
+            Ingredient ingredient = ingredientInput(scanner, categories);
+            ingredients[i] = ingredient;
         }
 
         for(int i = 0; i < meals.length; i++){
             System.out.println("Unesite podatke za " + (i+1) + " jelo");
-            Meal jela = mealsInput(scanner, categories, ingredients);
-            meals[i] = jela;
+            Meal meal = mealsInput(scanner, categories, ingredients);
+            meals[i] = meal;
         }
 
         String[] mealTypes = {"vegansko", "vegetarijansko", "mesno"};
 
         for(int i = 0; i < specialMeals.length; i++){
             System.out.println("Unesite podatke za " + mealTypes[i] + " jelo");
-            Meal jela = inputSpecialMeal(scanner, mealTypes[i], categories, ingredients);
-            specialMeals[i] = jela;
+            Meal meal = inputSpecialMeal(scanner, mealTypes[i], categories, ingredients);
+            specialMeals[i] = meal;
         }
 
         for(int i = 0; i < chefs.length; i++){
             System.out.println("Unesite podatke za " + (i+1) + " kuhara");
-            Chef kuhara = chefInput(scanner);
-            chefs[i] = kuhara;
+            Chef chef = chefInput(scanner);
+            chefs[i] = chef;
         }
 
         for(int i = 0; i < waiters.length; i++){
             System.out.println("Unesite podatke za " + (i+1) + " konobara");
-            Waiter konobar = waiterInput(scanner);
-            waiters[i] = konobar;
+            Waiter waiter = waiterInput(scanner);
+            waiters[i] = waiter;
         }
 
         for(int i = 0; i < deliverers.length; i++){
             System.out.println("Unesite podatke za " + (i+1) + " dostavljača");
-            Deliverer dostavljac = delivererInput(scanner);
-            deliverers[i] = dostavljac;
+            Deliverer deliverer = delivererInput(scanner);
+            deliverers[i] = deliverer;
         }
 
         for(int i = 0; i < restaurants.length; i++){
             System.out.println("Unesite podatke za " + (i+1) + " restoran");
-            Restaurant restoran = restoranInput(scanner, addresses, meals, chefs, waiters, deliverers);
-            restaurants[i] = restoran;
+            Restaurant restaurant = restoranInput(scanner, addresses, meals, chefs, waiters, deliverers);
+            restaurants[i] = restaurant;
         }
 
         for(int i = 0; i < orderers.length; i++){

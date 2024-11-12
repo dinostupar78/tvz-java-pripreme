@@ -36,6 +36,8 @@ public class ExceptionUtils {
     public static final BigDecimal MIN_PRICE = new BigDecimal("10"), MAX_PRICE = new BigDecimal("1000");
     public static final BigDecimal MIN_SALARY = new BigDecimal("500"), MAX_SALARY = new BigDecimal("5000");
     public static final BigDecimal MIN_KCAL = new BigDecimal("5"), MAX_KCAL = new BigDecimal("1500");
+    private static final String FULL_TIME = "FULL_TIME";
+    private static final String PART_TIME = "PART_TIME";
 
     /**
      * Provodi provjeru duplikata podataka za kategoriju. Ako kategorija već postoji, baca {@link DuplicateEntityException}.
@@ -189,6 +191,13 @@ public class ExceptionUtils {
     public static void validateKcal(BigDecimal data) throws InvalidAmountException {
         if (data.compareTo(MIN_KCAL) < 0 || data.compareTo(MAX_KCAL) > 0) {
             throw new InvalidAmountException("Kcal mora biti između " + MIN_KCAL + " i " + MAX_KCAL + ".");
+        }
+    }
+
+    public static void validateContractType(String contractType) throws InvalidAmountException {
+        if (!contractType.equals(FULL_TIME) && !contractType.equals(PART_TIME)) {
+
+            throw new InvalidAmountException("Krivi unos ugovora! Dozvoljeni tipovi su FULL_TIME i PART_TIME.");
         }
     }
 }

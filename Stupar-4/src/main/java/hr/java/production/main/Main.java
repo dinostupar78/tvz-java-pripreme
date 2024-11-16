@@ -17,6 +17,7 @@ import static hr.java.utils.RestaurantInputUtils.restoranInput;
  * Aplikacija koristi različite pomoćne klase za unos podataka i izračune, te logira ključne akcije tijekom rada.
  */
 
+
 public class Main {
     public static final Integer numberOfCategories = 3; // 3
     public static final Integer numberOfIngredients = 3; // 3

@@ -11,6 +11,7 @@ import java.util.Scanner;
 import static hr.java.utils.RestaurantInputUtils.restoranInput;
 
 
+
 /**
  * Glavna klasa aplikacije koja upravlja unosom podataka u sustav te obradom tih podataka.
  * Program omogućava unos podataka za različite entitete kao što su kategorije, sastojci, jela, kuhari, konobari, dostavljači, restorani i narudžbe.

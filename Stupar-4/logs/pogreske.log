@@ -1,0 +1,26 @@
+2024-11-11 22:14:11,941 INFO [main] h.j.p.m.Main [Main.java:44] The application is started...
+2024-11-11 22:14:56,467 INFO [main] h.j.p.m.Main [Main.java:44] The application is started...
+2024-11-11 22:15:21,277 INFO [main] h.j.p.m.Main [DataInputUtils.java:73] Sastojak s nazivom 'persin' već postoji.
+2024-11-11 22:15:51,132 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:29] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-11 22:15:54,190 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:76] Krivi unos, unesite ispravne podatke za sastojke.
+2024-11-11 22:15:57,822 INFO [main] h.j.p.m.Main [DataInputUtils.java:151] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-11 22:16:01,559 INFO [main] h.j.p.m.Main [DataInputUtils.java:130] Jelo s nazivom 'dsadad' već postoji.
+2024-11-11 22:16:03,256 INFO [main] h.j.p.m.Main [DataInputUtils.java:130] Jelo s nazivom 'dsadad' već postoji.
+2024-11-11 22:16:20,881 INFO [main] h.j.p.m.Main [DataInputUtils.java:130] Jelo s nazivom 'dsadada' već postoji.
+2024-11-11 22:16:35,770 INFO [main] h.j.p.m.Main [DataInputUtils.java:130] Jelo s nazivom 'dsadad' već postoji.
+2024-11-11 22:16:47,149 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:67] Plaća mora biti između 500 i 5000.
+2024-11-11 22:16:52,258 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:67] Plaća mora biti između 500 i 5000.
+2024-11-11 22:17:06,005 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:32] Kuhar s nazivom 'Pero' već postoji.
+2024-11-11 22:17:09,189 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:49] Kuhar s nazivom 'Peric' već postoji.
+2024-11-11 22:17:12,403 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:67] Plaća mora biti između 500 i 5000.
+2024-11-11 22:17:14,484 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:67] Plaća mora biti između 500 i 5000.
+2024-11-11 22:17:30,439 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:67] Plaća mora biti između 500 i 5000.
+2024-11-11 22:18:04,958 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:255] Plaća mora biti između 500 i 5000.
+2024-11-11 22:18:42,289 INFO [main] h.j.p.m.Main [RestaurantInputUtils.java:36] Restoran s nazivom 'camino' već postoji.
+2024-11-11 22:19:08,616 INFO [main] h.j.p.m.Main [RestaurantInputUtils.java:149] Krivi unos, unesite ispravne podatke za dostavljača.
+2024-11-11 22:19:30,186 INFO [main] h.j.p.m.Main [RestaurantInputUtils.java:178] Neispravan format datuma i vremena. Pokušajte ponovo.
+2024-11-11 22:19:34,034 INFO [main] h.j.p.m.Main [RestaurantInputUtils.java:178] Neispravan format datuma i vremena. Pokušajte ponovo.
+2024-11-11 23:18:52,939 INFO [main] h.j.p.m.Main [Main.java:55] The application is started...
+2024-11-11 23:19:19,874 INFO [main] h.j.p.m.Main [DataInputUtils.java:94] Sastojak s nazivom 'dsadad' već postoji.
+2024-11-11 23:19:31,319 INFO [main] h.j.p.m.Main [DataInputUtils.java:154] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-16 18:23:26,997 INFO [main] h.j.p.m.Main [Main.java:55] The application is started...

@@ -1,5 +1,6 @@
 package hr.java.restaurant.model;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * Klasa koja predstavlja sastojak u restoranu. Sastojak se definira svojim nazivom, kategorijom, kalorijama i metodom pripreme.
@@ -59,5 +60,18 @@ public class Ingredient extends Entity{
 
     public void setPreparationMethod(String preparationMethod) {
         this.preparationMethod = preparationMethod;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ingredient that = (Ingredient) o;
+        return Objects.equals(name, that.name) && Objects.equals(category, that.category) && Objects.equals(kcal, that.kcal) && Objects.equals(preparationMethod, that.preparationMethod);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, category, kcal, preparationMethod);
     }
 }

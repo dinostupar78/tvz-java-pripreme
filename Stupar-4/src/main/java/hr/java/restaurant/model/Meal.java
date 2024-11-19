@@ -1,5 +1,9 @@
 package hr.java.restaurant.model;
+
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.SortedSet;
 
 /**
  * Klasa koja predstavlja obrok u restoranu. Obrok se sastoji od naziva, kategorije, sastojaka, cijene i kalorijske vrijednosti.
@@ -9,7 +13,7 @@ import java.math.BigDecimal;
 public class Meal extends Entity {
     private String name;
     private Category category;
-    private Ingredient[] ingredient;
+    private Set<Ingredient> ingredient = new HashSet<Ingredient>();
     private BigDecimal price;
     private Integer calories;
 
@@ -23,7 +27,7 @@ public class Meal extends Entity {
      * @param calories kalorijska vrijednost obroka.
      */
 
-    public Meal(Long id, String name, Category category, Ingredient[] ingredient, BigDecimal price, Integer calories) {
+    public Meal(Long id, String name, Category category, Set<Ingredient> ingredient, BigDecimal price, Integer calories) {
         super(id);
         this.name = name;
         this.category = category;
@@ -40,7 +44,7 @@ public class Meal extends Entity {
         return category;
     }
 
-    public Ingredient[] getIngredient() {
+    public Set<Ingredient> getIngredient() {
         return ingredient;
     }
 
@@ -56,7 +60,7 @@ public class Meal extends Entity {
         this.category = category;
     }
 
-    public void setIngredient(Ingredient[] ingredient) {
+    public void setIngredient(SortedSet<Ingredient> ingredient) {
         this.ingredient = ingredient;
     }
 

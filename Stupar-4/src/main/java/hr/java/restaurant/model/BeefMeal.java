@@ -1,5 +1,6 @@
 package hr.java.restaurant.model;
 import java.math.BigDecimal;
+import java.util.Set;
 
 /**
  * Predstavlja obrok na bazi govedine.
@@ -23,7 +24,7 @@ public final class BeefMeal extends Meal implements Meat{
      * @param calories Broj kalorija u obroku.
      */
 
-    public BeefMeal(Long id, String name, Category category, Ingredient[] ingredients, BigDecimal price, Boolean isMeatFrendly, Integer calories) {
+    public BeefMeal(Long id, String name, Category category, Set<Ingredient> ingredients, BigDecimal price, Boolean isMeatFrendly, Integer calories) {
         super(id, name, category, ingredients, price, calories);
         this.MeatFrendly = isMeatFrendly;
     }

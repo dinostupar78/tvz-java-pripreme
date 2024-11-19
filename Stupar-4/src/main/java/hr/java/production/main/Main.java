@@ -7,7 +7,9 @@ import hr.java.utils.RestaurantInputUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 import static hr.java.utils.RestaurantInputUtils.restoranInput;
 
 /**
@@ -18,16 +20,10 @@ import static hr.java.utils.RestaurantInputUtils.restoranInput;
  */
 
 public class Main {
-    public static final Integer numberOfCategories = 3; // 3
-    public static final Integer numberOfIngredients = 3; // 3
-    public static final Integer numberOfMeals = 3; // 3
-    public static final Integer numberOfChefs = 3; // 3
-    public static final Integer numberOfWaiters = 3; // 3
-    public static final Integer numberOfDeliverers = 3; // 3
-    public static final Integer numberOfRestaurants = 3; // 3
-    public static final Integer restaurantAddress = 3; // 3
-    public static final Integer numberOfOrders = 3; // 3
-    public static final Integer numberOfSpecialMeals = 3;
+    public static final int numberOfCategories = 3, numberOfIngredients = 3, numberOfMeals = 3,
+            numberOfChefs = 3, numberOfWaiters = 3, numberOfDeliverers = 3,
+            numberOfRestaurants = 3, restaurantAddress = 3, numberOfOrders = 3,
+            numberOfSpecialMeals = 3;
 
     public static Logger log = LoggerFactory.getLogger(Main.class);
 
@@ -40,7 +36,7 @@ public class Main {
 
     public static void main(String[] args) {
         Category[] categories = new Category[numberOfCategories];
-        Ingredient[] ingredients = new Ingredient[numberOfIngredients];
+        Set<Ingredient> ingredients = new HashSet<>();
         Meal[] meals = new Meal[numberOfMeals];
         Chef[] chefs = new Chef[numberOfChefs];
         Waiter[] waiters = new Waiter[numberOfWaiters];
@@ -60,10 +56,10 @@ public class Main {
             categories[i] = category;
         }
 
-        for(int i = 0; i < ingredients.length; i++){
+        for (int i = 0; i < numberOfIngredients; i++) {
             System.out.println("Unesite podatke za " + (i + 1) + " sastojak");
             Ingredient ingredient = ingredientInput(scanner, categories);
-            ingredients[i] = ingredient;
+            ingredients.add(ingredient);
         }
 
         for(int i = 0; i < meals.length; i++){
@@ -143,11 +139,11 @@ public class Main {
         return DataInputUtils.ingredientInput(scanner, categories);
     }
 
-    public static Meal mealsInput(Scanner scanner, Category[] categories, Ingredient[] ingredients){
+    public static Meal mealsInput(Scanner scanner, Category[] categories, Set<Ingredient> ingredients){
         return DataInputUtils.mealsInput(scanner, categories, ingredients);
     }
 
-    public static Meal inputSpecialMeal(Scanner scanner, String mealType, Category[] categories, Ingredient[] ingredients) {
+    public static Meal inputSpecialMeal(Scanner scanner, String mealType, Category[] categories, Set<Ingredient> ingredients) {
         return mealsInput(scanner, categories, ingredients);
     }
 

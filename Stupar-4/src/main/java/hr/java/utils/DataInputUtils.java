@@ -1,13 +1,17 @@
 package hr.java.utils;
+
 import hr.java.restaurant.exception.DuplicateEntityException;
 import hr.java.restaurant.exception.InvalidAmountException;
 import hr.java.restaurant.model.Address;
 import hr.java.restaurant.model.Category;
 import hr.java.restaurant.model.Ingredient;
 import hr.java.restaurant.model.Meal;
+
 import java.math.BigDecimal;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Set;
+
 import static hr.java.production.main.Main.log;
 import static hr.java.utils.ExceptionUtils.*;
 
@@ -139,7 +143,7 @@ public class DataInputUtils {
      * @return nova instanca klase {@link Meal} s unesenim podacima.
      */
 
-    public static Meal mealsInput(Scanner scanner, Category[] categories, Ingredient[] ingredients){
+    public static Meal mealsInput(Scanner scanner, Category[] categories, Set<Ingredient> ingredients){
         Category selectedCategory = null;
         Boolean isValid = false;
         BigDecimal price = null;
@@ -164,7 +168,7 @@ public class DataInputUtils {
         }while(!isValid);
 
         selectedCategory = SelectedInputUtils.selectedCategory(scanner, categories);
-        Ingredient[] selectedIngredient = SelectedInputUtils.selectedIngredients(scanner, categories, ingredients);
+        Set<Ingredient> selectedIngredient = SelectedInputUtils.selectedIngredients(scanner, categories, ingredients);
 
        do{
            isValid = true;

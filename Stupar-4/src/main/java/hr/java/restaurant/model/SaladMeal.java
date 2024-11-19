@@ -1,5 +1,6 @@
 package hr.java.restaurant.model;
 import java.math.BigDecimal;
+import java.util.Set;
 
 /**
  * Klasa koja predstavlja salatu kao obrok u restoranu.
@@ -21,7 +22,7 @@ public final class SaladMeal extends Meal implements Vegan{
      * @param calories broj kalorija u obroku
      */
 
-    public SaladMeal(Long id, String name, Category category, Ingredient[] ingredients, BigDecimal price, Boolean veganFriendly, Integer calories) {
+    public SaladMeal(Long id, String name, Category category, Set<Ingredient> ingredients, BigDecimal price, Boolean veganFriendly, Integer calories) {
         super(id, name, category, ingredients, price, calories);
         this.veganFriendly = veganFriendly;
     }

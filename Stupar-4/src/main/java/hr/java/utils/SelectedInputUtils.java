@@ -1,7 +1,9 @@
 package hr.java.utils;
+
 import hr.java.restaurant.model.*;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+
+import java.util.*;
+
 import static hr.java.production.main.Main.log;
 
 /**
@@ -57,56 +59,46 @@ public class SelectedInputUtils {
      * @return Niz odabranih sastojaka.
      */
 
-    public static Ingredient[] selectedIngredients(Scanner scanner, Category[] categories, Ingredient[] ingredients){
-        Boolean isValid = false;
-        Ingredient[] selectedIngredient = new Ingredient[ingredients.length];
-        int ingredientNumber = 0;
-        do{
-            isValid = true;
-            System.out.println("Popis sastojaka, birate sastojke dok ne unesete 0 ");
-            for(int i=0; i < ingredients.length; i++) {
-                System.out.println((i + 1) + ". " + ingredients[i].getName());
+    public static Set<Ingredient> selectedIngredients(Scanner scanner, Category[] categories, Set<Ingredient> ingredients){
+        Set<Ingredient> selectedIngredients = new HashSet<>();
+        List<Ingredient> ingredientList = new ArrayList<>(ingredients);
+        int ingredientChoice = 0;
+        Boolean isValid = true, isFirstIngredientSelected = false;
+        while(isValid){
+            if(!isFirstIngredientSelected){
+                System.out.println("Popis sastojaka, birate sastojke dok ne unesete 0 ");
+                for (int i = 0; i < ingredientList.size(); i++) {
+                    System.out.println((i + 1) + ". " + ingredientList.get(i).getName());
+                }
             }
+            isFirstIngredientSelected = true;
             try{
-                int ingredientChoice = scanner.nextInt();
+                System.out.print("Vaš odabir: ");
+                ingredientChoice = scanner.nextInt();
                 scanner.nextLine();
-                if(ingredientChoice >= 1 && ingredientChoice <= categories.length){
-                    selectedIngredient[ingredientNumber] = ingredients[ingredientChoice - 1];
-                    ingredientNumber++;
 
+                if (ingredientChoice == 0) {
+                    System.out.println("Završili ste unos sastojaka.");
+                    break;
+                }
+
+                if (ingredientChoice >= 1 && ingredientChoice <= ingredientList.size()) {
+                    Ingredient chosenIngredient = ingredientList.get(ingredientChoice - 1);
+
+                    if (selectedIngredients.add(chosenIngredient)) {
+                        System.out.println("Dodano: " + chosenIngredient.getName());
+                    } else {
+                        System.out.println("Sastojak je već odabran.");
+                    }
                 } else {
                     System.out.println(Messages.INVALID_INGREDIENT_INPUT);
-                    isValid = false;
-                    continue;
                 }
-                while(ingredientChoice != 0){
-                    ingredientChoice = scanner.nextInt();
-                    scanner.nextLine();
-                    if(ingredientChoice >= 1 && ingredientChoice <= categories.length){
-                        selectedIngredient[ingredientNumber] = ingredients[ingredientChoice - 1];
-                        ingredientNumber++;
-
-                    }else if(ingredientChoice == 0) {
-                        isValid = true;
-                        break;
-                    }else{
-                        System.out.println(Messages.INVALID_INGREDIENT_INPUT);
-                        isValid = false;
-                    }
-                }
-            }catch(InputMismatchException badData){
-                log.info(Messages.INVALID_INGREDIENT_INPUT);
-                scanner.nextLine();
-                isValid = false;
+            } catch (InputMismatchException e) {
+                System.out.println(Messages.INVALID_INGREDIENT_INPUT);
+                scanner.nextLine(); //
             }
-        }while(!isValid);
-
-        Ingredient[] ingredient = new Ingredient[ingredientNumber];
-
-        for (int i = 0; i < ingredientNumber; i++) {
-            ingredient[i] = selectedIngredient[i];
         }
-        return ingredient;
+        return selectedIngredients;
     }
 
     /**

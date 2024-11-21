@@ -12,7 +12,6 @@ import java.util.List;
  */
 public class ExceptionUtils {
 
-    // Lists instead of arrays
     public static final List<String> existingCategoryData = new ArrayList<>();
     public static final List<String> existingIngredientData = new ArrayList<>();
     public static final List<String> existingMealData = new ArrayList<>();
@@ -21,7 +20,6 @@ public class ExceptionUtils {
     public static final List<String> existingDelivererData = new ArrayList<>();
     public static final List<String> existingRestaurantData = new ArrayList<>();
 
-    // Constants for validations
     public static final BigDecimal MIN_PRICE = new BigDecimal("10"), MAX_PRICE = new BigDecimal("1000");
     public static final BigDecimal MIN_SALARY = new BigDecimal("500"), MAX_SALARY = new BigDecimal("5000");
     public static final BigDecimal MIN_KCAL = new BigDecimal("5"), MAX_KCAL = new BigDecimal("1500");

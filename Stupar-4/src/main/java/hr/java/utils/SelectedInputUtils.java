@@ -1,9 +1,6 @@
 package hr.java.utils;
-
 import hr.java.restaurant.model.*;
-
 import java.util.*;
-
 import static hr.java.production.main.Main.log;
 
 /**

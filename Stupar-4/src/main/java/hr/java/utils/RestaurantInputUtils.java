@@ -1,12 +1,10 @@
 package hr.java.utils;
-
 import hr.java.restaurant.exception.DuplicateEntityException;
 import hr.java.restaurant.model.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 import static hr.java.production.main.Main.log;
 import static hr.java.utils.ExceptionUtils.checkDuplicateRestaurantData;
 
@@ -30,39 +28,42 @@ public class RestaurantInputUtils {
      * @return Novi restoran s unesenim podacima
      */
 
-    public static Restaurant restoranInput(Scanner scanner, Address[] addresses, Meal[] meals, Chef[] chefs, Waiter[] waiters, Deliverer[] deliverers) {
-        Address restaurantAddress = null;
-        String restaurantName;
-        int delivererNumber = 0, waiterNumber = 0, chefNumber = 0, mealNumber = 0;
-        Boolean isValid = false;
-
-        do{
-            isValid = true;
-            System.out.println("Unesite ime restorana: ");
-            restaurantName = scanner.nextLine();
-            if (restaurantName.isEmpty() || restaurantName.length() < 3) {
-                log.info(Messages.INVALID_RESTAURANT_INPUT);
-                isValid = false;
-            } else {
-                try{
-                    checkDuplicateRestaurantData(restaurantName);
-                } catch(DuplicateEntityException badData){
-                    log.info(badData.getMessage());
-                    isValid = false;
-                }
-            }
-        }while(!isValid);
-
-        restaurantAddress = DataInputUtils.addressInput(scanner);
-        Meal[] selecetedMeal = SelectedInputUtils.selectedMeals(scanner, meals);
-        Chef[] selectedChef = SelectedInputUtils.selectedChefs(scanner, chefs);
-        Waiter[] selectedWaiter = SelectedInputUtils.selectedWaiters(scanner, waiters);
-        Deliverer[] selectedDeliverer = SelectedInputUtils.selectedDeliverers(scanner, deliverers);
+    public static Restaurant restoranInput(Scanner scanner, List<Address> addresses, Set<Meal> meals, Set<Chef> chefs, Set<Waiter> waiters, Set<Deliverer> deliverers) {
+        String restaurantName = inputRestaurantName(scanner);
+        Address restaurantAddress = DataInputUtils.addressInput(scanner);
+        Set<Meal> selecetedMeal = SelectedInputUtils.selectedMeals(scanner, meals);
+        Set<Chef> selectedChef = SelectedInputUtils.selectedChefs(scanner, chefs);
+        Set<Waiter> selectedWaiter = SelectedInputUtils.selectedWaiters(scanner, waiters);
+        Set<Deliverer> selectedDeliverer = SelectedInputUtils.selectedDeliverers(scanner, deliverers);
 
         long id = restaurantIdCounter++;
 
         return new Restaurant(id, restaurantName, restaurantAddress, selecetedMeal, selectedChef, selectedWaiter, selectedDeliverer);
 
+    }
+
+    public static String inputRestaurantName(Scanner scanner) {
+        Boolean isValid = false; // Change to false to start checking for valid input
+        String restaurantName = "";
+
+        while (!isValid) {  // Loop until a valid name is entered
+            System.out.println("Unesite ime restorana:");
+            restaurantName = scanner.nextLine();
+
+            // Check if the name is valid
+            if (restaurantName.isEmpty() || restaurantName.length() < 3) {
+                log.info(Messages.INVALID_RESTAURANT_INPUT);
+            } else {
+                try {
+                    checkDuplicateRestaurantData(restaurantName);  // Check for duplicates
+                    isValid = true;  // If no exception occurs, it's valid
+                } catch (DuplicateEntityException e) {
+                    log.info(e.getMessage());  // Log the duplicate error
+                }
+            }
+        }
+
+        return restaurantName;
     }
 
     /**
@@ -75,140 +76,120 @@ public class RestaurantInputUtils {
      * @return Nova narudžba s unesenim podacima
      */
 
-    public static Order orderInput(Scanner scanner, Restaurant[] restaurants, Meal[] meals, Deliverer[] deliverers) {
-        Meal[] selectedMeals = new Meal[meals.length];
-        Restaurant selectedRestaurant = null;
-        LocalDateTime deliveryTime = null;
-        Deliverer selectedDeliverer = null;
-        boolean isValid = false;
-        int mealCount = 0;
-
-        do {
-            isValid = true;
-            System.out.println("Popis restorana, odaberite jedan brojem 1-" + restaurants.length + ": ");
-            for (int i = 0; i < restaurants.length; i++) {
-                System.out.println((i + 1) + ". " + restaurants[i].getName());
-            }
-            try{
-                int restaurantChoice = scanner.nextInt();
-                scanner.nextLine();
-
-                if (restaurantChoice >= 1 && restaurantChoice <= restaurants.length) {
-                    selectedRestaurant = restaurants[restaurantChoice - 1];
-                } else {
-                    System.out.println("Krivi unos, pokušajte ponovo.");
-                    isValid = false;
-                }
-            }catch(InputMismatchException badData){
-                log.info(Messages.INVALID_RESTAURANT_INPUT);
-                scanner.nextLine();
-                isValid = false;
-            }
-        } while(!isValid);
-
-        // Odabir jela iz odabranog restorana
-        do {
-            isValid = true;
-            Meal[] availableMeals = selectedRestaurant.getMeals();
-            if (availableMeals == null || availableMeals.length == 0) {
-                System.out.println("Nema dostupnih jela za restoran " + selectedRestaurant.getName());
-                isValid = false;
-                continue;
-            }
-
-            System.out.println("Popis jela za restoran " + selectedRestaurant.getName() + ", odaberite jedan brojem 1-" + availableMeals.length);
-            for (int i = 0; i < availableMeals.length; i++) {
-                if (availableMeals[i] != null) {
-                    System.out.println((i + 1) + ". " + availableMeals[i].getName());
-                }
-            }
-
-            try{
-                int mealChoice = scanner.nextInt();
-                scanner.nextLine();
-                if (mealChoice == 0) {
-                    break;
-                }
-
-                if (mealChoice >= 1 && mealChoice <= availableMeals.length) {
-                    if (mealCount < selectedMeals.length) {
-                        selectedMeals[mealCount] = availableMeals[mealChoice - 1];
-                        mealCount++;
-                    } else {
-                        log.info("Prekoračili ste maksimalni broj jela (10).");
-                        isValid = false;
-                    }
-                } else {
-                    log.info("Krivi unos, pokušajte ponovo.");
-                    isValid = false;
-                }
-            }catch(InputMismatchException badData){
-                log.info(Messages.INVALID_MEAL_INPUT);
-                scanner.nextLine();
-                isValid = false;
-            }
-
-        } while(!isValid || mealCount == 0);
-
-        // Odabir dostavljača
-        do {
-            isValid = true;
-            System.out.println("Popis dostavljača, odaberite jednog brojem 1-" + deliverers.length + ": ");
-            for (int i = 0; i < deliverers.length; i++) {
-                System.out.println((i + 1) + ". " + deliverers[i].getFirstName() + " " + deliverers[i].getLastName());
-            }
-
-            try{
-                int delivererChoice = scanner.nextInt();
-                scanner.nextLine();
-
-                if (delivererChoice >= 1 && delivererChoice <= deliverers.length) {
-                    selectedDeliverer = deliverers[delivererChoice - 1];
-                    selectedDeliverer.incrementDostave();
-                } else {
-                    log.info("Krivi unos, pokušajte ponovo.");
-                    isValid = false;
-                }
-            }catch(InputMismatchException badData){
-                log.info(Messages.INVALID_DELIVERER_INPUT);
-                scanner.nextLine();
-                isValid = false;
-            }
-
-        } while (!isValid);
-
-        // Trim the selectedMeals array to the number of meals actually selected
-        Meal[] finalSelectedMeals = new Meal[mealCount];
-        for (int i = 0; i < mealCount; i++) {
-            finalSelectedMeals[i] = selectedMeals[i];
-        }
-
-        do {
-            isValid = true;
-            System.out.println("Unesite vrijeme dostave (u formatu: yyyy-MM-dd HH:mm): ");
-            String vrijemeDostaveInput = scanner.nextLine();
-
-            try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                deliveryTime = LocalDateTime.parse(vrijemeDostaveInput, formatter);
-
-                // Provjera da li je vrijeme u budućnosti
-                if (deliveryTime.isBefore(LocalDateTime.now())) {
-                    log.info("Vrijeme dostave mora biti u budućnosti. Pokušajte ponovo.");
-                    isValid = false;
-                }
-
-            } catch (DateTimeParseException e) {
-                log.info("Neispravan format datuma i vremena. Pokušajte ponovo.");
-                scanner.nextLine();
-                isValid = false;
-            }
-
-        } while (!isValid);
+    public static Order orderInput(Scanner scanner, List<Restaurant> restaurants, Set<Meal> meals, Set<Deliverer> deliverers) {
+        Restaurant selectedRestaurant = selectRestaurant(scanner, restaurants);
+        List<Meal> selectedMeals = selectMealsFromRestaurant(scanner, selectedRestaurant);
+        Deliverer selectedDeliverer = selectDelivererFromRestaurant(scanner, new ArrayList<>(deliverers));
+        LocalDateTime deliveryTime = inputDeliveryTime(scanner);
 
         long id = orderIdCounter++;
         System.out.println("Uspješna narudžba!");
+        return new Order(id, selectedRestaurant, selectedMeals, selectedDeliverer, deliveryTime);
+    }
 
-        return new Order(id, selectedRestaurant, finalSelectedMeals, selectedDeliverer, deliveryTime);
+    public static Restaurant selectRestaurant(Scanner scanner, List<Restaurant> restaurants) {
+        Boolean isFirstRestaurantSelected = false;
+        while (true) {
+            if(!isFirstRestaurantSelected){
+                System.out.println("Popis restorana, odaberite jedan brojem 1-" + restaurants.size() + ":");
+                for (int i = 0; i < restaurants.size(); i++) {
+                    System.out.println((i + 1) + ". " + restaurants.get(i).getName());
+                }
+            }
+            isFirstRestaurantSelected = true;
+            try {
+
+                int restaurantChoice = scanner.nextInt();
+                scanner.nextLine();
+
+                if (restaurantChoice >= 1 && restaurantChoice <= restaurants.size()) {
+                    return restaurants.get(restaurantChoice - 1);
+                } else {
+                    log.info(Messages.INVALID_RESTAURANT_INPUT);
+                }
+            } catch (InputMismatchException e) {
+                log.info(Messages.INVALID_RESTAURANT_INPUT);
+                scanner.nextLine();
+            }
+        }
+    }
+
+    public static List<Meal> selectMealsFromRestaurant(Scanner scanner, Restaurant restaurant){
+        List<Meal> selectedMeals = new ArrayList<>();
+        List<Meal> availableMeals = new ArrayList<>(restaurant.getMeals());
+        System.out.println("Popis jela za restoran " + restaurant.getName() + " (odaberite brojem, 0 za kraj):");
+        while(true){
+            for (int i = 0; i < availableMeals.size(); i++) {
+                System.out.println((i + 1) + ". " + availableMeals.get(i).getName());
+            }
+            try {
+                int mealChoice = scanner.nextInt();
+                scanner.nextLine();
+
+                if (mealChoice == 0)
+                    break;
+
+                if (mealChoice >= 1 && mealChoice <= availableMeals.size()) {
+                    Meal meal = availableMeals.get(mealChoice - 1); // dodat poruku
+                    if (!selectedMeals.contains(meal)) {
+                        selectedMeals.add(meal);
+                        System.out.println("Jelo " + meal.getName() + " uspješno dodano u narudžbu.");
+                    } else {
+                        System.out.println("Već ste odabrali ovo jelo.");
+                    }
+                } else {
+                    log.info(Messages.INVALID_MEAL_INPUT);
+                }
+            } catch (InputMismatchException e) {
+                log.info(Messages.INVALID_MEAL_INPUT);
+                scanner.nextLine();
+            }
+        }
+        return selectedMeals;
+    }
+
+    public static Deliverer selectDelivererFromRestaurant(Scanner scanner, List<Deliverer> deliverers){
+        while (true) {
+            System.out.println("Popis dostavljača, odaberite jednog brojem 1-" + deliverers.size() + ":");
+            for (int i = 0; i < deliverers.size(); i++) {
+                System.out.println((i + 1) + ". " + deliverers.get(i).getFirstName() + " " + deliverers.get(i).getLastName());
+            }
+            try {
+                int choice = scanner.nextInt();
+                scanner.nextLine();
+
+                if (choice >= 1 && choice <= deliverers.size()) {
+                    Deliverer deliverer = deliverers.get(choice - 1);
+                    deliverer.incrementDostave();
+                    System.out.println("Dostavljač " + deliverer.getFirstName() + " " + deliverer.getLastName() + " uspješno dodan u narudžbu.");
+                    return deliverer;
+                } else {
+                    System.out.println("Krivi unos, pokušajte ponovo.");
+                }
+
+            } catch (InputMismatchException e) {
+                log.info(Messages.INVALID_DELIVERER_INPUT);
+                scanner.nextLine();
+            }
+        }
+    }
+
+    public static LocalDateTime inputDeliveryTime(Scanner scanner){
+        while (true) {
+            System.out.println("Unesite vrijeme dostave (u formatu: yyyy-MM-dd HH:mm):");
+            String input = scanner.nextLine();
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                LocalDateTime deliveryTime = LocalDateTime.parse(input, formatter);
+
+                if (deliveryTime.isAfter(LocalDateTime.now())) {
+                    return deliveryTime;
+                } else {
+                    System.out.println("Vrijeme dostave mora biti u budućnosti. Pokušajte ponovo.");
+                }
+            } catch (DateTimeParseException e) {
+                System.out.println("Neispravan format datuma i vremena. Pokušajte ponovo.");
+            }
+        }
     }
 }

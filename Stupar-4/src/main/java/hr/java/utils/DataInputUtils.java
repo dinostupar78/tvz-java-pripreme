@@ -9,6 +9,7 @@ import hr.java.restaurant.model.Meal;
 
 import java.math.BigDecimal;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -77,7 +78,7 @@ public class DataInputUtils {
      * @return nova instanca klase {@link Ingredient} s unesenim podacima.
      */
 
-    public static Ingredient ingredientInput(Scanner scanner, Category[] categories) {
+    public static Ingredient ingredientInput(Scanner scanner, List<Category> categories) {
         String ingredientName, preparationMethod;
         Category selectedCategory = null;
         Boolean isValid = false;
@@ -143,7 +144,7 @@ public class DataInputUtils {
      * @return nova instanca klase {@link Meal} s unesenim podacima.
      */
 
-    public static Meal mealsInput(Scanner scanner, Category[] categories, Set<Ingredient> ingredients){
+    public static Meal mealsInput(Scanner scanner, List<Category> categories, Set<Ingredient> ingredients){
         Category selectedCategory = null;
         Boolean isValid = false;
         BigDecimal price = null;

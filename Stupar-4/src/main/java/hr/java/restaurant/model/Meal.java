@@ -2,6 +2,7 @@ package hr.java.restaurant.model;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.SortedSet;
 
@@ -79,5 +80,18 @@ public class Meal extends Entity {
     @Override
     public String toString() {
         return "Name: " + name + ", Calories: " + calories;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Meal meal = (Meal) o;
+        return Objects.equals(name, meal.name) && Objects.equals(category, meal.category) && Objects.equals(ingredient, meal.ingredient) && Objects.equals(price, meal.price) && Objects.equals(calories, meal.calories);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, category, ingredient, price, calories);
     }
 }

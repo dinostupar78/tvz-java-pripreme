@@ -1,4 +1,5 @@
 package hr.java.production.main;
+
 import hr.java.restaurant.model.*;
 import hr.java.utils.DataInputUtils;
 import hr.java.utils.EmployeeInputUtils;
@@ -7,9 +8,7 @@ import hr.java.utils.RestaurantInputUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 import static hr.java.utils.RestaurantInputUtils.restoranInput;
 
 /**
@@ -21,7 +20,7 @@ import static hr.java.utils.RestaurantInputUtils.restoranInput;
 
 public class Main {
     public static final int numberOfCategories = 3, numberOfIngredients = 3, numberOfMeals = 3,
-            numberOfChefs = 3, numberOfWaiters = 3, numberOfDeliverers = 3,
+            numberOfChefs = 1, numberOfWaiters = 3, numberOfDeliverers = 3,
             numberOfRestaurants = 3, restaurantAddress = 3, numberOfOrders = 3,
             numberOfSpecialMeals = 3;
 
@@ -35,25 +34,25 @@ public class Main {
      */
 
     public static void main(String[] args) {
-        Category[] categories = new Category[numberOfCategories];
+        List<Category> categories = new ArrayList<>();;
         Set<Ingredient> ingredients = new HashSet<>();
-        Meal[] meals = new Meal[numberOfMeals];
-        Chef[] chefs = new Chef[numberOfChefs];
-        Waiter[] waiters = new Waiter[numberOfWaiters];
-        Deliverer[] deliverers = new Deliverer[numberOfDeliverers];
-        Restaurant[] restaurants = new Restaurant[numberOfRestaurants];
-        Address[] addresses = new Address[restaurantAddress];
-        Order[] orderers = new Order[numberOfOrders];
-        Person[] employees = new Person[numberOfChefs + numberOfWaiters + numberOfDeliverers];
-        Meal[] specialMeals = new Meal[numberOfSpecialMeals];
+        Set<Meal> meals = new HashSet<>();
+        Set<Chef> chefs = new HashSet<>();
+        Set<Waiter> waiters = new HashSet<>();
+        Set<Deliverer> deliverers = new HashSet<>();
+        List<Restaurant> restaurants = new ArrayList<>();
+        List<Address> addresses = new ArrayList<>();
+        List<Order> orderers = new ArrayList<>();
+        List<Person> employees = new ArrayList<>();
+        List<Meal> specialMeals = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
         log.info("The application is started...");
 
-        for(int i = 0; i < categories.length; i++){
+        for(int i = 0; i < numberOfCategories; i++){
             System.out.println("Unesite podatke za " + (i + 1) + " kategoriju");
             Category category = categoryInput(scanner);
-            categories[i] = category;
+            categories.add(category);
         }
 
         for (int i = 0; i < numberOfIngredients; i++) {
@@ -62,62 +61,53 @@ public class Main {
             ingredients.add(ingredient);
         }
 
-        for(int i = 0; i < meals.length; i++){
+        for(int i = 0; i < numberOfMeals; i++){
             System.out.println("Unesite podatke za " + (i+1) + " jelo");
             Meal meal = mealsInput(scanner, categories, ingredients);
-            meals[i] = meal;
+            meals.add(meal);
         }
 
         String[] mealTypes = {"vegansko", "vegetarijansko", "mesno"};
 
-        for(int i = 0; i < specialMeals.length; i++){
+        for(int i = 0; i < numberOfSpecialMeals; i++){
             System.out.println("Unesite podatke za " + mealTypes[i] + " jelo");
-            Meal meal = inputSpecialMeal(scanner, mealTypes[i], categories, ingredients);
-            specialMeals[i] = meal;
+            Meal specialMeal = inputSpecialMeal(scanner, mealTypes[i], categories, ingredients);
+            specialMeals.add(specialMeal);
         }
 
-        for(int i = 0; i < chefs.length; i++){
+        for(int i = 0; i < numberOfChefs; i++){
             System.out.println("Unesite podatke za " + (i+1) + " kuhara");
             Chef chef = chefInput(scanner);
-            chefs[i] = chef;
+            chefs.add(chef);
         }
 
-        for(int i = 0; i < waiters.length; i++){
+        for(int i = 0; i < numberOfWaiters; i++){
             System.out.println("Unesite podatke za " + (i+1) + " konobara");
             Waiter waiter = waiterInput(scanner);
-            waiters[i] = waiter;
+            waiters.add(waiter);
         }
 
-        for(int i = 0; i < deliverers.length; i++){
+        for(int i = 0; i < numberOfDeliverers; i++){
             System.out.println("Unesite podatke za " + (i+1) + " dostavljača");
             Deliverer deliverer = delivererInput(scanner);
-            deliverers[i] = deliverer;
+            deliverers.add(deliverer);
         }
 
-        for(int i = 0; i < restaurants.length; i++){
+        for(int i = 0; i < numberOfRestaurants; i++){
             System.out.println("Unesite podatke za " + (i+1) + " restoran");
-            Restaurant restaurant = restoranInput(scanner, addresses, meals, chefs, waiters, deliverers);
-            restaurants[i] = restaurant;
+            Restaurant restaurant = restaurantInput(scanner, addresses, meals, chefs, waiters, deliverers);
+            restaurants.add(restaurant);
         }
 
-        for(int i = 0; i < orderers.length; i++){
+        for(int i = 0; i < numberOfOrders; i++){
             System.out.println("Unesite podatke za " + (i+1) + " narudžbu");
             Order order = orderInput(scanner, restaurants, meals, deliverers);
-            orderers[i] = order;
+            orderers.add(order);
         }
 
-        int index = 0;
-        for (int i = 0; i < chefs.length; i++) {
-            employees[index++] = chefs[i];
-        }
-
-        for (int i = 0; i < waiters.length; i++) {
-            employees[index++] = waiters[i];
-        }
-
-        for (int i = 0; i < deliverers.length; i++) {
-            employees[index++] = deliverers[i];
-        }
+        employees.addAll(chefs);
+        employees.addAll(waiters);
+        employees.addAll(deliverers);
 
         Person highestPaidEmployee = findHighestPaidEmployee(employees);
         System.out.println("\nZaposlenik s najvećom plaćom:");
@@ -135,39 +125,39 @@ public class Main {
         return DataInputUtils.categoryInput(scanner);
     }
 
-    public static Ingredient ingredientInput(Scanner scanner, Category[] categories) {
+    public static Ingredient ingredientInput(Scanner scanner, List<Category> categories) {
         return DataInputUtils.ingredientInput(scanner, categories);
     }
 
-    public static Meal mealsInput(Scanner scanner, Category[] categories, Set<Ingredient> ingredients){
+    public static Meal mealsInput(Scanner scanner, List<Category> categories, Set<Ingredient> ingredients) {
         return DataInputUtils.mealsInput(scanner, categories, ingredients);
     }
 
-    public static Meal inputSpecialMeal(Scanner scanner, String mealType, Category[] categories, Set<Ingredient> ingredients) {
+    public static Meal inputSpecialMeal(Scanner scanner, String mealType, List<Category> categories, Set<Ingredient> ingredients) {
         return mealsInput(scanner, categories, ingredients);
     }
 
-    public static Chef chefInput(Scanner scanner){
-       return EmployeeInputUtils.chefInput(scanner);
+    public static Chef chefInput(Scanner scanner) {
+        return EmployeeInputUtils.chefInput(scanner);
     }
 
-    public static Waiter waiterInput(Scanner scanner){
+    public static Waiter waiterInput(Scanner scanner) {
         return EmployeeInputUtils.waiterInput(scanner);
     }
 
-    public static Deliverer delivererInput(Scanner scanner){
+    public static Deliverer delivererInput(Scanner scanner) {
         return EmployeeInputUtils.delivererInput(scanner);
     }
 
-    public static Address addressInput(Scanner scanner){
-       return DataInputUtils.addressInput(scanner);
+    public static Address addressInput(Scanner scanner) {
+        return DataInputUtils.addressInput(scanner);
     }
 
-    public static Restaurant restaurantInput(Scanner scanner, Address[] addresses, Meal[] meals, Chef[] chefs, Waiter[] waiters, Deliverer[] deliverers){
+    public static Restaurant restaurantInput(Scanner scanner, List<Address> addresses, Set<Meal> meals, Set<Chef> chefs, Set<Waiter> waiters, Set<Deliverer> deliverers) {
         return restoranInput(scanner, addresses, meals, chefs, waiters, deliverers);
     }
 
-    public static Order orderInput(Scanner scanner, Restaurant[] restaurants, Meal[] meals, Deliverer[] deliverers) {
+    public static Order orderInput(Scanner scanner, List<Restaurant> restaurants, Set<Meal> meals, Set<Deliverer> deliverers) {
         return RestaurantInputUtils.orderInput(scanner, restaurants, meals, deliverers);
     }
 
@@ -183,21 +173,29 @@ public class Main {
      * @return Zaposlenik s najvećom plaćom.
      */
 
-    public static Person findHighestPaidEmployee(Person[] employees) {
-        Person highestPaid = employees[0];
-        BigDecimal highestSalary = getSalary(highestPaid);
+    public static Person findHighestPaidEmployee(List<Person> employees) {
+        // Check if the list is empty
+        if (employees == null || employees.isEmpty()) {
+            System.out.println("Nema dostupnih zaposlenika.");
+            return null;  // Return null or handle appropriately
+        }
+
+        Person highestPaid = null;
+        BigDecimal highestSalary = BigDecimal.ZERO;
 
         for (Person employee : employees) {
             if (employee != null) {
                 BigDecimal salary = getSalary(employee);
-                if (salary.compareTo(highestSalary) > 0) {
+                if (salary != null && salary.compareTo(highestSalary) > 0) { // Ensure salary is not null
                     highestPaid = employee;
                     highestSalary = salary;
                 }
             }
         }
+
         return highestPaid;
     }
+
 
     /**
      * Pronalaženje zaposlenika s najdužim ugovorom.
@@ -208,22 +206,34 @@ public class Main {
      * @return Zaposlenik s najdužim ugovorom.
      */
 
-    public static Person findLongestContractEmployee(Person[] employees) {
+    public static Person findLongestContractEmployee(List<Person> employees) {
+        // Check if the list is empty
+        if (employees == null || employees.isEmpty()) {
+            return null;  // Return null or handle appropriately
+        }
+
         Person longestContractEmployee = null;
         long longestDuration = Long.MIN_VALUE;
 
         for (Person employee : employees) {
             if (employee != null) {
-                long duration = employee.getContract().getEndTime().toEpochDay() - employee.getContract().getStartTime().toEpochDay();
+                // Ensure the contract object exists and has valid dates
+                Contract contract = employee.getContract();
+                if (contract != null && contract.getStartTime() != null && contract.getEndTime() != null) {
+                    long duration = contract.getEndTime().toEpochDay() - contract.getStartTime().toEpochDay();
 
-                if (longestContractEmployee == null || duration > longestDuration || (duration == longestDuration && employee.getContract().getStartTime().isBefore(longestContractEmployee.getContract().getStartTime()))){
-                    longestContractEmployee = employee;
-                    longestDuration = duration;
+                    if (longestContractEmployee == null || duration > longestDuration ||
+                            (duration == longestDuration && contract.getStartTime().isBefore(longestContractEmployee.getContract().getStartTime()))) {
+                        longestContractEmployee = employee;
+                        longestDuration = duration;
+                    }
                 }
             }
         }
+
         return longestContractEmployee;
     }
+
 
     /**
      * Ispisivanje informacija o zaposleniku, uključujući ime, prezime, plaću i datume početka i završetka ugovora.
@@ -244,23 +254,33 @@ public class Main {
      * @param specialMeals Polje jela za koja se traže ona s najviše i najmanje kalorija.
      */
 
-    public static void printMealWithMinMaxCalories(Meal[] specialMeals) {
-        Meal maxCalorieMeal = specialMeals[0];
-        Meal minCalorieMeal = specialMeals[0];
+    public static void printMealWithMinMaxCalories(List<Meal> specialMeals) {
+        // Check if the list is empty
+        if (specialMeals == null || specialMeals.isEmpty()) {
+            System.out.println("Nema dostupnih jela.");
+            return;  // Return or handle empty list scenario
+        }
+
+        Meal maxCalorieMeal = specialMeals.get(0);
+        Meal minCalorieMeal = specialMeals.get(0);
 
         for (Meal meal : specialMeals) {
-            if (meal.getCalories() > maxCalorieMeal.getCalories()) {
-                maxCalorieMeal = meal;
-            }
-            if (meal.getCalories() < minCalorieMeal.getCalories()) {
-                minCalorieMeal = meal;
+            if (meal != null) {
+                if (meal.getCalories() > maxCalorieMeal.getCalories()) {
+                    maxCalorieMeal = meal;
+                }
+                if (meal.getCalories() < minCalorieMeal.getCalories()) {
+                    minCalorieMeal = meal;
+                }
             }
         }
+
         System.out.println("Jelo sa najviše kalorija: ");
         printMealInfo(maxCalorieMeal);
         System.out.println("Jelo sa najmanje kalorija: ");
         printMealInfo(minCalorieMeal);
     }
+
 
     /**
      * Ispisivanje informacija o jelu, uključujući ime, kategoriju, cijenu i kalorije.

@@ -1,5 +1,4 @@
 package hr.java.restaurant.model;
-
 import java.math.BigDecimal;
 import java.util.Set;
 

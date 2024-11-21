@@ -21,21 +21,21 @@ public class SelectedInputUtils {
      * @return Odabrani objekt kategorije.
      */
 
-    public static Category selectedCategory(Scanner scanner, Category[] categories) {
+    public static Category selectedCategory(Scanner scanner, List<Category> categories) {
         Category selectedCategory = null;
         boolean isValid = false;
         int categoryChoice;
         do {
             isValid = true;
-            System.out.println("Popis kategorija, odaberite jednu brojem 1-" + categories.length + ": ");
-            for (int i = 0; i < categories.length; i++) {
-                System.out.println((i + 1) + ". " + categories[i].getName());
+            System.out.println("Popis kategorija, odaberite jednu brojem 1-" + categories.size() + ": ");
+            for (int i = 0; i < categories.size(); i++) {
+                System.out.println((i + 1) + ". " + categories.get(i).getName());
             }
             try {
                 categoryChoice = scanner.nextInt();
                 scanner.nextLine();
-                if (categoryChoice >= 1 && categoryChoice <= categories.length) {
-                    selectedCategory = categories[categoryChoice - 1];
+                if (categoryChoice >= 1 && categoryChoice <= categories.size()) {
+                    selectedCategory = categories.get(categoryChoice - 1);
                 } else {
                     log.info(Messages.INVALID_CATEGORY_INPUT);
                     isValid = false;
@@ -59,8 +59,8 @@ public class SelectedInputUtils {
      * @return Niz odabranih sastojaka.
      */
 
-    public static Set<Ingredient> selectedIngredients(Scanner scanner, Category[] categories, Set<Ingredient> ingredients){
-        Set<Ingredient> selectedIngredients = new HashSet<>();
+    public static Set<Ingredient> selectedIngredients(Scanner scanner, List<Category> categories, Set<Ingredient> ingredients){
+        Set<Ingredient> selectedIngredient = new HashSet<>();
         List<Ingredient> ingredientList = new ArrayList<>(ingredients);
         int ingredientChoice = 0;
         Boolean isValid = true, isFirstIngredientSelected = false;
@@ -85,7 +85,7 @@ public class SelectedInputUtils {
                 if (ingredientChoice >= 1 && ingredientChoice <= ingredientList.size()) {
                     Ingredient chosenIngredient = ingredientList.get(ingredientChoice - 1);
 
-                    if (selectedIngredients.add(chosenIngredient)) {
+                    if (selectedIngredient.add(chosenIngredient)) {
                         System.out.println("Dodano: " + chosenIngredient.getName());
                     } else {
                         System.out.println("Sastojak je već odabran.");
@@ -98,7 +98,7 @@ public class SelectedInputUtils {
                 scanner.nextLine(); //
             }
         }
-        return selectedIngredients;
+        return selectedIngredient;
     }
 
     /**
@@ -109,45 +109,49 @@ public class SelectedInputUtils {
      * @return Niz odabranih jela.
      */
 
-    public static Meal[] selectedMeals(Scanner scanner, Meal[] meals){
-        Meal[] restaurantMeal = new Meal[meals.length];
-        Boolean isValid = false;
-        int mealNumber = 0;
+    public static Set<Meal> selectedMeals(Scanner scanner, Set<Meal> meals) {
+        List<Meal> mealList = new ArrayList<>(meals);
+        Set<Meal> selectedMeal = new HashSet<>();
+        Boolean isValid = true, isFirstMealSelected = false;
 
-        do {
-            isValid = true;
-            System.out.println("Popis jela, birate jela dok ne unesete 0 ");
-            for (int i = 0; i < meals.length; i++) {
-                if (meals[i] != null) { // Provjeravaj da jelo nije null
-                    System.out.println((i + 1) + ". " + meals[i].getName());
+        while (isValid) {
+            if (!isFirstMealSelected) {
+                System.out.println("Popis jela, birate jela dok ne unesete 0 ");
+                for (int i = 0; i < mealList.size(); i++) {
+                    System.out.println((i + 1) + ". " + mealList.get(i).getName());
                 }
             }
+            isFirstMealSelected = true;
+
             try {
+                System.out.print("Vaš odabir: ");
                 int mealChoice = scanner.nextInt();
                 scanner.nextLine();
-                while (mealChoice != 0) {
-                    if (mealChoice >= 1 && mealChoice <= meals.length && meals[mealChoice - 1] != null) {
-                        restaurantMeal[mealNumber] = meals[mealChoice - 1];
-                        mealNumber++; // Inkrementiraj broj jela
-                    } else {
-                        log.info(Messages.INVALID_RESTAURANT_INPUT);
-                        isValid = false;
-                    }
-                    mealChoice = scanner.nextInt();
-                    scanner.nextLine();
+
+                if (mealChoice == 0) {
+                    System.out.println("Završili ste unos jela.");
+                    break;
                 }
-            }catch(InputMismatchException badData){
+
+                if (mealChoice >= 1 && mealChoice <= mealList.size()) {
+                    Meal chosenMeal = mealList.get(mealChoice - 1);
+
+                    if (selectedMeal.add(chosenMeal)) {
+                        System.out.println("Dodano: " + chosenMeal.getName());
+                    } else {
+                        System.out.println("Jelo je već odabrano.");
+                    }
+                } else {
+                    System.out.println(Messages.INVALID_MEAL_INPUT);
+                    isValid = false;
+                }
+            } catch (InputMismatchException badData) {
                 log.info(Messages.INVALID_MEAL_INPUT);
                 scanner.nextLine();
                 isValid = false;
             }
-        } while (!isValid);
-
-        Meal[] jelo = new Meal[mealNumber];
-        for(int i=0; i<mealNumber; i++){
-            jelo[i] = restaurantMeal[i];
         }
-        return jelo;
+        return selectedMeal;
     }
 
     /**
@@ -158,39 +162,36 @@ public class SelectedInputUtils {
      * @return Niz odabranih kuhara.
      */
 
-    public static Chef[] selectedChefs(Scanner scanner, Chef[] chefs){
-        Boolean isValid = false;
-        Chef[] restaurantChefs = new Chef[chefs.length];
-        int chefNumber = 0;
-        do{
-            isValid = true;
-            System.out.println("Popis kuhara, birate kuhare dok ne unesete 0 ");
-            for(int i=0; i < chefs.length; i++) {
-                System.out.println((i + 1) + ". " + chefs[i].getFirstName() + " " + chefs[i].getLastName());
-            }
-            try{
-                int chefChoice = scanner.nextInt();
-                scanner.nextLine();
-                if(chefChoice >= 1 && chefChoice <= chefs.length){
-                    restaurantChefs[chefNumber] = chefs[chefChoice - 1];
-                    chefNumber++;
-                } else {
-                    log.info(Messages.INVALID_CHEF_INPUT);
-                    isValid = false;
-                }
-            }catch(InputMismatchException badData){
-                log.info(Messages.INVALID_CHEF_INPUT);
-                scanner.nextLine();
-                isValid = false;
-            }
-        }while(!isValid);
+    public static Set<Chef> selectedChefs(Scanner scanner, Set<Chef> chefs) {
+        List<Chef> chefList = new ArrayList<>(chefs);
+        Set<Chef> selectedChef = new HashSet<>();
+        Boolean isValid = true;
 
-        Chef[] chef = new Chef[chefNumber];
-
-        for(int i=0; i < chefNumber; i++){
-            chef[i] = restaurantChefs[i];
+        // We will only allow one chef to be selected
+        System.out.println("Popis kuhara, birate jednog kuhara: ");
+        for (int i = 0; i < chefList.size(); i++) {
+            System.out.println((i + 1) + ". " + chefList.get(i).getFirstName() + " " + chefList.get(i).getLastName());
         }
-        return chef;
+
+        try {
+            System.out.print("Vaš odabir: ");
+            int chefChoice = scanner.nextInt();
+            scanner.nextLine();  // Consume newline
+
+            if (chefChoice >= 1 && chefChoice <= chefList.size()) {
+                Chef chosenChef = chefList.get(chefChoice - 1);
+                selectedChef.add(chosenChef);  // Add only one chef
+
+                System.out.println("Dodan kuhar: " + chosenChef.getFirstName() + " " + chosenChef.getLastName());
+            } else {
+                System.out.println(Messages.INVALID_CHEF_INPUT);
+            }
+        } catch (InputMismatchException e) {
+            log.info(Messages.INVALID_CHEF_INPUT);
+            scanner.nextLine();  // Clear the invalid input
+        }
+
+        return selectedChef;  // Only one chef is selected
     }
 
     /**
@@ -201,40 +202,37 @@ public class SelectedInputUtils {
      * @return  Niz odabranih konobara.
      */
 
-    public static Waiter[] selectedWaiters (Scanner scanner, Waiter[] waiters){
-        Boolean isValid = false;
-        Waiter[] restaurantWaiters = new Waiter[waiters.length];
-        int waiterNumber = 0;
-        do{
-            isValid = true;
-            System.out.println("Popis konobara, odaberite jednog brojem 1-3: ");
-            for (int i = 0; i < waiters.length; i++) {
-                System.out.println((i + 1) + ". " + waiters[i].getFirstName() + " " + waiters[i].getLastName());
-            }
-            try{
-                int waiterChoice = scanner.nextInt();
-                scanner.nextLine();
-                if (waiterChoice >= 1 && waiterChoice <= waiters.length) {
-                    restaurantWaiters[waiterNumber] = waiters[waiterChoice - 1];
-                    waiterNumber++;
-                } else {
-                    System.out.println(Messages.INVALID_WAITER_INPUT);
-                    isValid = false;
-                }
-            }catch(InputMismatchException badData){
-                log.info(Messages.INVALID_WAITER_INPUT);
-                scanner.nextLine();
-                isValid = false;
-            }
-        }while(!isValid);
+    public static Set<Waiter> selectedWaiters(Scanner scanner, Set<Waiter> waiters) {
+        List<Waiter> waiterList = new ArrayList<>(waiters);
+        Set<Waiter> selectedWaiter = new HashSet<>();
 
-        Waiter[] waiter = new Waiter[waiterNumber];
-
-        for(int i=0;i < waiterNumber;i++){
-            waiter[i] = restaurantWaiters[i];
+        // Allowing only one waiter to be selected
+        System.out.println("Popis konobara, birate jednog konobara: ");
+        for (int i = 0; i < waiterList.size(); i++) {
+            System.out.println((i + 1) + ". " + waiterList.get(i).getFirstName() + " " + waiterList.get(i).getLastName());
         }
-        return waiter;
+
+        try {
+            System.out.print("Vaš odabir: ");
+            int waiterChoice = scanner.nextInt();
+            scanner.nextLine();  // Consume newline
+
+            if (waiterChoice >= 1 && waiterChoice <= waiterList.size()) {
+                Waiter chosenWaiter = waiterList.get(waiterChoice - 1);
+                selectedWaiter.add(chosenWaiter);  // Add only one waiter
+
+                System.out.println("Dodan konobar: " + chosenWaiter.getFirstName() + " " + chosenWaiter.getLastName());
+            } else {
+                System.out.println(Messages.INVALID_WAITER_INPUT);
+            }
+        } catch (InputMismatchException e) {
+            log.info(Messages.INVALID_WAITER_INPUT);
+            scanner.nextLine();  // Clear the invalid input
+        }
+
+        return selectedWaiter;  // Only one waiter is selected
     }
+
 
     /**
      * Potiče korisnika da odabere dostavljače iz popisa dostupnih dostavljača.
@@ -244,38 +242,35 @@ public class SelectedInputUtils {
      * @return Niz odabranih dostavljača.
      */
 
-    public static Deliverer[] selectedDeliverers(Scanner scanner, Deliverer[] deliverers){
-        Boolean isValid = false;
-        Deliverer[] restaurantDeliverers = new Deliverer[deliverers.length];
-        int delivererNumber = 0;
-        do{
-            isValid = true;
-            System.out.println("Popis dostavljača, odaberite jednog brojem 1-3: ");
-            for (int i = 0; i < deliverers.length; i++) {
-                System.out.println((i + 1) + ". " + deliverers[i].getFirstName() + " " + deliverers[i].getLastName());
-            }
-            try{
-                int delivererChoice = scanner.nextInt();
-                scanner.nextLine();
-                if (delivererChoice >= 1 && delivererChoice <= deliverers.length) {
-                    restaurantDeliverers[delivererNumber] = deliverers[delivererChoice - 1];
-                    delivererNumber++;
-                } else {
-                    System.out.println(Messages.INVALID_DELIVERER_INPUT);
-                    isValid = false;
-                }
-            }catch(InputMismatchException badData){
-                log.info(Messages.INVALID_DELIVERER_INPUT);
-                scanner.nextLine();
-                isValid = false;
-            }
-        }while(!isValid);
+    public static Set<Deliverer> selectedDeliverers(Scanner scanner, Set<Deliverer> deliverers) {
+        List<Deliverer> delivererList = new ArrayList<>(deliverers);
+        Set<Deliverer> selectedDeliverer = new HashSet<>();
 
-        Deliverer[] deliverer = new Deliverer[delivererNumber];
-        for(int i = 0; i < delivererNumber; i++){
-            deliverer[i] = restaurantDeliverers[i];
+        // Allowing only one deliverer to be selected
+        System.out.println("Popis dostavljača, birate jednog dostavljača: ");
+        for (int i = 0; i < delivererList.size(); i++) {
+            System.out.println((i + 1) + ". " + delivererList.get(i).getFirstName() + " " + delivererList.get(i).getLastName());
         }
 
-        return deliverer;
+        try {
+            System.out.print("Vaš odabir: ");
+            int delivererChoice = scanner.nextInt();
+            scanner.nextLine();  // Consume newline
+
+            if (delivererChoice >= 1 && delivererChoice <= delivererList.size()) {
+                Deliverer chosenDeliverer = delivererList.get(delivererChoice - 1);
+                selectedDeliverer.add(chosenDeliverer);  // Add only one deliverer
+
+                System.out.println("Dodan dostavljač: " + chosenDeliverer.getFirstName() + " " + chosenDeliverer.getLastName());
+            } else {
+                System.out.println(Messages.INVALID_DELIVERER_INPUT);
+            }
+        } catch (InputMismatchException e) {
+            log.info(Messages.INVALID_DELIVERER_INPUT);
+            scanner.nextLine();  // Clear the invalid input
+        }
+
+        return selectedDeliverer;  // Only one deliverer is selected
     }
+
 }

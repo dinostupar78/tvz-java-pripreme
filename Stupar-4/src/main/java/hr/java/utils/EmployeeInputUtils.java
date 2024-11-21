@@ -149,7 +149,7 @@ public class EmployeeInputUtils {
 
         do {
             isValid = true;
-            System.out.println("Unesite prezime kuhara: ");
+            System.out.println("Unesite prezime konobara: ");
             waiterSurname = scanner.nextLine();
             if (waiterSurname.isEmpty() ||waiterSurname.length() < 3) {
                 log.info(Messages.INVALID_WAITER_INPUT);

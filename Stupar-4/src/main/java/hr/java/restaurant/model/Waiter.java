@@ -1,5 +1,7 @@
 package hr.java.restaurant.model;
 
+import java.util.Objects;
+
 /**
  * Klasa koja predstavlja konobara u restoranu.
  * Konobar je zaposlenik koji ima ugovor o radu, bonus, te osobne podatke kao što su ime i prezime.
@@ -81,5 +83,18 @@ public class Waiter extends Person{
         public Waiter build() {
             return new Waiter(id, firstName, lastName, contract, bonusKonobara);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Waiter waiter = (Waiter) o;
+        return Objects.equals(contract, waiter.contract) && Objects.equals(bonusKonobara, waiter.bonusKonobara);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contract, bonusKonobara);
     }
 }

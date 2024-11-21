@@ -1,5 +1,8 @@
 package hr.java.restaurant.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Klasa koja predstavlja restoran u sustavu.
  * Sadrži informacije o restoranu, uključujući ime, adresu, dostupne obroke, kuhare, konobare i dostavljače.
@@ -9,10 +12,10 @@ package hr.java.restaurant.model;
 public class Restaurant extends Entity {
     private String name;
     private Address address;
-    private Meal[] meals;
-    private Chef[] chefs;
-    private Waiter[] waiters;
-    private Deliverer[] deliverers;
+    private Set<Meal> meals = new HashSet<>();
+    private Set<Chef> chefs = new HashSet<>();
+    private Set<Waiter> waiters = new HashSet<>();;
+    private Set<Deliverer> deliverers;
 
     /**
      * Konstruktor koji inicijalizira restoran s osnovnim informacijama.
@@ -25,7 +28,7 @@ public class Restaurant extends Entity {
      * @param deliverers lista dostavljača koji rade za restoran
      */
 
-    public Restaurant(Long id, String name, Address address, Meal[] meals, Chef[] chefs, Waiter[] waiters, Deliverer[] deliverers) {
+    public Restaurant(Long id, String name, Address address, Set<Meal> meals, Set<Chef> chefs, Set<Waiter> waiters, Set<Deliverer> deliverers) {
         super(id);
         this.name = name;
         this.address = address;
@@ -51,35 +54,35 @@ public class Restaurant extends Entity {
         this.address = address;
     }
 
-    public Meal[] getMeals() {
+    public Set<Meal> getMeals() {
         return meals;
     }
 
-    public void setMeals(Meal[] meals) {
+    public void setMeals(Set<Meal> meals) {
         this.meals = meals;
     }
 
-    public Chef[] getChefs() {
+    public Set<Chef> getChefs() {
         return chefs;
     }
 
-    public void setChefs(Chef[] chefs) {
+    public void setChefs(Set<Chef> chefs) {
         this.chefs = chefs;
     }
 
-    public Waiter[] getWaiters() {
+    public Set<Waiter> getWaiters() {
         return waiters;
     }
 
-    public void setWaiters(Waiter[] waiters) {
+    public void setWaiters(Set<Waiter> waiters) {
         this.waiters = waiters;
     }
 
-    public Deliverer[] getDeliverers() {
+    public Set<Deliverer> getDeliverers() {
         return deliverers;
     }
 
-    public void setDeliverers(Deliverer[] deliverers) {
+    public void setDeliverers(Set<Deliverer> deliverers) {
         this.deliverers = deliverers;
     }
 }

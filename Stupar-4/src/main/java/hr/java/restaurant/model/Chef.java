@@ -1,5 +1,7 @@
 package hr.java.restaurant.model;
 
+import java.util.Objects;
+
 /**
  * Predstavlja kuhara u restoranskom sustavu.
  * Kuhar je zaposlenik restorana s ugovorom o radu i mogućim bonusom.
@@ -81,7 +83,19 @@ public class Chef extends Person{
         public Chef build(){
             return new Chef(id, firstName, lastName, contract, BonusKuhara);
         }
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Chef chef = (Chef) o;
+        return Objects.equals(contract, chef.contract) && Objects.equals(BonusKuhara, chef.BonusKuhara);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contract, BonusKuhara);
     }
 }
 

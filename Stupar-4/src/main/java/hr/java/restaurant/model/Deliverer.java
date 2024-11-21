@@ -1,5 +1,7 @@
 package hr.java.restaurant.model;
 
+import java.util.Objects;
+
 /**
  * Predstavlja dostavljača u restoranskom sustavu.
  * Klasa sadrži informacije o ugovoru dostavljača, broju dostava koje je obavio
@@ -94,6 +96,19 @@ public class Deliverer extends Person {
         public Deliverer build() {
             return new Deliverer(id, firstName, lastName, contract, bonusDostavljaca);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Deliverer deliverer = (Deliverer) o;
+        return brojDostava == deliverer.brojDostava && Objects.equals(contract, deliverer.contract) && Objects.equals(bonusDostavljaca, deliverer.bonusDostavljaca);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contract, brojDostava, bonusDostavljaca);
     }
 }
 

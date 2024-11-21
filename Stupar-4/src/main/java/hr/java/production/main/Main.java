@@ -1,5 +1,4 @@
 package hr.java.production.main;
-
 import hr.java.restaurant.model.*;
 import hr.java.utils.DataInputUtils;
 import hr.java.utils.EmployeeInputUtils;
@@ -174,10 +173,9 @@ public class Main {
      */
 
     public static Person findHighestPaidEmployee(List<Person> employees) {
-        // Check if the list is empty
         if (employees == null || employees.isEmpty()) {
             System.out.println("Nema dostupnih zaposlenika.");
-            return null;  // Return null or handle appropriately
+            return null;
         }
 
         Person highestPaid = null;
@@ -207,9 +205,8 @@ public class Main {
      */
 
     public static Person findLongestContractEmployee(List<Person> employees) {
-        // Check if the list is empty
         if (employees == null || employees.isEmpty()) {
-            return null;  // Return null or handle appropriately
+            return null;
         }
 
         Person longestContractEmployee = null;
@@ -217,7 +214,6 @@ public class Main {
 
         for (Person employee : employees) {
             if (employee != null) {
-                // Ensure the contract object exists and has valid dates
                 Contract contract = employee.getContract();
                 if (contract != null && contract.getStartTime() != null && contract.getEndTime() != null) {
                     long duration = contract.getEndTime().toEpochDay() - contract.getStartTime().toEpochDay();
@@ -255,10 +251,9 @@ public class Main {
      */
 
     public static void printMealWithMinMaxCalories(List<Meal> specialMeals) {
-        // Check if the list is empty
         if (specialMeals == null || specialMeals.isEmpty()) {
             System.out.println("Nema dostupnih jela.");
-            return;  // Return or handle empty list scenario
+            return;
         }
 
         Meal maxCalorieMeal = specialMeals.get(0);

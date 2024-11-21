@@ -167,7 +167,6 @@ public class SelectedInputUtils {
         Set<Chef> selectedChef = new HashSet<>();
         Boolean isValid = true;
 
-        // We will only allow one chef to be selected
         System.out.println("Popis kuhara, birate jednog kuhara: ");
         for (int i = 0; i < chefList.size(); i++) {
             System.out.println((i + 1) + ". " + chefList.get(i).getFirstName() + " " + chefList.get(i).getLastName());
@@ -176,11 +175,11 @@ public class SelectedInputUtils {
         try {
             System.out.print("Vaš odabir: ");
             int chefChoice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();
 
             if (chefChoice >= 1 && chefChoice <= chefList.size()) {
                 Chef chosenChef = chefList.get(chefChoice - 1);
-                selectedChef.add(chosenChef);  // Add only one chef
+                selectedChef.add(chosenChef);
 
                 System.out.println("Dodan kuhar: " + chosenChef.getFirstName() + " " + chosenChef.getLastName());
             } else {
@@ -188,10 +187,10 @@ public class SelectedInputUtils {
             }
         } catch (InputMismatchException e) {
             log.info(Messages.INVALID_CHEF_INPUT);
-            scanner.nextLine();  // Clear the invalid input
+            scanner.nextLine();
         }
 
-        return selectedChef;  // Only one chef is selected
+        return selectedChef;
     }
 
     /**
@@ -206,7 +205,6 @@ public class SelectedInputUtils {
         List<Waiter> waiterList = new ArrayList<>(waiters);
         Set<Waiter> selectedWaiter = new HashSet<>();
 
-        // Allowing only one waiter to be selected
         System.out.println("Popis konobara, birate jednog konobara: ");
         for (int i = 0; i < waiterList.size(); i++) {
             System.out.println((i + 1) + ". " + waiterList.get(i).getFirstName() + " " + waiterList.get(i).getLastName());
@@ -215,11 +213,11 @@ public class SelectedInputUtils {
         try {
             System.out.print("Vaš odabir: ");
             int waiterChoice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();
 
             if (waiterChoice >= 1 && waiterChoice <= waiterList.size()) {
                 Waiter chosenWaiter = waiterList.get(waiterChoice - 1);
-                selectedWaiter.add(chosenWaiter);  // Add only one waiter
+                selectedWaiter.add(chosenWaiter);
 
                 System.out.println("Dodan konobar: " + chosenWaiter.getFirstName() + " " + chosenWaiter.getLastName());
             } else {
@@ -227,10 +225,10 @@ public class SelectedInputUtils {
             }
         } catch (InputMismatchException e) {
             log.info(Messages.INVALID_WAITER_INPUT);
-            scanner.nextLine();  // Clear the invalid input
+            scanner.nextLine();
         }
 
-        return selectedWaiter;  // Only one waiter is selected
+        return selectedWaiter;
     }
 
 
@@ -246,7 +244,6 @@ public class SelectedInputUtils {
         List<Deliverer> delivererList = new ArrayList<>(deliverers);
         Set<Deliverer> selectedDeliverer = new HashSet<>();
 
-        // Allowing only one deliverer to be selected
         System.out.println("Popis dostavljača, birate jednog dostavljača: ");
         for (int i = 0; i < delivererList.size(); i++) {
             System.out.println((i + 1) + ". " + delivererList.get(i).getFirstName() + " " + delivererList.get(i).getLastName());
@@ -255,11 +252,11 @@ public class SelectedInputUtils {
         try {
             System.out.print("Vaš odabir: ");
             int delivererChoice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();
 
             if (delivererChoice >= 1 && delivererChoice <= delivererList.size()) {
                 Deliverer chosenDeliverer = delivererList.get(delivererChoice - 1);
-                selectedDeliverer.add(chosenDeliverer);  // Add only one deliverer
+                selectedDeliverer.add(chosenDeliverer);
 
                 System.out.println("Dodan dostavljač: " + chosenDeliverer.getFirstName() + " " + chosenDeliverer.getLastName());
             } else {
@@ -267,10 +264,10 @@ public class SelectedInputUtils {
             }
         } catch (InputMismatchException e) {
             log.info(Messages.INVALID_DELIVERER_INPUT);
-            scanner.nextLine();  // Clear the invalid input
+            scanner.nextLine();
         }
 
-        return selectedDeliverer;  // Only one deliverer is selected
+        return selectedDeliverer;
     }
 
 }

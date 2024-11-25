@@ -62,6 +62,11 @@ public class Address extends Entity{
         this.postalCode = postalCode;
     }
 
+    @Override
+    public String toString() {
+        return street + ", " + city + ", " + postalCode;
+    }
+
     public static class BuilderAddress{
         private Long id;
         private String street;

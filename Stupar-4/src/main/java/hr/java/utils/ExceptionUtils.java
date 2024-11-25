@@ -1,6 +1,9 @@
 package hr.java.utils;
+
+import hr.java.restaurant.enums.ContractType;
 import hr.java.restaurant.exception.DuplicateEntityException;
 import hr.java.restaurant.exception.InvalidAmountException;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -144,7 +147,9 @@ public class ExceptionUtils {
     }
 
     public static void validateContractType(String contractType) throws InvalidAmountException {
-        if (!contractType.equals(FULL_TIME) && !contractType.equals(PART_TIME)) {
+        try {
+            ContractType.valueOf(contractType);
+        } catch (IllegalArgumentException e) {
             throw new InvalidAmountException("Krivi unos ugovora! Dozvoljeni tipovi su FULL_TIME i PART_TIME.");
         }
     }

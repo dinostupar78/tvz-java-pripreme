@@ -1,11 +1,15 @@
 package hr.java.utils;
+
+import hr.java.restaurant.enums.ContractType;
 import hr.java.restaurant.exception.DuplicateEntityException;
 import hr.java.restaurant.exception.InvalidAmountException;
 import hr.java.restaurant.model.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import static hr.java.production.main.Main.log;
 import static hr.java.utils.ExceptionUtils.*;
 
@@ -89,16 +93,16 @@ public class EmployeeInputUtils {
         String zavrsetakUgovoraInput = scanner.nextLine();
         contractEndTime = LocalDate.parse(zavrsetakUgovoraInput);
 
-        String contractType = "";
+        ContractType contractType = ContractType.NOT_DEFINED;
         do {
             isValid = true;
             System.out.println("Unesite tip ugovora (0 za FULL_TIME, 1 za PART_TIME): ");
             int tipUgovoraInput = scanner.nextInt();
             scanner.nextLine();
             if (tipUgovoraInput == 0) {
-                contractType = Contract.FULL_TIME;
+                contractType = ContractType.FULL_TIME;
             } else if (tipUgovoraInput == 1) {
-                contractType = Contract.PART_TIME;
+                contractType = ContractType.PART_TIME;
             } else {
                 log.info(Messages.INVALID_CONTRACT_INPUT);
                 isValid = false;
@@ -189,16 +193,16 @@ public class EmployeeInputUtils {
         String contractEndTimeInput = scanner.nextLine();
         contractEndTime = LocalDate.parse(contractEndTimeInput);
 
-        String contractType = "";
+        ContractType contractType = ContractType.NOT_DEFINED;
         do {
             isValid = true;
             System.out.println("Unesite tip ugovora (0 za FULL_TIME, 1 za PART_TIME): ");
             int tipUgovoraInput = scanner.nextInt();
             scanner.nextLine();
             if (tipUgovoraInput == 0) {
-                contractType = Contract.FULL_TIME;
+                contractType = ContractType.FULL_TIME;
             } else if (tipUgovoraInput == 1) {
-                contractType = Contract.PART_TIME;
+                contractType = ContractType.PART_TIME;
             } else {
                 log.info(Messages.INVALID_CONTRACT_INPUT);
                 isValid = false;
@@ -289,16 +293,16 @@ public class EmployeeInputUtils {
         String contractEndTimeInput = scanner.nextLine();
         contractEndTime = LocalDate.parse(contractEndTimeInput);
 
-        String contractType = "";
+        ContractType contractType = ContractType.NOT_DEFINED;
         do {
             isValid = true;
             System.out.println("Unesite tip ugovora (0 za FULL_TIME, 1 za PART_TIME): ");
             int tipUgovoraInput = scanner.nextInt();
             scanner.nextLine();
             if (tipUgovoraInput == 0) {
-                contractType = Contract.FULL_TIME;
+                contractType = ContractType.FULL_TIME;
             } else if (tipUgovoraInput == 1) {
-                contractType = Contract.PART_TIME;
+                contractType = ContractType.PART_TIME;
             } else {
                 System.out.println(Messages.INVALID_CONTRACT_INPUT);
                 isValid = false;

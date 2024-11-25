@@ -1,13 +1,14 @@
 package hr.java.production.main;
+
 import hr.java.restaurant.model.*;
-import hr.java.utils.DataInputUtils;
-import hr.java.utils.EmployeeInputUtils;
-import hr.java.utils.Messages;
-import hr.java.utils.RestaurantInputUtils;
+import hr.java.utils.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.math.BigDecimal;
 import java.util.*;
+
+import static hr.java.utils.MealRestaurantUtils.displayRestaurantsForSelectedMeal;
 import static hr.java.utils.RestaurantInputUtils.restoranInput;
 
 /**
@@ -18,10 +19,10 @@ import static hr.java.utils.RestaurantInputUtils.restoranInput;
  */
 
 public class Main {
-    public static final int numberOfCategories = 3, numberOfIngredients = 3, numberOfMeals = 3,
-            numberOfChefs = 1, numberOfWaiters = 3, numberOfDeliverers = 3,
-            numberOfRestaurants = 3, restaurantAddress = 3, numberOfOrders = 3,
-            numberOfSpecialMeals = 3;
+    public static final int numberOfCategories = 1, numberOfIngredients = 1, numberOfMeals = 1,
+            numberOfChefs = 2, numberOfWaiters = 2, numberOfDeliverers = 2,
+            numberOfRestaurants = 1, restaurantAddress = 3, numberOfOrders = 1,
+            numberOfSpecialMeals = 1;
 
     public static Logger log = LoggerFactory.getLogger(Main.class);
 
@@ -44,6 +45,7 @@ public class Main {
         List<Order> orderers = new ArrayList<>();
         List<Person> employees = new ArrayList<>();
         List<Meal> specialMeals = new ArrayList<>();
+        Map<Meal, List<Restaurant>> mealRestaurantMap = new HashMap<>();
 
         Scanner scanner = new Scanner(System.in);
         log.info("The application is started...");
@@ -66,11 +68,12 @@ public class Main {
             meals.add(meal);
         }
 
-        String[] mealTypes = {"vegansko", "vegetarijansko", "mesno"};
+        List<String> mealTypes = Arrays.asList("vegansko", "vegetarijansko", "mesno");
 
         for(int i = 0; i < numberOfSpecialMeals; i++){
-            System.out.println("Unesite podatke za " + mealTypes[i] + " jelo");
-            Meal specialMeal = inputSpecialMeal(scanner, mealTypes[i], categories, ingredients);
+            String mealType = mealTypes.get(i);
+            System.out.println("Unesite podatke za " + mealType + " jelo");
+            Meal specialMeal = inputSpecialMeal(scanner, mealType, categories, ingredients);
             specialMeals.add(specialMeal);
         }
 
@@ -104,6 +107,9 @@ public class Main {
             orderers.add(order);
         }
 
+        Map<Meal, List<Restaurant>> mealRestaurant = MealRestaurantUtils.mapMealsToRestaurants(restaurants);
+        displayRestaurantsForSelectedMeal(scanner, mealRestaurant);
+
         employees.addAll(chefs);
         employees.addAll(waiters);
         employees.addAll(deliverers);
@@ -113,10 +119,14 @@ public class Main {
         printEmployeeInfo(highestPaidEmployee);
 
         Person longestContractEmployee = findLongestContractEmployee(employees);
-        System.out.println("\nZaposlenik s najdužim ugovorom:");
+        System.out.println("Zaposlenik s najdužim ugovorom:");
         printEmployeeInfo(longestContractEmployee);
 
         printMealWithMinMaxCalories(specialMeals);
+
+        ComparatorUtils.printHighestPaidEmployeeInRestaurants(restaurants);
+
+        ComparatorUtils.printHighestEmployeedEmployeeInRestaurants(restaurants);
 
     }
 
@@ -240,7 +250,6 @@ public class Main {
     private static void printEmployeeInfo(Person employee) {
         String firstName = employee.getFirstName(), lastName = employee.getLastName();
         Contract contract = employee.getContract();
-
         System.out.println(String.format(Messages.EMPLOYEE_INFO_MESSAGE, firstName, lastName, contract.getSalary(), contract.getStartTime(), contract.getEndTime()));
     }
 
@@ -269,8 +278,7 @@ public class Main {
                 }
             }
         }
-
-        System.out.println("Jelo sa najviše kalorija: ");
+        System.out.println("\nJelo sa najviše kalorija: ");
         printMealInfo(maxCalorieMeal);
         System.out.println("Jelo sa najmanje kalorija: ");
         printMealInfo(minCalorieMeal);

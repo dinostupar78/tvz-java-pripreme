@@ -1,4 +1,6 @@
 package hr.java.restaurant.model;
+import hr.java.restaurant.enums.ContractType;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -9,22 +11,20 @@ import java.time.LocalDate;
  */
 
 public class Contract {
-    public static final String FULL_TIME = "FULL_TIME";
-    public static final String PART_TIME = "PART_TIME";
     private BigDecimal salary;
     private LocalDate startTime;
     private LocalDate endTime;
-    private String contractType;
+    private ContractType contractType;
 
     /**
      * Konstruktor za stvaranje novog ugovora s plaćom, vremenskim okvirima i vrstom ugovora.
      * @param salary plaća zaposlenika prema ugovoru.
-     * @param startTime datum početka ugovora.
-     * @param endTime datum završetka ugovora.
-     * @param contractType vrsta ugovora (može biti {@link #FULL_TIME} ili {@link #PART_TIME}).
+     * @param startTime startTime datum početka ugovora.
+     * @param endTime endTime datum završetka ugovora.
+     * @param contractType enumeracija contractType, moze biti FULL_TIME, PART_TIME ili NOT_DEFINED
      */
 
-    public Contract(BigDecimal salary, LocalDate startTime, LocalDate endTime, String contractType) {
+    public Contract(BigDecimal salary, LocalDate startTime, LocalDate endTime, ContractType contractType) {
         this.salary = salary;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -55,12 +55,12 @@ public class Contract {
         this.endTime = endTime;
     }
 
-    public String getContractType() {
+    public ContractType getContractType() {
         return contractType;
     }
 
-    public void setContractType(String contractType) {
-        if (!contractType.equals(FULL_TIME) && !contractType.equals(PART_TIME)){
+    public void setContractType(ContractType contractType) {
+        if (!contractType.equals(contractType.FULL_TIME) && !contractType.equals(contractType.PART_TIME)){
             System.out.println("Krivi unos ugovora!");
         } else{
             this.contractType = contractType;

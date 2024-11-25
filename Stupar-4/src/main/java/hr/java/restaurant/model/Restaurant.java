@@ -1,6 +1,8 @@
 package hr.java.restaurant.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -84,5 +86,14 @@ public class Restaurant extends Entity {
 
     public void setDeliverers(Set<Deliverer> deliverers) {
         this.deliverers = deliverers;
+    }
+
+    public List<Person> getEmployees() {
+        List<Person> employees = new ArrayList<>();
+        // Dodavanje kuhara, konobara i dostavljača u listu zaposlenika
+        employees.addAll(chefs);
+        employees.addAll(waiters);
+        employees.addAll(deliverers);
+        return employees;
     }
 }

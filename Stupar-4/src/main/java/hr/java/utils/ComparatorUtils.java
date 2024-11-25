@@ -14,7 +14,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Utility klasa koja sadrži metode za sortiranje i ispisivanje podataka o restoranima, zaposlenicima, jelima i sastojcima.
+ * Klasa koristi različite komparatore kako bi sortirala podatke i ispisivala korisnicima tražene informacije.
+ */
+
 public class ComparatorUtils {
+    /**
+     * Ispisuje zaposlenika s najvećom plaćom u svakom restoranu.
+     * Zaposlenici se sortiraju prema plaći, a za svaki restoran ispisuje se zaposlenik s najvećom plaćom.
+     * @param restaurants lista restorana u kojima će se tražiti zaposlenici
+     */
+
     public static void printHighestPaidEmployeeInRestaurants(List<Restaurant> restaurants) {
         EmployeeSalaryComparator salaryComparator = new EmployeeSalaryComparator();
         for (Restaurant restaurant : restaurants) {
@@ -28,6 +39,12 @@ public class ComparatorUtils {
                         + " " + highestPaidEmployee.getLastName() + " - Plaća: " + highestPaidEmployee.getContract().getSalary());
         }
     }
+
+    /**
+     * Ispisuje zaposlenike restorana sortirane prema trajanju ugovora, od najkraćeg do najdužeg.
+     * Za svakog zaposlenika ispisuje trajanje njegovog ugovora.
+     * @param restaurants lista restorana u kojima će se tražiti zaposlenici
+     */
 
     public static void printHighestEmployeedEmployeeInRestaurants(List<Restaurant> restaurants){
         EmployeeContractComparator contractComparator = new EmployeeContractComparator();
@@ -45,6 +62,11 @@ public class ComparatorUtils {
         }
     }
 
+    /**
+     * Ispisuje jela sortirana po broju restorana u kojima se mogu naručiti, od jela s najviše restorana do jela s najmanje
+     * @param mealRestaurantMap mapa u kojoj je ključ jelo (Meal) i vrijednost lista restorana (List<Restaurant>) u kojima je to jelo dostupno
+     */
+
     public static void printMealsSortedByRestaurantCount(Map<Meal, List<Restaurant>> mealRestaurantMap){
         List<Meal> mealList = new ArrayList<>(mealRestaurantMap.keySet());
         mealList.sort(new MealRestaurantCountComparator(mealRestaurantMap));
@@ -55,6 +77,11 @@ public class ComparatorUtils {
             System.out.println(meal.getName() + " - Broj restorana: " + restaurantCount);
         }
     }
+
+    /**
+     * Ispisuje namirnice korištene u pripremi jela, sortirane abecedno
+     * @param meals skup jela (Meal) čiji se sastojci (Ingredient) trebaju ispisati
+     */
 
     public static void printSortedIngredientsAlphabetically(Set<Meal> meals){
         for (Meal meal : meals){
@@ -69,5 +96,4 @@ public class ComparatorUtils {
             }
         }
     }
-
 }

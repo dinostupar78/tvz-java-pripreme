@@ -240,7 +240,6 @@ public class Main {
                 }
             }
         }
-
         return longestContractEmployee;
     }
 

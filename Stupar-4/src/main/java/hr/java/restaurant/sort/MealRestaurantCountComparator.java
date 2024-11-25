@@ -1,11 +1,16 @@
 package hr.java.restaurant.sort;
-
 import hr.java.restaurant.model.Meal;
 import hr.java.restaurant.model.Restaurant;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+
+/**
+ * Klasa koja implementira sučelje {@link Comparator} za usporedbu objekata klase {@link Meal} prema broju restorana u kojima je moguće naručiti određeno jelo
+ * Usporedba se vrši na temelju broja restorana vezanih za svako jelo. Jela s većim brojem restorana bit će veća u sortiranoj listi
+ * @see Meal
+ * @see Restaurant
+ */
 
 public class MealRestaurantCountComparator implements Comparator<Meal> {
     public final Map<Meal, List<Restaurant>> mealRestaurantMap;

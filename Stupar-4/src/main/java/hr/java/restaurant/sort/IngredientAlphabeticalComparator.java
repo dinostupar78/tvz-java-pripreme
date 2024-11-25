@@ -1,8 +1,11 @@
 package hr.java.restaurant.sort;
-
 import hr.java.restaurant.model.Ingredient;
-
 import java.util.Comparator;
+
+/**
+ * Klasa koja implementira sučelje {@link Comparator} za usporedbu objekata klase {@link Ingredient} prema abecednom redoslijedu na temelju naziva namirnica
+ * @see Ingredient
+ */
 
 public class IngredientAlphabeticalComparator implements Comparator <Ingredient> {
     @Override

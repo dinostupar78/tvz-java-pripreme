@@ -304,3 +304,6 @@
 2024-11-25 19:15:50,755 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:65] Kuhar s nazivom 'dfsfsf' već postoji.
 2024-11-25 19:16:18,432 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:183] Plaća mora biti između 500 i 5000.
 2024-11-25 19:16:57,754 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:146] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 22:06:39,114 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-25 22:07:06,911 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:83] Plaća mora biti između 500 i 5000.
+2024-11-25 22:30:35,474 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...

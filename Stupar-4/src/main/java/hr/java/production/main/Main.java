@@ -128,6 +128,10 @@ public class Main {
 
         ComparatorUtils.printHighestEmployeedEmployeeInRestaurants(restaurants);
 
+        ComparatorUtils.printMealsSortedByRestaurantCount(mealRestaurant);
+
+        ComparatorUtils.printSortedIngredientsAlphabetically(meals);
+
     }
 
     public static Category categoryInput(Scanner scanner) {

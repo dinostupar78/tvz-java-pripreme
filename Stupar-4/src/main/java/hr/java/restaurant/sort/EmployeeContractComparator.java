@@ -17,7 +17,7 @@ public class EmployeeContractComparator implements Comparator<Person> {
         LocalDate end2 = p2.getContract().getEndTime();
         long duration2 = ChronoUnit.DAYS.between(start2, end2);
 
-        return Long.compare(duration2, duration1);
+        return Long.compare(duration2, duration1); // silazno, za uzlazno (duration1, duration2)
 
     }
 }

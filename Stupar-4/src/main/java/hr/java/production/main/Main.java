@@ -1,11 +1,13 @@
 package hr.java.production.main;
+import hr.java.restaurant.enums.PriorityType;
 import hr.java.restaurant.model.*;
 import hr.java.utils.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.BigDecimal;
 import java.util.*;
-import static hr.java.utils.MealRestaurantUtils.displayRestaurantsForSelectedMeal;
+
+import static hr.java.utils.MealRestaurantUtils.*;
 import static hr.java.utils.RestaurantInputUtils.restoranInput;
 
 /**
@@ -43,6 +45,7 @@ public class Main {
         List<Person> employees = new ArrayList<>();
         List<Meal> specialMeals = new ArrayList<>();
         Map<Meal, List<Restaurant>> mealRestaurantMap = new HashMap<>();
+        PriorityType priorityType = PriorityType.LOW; // Default priority
 
         Scanner scanner = new Scanner(System.in);
         log.info("The application is started...");
@@ -100,11 +103,11 @@ public class Main {
 
         for(int i = 0; i < numberOfOrders; i++){
             System.out.println("Unesite podatke za " + (i+1) + " narudžbu");
-            Order order = orderInput(scanner, restaurants, meals, deliverers);
+            Order order = orderInput(scanner, restaurants, meals, deliverers, priorityType);
             orderers.add(order);
         }
 
-        Map<Meal, List<Restaurant>> mealRestaurant = MealRestaurantUtils.mapMealsToRestaurants(restaurants);
+        Map<Meal, List<Restaurant>> mealRestaurant = mapMealsToRestaurants(restaurants);
         displayRestaurantsForSelectedMeal(scanner, mealRestaurant);
 
         employees.addAll(chefs);
@@ -128,6 +131,14 @@ public class Main {
         ComparatorUtils.printMealsSortedByRestaurantCount(mealRestaurant);
 
         ComparatorUtils.printSortedIngredientsAlphabetically(meals);
+
+        String topCity = findCityWithMostRestaurants(restaurants);
+        System.out.println("Grad s najviše restorana: " + topCity);
+
+        // Filtriranje narudžbi
+        List<Order> filteredOrders = filterOrdersByPriority(orderers);
+        System.out.println("Filtrirane narudžbe veće od 10€: ");
+        filteredOrders.forEach(System.out::println);
 
     }
 
@@ -167,8 +178,8 @@ public class Main {
         return restoranInput(scanner, addresses, meals, chefs, waiters, deliverers);
     }
 
-    public static Order orderInput(Scanner scanner, List<Restaurant> restaurants, Set<Meal> meals, Set<Deliverer> deliverers) {
-        return RestaurantInputUtils.orderInput(scanner, restaurants, meals, deliverers);
+    public static Order orderInput(Scanner scanner, List<Restaurant> restaurants, Set<Meal> meals, Set<Deliverer> deliverers, PriorityType priorityType) {
+        return RestaurantInputUtils.orderInput(scanner, restaurants, meals, deliverers, priorityType);
     }
 
     private static BigDecimal getSalary(Person employee) {

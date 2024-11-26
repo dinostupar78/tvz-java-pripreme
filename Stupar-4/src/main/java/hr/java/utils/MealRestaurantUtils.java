@@ -76,9 +76,9 @@ public class MealRestaurantUtils {
                 .orElse("N/A");
     }
 
-    public static Set<Order> filterOrdersByPriority(Set<Order> orders) {
+    public static List<Order> filterOrdersByPriority(List<Order> orders) {
         // Filtriraj narudžbe veće od 10€
-        Set<Order> highValueOrders = new HashSet<>();
+        List<Order> highValueOrders = new ArrayList<>();
         for (Order order : orders) {
             if (order.getTotalPrice().compareTo(BigDecimal.TEN) > 0) {
                 highValueOrders.add(order);

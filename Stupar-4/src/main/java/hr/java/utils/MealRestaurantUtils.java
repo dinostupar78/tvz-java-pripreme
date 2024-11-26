@@ -77,26 +77,33 @@ public class MealRestaurantUtils {
     }
 
     public static List<Order> filterOrdersByPriority(List<Order> orders) {
-        // Filtriraj narudžbe veće od 10€
         List<Order> highValueOrders = new ArrayList<>();
-        for (Order order : orders) {
+
+        // Filtriraj narudžbe veće od 10€ koristeći Iterator
+        Iterator<Order> orderIterator = orders.iterator();
+        while (orderIterator.hasNext()) {
+            Order order = orderIterator.next();
             if (order.getTotalPrice().compareTo(BigDecimal.TEN) > 0) {
                 highValueOrders.add(order);
             }
         }
 
-        // Pronađi najniži prioritet
-        PriorityType lowestPriority = highValueOrders.stream()
-                .map(Order::getPriorityType)
-                .min(Enum::compareTo)
-                .orElse(null);
+        // Pronađi najniži prioritet koristeći Iterator
+        PriorityType lowestPriority = null;
+        Iterator<Order> highValueIterator = highValueOrders.iterator();
+        while (highValueIterator.hasNext()) {
+            Order order = highValueIterator.next();
+            if (lowestPriority == null || order.getPriorityType().compareTo(lowestPriority) < 0) {
+                lowestPriority = order.getPriorityType();
+            }
+        }
 
-        // Ukloni narudžbe s najnižim prioritetom
-        Iterator<Order> iterator = highValueOrders.iterator();
-        while (iterator.hasNext()) {
-            Order order = iterator.next();
+        // Ukloni narudžbe s najnižim prioritetom koristeći Iterator
+        highValueIterator = highValueOrders.iterator();
+        while (highValueIterator.hasNext()) {
+            Order order = highValueIterator.next();
             if (order.getPriorityType() == lowestPriority) {
-                iterator.remove();
+                highValueIterator.remove();
             }
         }
 

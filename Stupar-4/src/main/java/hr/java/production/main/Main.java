@@ -132,8 +132,11 @@ public class Main {
 
         ComparatorUtils.printSortedIngredientsAlphabetically(meals);
 
-        String topCity = findCityWithMostRestaurants(restaurants);
-        System.out.println("Grad s najviše restorana: " + topCity);
+        //String topCity = findCityWithMostRestaurants(restaurants);
+        //System.out.println("Grad s najviše restorana: " + topCity);
+
+        String cityWithMostRestaurants = ffindCityWithMostRestaurants(restaurants);
+        System.out.println("Grad s najviše restorana: " + cityWithMostRestaurants);
 
         // Filtriranje narudžbi
         List<Order> filteredOrders = filterOrdersByPriority(orderers);

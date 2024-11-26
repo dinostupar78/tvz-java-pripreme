@@ -109,4 +109,35 @@ public class MealRestaurantUtils {
 
         return highValueOrders;
     }
+
+    public static String ffindCityWithMostRestaurants(List<Restaurant> restaurants) {
+        // Map za brojanje restorana po gradovima
+        Map<String, Integer> cityRestaurantCount = new HashMap<>();
+
+        // Korištenje Iteratora za brojanje restorana po gradovima
+        Iterator<Restaurant> iterator = restaurants.iterator();
+        while (iterator.hasNext()) {
+            Restaurant restaurant = iterator.next();
+            String city = restaurant.getAddress().getCity();
+            if (cityRestaurantCount.containsKey(city)) {
+                cityRestaurantCount.put(city, cityRestaurantCount.get(city) + 1);
+            } else {
+                cityRestaurantCount.put(city, 1);
+            }
+        }
+
+        // Pronalaženje grada s najviše restorana
+        String cityWithMostRestaurants = null;
+        int maxCount = 0;
+
+        // Iteracija kroz Mapu i pronalaženje grada s najviše restorana
+        for (Map.Entry<String, Integer> entry : cityRestaurantCount.entrySet()) {
+            if (entry.getValue() > maxCount) {
+                maxCount = entry.getValue();
+                cityWithMostRestaurants = entry.getKey();
+            }
+        }
+
+        return cityWithMostRestaurants;
+    }
 }

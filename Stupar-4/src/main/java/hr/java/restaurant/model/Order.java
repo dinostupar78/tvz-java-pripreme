@@ -80,5 +80,13 @@ public class Order extends Entity{
         return total;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "meals=" + meals +
+                ", totalPrice=" + getTotalPrice() +
+                '}';
+    }
+
 
 }

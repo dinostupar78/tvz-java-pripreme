@@ -1,4 +1,6 @@
 package hr.java.restaurant.model;
+import hr.java.restaurant.enums.PriorityType;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ public class Order extends Entity{
     private List<Meal> meals = new ArrayList<>();
     private Deliverer deliverer;
     private LocalDateTime deliveryDateAndTime;
+    private PriorityType priorityType;
 
     /**
      * Konstruktor koji inicijalizira novu narudžbu.
@@ -25,12 +28,13 @@ public class Order extends Entity{
      * @param deliveryDateAndTime datum i vrijeme isporuke
      */
 
-    public Order(Long id, Restaurant restaurant, List<Meal> meals, Deliverer deliverer, LocalDateTime deliveryDateAndTime) {
+    public Order(Long id, Restaurant restaurant, List<Meal> meals, Deliverer deliverer, LocalDateTime deliveryDateAndTime, PriorityType priorityType) {
         super(id);
         this.restaurant = restaurant;
         this.meals = meals;
         this.deliverer = deliverer;
         this.deliveryDateAndTime = deliveryDateAndTime;
+        this.priorityType = priorityType;
     }
 
     public LocalDateTime getDeliveryDateAndTime() {
@@ -65,6 +69,14 @@ public class Order extends Entity{
         this.deliveryDateAndTime = deliveryDateAndTime;
     }
 
+    public PriorityType getPriorityType() {
+        return priorityType;
+    }
+
+    public void setPriorityType(PriorityType priorityType) {
+        this.priorityType = priorityType;
+    }
+
     /**
      * Izračunava ukupnu cijenu narudžbe zbrajanjem cijena svih jela u narudžbi.
      * @return ukupna cijena svih jela u narudžbi
@@ -85,6 +97,7 @@ public class Order extends Entity{
         return "Order{" +
                 "meals=" + meals +
                 ", totalPrice=" + getTotalPrice() +
+                ", priority=" + getPriorityType() +
                 '}';
     }
 

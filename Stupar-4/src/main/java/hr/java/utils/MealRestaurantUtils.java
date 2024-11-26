@@ -1,6 +1,11 @@
 package hr.java.utils;
+
+import hr.java.restaurant.enums.PriorityType;
 import hr.java.restaurant.model.Meal;
+import hr.java.restaurant.model.Order;
 import hr.java.restaurant.model.Restaurant;
+
+import java.math.BigDecimal;
 import java.util.*;
 
 public class MealRestaurantUtils {
@@ -47,5 +52,54 @@ public class MealRestaurantUtils {
             }
 
         } while(!isValid);
+    }
+
+    public static String findCityWithMostRestaurants(List<Restaurant> restaurants) {
+        Map<String, Integer> cityRestaurantCount = new HashMap<>();
+
+        // Broji restorane po gradovima
+        for (Restaurant restaurant : restaurants) {
+            String city = restaurant.getAddress().getCity();
+            //cityRestaurantCount.put(city, cityRestaurantCount.containsKey(city)  ? cityRestaurantCount.get(city) + 1 : 1);
+            if (cityRestaurantCount.containsKey(city)) {
+                cityRestaurantCount.put(city, cityRestaurantCount.get(city) + 1);
+            } else {
+                cityRestaurantCount.put(city, 1);
+            }
+        }
+
+        // Pronalazi grad s najviše restorana
+        return cityRestaurantCount.entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse("N/A");
+    }
+
+    public static Set<Order> filterOrdersByPriority(Set<Order> orders) {
+        // Filtriraj narudžbe veće od 10€
+        Set<Order> highValueOrders = new HashSet<>();
+        for (Order order : orders) {
+            if (order.getTotalPrice().compareTo(BigDecimal.TEN) > 0) {
+                highValueOrders.add(order);
+            }
+        }
+
+        // Pronađi najniži prioritet
+        PriorityType lowestPriority = highValueOrders.stream()
+                .map(Order::getPriorityType)
+                .min(Enum::compareTo)
+                .orElse(null);
+
+        // Ukloni narudžbe s najnižim prioritetom
+        Iterator<Order> iterator = highValueOrders.iterator();
+        while (iterator.hasNext()) {
+            Order order = iterator.next();
+            if (order.getPriorityType() == lowestPriority) {
+                iterator.remove();
+            }
+        }
+
+        return highValueOrders;
     }
 }

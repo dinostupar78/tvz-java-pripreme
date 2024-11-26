@@ -131,10 +131,11 @@ public class MealRestaurantUtils {
         int maxCount = 0;
 
         // Iteracija kroz Mapu i pronalaženje grada s najviše restorana
-        for (Map.Entry<String, Integer> entry : cityRestaurantCount.entrySet()) {
-            if (entry.getValue() > maxCount) {
-                maxCount = entry.getValue();
-                cityWithMostRestaurants = entry.getKey();
+        for (String city : cityRestaurantCount.keySet()) {
+            int count = cityRestaurantCount.get(city);
+            if (count > maxCount) {
+                maxCount = count;
+                cityWithMostRestaurants = city;
             }
         }
 

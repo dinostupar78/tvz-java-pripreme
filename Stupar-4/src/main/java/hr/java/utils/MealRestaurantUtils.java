@@ -1,11 +1,8 @@
 package hr.java.utils;
 
-import hr.java.restaurant.enums.PriorityType;
 import hr.java.restaurant.model.Meal;
-import hr.java.restaurant.model.Order;
 import hr.java.restaurant.model.Restaurant;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 public class MealRestaurantUtils {
@@ -54,91 +51,9 @@ public class MealRestaurantUtils {
         } while(!isValid);
     }
 
-    public static String findCityWithMostRestaurants(List<Restaurant> restaurants) {
-        Map<String, Integer> cityRestaurantCount = new HashMap<>();
 
-        // Broji restorane po gradovima
-        for (Restaurant restaurant : restaurants) {
-            String city = restaurant.getAddress().getCity();
-            //cityRestaurantCount.put(city, cityRestaurantCount.containsKey(city)  ? cityRestaurantCount.get(city) + 1 : 1);
-            if (cityRestaurantCount.containsKey(city)) {
-                cityRestaurantCount.put(city, cityRestaurantCount.get(city) + 1);
-            } else {
-                cityRestaurantCount.put(city, 1);
-            }
-        }
 
-        // Pronalazi grad s najviše restorana
-        return cityRestaurantCount.entrySet()
-                .stream()
-                .max(Map.Entry.comparingByValue())
-                .map(Map.Entry::getKey)
-                .orElse("N/A");
-    }
 
-    public static List<Order> filterOrdersByPriority(List<Order> orders) {
-        List<Order> highValueOrders = new ArrayList<>();
 
-        // Filtriraj narudžbe veće od 10€ koristeći Iterator
-        Iterator<Order> orderIterator = orders.iterator();
-        while (orderIterator.hasNext()) {
-            Order order = orderIterator.next();
-            if (order.getTotalPrice().compareTo(BigDecimal.TEN) > 0) {
-                highValueOrders.add(order);
-            }
-        }
 
-        // Pronađi najniži prioritet koristeći Iterator
-        PriorityType lowestPriority = null;
-        Iterator<Order> highValueIterator = highValueOrders.iterator();
-        while (highValueIterator.hasNext()) {
-            Order order = highValueIterator.next();
-            if (lowestPriority == null || order.getPriorityType().compareTo(lowestPriority) < 0) {
-                lowestPriority = order.getPriorityType();
-            }
-        }
-
-        // Ukloni narudžbe s najnižim prioritetom koristeći Iterator
-        highValueIterator = highValueOrders.iterator();
-        while (highValueIterator.hasNext()) {
-            Order order = highValueIterator.next();
-            if (order.getPriorityType() == lowestPriority) {
-                highValueIterator.remove();
-            }
-        }
-
-        return highValueOrders;
-    }
-
-    public static String ffindCityWithMostRestaurants(List<Restaurant> restaurants) {
-        // Map za brojanje restorana po gradovima
-        Map<String, Integer> cityRestaurantCount = new HashMap<>();
-
-        // Korištenje Iteratora za brojanje restorana po gradovima
-        Iterator<Restaurant> iterator = restaurants.iterator();
-        while (iterator.hasNext()) {
-            Restaurant restaurant = iterator.next();
-            String city = restaurant.getAddress().getCity();
-            if (cityRestaurantCount.containsKey(city)) {
-                cityRestaurantCount.put(city, cityRestaurantCount.get(city) + 1);
-            } else {
-                cityRestaurantCount.put(city, 1);
-            }
-        }
-
-        // Pronalaženje grada s najviše restorana
-        String cityWithMostRestaurants = null;
-        int maxCount = 0;
-
-        // Iteracija kroz Mapu i pronalaženje grada s najviše restorana
-        for (String city : cityRestaurantCount.keySet()) {
-            int count = cityRestaurantCount.get(city);
-            if (count > maxCount) {
-                maxCount = count;
-                cityWithMostRestaurants = city;
-            }
-        }
-
-        return cityWithMostRestaurants;
-    }
 }

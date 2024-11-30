@@ -1,5 +1,4 @@
 package hr.java.production.main;
-import hr.java.restaurant.enums.PriorityType;
 import hr.java.restaurant.model.*;
 import hr.java.utils.*;
 import org.slf4j.Logger;
@@ -45,7 +44,6 @@ public class Main {
         List<Person> employees = new ArrayList<>();
         List<Meal> specialMeals = new ArrayList<>();
         Map<Meal, List<Restaurant>> mealRestaurantMap = new HashMap<>();
-        PriorityType priorityType = PriorityType.LOW; // Default priority
 
         Scanner scanner = new Scanner(System.in);
         log.info("The application is started...");
@@ -103,7 +101,7 @@ public class Main {
 
         for(int i = 0; i < numberOfOrders; i++){
             System.out.println("Unesite podatke za " + (i+1) + " narudžbu");
-            Order order = orderInput(scanner, restaurants, meals, deliverers, priorityType);
+            Order order = orderInput(scanner, restaurants, meals, deliverers);
             orderers.add(order);
         }
 
@@ -132,16 +130,7 @@ public class Main {
 
         ComparatorUtils.printSortedIngredientsAlphabetically(meals);
 
-        //String topCity = findCityWithMostRestaurants(restaurants);
-        //System.out.println("Grad s najviše restorana: " + topCity);
 
-        String cityWithMostRestaurants = ffindCityWithMostRestaurants(restaurants);
-        System.out.println("Grad s najviše restorana: " + cityWithMostRestaurants);
-
-        // Filtriranje narudžbi
-        List<Order> filteredOrders = filterOrdersByPriority(orderers);
-        System.out.println("Filtrirane narudžbe veće od 10€: ");
-        filteredOrders.forEach(System.out::println);
 
     }
 
@@ -181,8 +170,8 @@ public class Main {
         return restoranInput(scanner, addresses, meals, chefs, waiters, deliverers);
     }
 
-    public static Order orderInput(Scanner scanner, List<Restaurant> restaurants, Set<Meal> meals, Set<Deliverer> deliverers, PriorityType priorityType) {
-        return RestaurantInputUtils.orderInput(scanner, restaurants, meals, deliverers, priorityType);
+    public static Order orderInput(Scanner scanner, List<Restaurant> restaurants, Set<Meal> meals, Set<Deliverer> deliverers) {
+        return RestaurantInputUtils.orderInput(scanner, restaurants, meals, deliverers);
     }
 
     private static BigDecimal getSalary(Person employee) {

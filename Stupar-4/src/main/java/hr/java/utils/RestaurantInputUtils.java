@@ -1,6 +1,5 @@
 package hr.java.utils;
 
-import hr.java.restaurant.enums.PriorityType;
 import hr.java.restaurant.exception.DuplicateEntityException;
 import hr.java.restaurant.model.*;
 
@@ -80,34 +79,15 @@ public class RestaurantInputUtils {
      * @return Nova narudžba s unesenim podacima
      */
 
-    public static Order orderInput(Scanner scanner, List<Restaurant> restaurants, Set<Meal> meals, Set<Deliverer> deliverers, PriorityType priorityType) {
+    public static Order orderInput(Scanner scanner, List<Restaurant> restaurants, Set<Meal> meals, Set<Deliverer> deliverers) {
         Restaurant selectedRestaurant = selectRestaurant(scanner, restaurants);
         List<Meal> selectedMeals = selectMealsFromRestaurant(scanner, selectedRestaurant);
         Deliverer selectedDeliverer = selectDelivererFromRestaurant(scanner, new ArrayList<>(deliverers));
         LocalDateTime deliveryTime = inputDeliveryTime(scanner);
 
-        Boolean isValid;
-        do {
-            isValid = true;
-            System.out.println("Unesite priority narudzbe (0 za LOW, 1 za MEDIUM, 2 za HIGH): ");
-            int priorityInput = scanner.nextInt();
-            scanner.nextLine();
-            if (priorityInput == 0) {
-                priorityType = priorityType.LOW;
-            } else if (priorityInput == 1) {
-                priorityType = priorityType.MEDIUM;
-            } else if(priorityInput == 2) {
-                priorityType = priorityType.HIGH;
-            }
-            else {
-                System.out.println(Messages.INVALID_CONTRACT_INPUT);
-                isValid = false;
-            }
-        } while(!isValid);
-
         long id = orderIdCounter++;
         System.out.println("Uspješna narudžba!");
-        return new Order(id, selectedRestaurant, selectedMeals, selectedDeliverer, deliveryTime, priorityType);
+        return new Order(id, selectedRestaurant, selectedMeals, selectedDeliverer, deliveryTime);
     }
 
     public static Restaurant selectRestaurant(Scanner scanner, List<Restaurant> restaurants) {

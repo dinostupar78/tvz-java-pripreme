@@ -34,6 +34,9 @@ public class Messages {
     public static String
             INVALID_CONTRACT_INPUT = "Krivi unos, unesite ispravne podatke za ugovor.";
 
+    public static String
+            INVALID_DATE_INPUT = "Krivi unos, unesite ispravne podatke za datum.";
+
     public static final String
             EMPLOYEE_INFO_MESSAGE = "Ime: %s, Prezime: %s, Plaća: %s, Datum početka ugovora: %s, Datum završetka ugovora: %s";
 

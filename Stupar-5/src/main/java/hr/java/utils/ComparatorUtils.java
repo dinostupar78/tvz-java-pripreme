@@ -1,4 +1,5 @@
 package hr.java.utils;
+import hr.java.restaurant.generics.RestaurantLabourExchangeOffice;
 import hr.java.restaurant.model.Ingredient;
 import hr.java.restaurant.model.Meal;
 import hr.java.restaurant.model.Person;
@@ -23,12 +24,12 @@ public class ComparatorUtils {
     /**
      * Ispisuje zaposlenika s najvećom plaćom u svakom restoranu.
      * Zaposlenici se sortiraju prema plaći, a za svaki restoran ispisuje se zaposlenik s najvećom plaćom.
-     * @param restaurants lista restorana u kojima će se tražiti zaposlenici
+     * @param genericRestaurantList lista restorana u kojima će se tražiti zaposlenici
      */
 
-    public static void printHighestPaidEmployeeInRestaurants(List<Restaurant> restaurants) {
+    public static void printHighestPaidEmployeeInRestaurants(RestaurantLabourExchangeOffice<Restaurant> genericRestaurantList) {
         EmployeeSalaryComparator salaryComparator = new EmployeeSalaryComparator();
-        for (Restaurant restaurant : restaurants) {
+        for (Restaurant restaurant : genericRestaurantList.getRestaurants()) {
             List<Person> employees = restaurant.getEmployees();
 
             employees.sort(salaryComparator);
@@ -43,12 +44,12 @@ public class ComparatorUtils {
     /**
      * Ispisuje zaposlenike restorana sortirane prema trajanju ugovora, od najkraćeg do najdužeg.
      * Za svakog zaposlenika ispisuje trajanje njegovog ugovora.
-     * @param restaurants lista restorana u kojima će se tražiti zaposlenici
+     * @param genericRestaurantList lista restorana u kojima će se tražiti zaposlenici
      */
 
-    public static void printHighestEmployeedEmployeeInRestaurants(List<Restaurant> restaurants){
+    public static void printHighestEmployeedEmployeeInRestaurants(RestaurantLabourExchangeOffice<Restaurant> genericRestaurantList){
         EmployeeContractComparator contractComparator = new EmployeeContractComparator();
-        for (Restaurant restaurant : restaurants){
+        for (Restaurant restaurant : genericRestaurantList.getRestaurants()){
             List<Person> employees = restaurant.getEmployees();
 
             employees.sort(contractComparator);
@@ -67,14 +68,14 @@ public class ComparatorUtils {
      * @param mealRestaurantMap mapa u kojoj je ključ jelo (Meal) i vrijednost lista restorana (List<Restaurant>) u kojima je to jelo dostupno
      */
 
-    public static void printMealsSortedByRestaurantCount(Map<Meal, List<Restaurant>> mealRestaurantMap){
+    public static void printMealsSortedByRestaurantCount(Map<Meal, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurantMap){
         List<Meal> mealList = new ArrayList<>(mealRestaurantMap.keySet());
         mealList.sort(new MealRestaurantCountComparator(mealRestaurantMap));
 
         System.out.println("\nJela sortirana po broju restorana:");
         for (Meal meal : mealList) {
             //int restaurantCount = mealRestaurantMap.getOrDefault(meal, List.of()).size();
-            int restaurantCount = mealRestaurantMap.containsKey(meal) ? mealRestaurantMap.get(meal).size() : 0;
+            int restaurantCount = mealRestaurantMap.containsKey(meal) ? mealRestaurantMap.get(meal).getRestaurants().size() : 0;
             System.out.println(meal.getName() + " - Broj restorana: " + restaurantCount);
         }
     }

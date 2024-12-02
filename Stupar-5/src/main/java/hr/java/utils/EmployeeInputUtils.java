@@ -6,6 +6,7 @@ import hr.java.restaurant.exception.InvalidAmountException;
 import hr.java.restaurant.model.*;
 
 import java.math.BigDecimal;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -85,15 +86,34 @@ public class EmployeeInputUtils {
             }
         } while(!isValid);
 
-        System.out.println("Unesite datum početka ugovora (YYYY-MM-DD): ");
-        String pocetakUgovoraInput = scanner.nextLine();
-        contractStartTime = LocalDate.parse(pocetakUgovoraInput);
+        do{
+            isValid = true;
+            contractStartTime = LocalDate.now();
+            System.out.println("Unesite datum početka ugovora (YYYY-MM-DD): ");
+            try{
+                String pocetakUgovoraInput = scanner.nextLine();
+                contractStartTime = LocalDate.parse(pocetakUgovoraInput);
+            }catch(DateTimeException badData){
+                log.info(Messages.INVALID_DATE_INPUT);
+                isValid = false;
+            }
+        } while(!isValid);
 
-        System.out.println("Unesite datum završetka ugovora (YYYY-MM-DD): ");
-        String zavrsetakUgovoraInput = scanner.nextLine();
-        contractEndTime = LocalDate.parse(zavrsetakUgovoraInput);
+        do{
+            isValid = true;
+            contractEndTime = LocalDate.now();
+            System.out.println("Unesite datum završetka ugovora (YYYY-MM-DD): ");
+            try{
+                String zavrsetakUgovoraInput = scanner.nextLine();
+                contractEndTime = LocalDate.parse(zavrsetakUgovoraInput);
+            }catch(DateTimeException badData){
+                log.info(Messages.INVALID_DATE_INPUT);
+                isValid = false;
+            }
+        } while(!isValid);
 
         ContractType contractType = ContractType.NOT_DEFINED;
+
         do {
             isValid = true;
             System.out.println("Unesite tip ugovora (0 za FULL_TIME, 1 za PART_TIME): ");
@@ -185,13 +205,31 @@ public class EmployeeInputUtils {
             }
         } while(!isValid);
 
-        System.out.println("Unesite datum početka ugovora (YYYY-MM-DD): ");
-        String contractStartTimeInput = scanner.nextLine();
-        contractStartTime = LocalDate.parse(contractStartTimeInput);
+        do{
+            isValid = true;
+            contractStartTime = LocalDate.now();
+            System.out.println("Unesite datum početka ugovora (YYYY-MM-DD): ");
+            try{
+                String pocetakUgovoraInput = scanner.nextLine();
+                contractStartTime = LocalDate.parse(pocetakUgovoraInput);
+            }catch(DateTimeException badData){
+                log.info(Messages.INVALID_DATE_INPUT);
+                isValid = false;
+            }
+        } while(!isValid);
 
-        System.out.println("Unesite datum završetka ugovora (YYYY-MM-DD): ");
-        String contractEndTimeInput = scanner.nextLine();
-        contractEndTime = LocalDate.parse(contractEndTimeInput);
+        do{
+            isValid = true;
+            contractEndTime = LocalDate.now();
+            System.out.println("Unesite datum završetka ugovora (YYYY-MM-DD): ");
+            try{
+                String zavrsetakUgovoraInput = scanner.nextLine();
+                contractEndTime = LocalDate.parse(zavrsetakUgovoraInput);
+            }catch(DateTimeException badData){
+                log.info(Messages.INVALID_DATE_INPUT);
+                isValid = false;
+            }
+        } while(!isValid);
 
         ContractType contractType = ContractType.NOT_DEFINED;
         do {
@@ -285,13 +323,31 @@ public class EmployeeInputUtils {
             }
         }while(!isValid);
 
-        System.out.println("Unesite datum početka ugovora (YYYY-MM-DD): ");
-        String contractStartTimeInput = scanner.nextLine();
-        contractStartTime = LocalDate.parse(contractStartTimeInput);
+        do{
+            isValid = true;
+            contractStartTime = LocalDate.now();
+            System.out.println("Unesite datum početka ugovora (YYYY-MM-DD): ");
+            try{
+                String pocetakUgovoraInput = scanner.nextLine();
+                contractStartTime = LocalDate.parse(pocetakUgovoraInput);
+            }catch(DateTimeException badData){
+                log.info(Messages.INVALID_DATE_INPUT);
+                isValid = false;
+            }
+        } while(!isValid);
 
-        System.out.println("Unesite datum završetka ugovora (YYYY-MM-DD): ");
-        String contractEndTimeInput = scanner.nextLine();
-        contractEndTime = LocalDate.parse(contractEndTimeInput);
+        do{
+            isValid = true;
+            contractEndTime = LocalDate.now();
+            System.out.println("Unesite datum završetka ugovora (YYYY-MM-DD): ");
+            try{
+                String zavrsetakUgovoraInput = scanner.nextLine();
+                contractEndTime = LocalDate.parse(zavrsetakUgovoraInput);
+            }catch(DateTimeException badData){
+                log.info(Messages.INVALID_DATE_INPUT);
+                isValid = false;
+            }
+        } while(!isValid);
 
         ContractType contractType = ContractType.NOT_DEFINED;
         do {

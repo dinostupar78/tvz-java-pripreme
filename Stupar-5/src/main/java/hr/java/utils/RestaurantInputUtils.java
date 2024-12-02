@@ -1,6 +1,7 @@
 package hr.java.utils;
 
 import hr.java.restaurant.exception.DuplicateEntityException;
+import hr.java.restaurant.generics.RestaurantLabourExchangeOffice;
 import hr.java.restaurant.model.*;
 
 import java.time.LocalDateTime;
@@ -73,14 +74,14 @@ public class RestaurantInputUtils {
      * Unosi podatke za narudžbu, uključujući odabir restorana, jela, dostavljača i vremena dostave.
      * Ova metoda također provodi provjere unosa i validira format vremena dostave.
      * @param scanner Scanner objekt za unos podataka
-     * @param restaurants Array restorana koji su dostupni za narudžbe
+     * @param genericRestaurantList Array restorana koji su dostupni za narudžbe
      * @param meals Array jela koja su dostupna za narudžbe
      * @param deliverers Array dostavljača koji su dostupni za narudžbe
      * @return Nova narudžba s unesenim podacima
      */
 
-    public static Order orderInput(Scanner scanner, List<Restaurant> restaurants, Set<Meal> meals, Set<Deliverer> deliverers) {
-        Restaurant selectedRestaurant = selectRestaurant(scanner, restaurants);
+    public static Order orderInput(Scanner scanner, RestaurantLabourExchangeOffice<Restaurant> genericRestaurantList, Set<Meal> meals, Set<Deliverer> deliverers) {
+        Restaurant selectedRestaurant = selectRestaurant(scanner, genericRestaurantList);
         List<Meal> selectedMeals = selectMealsFromRestaurant(scanner, selectedRestaurant);
         Deliverer selectedDeliverer = selectDelivererFromRestaurant(scanner, new ArrayList<>(deliverers));
         LocalDateTime deliveryTime = inputDeliveryTime(scanner);
@@ -90,7 +91,8 @@ public class RestaurantInputUtils {
         return new Order(id, selectedRestaurant, selectedMeals, selectedDeliverer, deliveryTime);
     }
 
-    public static Restaurant selectRestaurant(Scanner scanner, List<Restaurant> restaurants) {
+    public static Restaurant selectRestaurant(Scanner scanner, RestaurantLabourExchangeOffice<Restaurant> genericRestaurantList) {
+        List<Restaurant> restaurants = genericRestaurantList.getRestaurants();
         Boolean isFirstRestaurantSelected = false;
         while (true) {
             if(!isFirstRestaurantSelected){

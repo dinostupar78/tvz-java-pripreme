@@ -1,4 +1,5 @@
 package hr.java.production.main;
+import hr.java.restaurant.generics.RestaurantLabourExchangeOffice;
 import hr.java.restaurant.model.*;
 import hr.java.utils.*;
 import org.slf4j.Logger;
@@ -16,10 +17,10 @@ import static hr.java.utils.RestaurantInputUtils.restoranInput;
  */
 
 public class Main {
-    public static final int numberOfCategories = 1, numberOfIngredients = 1, numberOfMeals = 1,
-            numberOfChefs = 2, numberOfWaiters = 2, numberOfDeliverers = 2,
-            numberOfRestaurants = 1, restaurantAddress = 3, numberOfOrders = 1,
-            numberOfSpecialMeals = 1;
+    public static final int numberOfCategories = 1, numberOfIngredients = 2, numberOfMeals = 2,
+            numberOfChefs = 1, numberOfWaiters = 1, numberOfDeliverers = 1,
+            numberOfRestaurants = 2, restaurantAddress = 3, numberOfOrders = 1,
+            numberOfSpecialMeals = 0;
 
     public static Logger log = LoggerFactory.getLogger(Main.class);
 
@@ -42,7 +43,8 @@ public class Main {
         List<Order> orderers = new ArrayList<>();
         List<Person> employees = new ArrayList<>();
         List<Meal> specialMeals = new ArrayList<>();
-        Map<Meal, List<Restaurant>> mealRestaurantMap = new HashMap<>();
+        Map<Meal, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurantMap = new HashMap<>();
+        RestaurantLabourExchangeOffice<Restaurant> genericRestaurantList = new RestaurantLabourExchangeOffice<>(restaurants);
 
         Scanner scanner = new Scanner(System.in);
         log.info("The application is started...");
@@ -100,12 +102,12 @@ public class Main {
 
         for(int i = 0; i < numberOfOrders; i++){
             System.out.println("Unesite podatke za " + (i+1) + " narudžbu");
-            Order order = orderInput(scanner, restaurants, meals, deliverers);
+            Order order = orderInput(scanner, genericRestaurantList, meals, deliverers);
             orderers.add(order);
         }
 
-        Map<Meal, List<Restaurant>> mealRestaurant = mapMealsToRestaurants(restaurants);
-        displayRestaurantsForSelectedMeal(scanner, mealRestaurant);
+        Map<Meal, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurant = mapMealsToRestaurants(genericRestaurantList);
+        displayRestaurantsForSelectedMeal(scanner, mealRestaurantMap);
 
         employees.addAll(chefs);
         employees.addAll(waiters);
@@ -121,13 +123,23 @@ public class Main {
 
         printMealWithMinMaxCalories(specialMeals);
 
-        ComparatorUtils.printHighestPaidEmployeeInRestaurants(restaurants);
+        ComparatorUtils.printHighestPaidEmployeeInRestaurants(genericRestaurantList);
 
-        ComparatorUtils.printHighestEmployeedEmployeeInRestaurants(restaurants);
+        ComparatorUtils.printHighestEmployeedEmployeeInRestaurants(genericRestaurantList);
 
         ComparatorUtils.printMealsSortedByRestaurantCount(mealRestaurant);
 
         ComparatorUtils.printSortedIngredientsAlphabetically(meals);
+
+        LambdaUtils.findAndPrintRestaurantWithMostEmployees(restaurants);
+
+        LambdaUtils.findAndPrintMostPopularMeal(mealRestaurantMap);
+
+        LambdaUtils.printIngredientsForAllOrders(orderers);
+
+        LambdaUtils.calculateTotalPrice(orderers);
+
+        LambdaUtils.groupRestaurantsByCity(genericRestaurantList);
 
 
 
@@ -169,8 +181,8 @@ public class Main {
         return restoranInput(scanner, addresses, meals, chefs, waiters, deliverers);
     }
 
-    public static Order orderInput(Scanner scanner, List<Restaurant> restaurants, Set<Meal> meals, Set<Deliverer> deliverers) {
-        return RestaurantInputUtils.orderInput(scanner, restaurants, meals, deliverers);
+    public static Order orderInput(Scanner scanner, RestaurantLabourExchangeOffice<Restaurant> genericRestaurantList, Set<Meal> meals, Set<Deliverer> deliverers) {
+        return RestaurantInputUtils.orderInput(scanner, genericRestaurantList, meals, deliverers);
     }
 
     private static BigDecimal getSalary(Person employee) {

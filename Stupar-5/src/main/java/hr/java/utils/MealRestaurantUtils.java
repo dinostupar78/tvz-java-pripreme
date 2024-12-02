@@ -1,27 +1,26 @@
 package hr.java.utils;
-
+import hr.java.restaurant.generics.RestaurantLabourExchangeOffice;
 import hr.java.restaurant.model.Meal;
 import hr.java.restaurant.model.Restaurant;
-
 import java.util.*;
 
 public class MealRestaurantUtils {
-    public static Map<Meal, List<Restaurant>> mapMealsToRestaurants(List<Restaurant> restaurants) {
-        Map<Meal, List<Restaurant>> mealRestaurantMap = new HashMap<>();
+    public static Map<Meal, RestaurantLabourExchangeOffice<Restaurant>> mapMealsToRestaurants(RestaurantLabourExchangeOffice<Restaurant> genericRestaurantList) {
+        Map<Meal, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurantMap = new HashMap<>();
 
-        for(Restaurant restaurant : restaurants){
+        for(Restaurant restaurant : genericRestaurantList.getRestaurants()){
             for(Meal meal : restaurant.getMeals()){
                 if (!mealRestaurantMap.containsKey(meal)) {
-                    mealRestaurantMap.put(meal, new ArrayList<>());
+                    mealRestaurantMap.put(meal, new RestaurantLabourExchangeOffice<>(new ArrayList<>()));
                 }
-                mealRestaurantMap.get(meal).add(restaurant);
+                mealRestaurantMap.get(meal).getRestaurants().add(restaurant);
             }
 
         }
         return mealRestaurantMap;
     }
 
-    public static void displayRestaurantsForSelectedMeal(Scanner scanner, Map<Meal, List<Restaurant>> mealRestaurantMap) {
+    public static void displayRestaurantsForSelectedMeal(Scanner scanner, Map<Meal, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurantMap) {
         Boolean isValid;
         System.out.println("\nOdaberite jedno od jela za prikaz restorana koji ga nude:");
         List<Meal> mealList = new ArrayList<>(mealRestaurantMap.keySet());
@@ -36,10 +35,10 @@ public class MealRestaurantUtils {
             if (selectedIndex >= 0 && selectedIndex < mealList.size()) {
                 Meal selectedMeal = mealList.get(selectedIndex);
 
-                List<Restaurant> associatedRestaurants = mealRestaurantMap.getOrDefault(selectedMeal, Collections.emptyList());
+                RestaurantLabourExchangeOffice<Restaurant> associatedRestaurants = mealRestaurantMap.getOrDefault(selectedMeal, new RestaurantLabourExchangeOffice<>(new ArrayList<>()));
                 System.out.println("\nRestorani koji nude " + selectedMeal.getName() + ":");
 
-                for (Restaurant restaurant : associatedRestaurants) {
+                for (Restaurant restaurant : associatedRestaurants.getRestaurants()) {
                     System.out.println("- " + restaurant.getName() + " (Adresa: " + restaurant.getAddress().toString() + ")");
                 }
 
@@ -50,10 +49,5 @@ public class MealRestaurantUtils {
 
         } while(!isValid);
     }
-
-
-
-
-
 
 }

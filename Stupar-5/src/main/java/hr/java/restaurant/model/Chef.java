@@ -22,7 +22,7 @@ public class Chef extends Person{
      * @param BonusKuhara bonus kuhara.
      */
 
-    private Chef(Long id, String firstName, String lastName, Contract contract, Bonus BonusKuhara) {
+    public Chef(Long id, String firstName, String lastName, Contract contract, Bonus BonusKuhara) {
         super(id, firstName, lastName);
         this.contract = contract;
         this.BonusKuhara = BonusKuhara;

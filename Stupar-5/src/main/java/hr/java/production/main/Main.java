@@ -106,8 +106,9 @@ public class Main {
             orderers.add(order);
         }
 
-        Map<Meal, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurant = mapMealsToRestaurants(genericRestaurantList);
-        displayRestaurantsForSelectedMeal(scanner, mealRestaurantMap);
+        RestaurantLabourExchangeOffice<Restaurant> restaurantLabourExchangeOffice = new RestaurantLabourExchangeOffice<>(restaurants);
+        Map<Meal, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurant = mapMealsToRestaurants(restaurantLabourExchangeOffice);
+        displayRestaurantsForSelectedMeal(scanner, mealRestaurant);
 
         employees.addAll(chefs);
         employees.addAll(waiters);
@@ -123,9 +124,9 @@ public class Main {
 
         printMealWithMinMaxCalories(specialMeals);
 
-        ComparatorUtils.printHighestPaidEmployeeInRestaurants(genericRestaurantList);
+        ComparatorUtils.printHighestPaidEmployeeInRestaurants(restaurantLabourExchangeOffice);
 
-        ComparatorUtils.printHighestEmployeedEmployeeInRestaurants(genericRestaurantList);
+        ComparatorUtils.printHighestEmployeedEmployeeInRestaurants(restaurantLabourExchangeOffice);
 
         ComparatorUtils.printMealsSortedByRestaurantCount(mealRestaurant);
 
@@ -139,7 +140,7 @@ public class Main {
 
         LambdaUtils.calculateTotalPrice(orderers);
 
-        LambdaUtils.groupRestaurantsByCity(genericRestaurantList);
+        LambdaUtils.groupRestaurantsByCity(restaurantLabourExchangeOffice);
 
 
 
@@ -261,7 +262,7 @@ public class Main {
      * @param employee Zaposlenik za kojeg se ispisuju podaci.
      */
 
-    private static void printEmployeeInfo(Person employee) {
+    public static void printEmployeeInfo(Person employee) {
         String firstName = employee.getFirstName(), lastName = employee.getLastName();
         Contract contract = employee.getContract();
         System.out.println(String.format(Messages.EMPLOYEE_INFO_MESSAGE, firstName, lastName, contract.getSalary(), contract.getStartTime(), contract.getEndTime()));
@@ -305,7 +306,7 @@ public class Main {
      * @param specialMeals Jelo za koje se ispisuju podaci.
      */
 
-    private static void printMealInfo(Meal specialMeals) {
+    public static void printMealInfo(Meal specialMeals) {
         System.out.println(String.format(Messages.MEAL_INFO_MESSAGE,
                 specialMeals.getName(),
                 specialMeals.getCategory().getName(),

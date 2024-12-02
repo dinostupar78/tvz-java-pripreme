@@ -22,7 +22,7 @@ public class Address extends Entity{
      * @param postalCode Poštanski broj adrese.
      */
 
-    private Address(Long id, String street, String houseNumber, String city, String postalCode) {
+    public Address(Long id, String street, String houseNumber, String city, String postalCode) {
         super(id);
         this.street = street;
         this.houseNumber = houseNumber;

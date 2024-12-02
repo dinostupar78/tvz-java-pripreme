@@ -21,7 +21,7 @@ public class LambdaUtils {
 
         restaurantWithMostEmployees.ifPresentOrElse(
                 restaurant -> {
-                    System.out.println("Restoran s najviše zaposlenih:");
+                    System.out.println("\nRestoran s najviše zaposlenih:");
                     System.out.println("Ime: " + restaurant.getName());
                     System.out.println("Broj zaposlenih: " + restaurant.getEmployees().size());
                 },
@@ -49,7 +49,7 @@ public class LambdaUtils {
         orders.stream()
                 .flatMap(order -> order.getMeals().stream())
                 .flatMap(meal -> meal.getIngredient().stream())
-                .forEach(ingredient -> System.out.println("Namirinica" + ingredient.getName()));
+                .forEach(ingredient -> System.out.println("\nNamirinica: " + ingredient.getName()));
     }
 
     public static void calculateTotalPrice(List<Order> orders){
@@ -58,7 +58,7 @@ public class LambdaUtils {
                 .map(meal -> meal.getPrice())
                 .reduce(BigDecimal.ZERO, (x, y) -> x.add(y)); // ili BigDecimal::add
 
-        System.out.println("Ukupna cijena: " + totalPrice);
+        System.out.println("\nUkupna cijena: " + totalPrice);
 
     }
 

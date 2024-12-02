@@ -22,7 +22,7 @@ public class Waiter extends Person{
      * @param bonusKonobara bonus koji konobar prima
      */
 
-    private Waiter(Long id, String firstName, String lastName, Contract contract, Bonus bonusKonobara) {
+    public Waiter(Long id, String firstName, String lastName, Contract contract, Bonus bonusKonobara) {
         super(id, firstName, lastName);
         this.contract = contract;
         this.bonusKonobara = bonusKonobara;

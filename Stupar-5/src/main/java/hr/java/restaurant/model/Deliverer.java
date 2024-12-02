@@ -22,7 +22,7 @@ public class Deliverer extends Person {
      * @param bonusDostavljaca bonus dostavljača.
      */
 
-    private Deliverer(Long id, String firstName, String lastName, Contract contract, Bonus bonusDostavljaca) {
+    public Deliverer(Long id, String firstName, String lastName, Contract contract, Bonus bonusDostavljaca) {
         super(id, firstName, lastName);
         this.contract = contract;
         this.brojDostava = 0;

@@ -1,13 +1,11 @@
 package hr.java.utils;
+
 import hr.java.restaurant.generics.RestaurantLabourExchangeOffice;
 import hr.java.restaurant.model.Ingredient;
 import hr.java.restaurant.model.Meal;
 import hr.java.restaurant.model.Person;
 import hr.java.restaurant.model.Restaurant;
-import hr.java.restaurant.sort.EmployeeContractComparator;
-import hr.java.restaurant.sort.EmployeeSalaryComparator;
-import hr.java.restaurant.sort.IngredientAlphabeticalComparator;
-import hr.java.restaurant.sort.MealRestaurantCountComparator;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -28,11 +26,13 @@ public class ComparatorUtils {
      */
 
     public static void printHighestPaidEmployeeInRestaurants(RestaurantLabourExchangeOffice<Restaurant> genericRestaurantList) {
-        EmployeeSalaryComparator salaryComparator = new EmployeeSalaryComparator();
+        //EmployeeSalaryComparator salaryComparator = new EmployeeSalaryComparator(); --> KOMPARATOR
         for (Restaurant restaurant : genericRestaurantList.getRestaurants()) {
             List<Person> employees = restaurant.getEmployees();
 
-            employees.sort(salaryComparator);
+            //employees.sort(salaryComparator); --> POZIVANJE KOMPARATORA
+
+            employees.sort((e1, e2) -> e2.getContract().getSalary().compareTo(e1.getContract().getSalary()));
             Person highestPaidEmployee = employees.get(0);
 
             System.out.println("\nRestoran: " + restaurant.getName());
@@ -48,11 +48,18 @@ public class ComparatorUtils {
      */
 
     public static void printHighestEmployeedEmployeeInRestaurants(RestaurantLabourExchangeOffice<Restaurant> genericRestaurantList){
-        EmployeeContractComparator contractComparator = new EmployeeContractComparator();
+        //EmployeeContractComparator contractComparator = new EmployeeContractComparator(); --> KOMPARATOR
         for (Restaurant restaurant : genericRestaurantList.getRestaurants()){
             List<Person> employees = restaurant.getEmployees();
 
-            employees.sort(contractComparator);
+            //employees.sort(contractComparator); --> POZIVANJE KOMPARATORA
+
+            employees.sort((e1, e2) -> {
+                    long duration1 = ChronoUnit.DAYS.between(e1.getContract().getStartTime(), e1.getContract().getEndTime());
+                    long duration2 = ChronoUnit.DAYS.between(e2.getContract().getStartTime(), e2.getContract().getEndTime());
+                        return Long.compare(duration1, duration2);
+            });
+
             System.out.println("Sortirani zaposlenici po trajanju ugovora:");
             for (Person employee : employees){
                 LocalDate start = employee.getContract().getStartTime();
@@ -70,7 +77,13 @@ public class ComparatorUtils {
 
     public static void printMealsSortedByRestaurantCount(Map<Meal, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurantMap){
         List<Meal> mealList = new ArrayList<>(mealRestaurantMap.keySet());
-        mealList.sort(new MealRestaurantCountComparator(mealRestaurantMap));
+        //mealList.sort(new MealRestaurantCountComparator(mealRestaurantMap)); --> KOMPARATOR
+
+        mealList.sort((m1, m2) -> {
+            int count1 = mealRestaurantMap.containsKey(m1) ? mealRestaurantMap.get(m1).getRestaurants().size() : 0;
+            int count2 = mealRestaurantMap.containsKey(m2) ? mealRestaurantMap.get(m2).getRestaurants().size() : 0;
+            return Integer.compare(count2, count1); // SILAZNO SORTIRANJE
+        });
 
         System.out.println("\nJela sortirana po broju restorana:");
         for (Meal meal : mealList) {
@@ -90,7 +103,10 @@ public class ComparatorUtils {
             Set<Ingredient> ingredientsSet = meal.getIngredient();
             List<Ingredient> ingredients = new ArrayList<>(ingredientsSet);
 
-            ingredients.sort(new IngredientAlphabeticalComparator());
+            //ingredients.sort(new IngredientAlphabeticalComparator()); --> KOMPARATOR
+            ingredients.sort((i1, i2) ->
+                    i1.getName().compareToIgnoreCase(i2.getName()));
+
             System.out.println("\nJelo: " + meal.getName());
             System.out.println("Korištene namirnice (abecedno):");
             for (Ingredient ingredient : ingredients) {

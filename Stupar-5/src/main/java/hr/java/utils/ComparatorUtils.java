@@ -48,7 +48,11 @@ public class ComparatorUtils {
      */
 
     public static void printHighestEmployeedEmployeeInRestaurants(RestaurantLabourExchangeOffice<Restaurant> genericRestaurantList) {
+        boolean hasPrinted = false;
         for (Restaurant restaurant : genericRestaurantList.getRestaurants()) {
+            if (hasPrinted) {
+                break; // Stop iterating once printing is done
+            }
             // Safeguard: Use a new list to prevent side-effects
             List<Person> employees = new ArrayList<>(restaurant.getEmployees());
 
@@ -66,6 +70,7 @@ public class ComparatorUtils {
                 System.out.println(employee.getFirstName() + " " + employee.getLastName() +
                         " - Ugovor: " + start + " do " + end + " (Trajanje: " + duration + " dana)");
             }
+            hasPrinted = true;
         }
     }
 

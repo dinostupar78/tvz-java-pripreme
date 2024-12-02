@@ -47,25 +47,24 @@ public class ComparatorUtils {
      * @param genericRestaurantList lista restorana u kojima će se tražiti zaposlenici
      */
 
-    public static void printHighestEmployeedEmployeeInRestaurants(RestaurantLabourExchangeOffice<Restaurant> genericRestaurantList){
-        //EmployeeContractComparator contractComparator = new EmployeeContractComparator(); --> KOMPARATOR
-        for (Restaurant restaurant : genericRestaurantList.getRestaurants()){
-            List<Person> employees = restaurant.getEmployees();
-
-            //employees.sort(contractComparator); --> POZIVANJE KOMPARATORA
+    public static void printHighestEmployeedEmployeeInRestaurants(RestaurantLabourExchangeOffice<Restaurant> genericRestaurantList) {
+        for (Restaurant restaurant : genericRestaurantList.getRestaurants()) {
+            // Safeguard: Use a new list to prevent side-effects
+            List<Person> employees = new ArrayList<>(restaurant.getEmployees());
 
             employees.sort((e1, e2) -> {
-                    long duration1 = ChronoUnit.DAYS.between(e1.getContract().getStartTime(), e1.getContract().getEndTime());
-                    long duration2 = ChronoUnit.DAYS.between(e2.getContract().getStartTime(), e2.getContract().getEndTime());
-                        return Long.compare(duration1, duration2);
+                long duration1 = ChronoUnit.DAYS.between(e1.getContract().getStartTime(), e1.getContract().getEndTime());
+                long duration2 = ChronoUnit.DAYS.between(e2.getContract().getStartTime(), e2.getContract().getEndTime());
+                return Long.compare(duration1, duration2);
             });
 
-            System.out.println("Sortirani zaposlenici po trajanju ugovora:");
-            for (Person employee : employees){
+            System.out.println("\nSortirani zaposlenici po trajanju ugovora:");
+            for (Person employee : employees) {
                 LocalDate start = employee.getContract().getStartTime();
                 LocalDate end = employee.getContract().getEndTime();
                 long duration = ChronoUnit.DAYS.between(start, end);
-                System.out.println(employee.getFirstName() + " " + employee.getLastName() + " - Ugovor: " + start + " do " + end  + " (Trajanje: " + duration + " dana)");
+                System.out.println(employee.getFirstName() + " " + employee.getLastName() +
+                        " - Ugovor: " + start + " do " + end + " (Trajanje: " + duration + " dana)");
             }
         }
     }

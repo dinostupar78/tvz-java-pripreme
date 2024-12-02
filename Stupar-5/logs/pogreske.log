@@ -348,3 +348,4 @@
 2024-12-02 17:58:44,447 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:84] Plaća mora biti između 500 i 5000.
 2024-12-02 17:58:46,720 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:84] Plaća mora biti između 500 i 5000.
 2024-12-02 17:59:32,191 INFO [main] h.j.p.m.Main [DataInputUtils.java:238] Krivi unos, unesite ispravne podatke za adresu.
+2024-12-02 19:21:18,586 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...

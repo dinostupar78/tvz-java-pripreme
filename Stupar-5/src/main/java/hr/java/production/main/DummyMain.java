@@ -82,8 +82,12 @@ public class DummyMain {
                 .build();
 
         System.out.println("Address: " + address2.toString());
-        Restaurant restaurant1 = new Restaurant(1L, "Restaurant A", address1, new HashSet<>(Arrays.asList(meal1)), chefs, waiters, deliverers);
-        Restaurant restaurant2 = new Restaurant(2L, "Restaurant B", address2, new HashSet<>(Arrays.asList(meal2)), chefs, waiters, deliverers);
+        Restaurant restaurant1 = new Restaurant(1L, "Restaurant A", address1, new HashSet<>(Arrays.asList(meal1)),
+                new HashSet<>(chefs), new HashSet<>(waiters), new HashSet<>(deliverers));
+
+        Restaurant restaurant2 = new Restaurant(2L, "Restaurant B", address2, new HashSet<>(Arrays.asList(meal2)),
+                new HashSet<>(chefs), new HashSet<>(waiters), new HashSet<>(deliverers));
+
         restaurants.add(restaurant1);
         restaurants.add(restaurant2);
 
@@ -119,14 +123,21 @@ public class DummyMain {
 
         // Other operations
         ComparatorUtils.printHighestPaidEmployeeInRestaurants(restaurantLabourExchangeOffice);
+
         ComparatorUtils.printHighestEmployeedEmployeeInRestaurants(restaurantLabourExchangeOffice);
+
         ComparatorUtils.printMealsSortedByRestaurantCount(mealRestaurantMap);
+
         ComparatorUtils.printSortedIngredientsAlphabetically(meals);
 
         LambdaUtils.findAndPrintRestaurantWithMostEmployees(restaurants);
+
         LambdaUtils.findAndPrintMostPopularMeal(mealRestaurantMap);
+
         LambdaUtils.printIngredientsForAllOrders(orders);
+
         LambdaUtils.calculateTotalPrice(orders);
+
         LambdaUtils.groupRestaurantsByCity(restaurantLabourExchangeOffice);
 
 

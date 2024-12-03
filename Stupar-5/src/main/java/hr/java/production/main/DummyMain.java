@@ -124,12 +124,19 @@ public class DummyMain {
 
         LambdaUtils.groupRestaurantsByCity(restaurantLabourExchangeOffice);
 
+        Deliverer deliverer1 = new Deliverer(1L, "Mike", "Johnson", new Contract(new BigDecimal("1200.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.PART_TIME), new Bonus(new BigDecimal("30.00")));
+        Deliverer deliverer2 = new Deliverer(2L, "Sara", "Davis", new Contract(new BigDecimal(0), LocalDate.now(), LocalDate.now().plusMonths(8), ContractType.PART_TIME), new Bonus(new BigDecimal("40.00")));
+
+        System.out.println("\nSalary 1: " + deliverer1.getContract().getSalary().orElse(null)); // Outputs: null if salary is absent
+        System.out.println("Salary 2: " + deliverer2.getContract().getSalary().orElse(BigDecimal.ZERO)); // Outputs: BigDecimal.ZERO if salary is absent
+
+
         List<Meal> mealsList = new ArrayList<>(meals);
         List<Meal> highCalorieMeals = LambdaUtils.filterHighCalorieMeals(mealsList);
         List<Meal> sortedMealsAsc = LambdaUtils.sortMealsByCalories(mealsList, true);
         List<Meal> sortedMealsDesc = LambdaUtils.sortMealsByCalories(mealsList, false);
 
-        System.out.println("High Calorie Meals: " + highCalorieMeals);
+        System.out.println("\nHigh Calorie Meals: " + highCalorieMeals);
         System.out.println("Sorted Meals (Asc): " + sortedMealsAsc);
         System.out.println("Sorted Meals (Desc): " + sortedMealsDesc);
 
@@ -143,9 +150,6 @@ public class DummyMain {
         ListPrinter.printList(numbers);
 
         DelivererStack delivererStack = new DelivererStack();
-
-        Deliverer deliverer1 = new Deliverer(1L, "Mike", "Johnson", new Contract(new BigDecimal("1200.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.PART_TIME), new Bonus(new BigDecimal("30.00")));
-        Deliverer deliverer2 = new Deliverer(2L, "Sara", "Davis", new Contract(new BigDecimal("1300.00"), LocalDate.now(), LocalDate.now().plusMonths(8), ContractType.PART_TIME), new Bonus(new BigDecimal("40.00")));
 
         delivererStack.add(deliverer1);
         delivererStack.add(deliverer2);

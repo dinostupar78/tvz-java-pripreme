@@ -1,6 +1,9 @@
 package hr.java.production.main;
 
 import hr.java.restaurant.enums.ContractType;
+import hr.java.restaurant.generics.DelivererStack;
+import hr.java.restaurant.generics.Describable;
+import hr.java.restaurant.generics.ListPrinter;
 import hr.java.restaurant.generics.RestaurantLabourExchangeOffice;
 import hr.java.restaurant.model.*;
 import hr.java.utils.ComparatorUtils;
@@ -129,6 +132,40 @@ public class DummyMain {
         System.out.println("High Calorie Meals: " + highCalorieMeals);
         System.out.println("Sorted Meals (Asc): " + sortedMealsAsc);
         System.out.println("Sorted Meals (Desc): " + sortedMealsDesc);
+
+        List<String> names = List.of("Alice", "Bob", "Charlie");
+        List<Integer> numbers = List.of(1, 2, 3);
+
+        System.out.println("Names:");
+        ListPrinter.printList(names);
+
+        System.out.println("Numbers:");
+        ListPrinter.printList(numbers);
+
+        DelivererStack delivererStack = new DelivererStack();
+
+        Deliverer deliverer1 = new Deliverer(1L, "Mike", "Johnson", new Contract(new BigDecimal("1200.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.PART_TIME), new Bonus(new BigDecimal("30.00")));
+        Deliverer deliverer2 = new Deliverer(2L, "Sara", "Davis", new Contract(new BigDecimal("1300.00"), LocalDate.now(), LocalDate.now().plusMonths(8), ContractType.PART_TIME), new Bonus(new BigDecimal("40.00")));
+
+        delivererStack.add(deliverer1);
+        delivererStack.add(deliverer2);
+
+        System.out.println("Top Deliverer: " + delivererStack.top());
+        delivererStack.pop();
+        delivererStack.printStack();
+
+        Meal meal1 = new Meal(1L, "Pizza", new Category(1L, "Main Course", "Hot meals"), new HashSet<>(), new BigDecimal("40.00"), 1200);
+        Meal meal2 = new Meal(2L, "Burger", new Category(1L, "Main Course", "Hot meals"), new HashSet<>(), new BigDecimal("25.00"), 800);
+        Meal meal3 = new Meal(3L, "Pasta", new Category(1L, "Main Course", "Hot meals"), new HashSet<>(), new BigDecimal("35.00"), 1000);
+
+        List<Meal> mealsLists = Arrays.asList(meal1, meal2, meal3);
+
+        double averageCalories = LambdaUtils.averageCaloriesForExpensiveMeals(mealsLists);
+        System.out.println("Average Calories: " + averageCalories);
+
+        Describable<Deliverer> delivererDesc = new DelivererDescription();
+
+        System.out.println(delivererDesc.describe(deliverer1));
 
 
 

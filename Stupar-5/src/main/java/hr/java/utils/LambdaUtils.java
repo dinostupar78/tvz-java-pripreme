@@ -85,6 +85,16 @@ public class LambdaUtils {
                 .collect(Collectors.toList());
     }
 
+    public static double averageCaloriesForExpensiveMeals(List<Meal> meals) {
+        return meals.stream()
+                .filter(meal -> meal.getPrice().compareTo(new BigDecimal("30.00")) > 0)
+                .mapToInt(Meal::getCalories)
+                .average()
+                .orElse(0);
+    }
+
+
+
 
 
 

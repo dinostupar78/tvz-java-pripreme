@@ -110,5 +110,10 @@ public class Deliverer extends Person {
     public int hashCode() {
         return Objects.hash(contract, brojDostava, bonusDostavljaca);
     }
+
+    @Override
+    public String toString() {
+        return getFirstName() + " " + getLastName() + " - Salary: " + contract.getSalary();
+    }
 }
 

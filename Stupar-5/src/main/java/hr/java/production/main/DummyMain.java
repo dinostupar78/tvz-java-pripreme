@@ -21,90 +21,85 @@ public class DummyMain {
     public static Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
-        // Dummy data for categories, ingredients, meals, etc.
-        List<Category> categories = new ArrayList<>();
-        Set<Ingredient> ingredients = new HashSet<>();
-        Set<Meal> meals = new HashSet<>();
-        Set<Chef> chefs = new HashSet<>();
-        Set<Waiter> waiters = new HashSet<>();
-        Set<Deliverer> deliverers = new HashSet<>();
-        List<Restaurant> restaurants = new ArrayList<>();
-        List<Address> addresses = new ArrayList<>();
-        List<Order> orders = new ArrayList<>();
-        List<Person> employees = new ArrayList<>();
         List<Meal> specialMeals = new ArrayList<>();
-        Map<Meal, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurantMap = new HashMap<>();
 
-        Category category = new Category(1L, "Main Course", "Hot meals");
-        categories.add(category);
+        List<Category> categories = new ArrayList<>();
+        Category mainCourse = new Category(1L, "Main Course", "Hot meals");
+        Category desserts = new Category(2L, "Desserts", "Sweet dishes");
+        categories.add(mainCourse);
+        categories.add(desserts);
 
-        Ingredient ingredient1 = new Ingredient(1L, "Tomato", category, new BigDecimal("0.50"), "Raw");
-        Ingredient ingredient2 = new Ingredient(2L, "Cheese", category, new BigDecimal("1.00"), "Grated");
-        ingredients.add(ingredient1);
-        ingredients.add(ingredient2);
+        Set<Ingredient> ingredients = new HashSet<>();
+        ingredients.add(new Ingredient(1L, "Tomato", mainCourse, new BigDecimal("0.50"), "Fresh"));
+        ingredients.add(new Ingredient(2L, "Cheese", mainCourse, new BigDecimal("1.00"), "Grated"));
+        ingredients.add(new Ingredient(3L, "Chocolate", desserts, new BigDecimal("2.00"), "Dark"));
 
-        Meal meal1 = new Meal(1L, "Pizza", category, new HashSet<>(Arrays.asList(ingredient1, ingredient2)), new BigDecimal("9.99"), 500);
-        Meal meal2 = new Meal(2L, "Burger", category, new HashSet<>(Arrays.asList(ingredient1, ingredient2)), new BigDecimal("7.99"), 700);
-        meals.add(meal1);
-        meals.add(meal2);
+        Set<Meal> meals = new HashSet<>();
+        meals.add(new Meal(1L, "Pizza", mainCourse, new HashSet<>(Arrays.asList(
+                new Ingredient(1L, "Tomato", mainCourse, new BigDecimal("0.50"), "Fresh"),
+                new Ingredient(2L, "Cheese", mainCourse, new BigDecimal("1.00"), "Grated")
+        )), new BigDecimal("9.99"), 500));
+        meals.add(new Meal(2L, "Burger", mainCourse, new HashSet<>(Arrays.asList(
+                new Ingredient(1L, "Tomato", mainCourse, new BigDecimal("0.50"), "Fresh")
+        )), new BigDecimal("7.99"), 700));
+        meals.add(new Meal(3L, "Chocolate Cake", desserts, new HashSet<>(Arrays.asList(
+                new Ingredient(3L, "Chocolate", desserts, new BigDecimal("2.00"), "Dark")
+        )), new BigDecimal("12.99"), 1200));
 
-        Chef chef = new Chef(1L, "John", "Doe", new Contract(new BigDecimal("2000.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.FULL_TIME), new Bonus(new BigDecimal("100.00")));
-        chefs.add(chef);
+        Set<Chef> chefs = new HashSet<>();
+        chefs.add(new Chef(1L, "John", "Doe", new Contract(new BigDecimal("2000.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.FULL_TIME), new Bonus(new BigDecimal("100.00"))));
+        chefs.add(new Chef(2L, "Alice", "Brown", new Contract(new BigDecimal("2500.00"), LocalDate.now(), LocalDate.now().plusYears(1), ContractType.FULL_TIME), new Bonus(new BigDecimal("200.00"))));
 
-        Waiter waiter = new Waiter(1L, "Jane", "Smith", new Contract(new BigDecimal("1500.00"), LocalDate.now(), LocalDate.now().plusMonths(12), ContractType.PART_TIME), new Bonus(new BigDecimal("50.00")));
-        waiters.add(waiter);
+        Set<Waiter> waiters = new HashSet<>();
+        waiters.add(new Waiter(1L, "Jane", "Smith", new Contract(new BigDecimal("1500.00"), LocalDate.now(), LocalDate.now().plusMonths(12), ContractType.PART_TIME), new Bonus(new BigDecimal("50.00"))));
+        waiters.add(new Waiter(2L, "Tom", "White", new Contract(new BigDecimal("1700.00"), LocalDate.now(), LocalDate.now().plusYears(2), ContractType.PART_TIME), new Bonus(new BigDecimal("75.00"))));
 
-        Deliverer deliverer = new Deliverer(1L, "Mike", "Johnson", new Contract(new BigDecimal("1200.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.PART_TIME), new Bonus(new BigDecimal("30.00")));
-        deliverers.add(deliverer);
+        Set<Deliverer> deliverers = new HashSet<>();
+        deliverers.add(new Deliverer(1L, "Mike", "Johnson", new Contract(new BigDecimal("1200.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.PART_TIME), new Bonus(new BigDecimal("30.00"))));
+        deliverers.add(new Deliverer(2L, "Sara", "Davis", new Contract(new BigDecimal("1300.00"), LocalDate.now(), LocalDate.now().plusMonths(8), ContractType.PART_TIME), new Bonus(new BigDecimal("40.00"))));
 
-        Address address1 = new Address.BuilderAddress(1L)
+        List<Address> addresses = new ArrayList<>();
+        addresses.add(new Address.BuilderAddress(1L)
                 .atStreet("Main Street")
                 .atHouseNumber("123")
                 .atCity("Zagreb")
                 .atPostalCode("10000")
-                .build();
-
-        System.out.println("Address: " + address1.toString());
-
-        Address address2 = new Address.BuilderAddress(2L)
+                .build());
+        addresses.add(new Address.BuilderAddress(2L)
                 .atStreet("Second Avenue")
                 .atHouseNumber("456")
                 .atCity("Split")
                 .atPostalCode("21000")
-                .build();
+                .build());
 
-        System.out.println("Address: " + address2.toString());
-        Restaurant restaurant1 = new Restaurant(1L, "Restaurant A", address1, new HashSet<>(Arrays.asList(meal1)),
-                new HashSet<>(chefs), new HashSet<>(waiters), new HashSet<>(deliverers));
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurants.add(new Restaurant(1L, "Restaurant A", addresses.get(0), meals, chefs, waiters, deliverers));
+        restaurants.add(new Restaurant(2L, "Restaurant B", addresses.get(1), meals, chefs, waiters, deliverers));
 
-        Restaurant restaurant2 = new Restaurant(2L, "Restaurant B", address2, new HashSet<>(Arrays.asList(meal2)),
-                new HashSet<>(chefs), new HashSet<>(waiters), new HashSet<>(deliverers));
 
-        restaurants.add(restaurant1);
-        restaurants.add(restaurant2);
-
-        Order order = new Order(1L, restaurant1, new ArrayList<>(Arrays.asList(meal1)), deliverer, LocalDateTime.now());
-        orders.add(order);
+        List<Order> orders = new ArrayList<>();
+        orders.add(new Order(1L, restaurants.get(0), new ArrayList<>(meals), deliverers.iterator().next(), LocalDateTime.now()));
+        orders.add(new Order(2L, restaurants.get(1), new ArrayList<>(meals), deliverers.iterator().next(), LocalDateTime.now()));
 
         RestaurantLabourExchangeOffice<Restaurant> restaurantLabourExchangeOffice = new RestaurantLabourExchangeOffice<>(restaurants);
-
-        mealRestaurantMap = mapMealsToRestaurants(restaurantLabourExchangeOffice);
+        Map<Meal, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurantMap = mapMealsToRestaurants(restaurantLabourExchangeOffice);
 
         Scanner scanner = new Scanner(System.in);
         displayRestaurantsForSelectedMeal(scanner, mealRestaurantMap);
 
-        // Add employees to list
+        List<Person> employees = new ArrayList<>();
         employees.addAll(chefs);
         employees.addAll(waiters);
         employees.addAll(deliverers);
 
         Person highestPaidEmployee = findHighestPaidEmployee(employees);
-        System.out.println("\nHighest Paid Employee:");
+        System.out.println("\nNajplaceniji zaposlenik: ");
         printEmployeeInfo(highestPaidEmployee);
 
         Person longestContractEmployee = findLongestContractEmployee(employees);
-        System.out.println("Employee with the longest contract:");
+        System.out.println("Zaposlenik sa najdužim ugovorom: ");
         printEmployeeInfo(longestContractEmployee);
+
 
         printMealWithMinMaxCalories(specialMeals);
 

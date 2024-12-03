@@ -6,12 +6,15 @@ import hr.java.restaurant.model.Meal;
 import hr.java.restaurant.model.Person;
 import hr.java.restaurant.model.Restaurant;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import static hr.java.production.main.Main.getSalary;
 
 /**
  * Utility klasa koja sadrži metode za sortiranje i ispisivanje podataka o restoranima, zaposlenicima, jelima i sastojcima.
@@ -32,7 +35,11 @@ public class ComparatorUtils {
 
             //employees.sort(salaryComparator); --> POZIVANJE KOMPARATORA
 
-            employees.sort((e1, e2) -> e2.getContract().getSalary().compareTo(e1.getContract().getSalary()));
+            employees.sort((e1, e2) -> {
+                BigDecimal salary1 = getSalary(e1).orElse(BigDecimal.ZERO); // If salary is absent, treat it as zero
+                BigDecimal salary2 = getSalary(e2).orElse(BigDecimal.ZERO); // Same for the second employee
+                return salary2.compareTo(salary1); // Compare in descending order
+            });
             Person highestPaidEmployee = employees.get(0);
 
             System.out.println("\nRestoran: " + restaurant.getName());

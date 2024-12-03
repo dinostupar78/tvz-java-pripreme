@@ -68,8 +68,11 @@ public class LambdaUtils {
                         restaurant -> restaurant.getAddress().getCity(),
                         Collectors.collectingAndThen(Collectors.toList(), restaurants -> new RestaurantLabourExchangeOffice<>(restaurants))
                 ));
-
     }
+
+
+
+
 
 
 }

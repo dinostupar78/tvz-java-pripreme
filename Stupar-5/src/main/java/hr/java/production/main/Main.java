@@ -186,9 +186,10 @@ public class Main {
         return RestaurantInputUtils.orderInput(scanner, genericRestaurantList, meals, deliverers);
     }
 
-    private static BigDecimal getSalary(Person employee) {
+    public static Optional<BigDecimal> getSalary(Person employee) {
         return employee.getContract().getSalary();
     }
+
 
     /**
      * Pronalaženje zaposlenika s najvećom plaćom.
@@ -209,10 +210,13 @@ public class Main {
 
         for (Person employee : employees) {
             if (employee != null) {
-                BigDecimal salary = getSalary(employee);
-                if (salary != null && salary.compareTo(highestSalary) > 0) { // Ensure salary is not null
+                // Use Optional to safely handle the salary
+                Optional<BigDecimal> salaryOptional = getSalary(employee);
+
+                // If salary is present and greater than the current highestSalary
+                if (salaryOptional.isPresent() && salaryOptional.get().compareTo(highestSalary) > 0) {
                     highestPaid = employee;
-                    highestSalary = salary;
+                    highestSalary = salaryOptional.get();
                 }
             }
         }

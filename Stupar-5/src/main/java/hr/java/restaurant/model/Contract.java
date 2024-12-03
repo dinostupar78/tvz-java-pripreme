@@ -1,8 +1,10 @@
 package hr.java.restaurant.model;
+
 import hr.java.restaurant.enums.ContractType;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
 /**
  * Predstavlja ugovor o radu zaposlenika u restoranskom sustavu.
@@ -25,18 +27,18 @@ public class Contract {
      */
 
     public Contract(BigDecimal salary, LocalDate startTime, LocalDate endTime, ContractType contractType) {
-        this.salary = salary;
+        this.salary = salary.compareTo(BigDecimal.ZERO) == 0 ? null : salary;
         this.startTime = startTime;
         this.endTime = endTime;
         setContractType(contractType);
     }
 
-    public BigDecimal getSalary() {
-        return salary;
+    public Optional<BigDecimal> getSalary() {
+        return Optional.ofNullable(salary);
     }
 
     public void setSalary(BigDecimal salary) {
-        this.salary = salary;
+        this.salary = salary.compareTo(BigDecimal.ZERO) == 0 ? null : salary;
     }
 
     public LocalDate getStartTime() {

@@ -129,8 +129,15 @@ public class DummyMain {
                 new Contract(null, LocalDate.now(), LocalDate.now().plusMonths(8), ContractType.PART_TIME),
                 new Bonus(new BigDecimal("40.00")));
 
-        System.out.println("\nSalary 1: " + deliverer1.getContract().getSalary().orElse(null)); // Outputs: null if salary is absent
-        System.out.println("Salary 2: " + deliverer2.getContract().getSalary().orElse(BigDecimal.ZERO)); // Outputs: BigDecimal.ZERO if salary is absent
+        System.out.println("Salary for Deliverer 1: " +
+                deliverer1.getContract().getSalary().map(salary -> salary.toString())
+                        .orElse("potrebno definirati plaću")
+        );
+
+        System.out.println("Salary for Deliverer 2: " +
+                deliverer2.getContract().getSalary().map(salary -> salary.toString())
+                        .orElse("potrebno definirati plaću")
+        );
 
 
         List<Meal> mealsList = new ArrayList<>(meals);

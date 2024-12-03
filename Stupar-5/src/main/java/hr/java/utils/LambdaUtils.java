@@ -1,15 +1,13 @@
 package hr.java.utils;
 
 import hr.java.restaurant.generics.RestaurantLabourExchangeOffice;
+import hr.java.restaurant.model.Ingredient;
 import hr.java.restaurant.model.Meal;
 import hr.java.restaurant.model.Order;
 import hr.java.restaurant.model.Restaurant;
 
 import java.math.BigDecimal;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LambdaUtils {
@@ -45,11 +43,13 @@ public class LambdaUtils {
 
     }
 
-    public static void printIngredientsForAllOrders(List<Order> orders){
-        orders.stream()
+    public static void printIngredientsForAllOrders(List<Order> orders) {
+        Set<Ingredient> uniqueIngredients = orders.stream()
                 .flatMap(order -> order.getMeals().stream())
                 .flatMap(meal -> meal.getIngredient().stream())
-                .forEach(ingredient -> System.out.println("\nNamirinica: " + ingredient.getName()));
+                .collect(Collectors.toSet());
+
+        uniqueIngredients.forEach(ingredient -> System.out.println("\nNamirinica: " + ingredient.getName()));
     }
 
     public static void calculateTotalPrice(List<Order> orders){

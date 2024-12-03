@@ -136,10 +136,10 @@ public class DummyMain {
         List<String> names = List.of("Alice", "Bob", "Charlie");
         List<Integer> numbers = List.of(1, 2, 3);
 
-        System.out.println("Names:");
+        System.out.println("\nNames:");
         ListPrinter.printList(names);
 
-        System.out.println("Numbers:");
+        System.out.println("\nNumbers:");
         ListPrinter.printList(numbers);
 
         DelivererStack delivererStack = new DelivererStack();
@@ -150,7 +150,7 @@ public class DummyMain {
         delivererStack.add(deliverer1);
         delivererStack.add(deliverer2);
 
-        System.out.println("Top Deliverer: " + delivererStack.top());
+        System.out.println("\nTop Deliverer: " + delivererStack.top());
         delivererStack.pop();
         delivererStack.printStack();
 
@@ -161,7 +161,7 @@ public class DummyMain {
         List<Meal> mealsLists = Arrays.asList(meal1, meal2, meal3);
 
         double averageCalories = LambdaUtils.averageCaloriesForExpensiveMeals(mealsLists);
-        System.out.println("Average Calories: " + averageCalories);
+        System.out.println("\nAverage Calories: " + averageCalories);
 
         Describable<Deliverer> delivererDesc = new DelivererDescription();
 

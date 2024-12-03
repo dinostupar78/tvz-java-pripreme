@@ -35,35 +35,28 @@ public class DummyMain {
         List<Meal> specialMeals = new ArrayList<>();
         Map<Meal, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurantMap = new HashMap<>();
 
-        // Create dummy categories
         Category category = new Category(1L, "Main Course", "Hot meals");
         categories.add(category);
 
-        // Create dummy ingredients
         Ingredient ingredient1 = new Ingredient(1L, "Tomato", category, new BigDecimal("0.50"), "Raw");
         Ingredient ingredient2 = new Ingredient(2L, "Cheese", category, new BigDecimal("1.00"), "Grated");
         ingredients.add(ingredient1);
         ingredients.add(ingredient2);
 
-        // Create dummy meals
         Meal meal1 = new Meal(1L, "Pizza", category, new HashSet<>(Arrays.asList(ingredient1, ingredient2)), new BigDecimal("9.99"), 500);
         Meal meal2 = new Meal(2L, "Burger", category, new HashSet<>(Arrays.asList(ingredient1, ingredient2)), new BigDecimal("7.99"), 700);
         meals.add(meal1);
         meals.add(meal2);
 
-        // Create dummy chefs
         Chef chef = new Chef(1L, "John", "Doe", new Contract(new BigDecimal("2000.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.FULL_TIME), new Bonus(new BigDecimal("100.00")));
         chefs.add(chef);
 
-        // Create dummy waiters
         Waiter waiter = new Waiter(1L, "Jane", "Smith", new Contract(new BigDecimal("1500.00"), LocalDate.now(), LocalDate.now().plusMonths(12), ContractType.PART_TIME), new Bonus(new BigDecimal("50.00")));
         waiters.add(waiter);
 
-        // Create dummy deliverers
         Deliverer deliverer = new Deliverer(1L, "Mike", "Johnson", new Contract(new BigDecimal("1200.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.PART_TIME), new Bonus(new BigDecimal("30.00")));
         deliverers.add(deliverer);
 
-        // Create dummy restaurants
         Address address1 = new Address.BuilderAddress(1L)
                 .atStreet("Main Street")
                 .atHouseNumber("123")
@@ -73,7 +66,6 @@ public class DummyMain {
 
         System.out.println("Address: " + address1.toString());
 
-        // Creating another Address object with different data
         Address address2 = new Address.BuilderAddress(2L)
                 .atStreet("Second Avenue")
                 .atHouseNumber("456")
@@ -91,17 +83,13 @@ public class DummyMain {
         restaurants.add(restaurant1);
         restaurants.add(restaurant2);
 
-        // Create dummy orders
         Order order = new Order(1L, restaurant1, new ArrayList<>(Arrays.asList(meal1)), deliverer, LocalDateTime.now());
         orders.add(order);
 
-        // Create RestaurantLabourExchangeOffice with restaurants
         RestaurantLabourExchangeOffice<Restaurant> restaurantLabourExchangeOffice = new RestaurantLabourExchangeOffice<>(restaurants);
 
-        // Map meals to restaurants
         mealRestaurantMap = mapMealsToRestaurants(restaurantLabourExchangeOffice);
 
-        // Now, you can use the display method to show restaurants for a selected meal
         Scanner scanner = new Scanner(System.in);
         displayRestaurantsForSelectedMeal(scanner, mealRestaurantMap);
 
@@ -110,7 +98,6 @@ public class DummyMain {
         employees.addAll(waiters);
         employees.addAll(deliverers);
 
-        // Perform operations like finding highest paid employee, longest contract, etc.
         Person highestPaidEmployee = findHighestPaidEmployee(employees);
         System.out.println("\nHighest Paid Employee:");
         printEmployeeInfo(highestPaidEmployee);
@@ -121,7 +108,6 @@ public class DummyMain {
 
         printMealWithMinMaxCalories(specialMeals);
 
-        // Other operations
         ComparatorUtils.printHighestPaidEmployeeInRestaurants(restaurantLabourExchangeOffice);
 
         ComparatorUtils.printHighestEmployeedEmployeeInRestaurants(restaurantLabourExchangeOffice);

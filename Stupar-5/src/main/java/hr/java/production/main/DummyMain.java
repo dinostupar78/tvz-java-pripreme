@@ -121,6 +121,15 @@ public class DummyMain {
 
         LambdaUtils.groupRestaurantsByCity(restaurantLabourExchangeOffice);
 
+        List<Meal> mealsList = new ArrayList<>(meals);
+        List<Meal> highCalorieMeals = LambdaUtils.filterHighCalorieMeals(mealsList);
+        List<Meal> sortedMealsAsc = LambdaUtils.sortMealsByCalories(mealsList, true);
+        List<Meal> sortedMealsDesc = LambdaUtils.sortMealsByCalories(mealsList, false);
+
+        System.out.println("High Calorie Meals: " + highCalorieMeals);
+        System.out.println("Sorted Meals (Asc): " + sortedMealsAsc);
+        System.out.println("Sorted Meals (Desc): " + sortedMealsDesc);
+
 
 
 

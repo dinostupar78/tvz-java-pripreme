@@ -125,7 +125,9 @@ public class DummyMain {
         LambdaUtils.groupRestaurantsByCity(restaurantLabourExchangeOffice);
 
         Deliverer deliverer1 = new Deliverer(1L, "Mike", "Johnson", new Contract(new BigDecimal("1200.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.PART_TIME), new Bonus(new BigDecimal("30.00")));
-        Deliverer deliverer2 = new Deliverer(2L, "Sara", "Davis", new Contract(new BigDecimal(0), LocalDate.now(), LocalDate.now().plusMonths(8), ContractType.PART_TIME), new Bonus(new BigDecimal("40.00")));
+        Deliverer deliverer2 = new Deliverer(2L, "Sara", "Davis",
+                new Contract(null, LocalDate.now(), LocalDate.now().plusMonths(8), ContractType.PART_TIME),
+                new Bonus(new BigDecimal("40.00")));
 
         System.out.println("\nSalary 1: " + deliverer1.getContract().getSalary().orElse(null)); // Outputs: null if salary is absent
         System.out.println("Salary 2: " + deliverer2.getContract().getSalary().orElse(BigDecimal.ZERO)); // Outputs: BigDecimal.ZERO if salary is absent

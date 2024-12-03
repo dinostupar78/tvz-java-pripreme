@@ -24,6 +24,8 @@ public class DelivererStack {
     }
 
     public void printStack() {
-        stack.forEach(System.out::println);
+        for (int i = 0; i < stack.size(); i++) {
+            System.out.println(stack.get(i));
+        }
     }
 }

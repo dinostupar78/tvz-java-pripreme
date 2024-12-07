@@ -98,7 +98,6 @@ public class ComparatorUtils {
 
         System.out.println("\nJela sortirana po broju restorana:");
         for (Meal meal : mealList) {
-            //int restaurantCount = mealRestaurantMap.getOrDefault(meal, List.of()).size();
             int restaurantCount = mealRestaurantMap.containsKey(meal) ? mealRestaurantMap.get(meal).getRestaurants().size() : 0;
             System.out.println(meal.getName() + " - Broj restorana: " + restaurantCount);
         }

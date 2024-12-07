@@ -1,11 +1,9 @@
 package hr.java.utils;
-
 import hr.java.restaurant.generics.RestaurantLabourExchangeOffice;
 import hr.java.restaurant.model.Ingredient;
 import hr.java.restaurant.model.Meal;
 import hr.java.restaurant.model.Order;
 import hr.java.restaurant.model.Restaurant;
-
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -69,35 +67,4 @@ public class LambdaUtils {
                         Collectors.collectingAndThen(Collectors.toList(), restaurants -> new RestaurantLabourExchangeOffice<>(restaurants))
                 ));
     }
-
-    public static List<Meal> filterHighCalorieMeals(List<Meal> meals) {
-        return meals.stream()
-                .filter(meal -> meal.getCalories() > 1000)
-                .collect(Collectors.toList());
-    }
-
-    // Method to sort meals by calories
-    public static List<Meal> sortMealsByCalories(List<Meal> meals, boolean ascending) {
-        return meals.stream()
-                .sorted((m1, m2) -> ascending
-                        ? Integer.compare(m1.getCalories(), m2.getCalories())
-                        : Integer.compare(m2.getCalories(), m1.getCalories()))
-                .collect(Collectors.toList());
-    }
-
-    public static double averageCaloriesForExpensiveMeals(List<Meal> meals) {
-        return meals.stream()
-                .filter(meal -> meal.getPrice().compareTo(new BigDecimal("30.00")) > 0)
-                .mapToInt(Meal::getCalories)
-                .average()
-                .orElse(0);
-    }
-
-
-
-
-
-
-
-
 }

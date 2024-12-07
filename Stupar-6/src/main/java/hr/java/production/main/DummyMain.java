@@ -1,9 +1,6 @@
 package hr.java.production.main;
 
 import hr.java.restaurant.enums.ContractType;
-import hr.java.restaurant.generics.DelivererStack;
-import hr.java.restaurant.generics.Describable;
-import hr.java.restaurant.generics.ListPrinter;
 import hr.java.restaurant.generics.RestaurantLabourExchangeOffice;
 import hr.java.restaurant.model.*;
 import hr.java.utils.ComparatorUtils;
@@ -17,8 +14,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 import static hr.java.production.main.Main.*;
-import static hr.java.utils.MealRestaurantUtils.displayRestaurantsForSelectedMeal;
-import static hr.java.utils.MealRestaurantUtils.mapMealsToRestaurants;
+import static hr.java.utils.MealRestaurantUtils.*;
 
 public class DummyMain {
     public static Logger log = LoggerFactory.getLogger(Main.class);
@@ -103,7 +99,6 @@ public class DummyMain {
         System.out.println("Zaposlenik sa najdužim ugovorom: ");
         printEmployeeInfo(longestContractEmployee);
 
-
         printMealWithMinMaxCalories(specialMeals);
 
         ComparatorUtils.printHighestPaidEmployeeInRestaurants(restaurantLabourExchangeOffice);
@@ -122,67 +117,14 @@ public class DummyMain {
 
         LambdaUtils.calculateTotalPrice(orders);
 
+        Map<String, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurantCity = mapCitiesToRestaurants(restaurantLabourExchangeOffice);
         LambdaUtils.groupRestaurantsByCity(restaurantLabourExchangeOffice);
 
-        Deliverer deliverer1 = new Deliverer(1L, "Mike", "Johnson", new Contract(new BigDecimal("1200.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.PART_TIME), new Bonus(new BigDecimal("30.00")));
-        Deliverer deliverer2 = new Deliverer(2L, "Sara", "Davis",
-                new Contract(null, LocalDate.now(), LocalDate.now().plusMonths(8), ContractType.PART_TIME),
-                new Bonus(new BigDecimal("40.00")));
-
-        System.out.println("Salary for Deliverer 1: " +
-                deliverer1.getContract().getSalary().map(salary -> salary.toString())
-                        .orElse("potrebno definirati plaću")
-        );
-
-        System.out.println("Salary for Deliverer 2: " +
-                deliverer2.getContract().getSalary().map(salary -> salary.toString())
-                        .orElse("potrebno definirati plaću")
-        );
-
-
-        List<Meal> mealsList = new ArrayList<>(meals);
-        List<Meal> highCalorieMeals = LambdaUtils.filterHighCalorieMeals(mealsList);
-        List<Meal> sortedMealsAsc = LambdaUtils.sortMealsByCalories(mealsList, true);
-        List<Meal> sortedMealsDesc = LambdaUtils.sortMealsByCalories(mealsList, false);
-
-        System.out.println("\nHigh Calorie Meals: " + highCalorieMeals);
-        System.out.println("Sorted Meals (Asc): " + sortedMealsAsc);
-        System.out.println("Sorted Meals (Desc): " + sortedMealsDesc);
-
-        List<String> names = List.of("Alice", "Bob", "Charlie");
-        List<Integer> numbers = List.of(1, 2, 3);
-
-        System.out.println("\nNames:");
-        ListPrinter.printList(names);
-
-        System.out.println("\nNumbers:");
-        ListPrinter.printList(numbers);
-
-        DelivererStack delivererStack = new DelivererStack();
-
-        delivererStack.add(deliverer1);
-        delivererStack.add(deliverer2);
-
-        System.out.println("\nTop Deliverer: " + delivererStack.top());
-        delivererStack.pop();
-        delivererStack.printStack();
-
-        Meal meal1 = new Meal(1L, "Pizza", new Category(1L, "Main Course", "Hot meals"), new HashSet<>(), new BigDecimal("40.00"), 1200);
-        Meal meal2 = new Meal(2L, "Burger", new Category(1L, "Main Course", "Hot meals"), new HashSet<>(), new BigDecimal("25.00"), 800);
-        Meal meal3 = new Meal(3L, "Pasta", new Category(1L, "Main Course", "Hot meals"), new HashSet<>(), new BigDecimal("35.00"), 1000);
-
-        List<Meal> mealsLists = Arrays.asList(meal1, meal2, meal3);
-
-        double averageCalories = LambdaUtils.averageCaloriesForExpensiveMeals(mealsLists);
-        System.out.println("\nAverage Calories: " + averageCalories);
-
-        Describable<Deliverer> delivererDesc = new DelivererDescription();
-
-        System.out.println(delivererDesc.describe(deliverer1));
-
-
-
-
+        mealRestaurantCity.forEach((city, office) -> {
+            System.out.println("\nCity: " + city);
+            System.out.println("Restaurants: ");
+            office.getRestaurants().forEach(restaurant -> System.out.println(restaurant));
+        });
 
 
 

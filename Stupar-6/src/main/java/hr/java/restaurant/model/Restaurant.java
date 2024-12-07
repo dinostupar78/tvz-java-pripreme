@@ -96,4 +96,11 @@ public class Restaurant extends Entity {
         employees.addAll(deliverers);
         return employees;
     }
+
+    @Override
+    public String toString() {
+        return "Restaurant:" +
+                " name = '" + name +
+                "', address = " + address;
+    }
 }

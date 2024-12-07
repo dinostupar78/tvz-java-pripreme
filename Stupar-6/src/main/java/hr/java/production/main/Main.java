@@ -313,7 +313,7 @@ public class Main {
     public static void printMealInfo(Meal specialMeals) {
         System.out.println(String.format(Messages.MEAL_INFO_MESSAGE,
                 specialMeals.getName(),
-                specialMeals.getCategory().getName(),
+                specialMeals.getCategory(),
                 specialMeals.getPrice(),
                 specialMeals.getCalories()));
     }

@@ -79,7 +79,14 @@ public class Meal extends Entity {
 
     @Override
     public String toString() {
-        return "Name: " + name + ", Calories: " + calories;
+        return "\nMeal: " +
+                "name = '" + name + '\'' +
+                "," + category +
+                "\ningredients = " +ingredient +
+                ", price = " + price +
+                ", calories = " + calories;
+
+
     }
 
     @Override

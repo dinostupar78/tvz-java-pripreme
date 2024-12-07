@@ -39,4 +39,11 @@ public class Category extends Entity {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return " Category: " +
+                "name = '" + name + '\'' +
+                ", description='" + description;
+
+    }
 }

@@ -20,6 +20,22 @@ public class MealRestaurantUtils {
         return mealRestaurantMap;
     }
 
+    public static Map<String, RestaurantLabourExchangeOffice<Restaurant>> mapCitiesToRestaurants(RestaurantLabourExchangeOffice<Restaurant> genericRestaurantList) {
+        Map<String, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurantCity = new HashMap<>();
+
+        for (Restaurant restaurant : genericRestaurantList.getRestaurants()) {
+            String city = restaurant.getAddress().getCity();
+
+            if (!mealRestaurantCity.containsKey(city)) {
+                mealRestaurantCity.put(city, new RestaurantLabourExchangeOffice<>(new ArrayList<>()));
+            }
+
+            mealRestaurantCity.get(city).getRestaurants().add(restaurant);
+        }
+
+        return mealRestaurantCity;
+    }
+
     public static void displayRestaurantsForSelectedMeal(Scanner scanner, Map<Meal, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurantMap) {
         Boolean isValid;
         System.out.println("\nOdaberite jedno od jela za prikaz restorana koji ga nude:");

@@ -70,28 +70,7 @@ public class LambdaUtils {
                 ));
     }
 
-    public static List<Meal> filterHighCalorieMeals(List<Meal> meals) {
-        return meals.stream()
-                .filter(meal -> meal.getCalories() > 1000)
-                .collect(Collectors.toList());
-    }
 
-    // Method to sort meals by calories
-    public static List<Meal> sortMealsByCalories(List<Meal> meals, boolean ascending) {
-        return meals.stream()
-                .sorted((m1, m2) -> ascending
-                        ? Integer.compare(m1.getCalories(), m2.getCalories())
-                        : Integer.compare(m2.getCalories(), m1.getCalories()))
-                .collect(Collectors.toList());
-    }
-
-    public static double averageCaloriesForExpensiveMeals(List<Meal> meals) {
-        return meals.stream()
-                .filter(meal -> meal.getPrice().compareTo(new BigDecimal("30.00")) > 0)
-                .mapToInt(Meal::getCalories)
-                .average()
-                .orElse(0);
-    }
 
 
 

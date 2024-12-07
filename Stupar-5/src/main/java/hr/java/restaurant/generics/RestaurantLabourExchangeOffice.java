@@ -26,4 +26,6 @@ public class RestaurantLabourExchangeOffice <T extends Restaurant>{
     public boolean removeRestaurant(T restaurant) {
         return restaurants.remove(restaurant);
     }
+
+
 }

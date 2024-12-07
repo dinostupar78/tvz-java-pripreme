@@ -121,7 +121,6 @@ public class DummyMain {
         Map<String, RestaurantLabourExchangeOffice<Restaurant>> mealRestaurantCity = mapCitiesToRestaurants(restaurantLabourExchangeOffice);
         LambdaUtils.groupRestaurantsByCity(restaurantLabourExchangeOffice);
 
-
         mealRestaurantCity.forEach((city, office) -> {
             System.out.println("\nCity: " + city);
             System.out.println("Restaurants: ");

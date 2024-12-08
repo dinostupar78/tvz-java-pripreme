@@ -5,10 +5,7 @@ import hr.java.restaurant.model.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -39,8 +36,8 @@ public class RestaurantRepository <T extends Restaurant> extends AbstractReposit
     }
 
     @Override
-    public List<T> findAll() {
-        List<T> restaurants = new ArrayList<>();
+    public Set<T> findAll() {
+        Set<T> restaurants = new HashSet<>();
 
         try{
             Stream<String> stream = Files.lines(Path.of(RESTAURANTS_FILE_PATH));

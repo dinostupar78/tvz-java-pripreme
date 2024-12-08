@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -24,8 +24,8 @@ public class AddressRepository <T extends Address> extends AbstractRepository<T>
     }
 
     @Override
-    public List<T> findAll() {
-        List<T> addresses = new ArrayList<>();
+    public HashSet<T> findAll() {
+        HashSet<T> addresses = new HashSet<>();
 
         try{
             Stream<String> stream = Files.lines(Path.of(ADDRESSES_FILE_PATH));

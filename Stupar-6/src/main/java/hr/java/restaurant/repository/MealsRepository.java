@@ -8,10 +8,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -34,8 +31,8 @@ public class MealsRepository <T extends Meal> extends AbstractRepository<T>{
     }
 
     @Override
-   public List<T> findAll() {
-        List<T> meals = new ArrayList<>();
+   public Set<T> findAll() {
+        Set<T> meals = new HashSet<>();
 
         try{
             Stream<String> stream = Files.lines(Path.of(MEALS_FILE_PATH));

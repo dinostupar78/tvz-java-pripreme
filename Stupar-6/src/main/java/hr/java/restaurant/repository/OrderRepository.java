@@ -9,9 +9,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -38,8 +39,8 @@ public class OrderRepository <T extends Order> extends AbstractRepository<T>{
     }
 
     @Override
-    public List<T> findAll() {
-        List<T> orders = new ArrayList<>();
+    public Set<T> findAll() {
+        Set<T> orders = new HashSet<>();
         try{
             Stream<String> stream = Files.lines(Path.of(ORDERS_FILE_PATH));
             List<String> fileRows = stream.collect(Collectors.toList());

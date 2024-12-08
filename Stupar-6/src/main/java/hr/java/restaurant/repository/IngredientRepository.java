@@ -10,8 +10,9 @@ import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -34,8 +35,8 @@ public class IngredientRepository <T extends Ingredient> extends AbstractReposit
     }
 
     @Override
-    public List<T> findAll() {
-        List<T> ingredients = new ArrayList<>();
+    public Set<T> findAll() {
+        Set<T> ingredients = new HashSet<>();
 
         try{
             Stream<String> stream = Files.lines(Path.of(INGREDIENTS_FILE_PATH));

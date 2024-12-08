@@ -8,8 +8,9 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,8 +27,8 @@ public class ContractRepository <T extends Contract> extends AbstractRepository<
     }
 
     @Override
-    public List<T> findAll() {
-        List<T> contracts = new ArrayList<>();
+    public Set<T> findAll() {
+        Set<T> contracts = new HashSet<>();
 
         try{
             Stream<String> stream = Files.lines(Path.of(CONTRACTS_FILE_PATH));

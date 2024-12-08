@@ -7,8 +7,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,8 +26,8 @@ public class CategoryRepository <T extends Category> extends AbstractRepository<
                 .orElse(null);
     }
 
-    public List<T> findAll() {
-        List<T> categories = new ArrayList<>();
+    public Set<T> findAll() {
+        Set<T> categories = new HashSet<>();
 
         try{
             Stream<String> stream = Files.lines(Path.of(CATEGORIES_FILE_PATH));

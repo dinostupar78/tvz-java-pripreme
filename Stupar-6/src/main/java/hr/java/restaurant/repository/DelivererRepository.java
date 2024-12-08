@@ -8,8 +8,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,8 +33,8 @@ public class DelivererRepository <T extends Deliverer> extends AbstractRepositor
     }
 
     @Override
-    public List<T> findAll() {
-        List<T> deliverers = new ArrayList<>();
+    public Set<T> findAll() {
+        Set<T> deliverers = new HashSet<>();
 
         try{
             Stream<String> stream = Files.lines(Path.of(DELIVERERS_FILE_PATH));

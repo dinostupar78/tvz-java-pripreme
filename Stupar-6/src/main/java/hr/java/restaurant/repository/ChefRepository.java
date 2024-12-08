@@ -1,13 +1,16 @@
 package hr.java.restaurant.repository;
+
 import hr.java.restaurant.model.Bonus;
 import hr.java.restaurant.model.Chef;
 import hr.java.restaurant.model.Contract;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,8 +33,8 @@ public class ChefRepository <T extends Chef> extends AbstractRepository<T>{
     }
 
     @Override
-    public List<T> findAll() {
-        List<T> chefs = new ArrayList<>();
+    public Set<T> findAll() {
+        Set<T> chefs = new HashSet<>();
 
         try{
             Stream<String> stream = Files.lines(Path.of(CHEFS_FILE_PATH));

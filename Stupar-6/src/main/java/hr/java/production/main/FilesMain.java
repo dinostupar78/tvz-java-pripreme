@@ -48,7 +48,12 @@ public class FilesMain {
         Restaurant restaurant = restaurantRepository.findById(3L);
         System.out.println(restaurant.getMeals());
 
+        OrderRepository<Order> orderRepository = new OrderRepository<>(restaurantRepository, mealsRepository, delivererRepository);
+        Order order = orderRepository.findById(1L);
+        System.out.println(order.getRestaurant());
+
 
 
     }
 }
+

@@ -15,6 +15,7 @@ public class FilesMain {
         IngredientRepository<Ingredient> ingredientRepository = new IngredientRepository<>(categoryRepository);
         Ingredient ingredient = ingredientRepository.findById(1L);
         System.out.println(ingredient.getName());
+        List<Ingredient> ingredients = ingredientRepository.findAll();
 
 
         MealsRepository<Meal> mealsRepository = new MealsRepository<>(categoryRepository);
@@ -42,6 +43,10 @@ public class FilesMain {
         AddressRepository<Address> addressRepository = new AddressRepository<>();
         Address address = addressRepository.findById(1L);
         System.out.println(address.getStreet());
+
+        RestaurantRepository<Restaurant> restaurantRepository = new RestaurantRepository<>(addressRepository, mealsRepository, chefRepository, waiterRepository, delivererRepository);
+        Restaurant restaurant = restaurantRepository.findById(3L);
+        System.out.println(restaurant.getMeals());
 
 
 

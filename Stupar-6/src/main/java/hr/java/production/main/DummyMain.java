@@ -46,16 +46,16 @@ public class DummyMain {
         )), new BigDecimal("12.99"), 1200));
 
         Set<Chef> chefs = new HashSet<>();
-        chefs.add(new Chef(1L, "John", "Doe", new Contract(new BigDecimal("2000.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.FULL_TIME), new Bonus(new BigDecimal("100.00"))));
-        chefs.add(new Chef(2L, "Alice", "Brown", new Contract(new BigDecimal("2500.00"), LocalDate.now(), LocalDate.now().plusYears(1), ContractType.FULL_TIME), new Bonus(new BigDecimal("200.00"))));
+        chefs.add(new Chef(1L, "John", "Doe", new Contract(1L, new BigDecimal("2000.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.FULL_TIME), new Bonus(new BigDecimal("100.00"))));
+        chefs.add(new Chef(2L, "Alice", "Brown", new Contract(2L, new BigDecimal("2500.00"), LocalDate.now(), LocalDate.now().plusYears(1), ContractType.FULL_TIME), new Bonus(new BigDecimal("200.00"))));
 
         Set<Waiter> waiters = new HashSet<>();
-        waiters.add(new Waiter(1L, "Jane", "Smith", new Contract(new BigDecimal("1500.00"), LocalDate.now(), LocalDate.now().plusMonths(12), ContractType.PART_TIME), new Bonus(new BigDecimal("50.00"))));
-        waiters.add(new Waiter(2L, "Tom", "White", new Contract(new BigDecimal("1700.00"), LocalDate.now(), LocalDate.now().plusYears(2), ContractType.PART_TIME), new Bonus(new BigDecimal("75.00"))));
+        waiters.add(new Waiter(1L, "Jane", "Smith", new Contract(3L,new BigDecimal("1500.00"), LocalDate.now(), LocalDate.now().plusMonths(12), ContractType.PART_TIME), new Bonus(new BigDecimal("50.00"))));
+        waiters.add(new Waiter(2L, "Tom", "White", new Contract(4L, new BigDecimal("1700.00"), LocalDate.now(), LocalDate.now().plusYears(2), ContractType.PART_TIME), new Bonus(new BigDecimal("75.00"))));
 
         Set<Deliverer> deliverers = new HashSet<>();
-        deliverers.add(new Deliverer(1L, "Mike", "Johnson", new Contract(new BigDecimal("1200.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.PART_TIME), new Bonus(new BigDecimal("30.00"))));
-        deliverers.add(new Deliverer(2L, "Sara", "Davis", new Contract(new BigDecimal("1300.00"), LocalDate.now(), LocalDate.now().plusMonths(8), ContractType.PART_TIME), new Bonus(new BigDecimal("40.00"))));
+        deliverers.add(new Deliverer(1L, "Mike", "Johnson", new Contract(5L, new BigDecimal("1200.00"), LocalDate.now(), LocalDate.now().plusMonths(6), ContractType.PART_TIME), new Bonus(new BigDecimal("30.00"))));
+        deliverers.add(new Deliverer(2L, "Sara", "Davis", new Contract(6L, new BigDecimal("1300.00"), LocalDate.now(), LocalDate.now().plusMonths(8), ContractType.PART_TIME), new Bonus(new BigDecimal("40.00"))));
 
         List<Address> addresses = new ArrayList<>();
         addresses.add(new Address.BuilderAddress(1L)

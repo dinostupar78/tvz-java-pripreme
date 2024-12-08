@@ -5,13 +5,14 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Optional;
 
-public class Contract {
+public class Contract extends Entity {
     private Optional<BigDecimal> salary; // Using Optional to handle null salaries
     private LocalDate startTime;
     private LocalDate endTime;
     private ContractType contractType;
 
-    public Contract(BigDecimal salary, LocalDate startTime, LocalDate endTime, ContractType contractType) {
+    public Contract(Long id, BigDecimal salary, LocalDate startTime, LocalDate endTime, ContractType contractType) {
+        super(id);
         this.salary = Optional.ofNullable(salary);
         this.startTime = startTime;
         this.endTime = endTime;

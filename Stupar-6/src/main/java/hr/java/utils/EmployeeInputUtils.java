@@ -21,7 +21,8 @@ import static hr.java.utils.ExceptionUtils.*;
  */
 
 public class EmployeeInputUtils {
-    private static long chefIdCounter = 0, waiterIdCounter = 0, delivererIdCounter = 0;
+    private static long chefIdCounter = 0, waiterIdCounter = 0, delivererIdCounter = 0,
+    chefContractIdCounter = 0, waiterContractIdCounter = 0, delivererContractIdCounter = 0;
 
     /**
      * Unos podataka za kuhara. Provodi validaciju unosa, uključujući provjeru duplikata.
@@ -68,6 +69,8 @@ public class EmployeeInputUtils {
                 }
             }
         } while(!isValid);
+
+        long chefContractId = chefContractIdCounter++;
 
         do {
             isValid = true;
@@ -129,7 +132,7 @@ public class EmployeeInputUtils {
             }
         } while (!isValid);
 
-        Contract chefContract = new Contract(chefSalary, contractStartTime, contractEndTime, contractType);
+        Contract chefContract = new Contract(chefContractId, chefSalary, contractStartTime, contractEndTime, contractType);
         Bonus chefBonus = new Bonus(new BigDecimal(100.00));
         long id = chefIdCounter++;
 
@@ -187,6 +190,8 @@ public class EmployeeInputUtils {
                 }
             }
         } while(!isValid);
+
+        long waiterContractId = waiterContractIdCounter++;
 
         do{
             isValid = true;
@@ -247,7 +252,7 @@ public class EmployeeInputUtils {
             }
         } while(!isValid);
 
-        Contract waiterContract = new Contract(waiterSalary, contractStartTime, contractEndTime, contractType);
+        Contract waiterContract = new Contract(waiterContractId, waiterSalary, contractStartTime, contractEndTime, contractType);
         Bonus waiterBonus = new Bonus(new BigDecimal(100.00));
         long id = waiterIdCounter++;
 
@@ -305,6 +310,8 @@ public class EmployeeInputUtils {
                 }
             }
         } while (!isValid);
+
+        long delivererContractId = delivererContractIdCounter++;
 
         do{
             isValid = true;
@@ -365,7 +372,7 @@ public class EmployeeInputUtils {
             }
         } while(!isValid);
 
-        Contract delivererContract = new Contract(delivererSalary, contractStartTime, contractEndTime, contractType);
+        Contract delivererContract = new Contract(delivererContractId, delivererSalary, contractStartTime, contractEndTime, contractType);
         Bonus delivererBonus = new Bonus(new BigDecimal(100.00));
         long id = delivererIdCounter++;
 

@@ -1,11 +1,7 @@
 package hr.java.production.main;
 
-import hr.java.restaurant.model.Category;
-import hr.java.restaurant.model.Ingredient;
-import hr.java.restaurant.model.Meal;
-import hr.java.restaurant.repository.CategoryRepository;
-import hr.java.restaurant.repository.IngredientRepository;
-import hr.java.restaurant.repository.MealsRepository;
+import hr.java.restaurant.model.*;
+import hr.java.restaurant.repository.*;
 
 import java.util.List;
 
@@ -26,6 +22,26 @@ public class FilesMain {
         List<Meal> meals = mealsRepository.findAll();
         System.out.println(meal.getName());
         meals.forEach(System.out::println);
+
+        ContractRepository<Contract> contractRepository = new ContractRepository<>();
+        Contract contract = contractRepository.findById(2L);
+        System.out.println(contract.getContractType());
+
+        ChefRepository<Chef> chefRepository = new ChefRepository<>(contractRepository);
+        Chef chef = chefRepository.findById(1L);
+        System.out.println(chef.getFirstName());
+
+        WaiterRepository<Waiter> waiterRepository = new WaiterRepository<>(contractRepository);
+        Waiter waiter = waiterRepository.findById(1L);
+        System.out.println(waiter.getFirstName());
+
+        DelivererRepository<Deliverer> delivererRepository = new DelivererRepository<>(contractRepository);
+        Deliverer deliverer = delivererRepository.findById(1L);
+        System.out.println(deliverer.getFirstName());
+
+        AddressRepository<Address> addressRepository = new AddressRepository<>();
+        Address address = addressRepository.findById(1L);
+        System.out.println(address.getStreet());
 
 
 

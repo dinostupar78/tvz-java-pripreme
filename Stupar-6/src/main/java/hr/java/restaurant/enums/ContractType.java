@@ -1,6 +1,8 @@
 package hr.java.restaurant.enums;
 
-public enum ContractType {
+import java.io.Serializable;
+
+public enum ContractType implements Serializable {
     FULL_TIME,
     PART_TIME,
     NOT_DEFINED

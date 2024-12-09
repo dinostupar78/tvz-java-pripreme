@@ -1,5 +1,6 @@
 package hr.java.restaurant.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Objects;
@@ -11,7 +12,7 @@ import java.util.SortedSet;
  * Ova klasa omogućuje pohranu i manipulaciju informacijama o obrocima koji se nude u restoranu.
  */
 
-public class Meal extends Entity {
+public class Meal extends Entity implements Serializable {
     private String name;
     private Category category;
     private Set<Ingredient> ingredient = new HashSet<Ingredient>();

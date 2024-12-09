@@ -1,12 +1,14 @@
 package hr.java.restaurant.model;
 
+import java.io.Serializable;
+
 /**
  * Apstraktna klasa koja predstavlja osnovnu entitetu s jedinstvenim identifikatorom (ID).
  * Ova klasa služi kao osnovna klasa za druge entitete u sustavu, omogućujući im da dijele
  * zajednički atribut ID i metode za njegovu manipulaciju.
  */
 
-public abstract class Entity {
+public abstract class Entity implements Serializable {
     private Long id;
 
     public Entity(Long id) {

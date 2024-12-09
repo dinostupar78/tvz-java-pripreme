@@ -1,5 +1,6 @@
 package hr.java.restaurant.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Objects;
  * Također, omogućuje kreiranje objekata konobara pomoću obrasca dizajnera (Builder pattern).
  */
 
-public class Waiter extends Person{
+public class Waiter extends Person implements Serializable {
     private Contract contract;
     private Bonus bonusKonobara;
 

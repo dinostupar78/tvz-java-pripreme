@@ -1,4 +1,5 @@
 package hr.java.restaurant.model;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -7,7 +8,7 @@ import java.util.Objects;
  * Ova klasa omogućuje pohranu i manipulaciju informacijama o sastojcima koji se koriste u jelima.
  */
 
-public class Ingredient extends Entity{
+public class Ingredient extends Entity implements Serializable {
     private String name;
     private Category category;
     private BigDecimal kcal;

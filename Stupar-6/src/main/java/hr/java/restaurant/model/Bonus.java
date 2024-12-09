@@ -1,4 +1,5 @@
 package hr.java.restaurant.model;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -8,7 +9,7 @@ import java.math.BigDecimal;
  * @param iznosBonusaNaOsnovnuPlacu Iznos bonusa koji se dodaje na osnovnu plaću zaposlenika.
  */
 
-public record Bonus(BigDecimal iznosBonusaNaOsnovnuPlacu) {
+public record Bonus(BigDecimal iznosBonusaNaOsnovnuPlacu) implements Serializable {
 
 }
 

@@ -1,5 +1,6 @@
 package hr.java.restaurant.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
  * Također omogućuje izračun ukupne cijene narudžbe temeljem cijena pojedinačnih jela.
  */
 
-public class Order extends Entity{
+public class Order extends Entity implements Serializable {
     private Restaurant restaurant;
     private List<Meal> meals = new ArrayList<>();
     private Deliverer deliverer;

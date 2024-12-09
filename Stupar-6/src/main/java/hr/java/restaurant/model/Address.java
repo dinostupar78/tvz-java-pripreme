@@ -1,5 +1,7 @@
 package hr.java.restaurant.model;
 
+import java.io.Serializable;
+
 /**
  * Predstavlja adresu u sustavu.
  * Klasa se koristi za pohranu podataka o ulici, broju kuće, gradu i poštanskoj broju.
@@ -7,7 +9,7 @@ package hr.java.restaurant.model;
  * Ova klasa također koristi dizajner (Builder pattern) za jednostavno stvaranje objekta Adresa.
  */
 
-public class Address extends Entity{
+public class Address extends Entity implements Serializable {
     private String street;
     private String houseNumber;
     private String city;

@@ -186,7 +186,7 @@ public class Main {
         return RestaurantInputUtils.orderInput(scanner, genericRestaurantList, meals, deliverers);
     }
 
-    public static Optional<BigDecimal> getSalary(Person employee) {
+    public static BigDecimal getSalary(Person employee) {
         return employee.getContract().getSalary();
     }
 
@@ -210,19 +210,20 @@ public class Main {
 
         for (Person employee : employees) {
             if (employee != null) {
-                // Use Optional to safely handle the salary
-                Optional<BigDecimal> salaryOptional = getSalary(employee);
+                // Assuming getSalary() returns a BigDecimal directly (not Optional)
+                BigDecimal salary = getSalary(employee);
 
-                // If salary is present and greater than the current highestSalary
-                if (salaryOptional.isPresent() && salaryOptional.get().compareTo(highestSalary) > 0) {
+                // Check if salary is not null and greater than the current highestSalary
+                if (salary != null && salary.compareTo(highestSalary) > 0) {
                     highestPaid = employee;
-                    highestSalary = salaryOptional.get();
+                    highestSalary = salary;
                 }
             }
         }
 
         return highestPaid;
     }
+
 
 
     /**

@@ -36,8 +36,8 @@ public class ComparatorUtils {
             //employees.sort(salaryComparator); --> POZIVANJE KOMPARATORA
 
             employees.sort((e1, e2) -> {
-                BigDecimal salary1 = getSalary(e1).orElse(BigDecimal.ZERO); // If salary is absent, treat it as zero
-                BigDecimal salary2 = getSalary(e2).orElse(BigDecimal.ZERO); // Same for the second employee
+                BigDecimal salary1 = getSalary(e1); // If salary is absent, treat it as zero
+                BigDecimal salary2 = getSalary(e2); // Same for the second employee
                 return salary2.compareTo(salary1); // Compare in descending order
             });
             Person highestPaidEmployee = employees.get(0);

@@ -1,5 +1,7 @@
 package hr.java.restaurant.model;
 
+import java.io.Serializable;
+
 /**
  * Apstraktna klasa koja predstavlja osobu u restoranu.
  * Klasa sadrži osnovne informacije o osobi poput imena, prezimena i bonusa,
@@ -7,7 +9,7 @@ package hr.java.restaurant.model;
  * Ova klasa služi kao osnovna klasa za specifične vrste osoba, kao što su kuhar i dostavljač.
  */
 
-public abstract class Person extends Entity {
+public abstract class Person extends Entity implements Serializable {
     private String firstName;
     private String lastName;
     private Bonus bonus;

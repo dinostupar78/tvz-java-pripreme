@@ -1,5 +1,6 @@
 package hr.java.restaurant.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.Set;
  * Ova klasa omogućuje upravljanje restoranom i povezivanje s različitim osobama i obrocima.
  */
 
-public class Restaurant extends Entity {
+public class Restaurant extends Entity implements Serializable {
     private String name;
     private Address address;
     private Set<Meal> meals = new HashSet<>();

@@ -1,5 +1,6 @@
 package hr.java.restaurant.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Objects;
  * te bonusu koji je dodijeljen dostavljaču.
  */
 
-public class Deliverer extends Person {
+public class Deliverer extends Person implements Serializable {
     private Contract contract;
     private int brojDostava;
     private Bonus bonusDostavljaca;

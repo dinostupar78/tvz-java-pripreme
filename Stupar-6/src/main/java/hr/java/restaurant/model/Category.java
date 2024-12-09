@@ -1,12 +1,14 @@
 package hr.java.restaurant.model;
 
+import java.io.Serializable;
+
 /**
  * Predstavlja kategoriju u restoranskom sustavu.
  * Kategorija se koristi za grupiranje jela prema njihovim karakteristikama (npr. "predjelo", "glavno jelo", "desert").
  * Svaka kategorija ima ime i opis koji dodatno pojašnjava njezinu svrhu.
  */
 
-public class Category extends Entity {
+public class Category extends Entity implements Serializable {
     private String name;
     private String description;
 

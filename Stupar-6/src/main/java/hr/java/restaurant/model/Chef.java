@@ -1,5 +1,6 @@
 package hr.java.restaurant.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Objects;
  * Klasa nasljeđuje klasu {@link Person} i dodaje specifične atribute kao što su ugovor i bonus kuhara.
  */
 
-public class Chef extends Person{
+public class Chef extends Person implements Serializable {
 
     private Contract contract;
     private Bonus BonusKuhara;

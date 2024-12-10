@@ -75,7 +75,6 @@ public class DummyMain {
         restaurants.add(new Restaurant(1L, "Restaurant A", addresses.get(0), meals, chefs, waiters, deliverers));
         restaurants.add(new Restaurant(2L, "Restaurant B", addresses.get(1), meals, chefs, waiters, deliverers));
 
-
         List<Order> orders = new ArrayList<>();
         orders.add(new Order(1L, restaurants.get(0), new ArrayList<>(meals), deliverers.iterator().next(), LocalDateTime.now()));
         orders.add(new Order(2L, restaurants.get(1), new ArrayList<>(meals), deliverers.iterator().next(), LocalDateTime.now()));

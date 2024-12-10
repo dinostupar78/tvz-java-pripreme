@@ -1,9 +1,7 @@
 package hr.java.restaurant.repository;
-
 import hr.java.restaurant.model.Bonus;
 import hr.java.restaurant.model.Contract;
 import hr.java.restaurant.model.Deliverer;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +13,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+/**
+ * Represents a repository for managing {@link Deliverer} objects.
+ * This class provides methods to retrieve, save, and manage deliverer data from a data source.
+ * @param <T> a type parameter that extends {@link Deliverer}.
+ */
 
 public class DelivererRepository <T extends Deliverer> extends AbstractRepository<T>{
     private static final String DELIVERERS_FILE_PATH = "dat/deliverers.txt";
@@ -37,7 +41,6 @@ public class DelivererRepository <T extends Deliverer> extends AbstractRepositor
     @Override
     public Set<T> findAll() {
         Set<T> deliverers = new HashSet<>();
-
         try{
             Stream<String> stream = Files.lines(Path.of(DELIVERERS_FILE_PATH));
             List<String> fileRows = stream.collect(Collectors.toList());
@@ -62,14 +65,11 @@ public class DelivererRepository <T extends Deliverer> extends AbstractRepositor
                         .build();
 
                 deliverers.add(deliverer);
-
-
             }
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         return deliverers;
     }
 

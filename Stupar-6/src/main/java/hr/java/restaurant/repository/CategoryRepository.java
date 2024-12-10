@@ -1,7 +1,5 @@
 package hr.java.restaurant.repository;
-
 import hr.java.restaurant.model.Category;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +10,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+/**
+ * Represents a repository for managing {@link Category} objects.
+ * This class provides methods to retrieve, save, and manage categories from a data source.
+ * @param <T> a type parameter that extends {@link Category}.
+ */
 
 public class CategoryRepository <T extends Category> extends AbstractRepository<T>{
 
@@ -28,7 +32,6 @@ public class CategoryRepository <T extends Category> extends AbstractRepository<
 
     public Set<T> findAll() {
         Set<T> categories = new HashSet<>();
-
         try{
             Stream<String> stream = Files.lines(Path.of(CATEGORIES_FILE_PATH));
             List<String> fileRows = stream.collect(Collectors.toList());
@@ -46,7 +49,6 @@ public class CategoryRepository <T extends Category> extends AbstractRepository<
         }
         return categories;
     }
-
 
     @Override
     public void save(List<T> entities) {

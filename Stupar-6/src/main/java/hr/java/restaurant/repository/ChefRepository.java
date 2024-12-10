@@ -1,9 +1,7 @@
 package hr.java.restaurant.repository;
-
 import hr.java.restaurant.model.Bonus;
 import hr.java.restaurant.model.Chef;
 import hr.java.restaurant.model.Contract;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +13,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+/**
+ * Represents a repository for managing {@link Chef} objects.
+ * This class provides methods to retrieve, save, and manage chefs from a data source.
+ * @param <T> <T> a type parameter that extends {@link Chef}.
+ */
 
 public class ChefRepository <T extends Chef> extends AbstractRepository<T>{
     private static final String CHEFS_FILE_PATH = "dat/chefs.txt";
@@ -60,16 +64,12 @@ public class ChefRepository <T extends Chef> extends AbstractRepository<T>{
                         .chefContract(contract)
                         .chefBonusKuhara(chefBonus)
                         .build();
-
                 chefs.add(chef);
-
-
             }
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         return chefs;
     }
 

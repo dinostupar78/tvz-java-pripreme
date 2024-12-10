@@ -1,7 +1,5 @@
 package hr.java.restaurant.repository;
-
 import hr.java.restaurant.model.Address;
-
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -10,6 +8,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+/**
+ * Represents a repository for managing {@link Address} objects.
+ * This class provides methods to retrieve, save, and manage addresses from a data source.
+ * @param <T> a type parameter that extends {@link Address}.
+ */
 
 public class AddressRepository <T extends Address> extends AbstractRepository<T> {
     private static final String ADDRESSES_FILE_PATH = "dat/addresses.txt";
@@ -45,14 +49,12 @@ public class AddressRepository <T extends Address> extends AbstractRepository<T>
                         .atCity(city)
                         .atPostalCode(postalCode)
                         .build();
-
                 addresses.add(address);
             }
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
         return addresses;
     }
 

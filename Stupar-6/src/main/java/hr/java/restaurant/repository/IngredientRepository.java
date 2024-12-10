@@ -15,6 +15,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Represents a repository for managing {@link Ingredient} objects.
+ * This class provides methods for retrieving, saving, and managing ingredients from a data source.
+ * @param <T> <T> a type parameter that extends {@link Ingredient}.
+ */
+
 public class IngredientRepository <T extends Ingredient> extends AbstractRepository<T>{
 
     private static final String INGREDIENTS_FILE_PATH = "dat/ingredients.txt";

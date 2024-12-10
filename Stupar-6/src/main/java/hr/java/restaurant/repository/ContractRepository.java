@@ -1,8 +1,6 @@
 package hr.java.restaurant.repository;
-
 import hr.java.restaurant.enums.ContractType;
 import hr.java.restaurant.model.Contract;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -14,6 +12,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+/**
+ * Represents a repository for managing {@link Contract} objects.
+ * This class provides methods to retrieve, save, and manage contracts from a data source.
+ * @param <T> a type parameter that extends {@link Contract}.
+ */
 
 public class ContractRepository <T extends Contract> extends AbstractRepository<T>{
     private static final String CONTRACTS_FILE_PATH = "dat/contracts.txt";
@@ -30,7 +34,6 @@ public class ContractRepository <T extends Contract> extends AbstractRepository<
     @Override
     public Set<T> findAll() {
         Set<T> contracts = new HashSet<>();
-
         try{
             Stream<String> stream = Files.lines(Path.of(CONTRACTS_FILE_PATH));
             List<String> fileRows = stream.collect(Collectors.toList());
@@ -49,7 +52,6 @@ public class ContractRepository <T extends Contract> extends AbstractRepository<
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         return contracts;
     }
 

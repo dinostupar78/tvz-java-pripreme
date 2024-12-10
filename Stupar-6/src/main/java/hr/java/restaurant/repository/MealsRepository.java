@@ -1,9 +1,7 @@
 package hr.java.restaurant.repository;
-
 import hr.java.restaurant.model.Category;
 import hr.java.restaurant.model.Ingredient;
 import hr.java.restaurant.model.Meal;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
@@ -11,6 +9,12 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+/**
+ * Represents a repository for managing {@link Meal} objects.
+ * This class provides methods to retrieve meals from a data source.
+ * @param <T> a type parameter that extends {@link Meal}.
+ */
 
 public class MealsRepository <T extends Meal> extends AbstractRepository<T>{
     private static final String MEALS_FILE_PATH = "dat/meals.txt";
@@ -33,7 +37,6 @@ public class MealsRepository <T extends Meal> extends AbstractRepository<T>{
     @Override
    public Set<T> findAll() {
         Set<T> meals = new HashSet<>();
-
         try{
             Stream<String> stream = Files.lines(Path.of(MEALS_FILE_PATH));
             List<String> fileRows = stream.collect(Collectors.toList());
@@ -58,9 +61,6 @@ public class MealsRepository <T extends Meal> extends AbstractRepository<T>{
 
                 Meal meal = new Meal(id, name, category, ingredients, price, calories);
                 meals.add((T) meal);
-
-
-
             }
 
         } catch (IOException e) {

@@ -1,10 +1,10 @@
 package hr.java.restaurant.repository;
-
 import hr.java.restaurant.model.Deliverer;
 import hr.java.restaurant.model.Meal;
 import hr.java.restaurant.model.Order;
 import hr.java.restaurant.model.Restaurant;
-
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -15,6 +15,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+/**
+ * Repository for managing orders in the restaurant system.
+ * Provides functionality for reading orders from a file, saving orders to a file,
+ * and retrieving orders based on their ID.
+ * @param <T> The type of the order, extending the Order class.
+ */
 
 public class OrderRepository <T extends Order> extends AbstractRepository<T>{
     private static final String ORDERS_FILE_PATH = "dat/orders.txt";
@@ -76,7 +83,31 @@ public class OrderRepository <T extends Order> extends AbstractRepository<T>{
     }
 
     @Override
-    void save(List<T> entities) {
+    public void save(List<T> entities) {
+        try(PrintWriter writer = new PrintWriter(ORDERS_FILE_PATH)){
+            for(T entity : entities){
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                writer.println(entity.getId());
+                writer.println(entity.getRestaurant().getId());
 
+                int countMeals = 0;
+                StringBuilder mealsIdBuilder = new StringBuilder();
+                for(Meal meal : entity.getMeals()){
+                    mealsIdBuilder.append(meal.getId());
+                    countMeals++;
+                    if(countMeals < entity.getMeals().size()){
+                        mealsIdBuilder.append(",");
+                    }
+                }
+                writer.println(mealsIdBuilder);
+                writer.println(entity.getDeliverer().getId());
+                String formattedDateTime = entity.getDeliveryDateAndTime().format(formatter);
+                writer.println(formattedDateTime);
+
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("Failed to save entities to file: " + ORDERS_FILE_PATH, e);
+        }
     }
 }

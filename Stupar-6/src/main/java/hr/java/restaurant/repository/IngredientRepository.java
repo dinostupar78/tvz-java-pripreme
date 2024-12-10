@@ -74,7 +74,7 @@ public class IngredientRepository <T extends Ingredient> extends AbstractReposit
             for(T entity : entities){
                 writer.println(entity.getId());
                 writer.println(entity.getName());
-                writer.println(entity.getCategory());
+                writer.println(entity.getCategory().getId());
                 writer.println(entity.getKcal());
                 writer.println(entity.getPreparationMethod());
             }

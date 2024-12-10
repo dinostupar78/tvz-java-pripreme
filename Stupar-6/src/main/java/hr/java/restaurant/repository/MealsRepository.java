@@ -2,7 +2,10 @@ package hr.java.restaurant.repository;
 import hr.java.restaurant.model.Category;
 import hr.java.restaurant.model.Ingredient;
 import hr.java.restaurant.model.Meal;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -71,6 +74,30 @@ public class MealsRepository <T extends Meal> extends AbstractRepository<T>{
 
     @Override
     public void save(List<T> entities) {
+        try(PrintWriter writer = new PrintWriter(MEALS_FILE_PATH)){
+            for(T entity : entities){
+                writer.println(entity.getId());
+                writer.println(entity.getName());
+                writer.println(entity.getCategory().getId());
+
+                int countIngredients = 0;
+                StringBuilder ingredientsIdBuilder = new StringBuilder();
+                for(Ingredient ingredient : entity.getIngredient()){
+                    ingredientsIdBuilder.append(ingredient.getId());
+                    countIngredients++;
+                    if(countIngredients < entity.getIngredient().size()){
+                        ingredientsIdBuilder.append(",");
+                    }
+                }
+
+                writer.println(ingredientsIdBuilder);
+                writer.println(entity.getPrice());
+                writer.println(entity.getCalories());
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("Failed to save entities to file: " + MEALS_FILE_PATH, e);
+        }
 
     }
 }

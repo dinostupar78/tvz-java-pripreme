@@ -28,4 +28,3 @@ Cheeseburger
 2,4
 9.50
 400
-

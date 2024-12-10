@@ -1,15 +1,15 @@
 package hr.java.production.main;
 
-import hr.java.restaurant.enums.ContractType;
 import hr.java.restaurant.generics.RestaurantLabourExchangeOffice;
 import hr.java.restaurant.model.*;
 import hr.java.restaurant.repository.*;
 import hr.java.utils.ComparatorUtils;
 import hr.java.utils.LambdaUtils;
 
-import java.io.*;
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 import static hr.java.production.main.Main.*;
@@ -145,37 +145,6 @@ public class FilesMain {
         }catch(Exception e){
             e.printStackTrace();
         }
-
-        Contract contract11 = new Contract(6L, new BigDecimal(3000), LocalDate.now(), LocalDate.now().plusYears(3), ContractType.FULL_TIME);
-        Contract contract22 = new Contract(7L, new BigDecimal(3000), LocalDate.now(), LocalDate.now().plusYears(3), ContractType.FULL_TIME);
-
-        Waiter de1 = new Waiter(6L, "John", "Doe", contract11, new Bonus(new BigDecimal(500)));
-        Waiter de2 = new Waiter(7L, "Jane", "Smith", contract22, new Bonus(new BigDecimal(500)));
-
-        Category mainCourse = new Category(1L, "Main Course", "Hot meals");
-        Category desserts = new Category(2L, "Desserts", "Sweet dishes");
-
-        Ingredient ingredient1 = new Ingredient(1L, "Tomato", mainCourse, new BigDecimal("0.50"), "Fresh");
-        Ingredient ingredient2 = new Ingredient(2L, "Cheese", desserts, new BigDecimal("1.00"), "Grated");
-
-        List<Ingredient> ingredients1 = new ArrayList<>();
-        List<Contract> contracts1 = new ArrayList<>();
-        ingredients1.add(ingredient1);
-        ingredients1.add(ingredient2);
-
-
-
-        ingredientRepository.save(ingredients1);
-
-
-
-
-
-
-
-
-
-
 
     }
 }

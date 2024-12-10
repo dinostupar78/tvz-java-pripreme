@@ -1,13 +1,19 @@
 package hr.java.restaurant.repository;
-
 import hr.java.restaurant.model.*;
-
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+/**
+ * Repository class responsible for managing restaurant entities.
+ * Provides methods for saving restaurants to a file and reading restaurants from a file.
+ * @param <T> the type of restaurant that extends the {@link Restaurant} class
+ */
 
 public class RestaurantRepository <T extends Restaurant> extends AbstractRepository<T>{
     private static final String RESTAURANTS_FILE_PATH = "dat/restaurants.txt";
@@ -74,7 +80,6 @@ public class RestaurantRepository <T extends Restaurant> extends AbstractReposit
                         .map(idLong -> delivererRepository.findById(idLong))
                         .collect(Collectors.toSet());
 
-
                 Restaurant restaurant = new Restaurant(id, name, address, meals, chefs, waiters, deliverers);
                 restaurants.add((T) restaurant);
 
@@ -83,12 +88,64 @@ public class RestaurantRepository <T extends Restaurant> extends AbstractReposit
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         return restaurants;
     }
 
     @Override
-    void save(List<T> entities) {
+    public void save(List<T> entities) {
+        try(PrintWriter writer = new PrintWriter(RESTAURANTS_FILE_PATH)){
+            for(T entity : entities){
+                writer.println(entity.getId());
+                writer.println(entity.getName());
+                writer.println(entity.getAddress().getId());
 
+                int countMeals = 0;
+                StringBuilder mealsIdBuilder = new StringBuilder();
+                for(Meal meal : entity.getMeals()){
+                    mealsIdBuilder.append(meal.getId());
+                    countMeals++;
+                    if(countMeals < entity.getMeals().size()){
+                        mealsIdBuilder.append(",");
+                    }
+                }
+                writer.println(mealsIdBuilder);
+
+                int countChefs = 0;
+                StringBuilder chefsIdBuilder = new StringBuilder();
+                for(Chef chef : entity.getChefs()){
+                    chefsIdBuilder.append(chef.getId());
+                    countChefs++;
+                    if(countChefs < entity.getChefs().size()){
+                        chefsIdBuilder.append(",");
+                    }
+                }
+                writer.println(chefsIdBuilder);
+
+                int countWaiters = 0;
+                StringBuilder waitersIdBuilder = new StringBuilder();
+                for(Waiter waiter : entity.getWaiters()){
+                    waitersIdBuilder.append(waiter.getId());
+                    countWaiters++;
+                    if(countWaiters < entity.getWaiters().size()){
+                        waitersIdBuilder.append(",");
+                    }
+                }
+                writer.println(waitersIdBuilder);
+
+                int countDeliverers = 0;
+                StringBuilder deliverersIdBuilder = new StringBuilder();
+                for(Deliverer deliverer : entity.getDeliverers()){
+                    deliverersIdBuilder.append(deliverer.getId());
+                    countDeliverers++;
+                    if(countDeliverers < entity.getDeliverers().size()){
+                        deliverersIdBuilder.append(",");
+                    }
+                }
+                writer.println(deliverersIdBuilder);
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("Failed to save entities to file: " + RESTAURANTS_FILE_PATH, e);
+        }
     }
 }

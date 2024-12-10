@@ -4,6 +4,7 @@ import hr.java.restaurant.enums.ContractType;
 import hr.java.restaurant.model.Contract;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -53,7 +54,19 @@ public class ContractRepository <T extends Contract> extends AbstractRepository<
     }
 
     @Override
-    void save(List<T> entities) {
+    public void save(List<T> entities) {
+        try(PrintWriter writer = new PrintWriter(CONTRACTS_FILE_PATH)){
+            for(T entity : entities){
+                writer.println(entity.getId());
+                writer.println(entity.getSalary());
+                writer.println(entity.getStartTime());
+                writer.println(entity.getEndTime());
+                writer.println(entity.getContractType());
+            }
+            writer.flush();
 
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to save entities to file: " + CONTRACTS_FILE_PATH, e);
+        }
     }
 }

@@ -50,15 +50,14 @@ public class CategoryRepository <T extends Category> extends AbstractRepository<
 
     @Override
     public void save(List<T> entities) {
-
-        try {
-            PrintWriter writer = new PrintWriter(CATEGORIES_FILE_PATH);
+        try(PrintWriter writer = new PrintWriter(CATEGORIES_FILE_PATH);) {
             for(T entity : entities){
                 writer.println(entity.getId());
                 writer.println(entity.getName());
                 writer.println(entity.getDescription());
             }
             writer.flush();
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

@@ -58,8 +58,7 @@ public class AddressRepository <T extends Address> extends AbstractRepository<T>
 
     @Override
     public void save(List<T> entities) {
-        try {
-            PrintWriter writer = new PrintWriter(ADDRESSES_FILE_PATH);
+        try(PrintWriter writer = new PrintWriter(ADDRESSES_FILE_PATH);) {
             for(T entity : entities){
                 writer.println(entity.getId());
                 writer.println(entity.getStreet());
@@ -68,6 +67,7 @@ public class AddressRepository <T extends Address> extends AbstractRepository<T>
                 writer.println(entity.getPostalCode());
             }
             writer.flush();
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

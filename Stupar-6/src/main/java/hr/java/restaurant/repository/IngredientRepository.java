@@ -3,7 +3,6 @@ package hr.java.restaurant.repository;
 import hr.java.restaurant.model.Category;
 import hr.java.restaurant.model.Ingredient;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -64,9 +63,8 @@ public class IngredientRepository <T extends Ingredient> extends AbstractReposit
     }
 
     @Override
-    void save(List<T> entities) {
-        try {
-            PrintWriter writer = new PrintWriter(new File(INGREDIENTS_FILE_PATH));
+    public void save(List<T> entities) {
+        try(PrintWriter writer = new PrintWriter(INGREDIENTS_FILE_PATH)) {
             for(T entity : entities){
                 writer.println(entity.getId());
                 writer.println(entity.getName());
@@ -75,9 +73,9 @@ public class IngredientRepository <T extends Ingredient> extends AbstractReposit
                 writer.println(entity.getPreparationMethod());
             }
             writer.flush();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("Failed to save entities to file: " + INGREDIENTS_FILE_PATH, e);
+        }
     }
 }

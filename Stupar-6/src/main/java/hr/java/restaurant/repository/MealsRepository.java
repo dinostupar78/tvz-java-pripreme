@@ -70,7 +70,7 @@ public class MealsRepository <T extends Meal> extends AbstractRepository<T>{
     }
 
     @Override
-    void save(List<T> entities) {
+    public void save(List<T> entities) {
 
     }
 }

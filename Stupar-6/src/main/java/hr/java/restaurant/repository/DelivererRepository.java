@@ -4,7 +4,9 @@ import hr.java.restaurant.model.Bonus;
 import hr.java.restaurant.model.Contract;
 import hr.java.restaurant.model.Deliverer;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -72,7 +74,23 @@ public class DelivererRepository <T extends Deliverer> extends AbstractRepositor
     }
 
     @Override
-    void save(List<T> entities) {
+    public void save(List<T> entities) { // RADI
+        try(PrintWriter writer = new PrintWriter(DELIVERERS_FILE_PATH)){
+            for(T entity : entities){
+                if (entity.getContract() == null) {
+                    throw new NullPointerException("Entity " + entity.getId() + " has no contract.");
+                }
+                writer.println(entity.getId());
+                writer.println(entity.getFirstName());
+                writer.println(entity.getLastName());
+                writer.println(entity.getContract().getId());
+                writer.println(entity.getBonus());
 
+            }
+            writer.flush();
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("Failed to save entities to file: " + DELIVERERS_FILE_PATH, e);
+        }
     }
 }

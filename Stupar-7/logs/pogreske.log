@@ -1,0 +1,356 @@
+2024-11-11 22:14:11,941 INFO [main] h.j.p.m.Main [Main.java:44] The application is started...
+2024-11-11 22:14:56,467 INFO [main] h.j.p.m.Main [Main.java:44] The application is started...
+2024-11-11 22:15:21,277 INFO [main] h.j.p.m.Main [DataInputUtils.java:73] Sastojak s nazivom 'persin' već postoji.
+2024-11-11 22:15:51,132 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:29] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-11 22:15:54,190 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:76] Krivi unos, unesite ispravne podatke za sastojke.
+2024-11-11 22:15:57,822 INFO [main] h.j.p.m.Main [DataInputUtils.java:151] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-11 22:16:01,559 INFO [main] h.j.p.m.Main [DataInputUtils.java:130] Jelo s nazivom 'dsadad' već postoji.
+2024-11-11 22:16:03,256 INFO [main] h.j.p.m.Main [DataInputUtils.java:130] Jelo s nazivom 'dsadad' već postoji.
+2024-11-11 22:16:20,881 INFO [main] h.j.p.m.Main [DataInputUtils.java:130] Jelo s nazivom 'dsadada' već postoji.
+2024-11-11 22:16:35,770 INFO [main] h.j.p.m.Main [DataInputUtils.java:130] Jelo s nazivom 'dsadad' već postoji.
+2024-11-11 22:16:47,149 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:67] Plaća mora biti između 500 i 5000.
+2024-11-11 22:16:52,258 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:67] Plaća mora biti između 500 i 5000.
+2024-11-11 22:17:06,005 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:32] Kuhar s nazivom 'Pero' već postoji.
+2024-11-11 22:17:09,189 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:49] Kuhar s nazivom 'Peric' već postoji.
+2024-11-11 22:17:12,403 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:67] Plaća mora biti između 500 i 5000.
+2024-11-11 22:17:14,484 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:67] Plaća mora biti između 500 i 5000.
+2024-11-11 22:17:30,439 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:67] Plaća mora biti između 500 i 5000.
+2024-11-11 22:18:04,958 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:255] Plaća mora biti između 500 i 5000.
+2024-11-11 22:18:42,289 INFO [main] h.j.p.m.Main [RestaurantInputUtils.java:36] Restoran s nazivom 'camino' već postoji.
+2024-11-11 22:19:08,616 INFO [main] h.j.p.m.Main [RestaurantInputUtils.java:149] Krivi unos, unesite ispravne podatke za dostavljača.
+2024-11-11 22:19:30,186 INFO [main] h.j.p.m.Main [RestaurantInputUtils.java:178] Neispravan format datuma i vremena. Pokušajte ponovo.
+2024-11-11 22:19:34,034 INFO [main] h.j.p.m.Main [RestaurantInputUtils.java:178] Neispravan format datuma i vremena. Pokušajte ponovo.
+2024-11-11 23:18:52,939 INFO [main] h.j.p.m.Main [Main.java:55] The application is started...
+2024-11-11 23:19:19,874 INFO [main] h.j.p.m.Main [DataInputUtils.java:94] Sastojak s nazivom 'dsadad' već postoji.
+2024-11-11 23:19:31,319 INFO [main] h.j.p.m.Main [DataInputUtils.java:154] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-16 18:23:26,997 INFO [main] h.j.p.m.Main [Main.java:55] The application is started...
+2024-11-19 20:31:08,553 INFO [main] h.j.p.m.Main [Main.java:60] The application is started...
+2024-11-19 20:31:18,395 INFO [main] h.j.p.m.Main [DataInputUtils.java:51] Kategorija s nazivom 'dsadad' već postoji.
+2024-11-19 20:41:52,732 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-21 15:50:33,158 INFO [main] h.j.p.m.Main [Main.java:52] The application is started...
+2024-11-21 15:52:14,236 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-21 15:52:31,221 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-21 15:52:39,898 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:79] Plaća mora biti između 500 i 5000.
+2024-11-21 15:52:55,577 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:44] Kuhar s nazivom 'Pero' već postoji.
+2024-11-21 15:52:57,697 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:44] Kuhar s nazivom 'Pero' već postoji.
+2024-11-21 15:53:01,011 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:61] Kuhar s nazivom 'Peric' već postoji.
+2024-11-21 15:53:24,079 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:79] Plaća mora biti između 500 i 5000.
+2024-11-21 15:53:25,811 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:79] Plaća mora biti između 500 i 5000.
+2024-11-21 15:53:47,611 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:144] Konobar s nazivom 'Pero' već postoji.
+2024-11-21 15:54:08,735 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:144] Konobar s nazivom 'Pero' već postoji.
+2024-11-21 15:54:11,013 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:144] Konobar s nazivom 'Dino' već postoji.
+2024-11-21 15:55:41,299 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:179] Plaća mora biti između 500 i 5000.
+2024-11-21 15:55:59,087 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:244] Dostavljač s nazivom 'Pero' već postoji.
+2024-11-21 16:45:10,384 INFO [main] h.j.p.m.Main [Main.java:52] The application is started...
+2024-11-21 16:45:43,831 INFO [main] h.j.p.m.Main [DataInputUtils.java:99] Sastojak s nazivom 'dsadad' već postoji.
+2024-11-21 16:46:44,373 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-21 16:46:52,291 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:79] Plaća mora biti između 500 i 5000.
+2024-11-21 16:47:16,358 INFO [main] h.j.p.m.Main [Main.java:52] The application is started...
+2024-11-21 16:47:50,327 INFO [main] h.j.p.m.Main [Main.java:52] The application is started...
+2024-11-21 16:48:29,132 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-21 16:48:54,855 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:79] Plaća mora biti između 500 i 5000.
+2024-11-21 16:50:35,312 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:195] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-21 16:50:39,816 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:195] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-21 16:53:17,007 INFO [main] h.j.p.m.Main [Main.java:52] The application is started...
+2024-11-21 16:54:51,328 INFO [main] h.j.p.m.Main [Main.java:52] The application is started...
+2024-11-21 16:56:25,845 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,845 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,845 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,845 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,845 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,845 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,845 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,845 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,845 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,845 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,845 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,845 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,846 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,846 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,846 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,846 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,846 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,846 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,846 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,847 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,847 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,847 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,847 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,847 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,847 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,847 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,847 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,847 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,847 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,848 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,848 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,848 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,848 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,848 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,848 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,848 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,848 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,849 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,849 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,849 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,849 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,849 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,849 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,849 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,849 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,850 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,850 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,850 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,850 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,850 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,850 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,850 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,850 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,850 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,850 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,850 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,851 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,851 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,851 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,851 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,851 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,851 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,851 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,851 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,851 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,851 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,852 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,852 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,852 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,852 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,852 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,852 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,852 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,852 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,852 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,852 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,852 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,853 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,853 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,853 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,853 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,853 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,853 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,853 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,853 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,853 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,853 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,853 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,854 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,854 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,854 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:25,854 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 16:56:29,458 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:75] Krivi unos, unesite ispravne podatke za kuhara.
+2024-11-21 17:02:48,797 INFO [main] h.j.p.m.Main [Main.java:52] The application is started...
+2024-11-21 17:03:06,066 INFO [main] h.j.p.m.Main [Main.java:52] The application is started...
+2024-11-21 17:03:34,806 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:79] Plaća mora biti između 500 i 5000.
+2024-11-21 17:03:58,597 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:179] Plaća mora biti između 500 i 5000.
+2024-11-21 19:59:00,507 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-11-21 20:05:42,327 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:144] Konobar s nazivom 'Ivan' već postoji.
+2024-11-21 20:05:44,667 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:144] Konobar s nazivom 'Ivan' već postoji.
+2024-11-21 20:05:49,102 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:161] Konobar s nazivom 'Ivic' već postoji.
+2024-11-21 20:06:16,601 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:279] Plaća mora biti između 500 i 5000.
+2024-11-21 20:06:19,001 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:279] Plaća mora biti između 500 i 5000.
+2024-11-21 20:07:14,740 INFO [main] h.j.p.m.Main [RestaurantInputUtils.java:61] Restoran s nazivom 'Napoli' već postoji.
+2024-11-24 20:38:33,765 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-24 20:39:29,757 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:83] Plaća mora biti između 500 i 5000.
+2024-11-24 20:41:34,147 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-24 20:41:58,386 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:65] Kuhar s nazivom 'dsada' već postoji.
+2024-11-24 20:42:03,077 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:83] Plaća mora biti između 500 i 5000.
+2024-11-24 20:42:09,118 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-24 20:42:35,230 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:65] Kuhar s nazivom 'dsada' već postoji.
+2024-11-24 20:42:39,107 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:83] Plaća mora biti između 500 i 5000.
+2024-11-24 20:42:52,530 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:183] Plaća mora biti između 500 i 5000.
+2024-11-25 18:48:17,583 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-25 18:48:44,039 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-25 18:49:32,099 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:48] Kuhar s nazivom 'Pero' već postoji.
+2024-11-25 18:49:38,838 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:83] Plaća mora biti između 500 i 5000.
+2024-11-25 18:49:40,669 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:83] Plaća mora biti između 500 i 5000.
+2024-11-25 19:02:34,819 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-25 19:02:36,491 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,491 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,491 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,491 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,491 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,493 INFO [main] h.j.p.m.Main [DataInputUtils.java:115] Krivi unos, unesite ispravne podatke za sastojke.
+2024-11-25 19:02:36,494 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,494 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,494 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,494 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,494 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,498 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,498 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,498 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,498 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,498 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,499 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,499 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,499 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,499 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-25 19:02:36,499 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,499 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-25 19:02:36,500 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,500 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-25 19:02:36,500 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,500 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,500 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,500 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,500 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,500 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-25 19:02:36,501 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,501 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,501 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,501 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,501 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,501 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,501 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-25 19:02:36,501 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,501 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,501 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,502 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,502 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,502 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-25 19:02:36,502 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,502 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,502 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,502 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,502 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,502 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,503 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,503 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,503 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,503 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,503 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,503 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:37] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,504 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,504 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,504 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,504 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,504 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,504 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:37] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,504 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,504 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,504 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,505 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,505 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,505 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,505 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:37] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,505 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,505 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,505 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,505 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,505 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,505 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:37] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,505 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,506 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,506 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,506 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,506 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,506 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,506 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,506 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,506 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,506 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,506 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,507 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,507 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,507 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,507 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,507 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,507 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,507 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,507 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,507 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,507 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,507 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,508 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,508 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,508 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,508 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,508 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,508 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,508 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,508 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,508 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,508 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,509 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,509 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,509 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-25 19:02:36,509 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,509 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-25 19:02:36,509 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-25 19:02:36,510 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-25 19:02:36,510 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,510 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,510 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,510 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,510 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:02:36,510 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-25 19:02:36,510 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 19:03:04,863 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-25 19:03:38,915 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:83] Plaća mora biti između 500 i 5000.
+2024-11-25 19:03:53,757 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:48] Kuhar s nazivom 'dsadad' već postoji.
+2024-11-25 19:04:20,986 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-25 19:04:40,378 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-11-25 19:04:47,067 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:83] Plaća mora biti između 500 i 5000.
+2024-11-25 19:05:12,248 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:183] Plaća mora biti između 500 i 5000.
+2024-11-25 19:10:51,701 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-25 19:15:07,058 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-25 19:15:50,755 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:65] Kuhar s nazivom 'dfsfsf' već postoji.
+2024-11-25 19:16:18,432 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:183] Plaća mora biti između 500 i 5000.
+2024-11-25 19:16:57,754 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:146] Krivi unos, unesite ispravne podatke za jelo.
+2024-11-25 22:06:39,114 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-25 22:07:06,911 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:83] Plaća mora biti između 500 i 5000.
+2024-11-25 22:30:35,474 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-26 14:21:58,541 INFO [main] h.j.p.m.Main [Main.java:51] The application is started...
+2024-11-30 16:03:15,321 INFO [main] h.j.p.m.Main [Main.java:49] The application is started...
+2024-11-30 16:06:58,775 INFO [main] h.j.p.m.Main [Main.java:49] The application is started...
+2024-11-30 16:09:06,180 INFO [main] h.j.p.m.Main [Main.java:48] The application is started...
+2024-11-30 16:10:06,063 INFO [main] h.j.p.m.Main [Main.java:48] The application is started...
+2024-11-30 16:10:33,223 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:37] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-11-30 16:10:53,756 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:48] Kuhar s nazivom 'pero' već postoji.
+2024-12-02 14:00:40,555 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-02 14:01:02,552 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-02 15:55:59,118 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-02 15:55:59,580 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-02 15:56:05,979 INFO [main] h.j.p.m.Main [SelectedInputUtils.java:41] Krivi unos, unesite ispravne podatke za kategoriju.
+2024-12-02 15:56:18,126 INFO [main] h.j.p.m.Main [DataInputUtils.java:186] Krivi unos, unesite ispravne podatke za jelo.
+2024-12-02 15:56:30,739 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-12-02 15:56:37,063 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:84] Plaća mora biti između 500 i 5000.
+2024-12-02 15:56:40,920 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:96] Krivi unos, unesite ispravne podatke za datum.
+2024-12-02 16:01:09,915 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-02 16:01:24,750 INFO [main] h.j.p.m.Main [DataInputUtils.java:99] Sastojak s nazivom 'dsada' već postoji.
+2024-12-02 16:01:45,041 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-02 16:02:22,794 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:66] Kuhar s nazivom 'dsada' već postoji.
+2024-12-02 16:02:25,881 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:84] Plaća mora biti između 500 i 5000.
+2024-12-02 16:02:31,527 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:97] Krivi unos, unesite ispravne podatke za datum.
+2024-12-02 16:02:33,796 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:97] Krivi unos, unesite ispravne podatke za datum.
+2024-12-02 16:02:37,206 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:97] Krivi unos, unesite ispravne podatke za datum.
+2024-12-02 16:13:40,488 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-02 16:16:23,847 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:229] Krivi unos, unesite ispravne podatke za datum.
+2024-12-02 16:22:04,091 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-02 16:23:46,646 INFO [main] h.j.p.m.Main [DataInputUtils.java:238] Krivi unos, unesite ispravne podatke za adresu.
+2024-12-02 16:28:18,233 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-02 16:42:08,492 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-02 17:26:40,167 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-02 17:27:01,382 INFO [main] h.j.p.m.Main [DataInputUtils.java:165] Jelo s nazivom 'dsadad' već postoji.
+2024-12-02 17:55:46,712 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-02 17:56:12,733 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:66] Kuhar s nazivom 'dsada' već postoji.
+2024-12-02 17:56:15,239 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:84] Plaća mora biti između 500 i 5000.
+2024-12-02 17:58:11,659 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-02 17:58:36,193 INFO [main] h.j.p.m.Main [DataInputUtils.java:183] Cijena mora biti između 10 i 1000.
+2024-12-02 17:58:42,263 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:66] Kuhar s nazivom 'dsada' već postoji.
+2024-12-02 17:58:44,447 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:84] Plaća mora biti između 500 i 5000.
+2024-12-02 17:58:46,720 INFO [main] h.j.p.m.Main [EmployeeInputUtils.java:84] Plaća mora biti između 500 i 5000.
+2024-12-02 17:59:32,191 INFO [main] h.j.p.m.Main [DataInputUtils.java:238] Krivi unos, unesite ispravne podatke za adresu.
+2024-12-02 19:21:18,586 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-09 17:45:18,427 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-10 12:56:09,903 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-11 14:45:09,509 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-11 14:46:34,451 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...
+2024-12-11 14:46:35,685 INFO [main] h.j.p.m.Main [Main.java:50] The application is started...

@@ -11,6 +11,8 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         stage.setScene(new FirstScreenController().showItemSearchScreen());
         stage.show();
+        stage.setTitle("Restaurant Management Application"); // Set the application title
+        stage.show();
     }
 
 

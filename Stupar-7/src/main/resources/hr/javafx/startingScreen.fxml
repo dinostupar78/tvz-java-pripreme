@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="hr.javafx.controller.FirstScreenController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.controller.FirstScreenController">
    <children>
       <GridPane prefHeight="600.0" prefWidth="800.0">
         <columnConstraints>
@@ -27,22 +27,47 @@
          <children>
             <MenuBar GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
               <menus>
-                <Menu mnemonicParsing="false" text="Category">
+                <Menu mnemonicParsing="false" text="Categories">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Search" onAction="#handleSearchClick"/>
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Ingredients">
                   <items>
                     <MenuItem mnemonicParsing="false" text="Search" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Item">
+                <Menu mnemonicParsing="false" text="Meals">
                   <items>
                     <MenuItem mnemonicParsing="false" text="Search" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Factory">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Search" />
-                  </items>
-                </Menu>
-                  <Menu mnemonicParsing="false" text="Store">
+                  <Menu mnemonicParsing="false" text="Contracts">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Search" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Chefs">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Search" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Waiters">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Search" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Deliverers">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Search" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Restaurants">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Search" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Orders">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Search" />
                      </items>

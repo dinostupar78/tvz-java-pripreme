@@ -1,14 +1,11 @@
 package hr.javafx.main;
-
 import hr.javafx.restaurant.generics.RestaurantLabourExchangeOffice;
 import hr.javafx.restaurant.model.*;
 import hr.javafx.utils.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.math.BigDecimal;
 import java.util.*;
-
 import static hr.javafx.utils.MealRestaurantUtils.*;
 import static hr.javafx.utils.RestaurantInputUtils.restoranInput;
 

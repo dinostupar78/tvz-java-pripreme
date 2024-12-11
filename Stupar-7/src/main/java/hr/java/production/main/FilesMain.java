@@ -30,6 +30,7 @@ public class FilesMain {
         RestaurantRepository<Restaurant> restaurantRepository = new RestaurantRepository<>(addressRepository, mealsRepository, chefRepository, waiterRepository, delivererRepository);
         OrderRepository<Order> orderRepository = new OrderRepository<>(restaurantRepository, mealsRepository, delivererRepository);
 
+
         Set<Contract> contracts = contractRepository.findAll();
         Set<Meal> meals = mealsRepository.findAll();
         Set<Restaurant> restaurants = restaurantRepository.findAll();

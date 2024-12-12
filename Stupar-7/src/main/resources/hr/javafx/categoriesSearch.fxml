@@ -133,12 +133,12 @@
             </Button>
             <TableView fx:id="categoryTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="3">
               <columns>
-                <TableColumn fx:id="categoryTableColumnID" prefWidth="78.0" text="ID" />
-                <TableColumn fx:id="categoryTableColumnName" prefWidth="229.0" text="Name" />
-                  <TableColumn fx:id="categoryTableColumnDescription" prefWidth="492.0" text="Description" />
+                <TableColumn fx:id="categoryColumnID" prefWidth="78.0" text="ID" />
+                <TableColumn fx:id="categoryColumnName" prefWidth="229.0" text="Name" />
+                  <TableColumn fx:id="categoryColumnDescription" prefWidth="492.0" text="Description" />
               </columns>
             </TableView>
-            <TextField fx:id="categoryChoiceBoxID" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="categoryTextFieldID" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" top="-40.0" />
                </GridPane.margin>

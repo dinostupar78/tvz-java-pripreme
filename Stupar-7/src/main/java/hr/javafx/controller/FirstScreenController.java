@@ -1,11 +1,10 @@
 package hr.javafx.controller;
 
 import hr.javafx.main.MainApplication;
+import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuItem;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -21,20 +20,39 @@ public class FirstScreenController {
         return scene;
     }
 
-    public void handleSearchClick(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/javafx/categoriesSearch.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-
-            MenuItem menuItem = (MenuItem) event.getSource();
-            Stage stage = (Stage) ((MenuItem) menuItem).getParentPopup().getOwnerWindow();
-
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace(); // Log and debug any issues with loading the FXML
-        }
+    public void onSearchCategoryClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickCategories(event);
     }
+
+    public void onSearchIngredientClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickIngredients(event);
+    }
+
+    public void onSearchMealClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickMeals(event);
+    }
+
+    public void onSearchContractClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickContracts(event);
+    }
+
+    public void onSearchChefClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickChefs(event);
+    }
+
+    public void onSearchWaiterClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickWaiters(event);
+    }
+
+
+
+
 
 
 

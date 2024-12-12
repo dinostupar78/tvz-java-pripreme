@@ -8,7 +8,7 @@ import java.util.Objects;
  * Ova klasa omogućuje pohranu i manipulaciju informacijama o sastojcima koji se koriste u jelima.
  */
 
-public class Ingredient extends Entity implements Serializable {
+public class    Ingredient extends Entity implements Serializable {
     private String name;
     private Category category;
     private BigDecimal kcal;

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.controller.ChefController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.controller.DelivererController">
    <children>
       <GridPane prefHeight="600.0" prefWidth="800.0">
         <columnConstraints>
@@ -81,7 +81,7 @@
                   </Menu>
               </menus>
             </MenuBar>
-            <Label text="Chefs Search" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+            <Label text="Deliverers Search" GridPane.columnSpan="2" GridPane.halignment="CENTER">
                <font>
                   <Font name="Consolas Bold" size="24.0" />
                </font>
@@ -89,7 +89,7 @@
                   <Insets top="20.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Enter Chef ID:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Label text="Enter Deliverer ID:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="5.0" top="-40.0" />
                </GridPane.margin>
@@ -97,7 +97,7 @@
                   <Font name="Calibri Bold Italic" size="20.0" />
                </font>
             </Label>
-            <Label text="Enter Chef First Name:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Label text="Enter Deliverer First Name:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <font>
                   <Font name="Calibri Bold" size="20.0" />
                </font>
@@ -105,12 +105,12 @@
                   <Insets right="5.0" top="20.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="chefTextFieldFirstName" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="delivererTextFieldFirstName" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" top="20.0" />
                </GridPane.margin>
             </TextField>
-            <Label text="Enter Chef Last Name:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Label text="Enter Deliverer Last Name:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <font>
                   <Font name="Calibri Bold Italic" size="20.0" />
                </font>
@@ -118,7 +118,7 @@
                   <Insets right="5.0" top="-60.0" />
                </GridPane.margin>
             </Label>
-            <Button fx:id="filterChefs" mnemonicParsing="false" onAction="#filterChefs" text="Search" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <Button fx:id="filterDeliverers" mnemonicParsing="false" onAction="#filterDeliverers" text="Search" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets top="10.0" />
                </GridPane.margin>
@@ -126,21 +126,21 @@
                   <Font name="Calibri Bold Italic" size="18.0" />
                </font>
             </Button>
-            <TableView fx:id="chefTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="3">
+            <TableView fx:id="delivererTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="3">
               <columns>
-                <TableColumn fx:id="chefColumnID" prefWidth="78.0" text="ID" />
-                <TableColumn fx:id="chefColumnFirstName" prefWidth="179.0" text="First Name" />
-                  <TableColumn fx:id="chefColumnLastName" prefWidth="208.0" text="Last Name" />
-                  <TableColumn fx:id="chefColumnContract" prefWidth="224.0" text="Contract" />
-                  <TableColumn fx:id="chefColumnBonus" prefWidth="110.0" text="Bonus" />
+                <TableColumn fx:id="delivererColumnID" prefWidth="78.0" text="ID" />
+                <TableColumn fx:id="delivererColumnFirstName" prefWidth="179.0" text="First Name" />
+                  <TableColumn fx:id="delivererColumnLastName" prefWidth="208.0" text="Last Name" />
+                  <TableColumn fx:id="delivererColumnContract" prefWidth="224.0" text="Contract" />
+                  <TableColumn fx:id="delivererColumnBonus" prefWidth="110.0" text="Bonus" />
               </columns>
             </TableView>
-            <TextField fx:id="chefTextFieldID" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="delivererTextFieldID" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" top="-40.0" />
                </GridPane.margin>
             </TextField>
-            <Label text="Enter Chef Contract:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Label text="Enter Deliverer Contract:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <font>
                   <Font name="Calibri Bold Italic" size="20.0" />
                </font>
@@ -148,7 +148,7 @@
                   <Insets right="5.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Enter Chef Bonus:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Label text="Enter Deliverer Bonus:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <font>
                   <Font name="Calibri Bold Italic" size="20.0" />
                </font>
@@ -156,17 +156,17 @@
                   <Insets left="10.0" right="10.0" top="-75.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="chefTextFieldBonus" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="delivererTextFieldBonus" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" top="-75.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="chefTextFieldLastName" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="delivererTextFieldLastName" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" top="-60.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="chefTextFieldContract" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="delivererTextFieldContract" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" top="5.0" />
                </GridPane.margin>

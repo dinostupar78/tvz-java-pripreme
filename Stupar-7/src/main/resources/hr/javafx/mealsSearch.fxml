@@ -39,7 +39,7 @@
                     <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchCategoryClick"/>
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Ingredients"  >
+                <Menu mnemonicParsing="false" text="Ingredients">
                   <items>
                     <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchIngredientClick"/>
                   </items>
@@ -51,32 +51,32 @@
                 </Menu>
                   <Menu mnemonicParsing="false" text="Contracts">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchContractClick"/>
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Chefs">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchChefClick"/>
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Waiters">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchWaiterClick"/>
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Deliverers">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchDelivererClick"/>
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Restaurants">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchRestaurantClick"/>
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Orders">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchOrderClick"/>
                      </items>
                   </Menu>
               </menus>
@@ -110,7 +110,7 @@
                   <Insets left="10.0" right="10.0" top="20.0" />
                </GridPane.margin>
             </TextField>
-            <Label text="Enter MealCategory :" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Label text="Enter Meal Category :" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <font>
                   <Font name="Calibri Bold Italic" size="20.0" />
                </font>

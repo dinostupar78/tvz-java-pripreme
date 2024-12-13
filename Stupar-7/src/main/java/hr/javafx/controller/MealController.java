@@ -36,6 +36,31 @@ public class MealController {
         searchClickUtils.handleSearchClickContracts(event);
     }
 
+    public void onSearchChefClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickChefs(event);
+    }
+
+    public void onSearchWaiterClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickWaiters(event);
+    }
+
+    public void onSearchDelivererClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickDeliverers(event);
+    }
+
+    public void onSearchRestaurantClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickRestaurants(event);
+    }
+
+    public void onSearchOrderClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickOrders(event);
+    }
+
     @FXML
     private TextField mealTextFieldID;
 

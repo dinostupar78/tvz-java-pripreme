@@ -2,6 +2,7 @@ package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Category;
 import hr.javafx.restaurant.repository.CategoryRepository;
+import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,50 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CategoryController {
+    public void onSearchCategoryClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickCategories(event);
+    }
+
+    public void onSearchIngredientClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickIngredients(event);
+    }
+
+    public void onSearchMealClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickMeals(event);
+    }
+
+    public void onSearchContractClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickContracts(event);
+    }
+
+    public void onSearchChefClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickChefs(event);
+    }
+
+    public void onSearchWaiterClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickWaiters(event);
+    }
+
+    public void onSearchDelivererClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickDeliverers(event);
+    }
+
+    public void onSearchRestaurantClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickRestaurants(event);
+    }
+
+    public void onSearchOrderClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickOrders(event);
+    }
 
     @FXML
     private TextField categoryTextFieldID;

@@ -1,9 +1,9 @@
 package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Bonus;
-import hr.javafx.restaurant.model.Chef;
-import hr.javafx.restaurant.repository.ChefRepository;
+import hr.javafx.restaurant.model.Deliverer;
 import hr.javafx.restaurant.repository.ContractRepository;
+import hr.javafx.restaurant.repository.DelivererRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ChefController {
+public class DelivererController {
     public void onSearchCategoryClick(ActionEvent event) {
         HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
         searchClickUtils.handleSearchClickCategories(event);
@@ -62,110 +62,108 @@ public class ChefController {
     }
 
     @FXML
-    private TextField chefTextFieldID;
+    private TextField delivererTextFieldID;
 
     @FXML
-    private TextField chefTextFieldFirstName;
+    private TextField delivererTextFieldFirstName;
 
     @FXML
-    private TextField chefTextFieldLastName;
+    private TextField delivererTextFieldLastName;
 
     @FXML
-    private TextField chefTextFieldContract;
+    private TextField delivererTextFieldContract;
 
     @FXML
-    private TextField chefTextFieldBonus;
+    private TextField delivererTextFieldBonus;
 
     @FXML
-    private TableView<Chef> chefTableView;
+    private TableView<Deliverer> delivererTableView;
 
     @FXML
-    private TableColumn<Chef, String> chefColumnID;
+    private TableColumn<Deliverer, String> delivererColumnID;
 
     @FXML
-    private TableColumn<Chef, String> chefColumnFirstName;
+    private TableColumn<Deliverer, String> delivererColumnFirstName;
 
     @FXML
-    private TableColumn<Chef, String> chefColumnLastName;
+    private TableColumn<Deliverer, String> delivererColumnLastName;
 
     @FXML
-    private TableColumn<Chef, String> chefColumnContract;
+    private TableColumn<Deliverer, String> delivererColumnContract;
 
     @FXML
-    private TableColumn<Chef, String> chefColumnBonus;
+    private TableColumn<Deliverer, String> delivererColumnBonus;
 
     private ContractRepository contractRepository = new ContractRepository();
-    private ChefRepository chefRepository = new ChefRepository<>(contractRepository);
+    private DelivererRepository delivererRepository = new DelivererRepository<>(contractRepository);
 
     public void initialize(){
-        chefColumnID.setCellValueFactory(cellData ->
+        delivererColumnID.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getId()))
         );
 
-        chefColumnFirstName.setCellValueFactory(cellData ->
+        delivererColumnFirstName.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getFirstName()))
         );
 
-        chefColumnLastName.setCellValueFactory(cellData ->
+        delivererColumnLastName.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getLastName()))
         );
 
-        chefColumnContract.setCellValueFactory(cellData ->
+        delivererColumnContract.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getContract().getContractType()))
         );
 
-        chefColumnBonus.setCellValueFactory(cellData -> {
-            Chef chef = cellData.getValue();
-            Bonus bonus = chef.getBonusKuhara();
+        delivererColumnBonus.setCellValueFactory(cellData -> {
+            Deliverer deliverer = cellData.getValue();
+            Bonus bonus = deliverer.getBonusDostavljaca();
             return new SimpleStringProperty(bonus.iznosBonusaNaOsnovnuPlacu().toString());
         });
     }
 
-    public void filterChefs(){
-        Set<Chef> initialChefList = chefRepository.findAll();
+    public void filterDeliverers(){
+        Set<Deliverer> initialDelivererList = delivererRepository.findAll();
 
-        String chefID = chefTextFieldID.getText();
-        if(!chefID.isEmpty()){
-            initialChefList = initialChefList.stream()
-                    .filter(chef -> chef.getId().toString().contains(chefID))
+        String delivererID = delivererTextFieldID.getText();
+        if(!delivererID.isEmpty()){
+            initialDelivererList = initialDelivererList.stream()
+                    .filter(deliverer -> deliverer.getId().toString().contains(delivererID))
                     .collect(java.util.stream.Collectors.toSet());
         }
 
-        String chefFirstName = chefTextFieldFirstName.getText();
-        if(!chefFirstName.isEmpty()){
-            initialChefList = initialChefList.stream()
-                    .filter(chef -> chef.getFirstName().toLowerCase().contains(chefFirstName.toLowerCase()))
+        String delivererFirstName = delivererTextFieldFirstName.getText();
+        if(!delivererFirstName.isEmpty()){
+            initialDelivererList = initialDelivererList.stream()
+                    .filter(deliverer -> deliverer.getFirstName().toLowerCase().contains(delivererFirstName.toLowerCase()))
                     .collect(Collectors.toSet());
         }
 
-        String chefLastName = chefTextFieldLastName.getText();
-        if(!chefLastName.isEmpty()){
-            initialChefList = initialChefList.stream()
-                    .filter(chef -> chef.getLastName().toLowerCase().contains(chefLastName.toLowerCase()))
+        String delivererLastName = delivererTextFieldLastName.getText();
+        if(!delivererLastName.isEmpty()){
+            initialDelivererList = initialDelivererList.stream()
+                    .filter(deliverer -> deliverer.getLastName().toLowerCase().contains(delivererLastName.toLowerCase()))
                     .collect(Collectors.toSet());
         }
 
-        String chefContract = chefTextFieldContract.getText();
-        if(!chefContract.isEmpty()){
-            initialChefList = initialChefList.stream()
-                    .filter(chef -> chef.getContract().getId().toString().contains(chefContract))
+        String delivererContract = delivererTextFieldContract.getText();
+        if(!delivererContract.isEmpty()){
+            initialDelivererList = initialDelivererList.stream()
+                    .filter(deliverer -> deliverer.getContract().getId().toString().contains(delivererContract))
                     .collect(Collectors.toSet());
         }
 
-        String chefBonus = chefTextFieldBonus.getText();
-        if (!chefBonus.isEmpty()) {
-            initialChefList = initialChefList.stream()
-                    .filter(chef -> {
-                        Bonus bonus = chef.getBonusKuhara();
-                        return bonus.iznosBonusaNaOsnovnuPlacu().toString().contains(chefBonus);
+        String delivererBonus = delivererTextFieldBonus.getText();
+        if (!delivererBonus.isEmpty()) {
+            initialDelivererList = initialDelivererList.stream()
+                    .filter(deliverer -> {
+                        Bonus bonus = deliverer.getBonusDostavljaca();
+                        return bonus.iznosBonusaNaOsnovnuPlacu().toString().contains(delivererBonus);
                     })
                     .collect(Collectors.toSet());
         }
 
-        javafx.collections.ObservableList<Chef> chefObservableList = javafx.collections.FXCollections.observableArrayList(initialChefList);
-        chefTableView.setItems(chefObservableList);
+        javafx.collections.ObservableList<Deliverer> delivererObservableList = javafx.collections.FXCollections.observableArrayList(initialDelivererList);
+        delivererTableView.setItems(delivererObservableList);
 
     }
-
-
 }

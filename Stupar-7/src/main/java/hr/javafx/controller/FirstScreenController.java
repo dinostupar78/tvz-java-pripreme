@@ -50,11 +50,19 @@ public class FirstScreenController {
         searchClickUtils.handleSearchClickWaiters(event);
     }
 
+    public void onSearchDelivererClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickDeliverers(event);
+    }
 
+    public void onSearchRestaurantClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickRestaurants(event);
+    }
 
-
-
-
-
+    public void onSearchOrderClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickOrders(event);
+    }
 
 }

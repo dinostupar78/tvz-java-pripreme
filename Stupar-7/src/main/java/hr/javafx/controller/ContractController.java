@@ -2,35 +2,66 @@ package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Contract;
 import hr.javafx.restaurant.repository.ContractRepository;
+import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
-import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ContractController {
-    public void handleSearchClickContracts(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/javafx/mealsSearch.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-
-            MenuItem menuItem = (MenuItem) event.getSource();
-            Stage stage = (Stage) ((MenuItem) menuItem).getParentPopup().getOwnerWindow();
-
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace(); // Log and debug any issues with loading the FXML
-        }
+    public void onSearchCategoryClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickCategories(event);
     }
+
+    public void onSearchIngredientClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickIngredients(event);
+    }
+
+    public void onSearchMealClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickMeals(event);
+    }
+
+    public void onSearchContractClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickContracts(event);
+    }
+
+    public void onSearchChefClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickChefs(event);
+    }
+
+    public void onSearchWaiterClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickWaiters(event);
+    }
+
+    public void onSearchDelivererClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickDeliverers(event);
+    }
+
+    public void onSearchRestaurantClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickRestaurants(event);
+    }
+
+    public void onSearchOrderClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickOrders(event);
+    }
+
 
     @FXML
     private TextField contractTextFieldID;

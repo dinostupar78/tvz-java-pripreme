@@ -56,27 +56,27 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Chefs">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchChefClick"/>
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Waiters">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchWaiterClick"/>
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Deliverers">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchDelivererClick"/>
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Restaurants">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchRestaurantClick"/>
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Orders">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchOrderClick"/>
                      </items>
                   </Menu>
               </menus>

@@ -59,17 +59,17 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Deliverers">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchDelivererClick"/>
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Restaurants">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchRestaurantClick"/>
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Orders">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchOrderClick"/>
                      </items>
                   </Menu>
               </menus>

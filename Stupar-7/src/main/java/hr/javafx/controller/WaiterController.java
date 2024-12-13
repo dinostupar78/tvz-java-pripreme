@@ -36,6 +36,31 @@ public class WaiterController {
         searchClickUtils.handleSearchClickContracts(event);
     }
 
+    public void onSearchChefClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickChefs(event);
+    }
+
+    public void onSearchWaiterClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickWaiters(event);
+    }
+
+    public void onSearchDelivererClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickDeliverers(event);
+    }
+
+    public void onSearchRestaurantClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickRestaurants(event);
+    }
+
+    public void onSearchOrderClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickOrders(event);
+    }
+
     @FXML
     private TextField waiterTextFieldID;
 
@@ -102,36 +127,36 @@ public class WaiterController {
         String waiterID = waiterTextFieldID.getText();
         if(!waiterID.isEmpty()){
             initialWaiterList = initialWaiterList.stream()
-                    .filter(chef -> chef.getId().toString().contains(waiterID))
+                    .filter(waiter -> waiter.getId().toString().contains(waiterID))
                     .collect(java.util.stream.Collectors.toSet());
         }
 
         String waiterFirstName = waiterTextFieldFirstName.getText();
         if(!waiterFirstName.isEmpty()){
             initialWaiterList = initialWaiterList.stream()
-                    .filter(chef -> chef.getFirstName().toLowerCase().contains(waiterFirstName.toLowerCase()))
+                    .filter(waiter -> waiter.getFirstName().toLowerCase().contains(waiterFirstName.toLowerCase()))
                     .collect(Collectors.toSet());
         }
 
         String waiterLastName = waiterTextFieldLastName.getText();
         if(!waiterLastName.isEmpty()){
             initialWaiterList = initialWaiterList.stream()
-                    .filter(chef -> chef.getLastName().toLowerCase().contains(waiterLastName.toLowerCase()))
+                    .filter(waiter -> waiter.getLastName().toLowerCase().contains(waiterLastName.toLowerCase()))
                     .collect(Collectors.toSet());
         }
 
         String waiterContract = waiterTextFieldContract.getText();
         if(!waiterContract.isEmpty()){
             initialWaiterList = initialWaiterList.stream()
-                    .filter(chef -> chef.getContract().getId().toString().contains(waiterContract))
+                    .filter(waiter -> waiter.getContract().getId().toString().contains(waiterContract))
                     .collect(Collectors.toSet());
         }
 
         String waiterBonus = waiterTextFieldBonus.getText();
         if (!waiterBonus.isEmpty()) {
             initialWaiterList = initialWaiterList.stream()
-                    .filter(chef -> {
-                        Bonus bonus = chef.getBonusKonobara();
+                    .filter(waiter -> {
+                        Bonus bonus = waiter.getBonusKonobara();
                         return bonus.iznosBonusaNaOsnovnuPlacu().toString().contains(waiterBonus);
                     })
                     .collect(Collectors.toSet());

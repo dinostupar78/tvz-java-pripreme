@@ -15,7 +15,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.controller.ChefController">
+<VBox alignment="CENTER" spacing="0.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.controller.ChefController">
+    <fx:include source="menuBar.fxml" />
    <children>
       <GridPane prefHeight="600.0" prefWidth="800.0">
         <columnConstraints>
@@ -32,61 +33,12 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <MenuBar GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-              <menus>
-                <Menu mnemonicParsing="false" text="Categories">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchCategoryClick"/>
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Ingredients">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchIngredientClick"/>
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Meals">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchMealClick"/>
-                  </items>
-                </Menu>
-                  <Menu mnemonicParsing="false" text="Contracts">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchContractClick"/>
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Chefs">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchChefClick"/>
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Waiters">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchWaiterClick"/>
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Deliverers">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchDelivererClick"/>
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Restaurants">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchRestaurantClick"/>
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Orders">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchOrderClick"/>
-                     </items>
-                  </Menu>
-              </menus>
-            </MenuBar>
             <Label text="Chefs Search" GridPane.columnSpan="2" GridPane.halignment="CENTER">
                <font>
                   <Font name="Consolas Bold" size="24.0" />
                </font>
                <GridPane.margin>
-                  <Insets top="20.0" />
+                  <Insets top="5.0" />
                </GridPane.margin>
             </Label>
             <Label text="Enter Chef ID:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">

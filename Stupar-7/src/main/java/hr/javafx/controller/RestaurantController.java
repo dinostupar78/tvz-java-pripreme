@@ -156,62 +156,67 @@ public class RestaurantController {
         });
     }
 
-    public void filterRestaurants(){
+    public void filterRestaurants() {
         Set<Restaurant> initialRestaurantList = restaurantRepository.findAll();
 
         String restaurantID = restaurantTextFieldID.getText();
-        if(!restaurantID.isEmpty()){
+        if (!restaurantID.isEmpty()) {
             initialRestaurantList = initialRestaurantList.stream()
                     .filter(restaurant -> restaurant.getId().toString().contains(restaurantID))
                     .collect(Collectors.toSet());
         }
 
         String restaurantName = restaurantTextFieldName.getText();
-        if(!restaurantName.isEmpty()){
+        if (!restaurantName.isEmpty()) {
             initialRestaurantList = initialRestaurantList.stream()
                     .filter(restaurant -> restaurant.getName().toString().contains(restaurantName))
                     .collect(Collectors.toSet());
         }
 
         String restaurantAddress = restaurantTextFieldAddress.getText();
-        if(!restaurantAddress.isEmpty()){
+        if (!restaurantAddress.isEmpty()) {
             initialRestaurantList = initialRestaurantList.stream()
                     .filter(restaurant -> restaurant.getAddress().getCity().toLowerCase().contains(restaurantAddress.toLowerCase()))
                     .collect(Collectors.toSet());
         }
 
-        String restaurantMeals = restaurantTextFieldMeals.getText();
-        if(!restaurantMeals.isEmpty()){
+        String orderMeals = restaurantTextFieldMeals.getText();
+        if (!orderMeals.isEmpty()) {
             initialRestaurantList = initialRestaurantList.stream()
-                    .filter(restaurant -> restaurant.getMeals().size() == Integer.parseInt(restaurantMeals))
+                    .filter(restaurant -> restaurant.getMeals().stream()
+                            .anyMatch(meal -> meal.getName().toLowerCase().contains(orderMeals.toLowerCase())))
                     .collect(Collectors.toSet());
         }
 
-        String restaurantChefs = restaurantTextFieldChefs.getText();
-        if(!restaurantChefs.isEmpty()){
+        String restaurantChefs = restaurantTextFieldChefs.getText().trim();
+        if (!restaurantChefs.isEmpty()) {
             initialRestaurantList = initialRestaurantList.stream()
-                    .filter(restaurant -> restaurant.getChefs().size() == Integer.parseInt(restaurantChefs))
+                    .filter(restaurant -> restaurant.getChefs().stream()
+                            .anyMatch(chef -> chef.getFirstName().toLowerCase().contains(restaurantChefs.toLowerCase()) ||
+                                    chef.getLastName().toLowerCase().contains(restaurantChefs.toLowerCase())))
                     .collect(Collectors.toSet());
         }
 
-        String restaurantWaiters = restaurantTextFieldWaiters.getText();
-        if(!restaurantWaiters.isEmpty()){
+        String restaurantWaiters = restaurantTextFieldWaiters.getText().trim();
+        if (!restaurantWaiters.isEmpty()) {
             initialRestaurantList = initialRestaurantList.stream()
-                    .filter(restaurant -> restaurant.getWaiters().size() == Integer.parseInt(restaurantWaiters))
+                    .filter(restaurant -> restaurant.getWaiters().stream()
+                            .anyMatch(waiter -> waiter.getFirstName().toLowerCase().contains(restaurantWaiters.toLowerCase()) ||
+                                    waiter.getLastName().toLowerCase().contains(restaurantWaiters.toLowerCase())))
                     .collect(Collectors.toSet());
         }
 
-        String restaurantDeliverers = restaurantTextFieldDeliverers.getText();
-        if(!restaurantDeliverers.isEmpty()){
+        String restaurantDeliverers = restaurantTextFieldDeliverers.getText().trim();
+        if (!restaurantDeliverers.isEmpty()) {
             initialRestaurantList = initialRestaurantList.stream()
-                    .filter(restaurant -> restaurant.getDeliverers().size() == Integer.parseInt(restaurantDeliverers))
+                    .filter(restaurant -> restaurant.getDeliverers().stream()
+                            .anyMatch(deliverer -> deliverer.getFirstName().toLowerCase().contains(restaurantDeliverers.toLowerCase()) ||
+                                    deliverer.getLastName().toLowerCase().contains(restaurantDeliverers.toLowerCase())))
                     .collect(Collectors.toSet());
         }
 
         ObservableList<Restaurant> restaurantObservableList = javafx.collections.FXCollections.observableArrayList(initialRestaurantList);
         restaurantTableView.setItems(restaurantObservableList);
-
     }
-
 
 }

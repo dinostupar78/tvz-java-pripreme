@@ -64,9 +64,9 @@
                         <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchWaiterClick"/>
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Deliverers" onAction="#onSearchDelivererClick">
+                  <Menu mnemonicParsing="false" text="Deliverers">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
+                        <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchDelivererClick"/>
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Restaurants">

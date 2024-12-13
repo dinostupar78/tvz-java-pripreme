@@ -156,7 +156,7 @@ public class OrderController {
         if (!orderMeals.isEmpty()) {
             initialOrderList = initialOrderList.stream()
                     .filter(order -> order.getMeals().stream()
-                            .anyMatch(meal -> meal.getName().contains(orderMeals))) // Match meal names
+                            .anyMatch(meal -> meal.getName().contains(orderMeals)))
                     .collect(Collectors.toSet());
         }
 

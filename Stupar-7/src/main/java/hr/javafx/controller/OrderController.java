@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -112,16 +113,26 @@ public class OrderController {
                 );
 
         orderColumnMeals.setCellValueFactory(cellData ->
-                new SimpleStringProperty(String.valueOf(cellData.getValue().getMeals().stream()))
+                new SimpleStringProperty(
+                        cellData.getValue().getMeals().stream()
+                                .map(meal -> meal.getName())
+                                .collect(Collectors.joining(", "))
+                )
         );
 
         orderColumnDeliverer.setCellValueFactory(cellData ->
-                new SimpleStringProperty(String.valueOf(cellData.getValue().getDeliverer().getFirstName()))
-                );
+                new SimpleStringProperty(
+                        cellData.getValue().getDeliverer().getFirstName() + " " +
+                                cellData.getValue().getDeliverer().getLastName()
+                )
+        );
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         orderColumnDateAndTime.setCellValueFactory(cellData ->
-                new SimpleStringProperty(String.valueOf(cellData.getValue().getDeliveryDateAndTime()))
-                );
+                new SimpleStringProperty(
+                        cellData.getValue().getDeliveryDateAndTime().format(formatter) // Format the date and time
+                )
+        );
     }
 
     public void filterOrders(){
@@ -142,9 +153,10 @@ public class OrderController {
         }
 
         String orderMeals = orderTextFieldMeals.getText();
-        if(!orderMeals.isEmpty()){
+        if (!orderMeals.isEmpty()) {
             initialOrderList = initialOrderList.stream()
-                    .filter(order -> order.getMeals().size() == Integer.parseInt(orderMeals))
+                    .filter(order -> order.getMeals().stream()
+                            .anyMatch(meal -> meal.getName().contains(orderMeals))) // Match meal names
                     .collect(Collectors.toSet());
         }
 

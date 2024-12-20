@@ -3,26 +3,24 @@ package hr.javafx.controller;
 import hr.javafx.restaurant.model.Category;
 import hr.javafx.restaurant.model.Ingredient;
 import hr.javafx.restaurant.model.Meal;
-import hr.javafx.utils.HandleSearchClickUtils;
+import hr.javafx.restaurant.repository.MealsRepository;
+import hr.javafx.restaurant.repository.IngredientRepository;
+import hr.javafx.restaurant.repository.CategoryRepository;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
-import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.Set;
 
 public class SomethingController {
-    public void onSearchSomethingClick(ActionEvent event){
-        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
-        searchClickUtils.handleSearchClickSomething(event);
-    }
+
+    private MealsRepository<Meal> mealsRepository;
+    private IngredientRepository<Ingredient> ingredientRepository;
+    private CategoryRepository<Category> categoryRepository;
 
     @FXML
     private TableView<Meal> mealTable;
@@ -57,7 +55,10 @@ public class SomethingController {
 
     @FXML
     public void initialize() {
-        // Bind columns to data properties
+        categoryRepository = new CategoryRepository<>();
+        ingredientRepository = new IngredientRepository<>(categoryRepository);
+        mealsRepository = new MealsRepository<>(categoryRepository);
+
         mealNameColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getName()));
         mealCategoryColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCategory().getName()));
 
@@ -67,47 +68,35 @@ public class SomethingController {
         categoryNameColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getName()));
         categoryDescriptionColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDescription()));
 
-        // Load initial data
-        loadData();
+        loadCategories();
+        loadMeals();
+        loadIngredients();
+
         mealTable.setItems(meals);
         ingredientTable.setItems(ingredients);
         categoryTable.setItems(categories);
 
-        // Add filtering
         mealFilterField.textProperty().addListener((observable, oldValue, newValue) -> filterMeals(newValue));
         ingredientFilterField.textProperty().addListener((observable, oldValue, newValue) -> filterIngredients(newValue));
         categoryFilterField.textProperty().addListener((observable, oldValue, newValue) -> filterCategories(newValue));
-
-        // Add selection event for Meal table
-        mealTable.setOnMouseClicked(this::onMealSelected);
     }
 
-    private void loadData() {
-        // Populate with sample data
-        Category fastFood = new Category(1L, "Fast Food", "dsadad");
-        Category healthy = new Category(2L, "Healthy", "sdadada");
+    private void loadCategories() {
+        Set<Category> categorySet = categoryRepository.findAll();
 
-        Ingredient cheese = new Ingredient(1L, "Cheese", fastFood, BigDecimal.valueOf(200), "Grated");
-        Ingredient lettuce = new Ingredient(2L, "Lettuce", healthy, BigDecimal.valueOf(15), "Chopped");
-        Ingredient tomato = new Ingredient(3L, "Tomato", healthy, BigDecimal.valueOf(25), "Sliced");
+        categories.setAll(categorySet);
+    }
 
-        Set<Ingredient> pizzaIngredients = new HashSet<>();
-        pizzaIngredients.add(cheese);
-        pizzaIngredients.add(tomato);
+    private void loadMeals() {
+        Set<Meal> mealSet = mealsRepository.findAll();
 
-        Set<Ingredient> saladIngredients = new HashSet<>();
-        saladIngredients.add(lettuce);
-        saladIngredients.add(tomato);
+        meals.setAll(mealSet);
+    }
 
-        meals.addAll(
-                new Meal(1L, "Pizza", fastFood, pizzaIngredients, BigDecimal.valueOf(8.99), 1200),
-                new Meal(2L, "Salad", healthy, saladIngredients, BigDecimal.valueOf(5.99), 300)
-        );
+    private void loadIngredients() {
+        Set<Ingredient> ingredientSet = ingredientRepository.findAll();
 
-        ingredients.addAll(pizzaIngredients);
-        ingredients.addAll(saladIngredients);
-
-        categories.addAll(fastFood, healthy);
+        ingredients.setAll(ingredientSet);
     }
 
     private void filterMeals(String filter) {
@@ -119,15 +108,9 @@ public class SomethingController {
     }
 
     private void filterCategories(String filter) {
-        categoryTable.setItems(categories.filtered(category -> category.getDescription().toLowerCase().contains(filter.toLowerCase())));
-    }
-
-    private void onMealSelected(MouseEvent event) {
-        Meal selectedMeal = mealTable.getSelectionModel().getSelectedItem();
-        if (selectedMeal != null) {
-            // Update Ingredients table based on selected Meal
-            Set<Ingredient> mealIngredients = selectedMeal.getIngredient();
-            ingredientTable.setItems(FXCollections.observableArrayList(mealIngredients));
-        }
+        categoryTable.setItems(categories.filtered(category ->
+                category.getName().toLowerCase().contains(filter.toLowerCase()) ||
+                        category.getDescription().toLowerCase().contains(filter.toLowerCase())
+        ));
     }
 }

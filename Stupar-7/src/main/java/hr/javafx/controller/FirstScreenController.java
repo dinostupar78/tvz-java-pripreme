@@ -65,4 +65,9 @@ public class FirstScreenController {
         searchClickUtils.handleSearchClickOrders(event);
     }
 
+    public void onSearchSomethingClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickSomething(event);
+    }
+
 }

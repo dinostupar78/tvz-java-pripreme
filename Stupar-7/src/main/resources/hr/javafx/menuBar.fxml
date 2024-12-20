@@ -8,47 +8,52 @@
     <menus>
         <Menu mnemonicParsing="false" text="Categories">
             <items>
-                <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchCategoryClick"/>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchCategoryClick" text="Search" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Ingredients">
             <items>
-                <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchIngredientClick"/>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchIngredientClick" text="Search" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Meals">
             <items>
-                <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchMealClick"/>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchMealClick" text="Search" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Contracts">
             <items>
-                <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchContractClick"/>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchContractClick" text="Search" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Chefs">
             <items>
-                <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchChefClick"/>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchChefClick" text="Search" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Waiters">
             <items>
-                <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchWaiterClick"/>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchWaiterClick" text="Search" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Deliverers">
             <items>
-                <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchDelivererClick"/>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchDelivererClick" text="Search" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Restaurants">
             <items>
-                <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchRestaurantClick"/>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchRestaurantClick" text="Search" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Orders">
             <items>
-                <MenuItem mnemonicParsing="false" text="Search" onAction="#onSearchOrderClick"/>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchOrderClick" text="Search" />
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Something">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchSomethingClick" text="Search" />
             </items>
         </Menu>
     </menus>

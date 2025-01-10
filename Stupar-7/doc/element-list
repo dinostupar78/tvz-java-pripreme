@@ -1,0 +1,10 @@
+module:hr.javafx.stupar7
+hr.javafx.controller
+hr.javafx.main
+hr.javafx.restaurant.enums
+hr.javafx.restaurant.exception
+hr.javafx.restaurant.generics
+hr.javafx.restaurant.model
+hr.javafx.restaurant.repository
+hr.javafx.restaurant.sort
+hr.javafx.utils

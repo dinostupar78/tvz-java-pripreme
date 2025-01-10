@@ -56,5 +56,10 @@
                 <MenuItem mnemonicParsing="false" onAction="#onSearchSomethingClick" text="Search" />
             </items>
         </Menu>
+      <Menu mnemonicParsing="false" text="Else">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#onSearchElseClick" text="Search" />
+         </items>
+      </Menu>
     </menus>
 </MenuBar>

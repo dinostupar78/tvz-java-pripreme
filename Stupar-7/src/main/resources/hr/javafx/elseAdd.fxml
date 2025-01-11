@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.controller.ElseController" spacing="10" alignment="TOP_CENTER" prefWidth="800" prefHeight="600">
+    <!-- Top Section with TabPane -->
+    <!-- If you want to add TabPane, you can add it here -->
+
+    <!-- Main Section -->
+    <VBox spacing="20" alignment="TOP_CENTER" padding="10.0">
+        <!-- Filter Section -->
+        <GridPane hgap="10" vgap="10" padding="10">
+            <Label text="Order num:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <TextField fx:id="orderNumField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+            <Label text="Address:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <TextField fx:id="addressField" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+            <Label text="State:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <ComboBox fx:id="stateComboBox" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <!-- Add your states here -->
+                        <String>New York</String>
+                        <String>California</String>
+                        <String>Texas</String>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+        </GridPane>
+
+        <!-- Table Section -->
+        <TableView fx:id="ordersTable" prefHeight="200" prefWidth="750">
+            <columns>
+                <TableColumn text="Order date" fx:id="orderDateColumn" prefWidth="150" />
+                <TableColumn text="State" fx:id="stateColumn" prefWidth="100" />
+                <TableColumn text="Delivery date" fx:id="deliveryDateColumn" prefWidth="150" />
+            </columns>
+        </TableView>
+
+        <!-- Button Section -->
+        <Button text="Dodaj / Ažuriraj" fx:id="addUpdateButton" padding="10, 5" />
+    </VBox>
+</VBox>

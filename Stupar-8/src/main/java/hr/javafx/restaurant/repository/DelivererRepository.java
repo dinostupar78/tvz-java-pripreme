@@ -76,7 +76,12 @@ public class DelivererRepository <T extends Deliverer> extends AbstractRepositor
     }
 
     @Override
-    public void save(List<T> entities) { // RADI
+    public void save(T entity) {
+
+    }
+
+    @Override
+    public void save(Set<T> entities) { // RADI
         try(PrintWriter writer = new PrintWriter(DELIVERERS_FILE_PATH)){
             for(T entity : entities){
                 if (entity.getContract() == null) {

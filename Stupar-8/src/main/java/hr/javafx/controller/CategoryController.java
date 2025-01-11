@@ -6,17 +6,13 @@ import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -111,6 +107,8 @@ public class CategoryController {
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getDescription()))
                 );
 
+        categoryTableView.getSortOrder().add(categoryColumnID);
+
     }
 
     public void filterCategories() {
@@ -139,25 +137,15 @@ public class CategoryController {
                     .collect(Collectors.toSet());
         }
 
-        Set<Category> categoryList = categoryRepository.findAll();
-
-        // Convert filtered Set to ObservableList
         ObservableList<Category> categoryObservableList = FXCollections.observableArrayList(initialCategoryList);
 
-        // Set the items to the TableView
-        categoryTableView.setItems(categoryObservableList);
+        SortedList<Category> sortedList = new SortedList<>(categoryObservableList);
+
+        sortedList.comparatorProperty().bind(categoryTableView.comparatorProperty());
+
+        categoryTableView.setItems(sortedList);
     }
 
-    public void handleSearchClick(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/javafx/categoriesSearch.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
 }

@@ -74,9 +74,14 @@ public class WaiterRepository <T extends Waiter> extends AbstractRepository<T>{
         return waiters;
     }
 
+    @Override
+    public void save(T entity) {
+
+    }
+
 
     @Override
-    public void save(List<T> entities) { // RADI
+    public void save(Set<T> entities) { // RADI
         try(PrintWriter writer = new PrintWriter(WAITERS_FILE_PATH)){
             for(T entity : entities){
                 if (entity.getContract() == null) {

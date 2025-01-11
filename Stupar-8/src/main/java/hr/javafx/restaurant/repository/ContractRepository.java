@@ -58,7 +58,12 @@ public class ContractRepository <T extends Contract> extends AbstractRepository<
     }
 
     @Override
-    public void save(List<T> entities) {
+    public void save(T entity) {
+
+    }
+
+    @Override
+    public void save(Set<T> entities) {
         try(PrintWriter writer = new PrintWriter(CONTRACTS_FILE_PATH)){
             for(T entity : entities){
                 writer.println(entity.getId());

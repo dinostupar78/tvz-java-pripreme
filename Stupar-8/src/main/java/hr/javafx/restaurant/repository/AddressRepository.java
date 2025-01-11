@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -60,8 +61,14 @@ public class AddressRepository <T extends Address> extends AbstractRepository<T>
         return addresses;
     }
 
+
     @Override
-    public void save(List<T> entities) {
+    public void save(T entity) {
+
+    }
+
+    @Override
+    public void save(Set<T> entities) {
         try(PrintWriter writer = new PrintWriter(ADDRESSES_FILE_PATH);) {
             for(T entity : entities){
                 writer.println(entity.getId());

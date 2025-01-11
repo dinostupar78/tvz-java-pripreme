@@ -76,7 +76,12 @@ public class ChefRepository <T extends Chef> extends AbstractRepository<T>{
     }
 
     @Override
-    public void save(List<T> entities) { // RADI
+    public void save(T entity) {
+
+    }
+
+    @Override
+    public void save(Set<T> entities) { // RADI
         try(PrintWriter writer = new PrintWriter(CHEFS_FILE_PATH)){
             for(T entity : entities){
                 if (entity.getContract() == null) {

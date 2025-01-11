@@ -1,6 +1,7 @@
 package hr.javafx.controller;
 
 import hr.javafx.main.MainApplication;
+import hr.javafx.utils.HandleAddClickUtils;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -65,14 +66,11 @@ public class FirstScreenController {
         searchClickUtils.handleSearchClickOrders(event);
     }
 
-    public void onSearchSomethingClick(ActionEvent event) {
-        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
-        searchClickUtils.handleSearchClickSomething(event);
+    public void onAddCategoryClick(ActionEvent event) {
+        HandleAddClickUtils addClickUtils = new HandleAddClickUtils();
+        addClickUtils.handleAddClickCategories(event);
     }
 
-    public void onSearchElseClick(ActionEvent event) {
-        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
-        searchClickUtils.handleSearchClickElse(event);
-    }
+
 
 }

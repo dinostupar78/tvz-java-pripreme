@@ -115,7 +115,8 @@ public class RestaurantController {
     private ChefRepository chefRepository = new ChefRepository<>(contractRepository);
     private WaiterRepository waiterRepository = new WaiterRepository(contractRepository);
     private DelivererRepository delivererRepository = new DelivererRepository<>(contractRepository);
-    private RestaurantRepository restaurantRepository = new RestaurantRepository<>(addressRepository, mealsRepository, chefRepository, waiterRepository, delivererRepository);
+    private RestaurantRepository restaurantRepository = new RestaurantRepository<>(addressRepository,
+            mealsRepository, chefRepository, waiterRepository, delivererRepository);
 
     public void initialize(){
         restaurantColumnID.setCellValueFactory(cellData ->

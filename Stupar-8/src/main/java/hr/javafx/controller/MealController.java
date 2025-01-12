@@ -6,6 +6,7 @@ import hr.javafx.restaurant.repository.MealsRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -14,6 +15,8 @@ import javafx.scene.control.TextField;
 
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static javafx.collections.FXCollections.observableArrayList;
 
 public class MealController {
     public void onSearchCategoryClick(ActionEvent event) {
@@ -117,6 +120,9 @@ public class MealController {
         mealColumnCalories.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getCalories()))
         );
+
+        mealTableView.getSortOrder().add(mealColumnID);
+
     }
 
     public void filterMeals(){
@@ -157,13 +163,13 @@ public class MealController {
                     .collect(Collectors.toSet());
         }
 
-        ObservableList<Meal> mealObservableList = javafx.collections.FXCollections.observableArrayList(initialMealList);
-        mealTableView.setItems(mealObservableList);
+        ObservableList<Meal> mealObservableList = observableArrayList(initialMealList);
+
+        SortedList<Meal> sortedList = new SortedList<>(mealObservableList);
+
+        sortedList.comparatorProperty().bind(mealTableView.comparatorProperty());
+
+        mealTableView.setItems(sortedList);
 
     }
-
-
-
-
-
 }

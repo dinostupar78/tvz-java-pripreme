@@ -5,6 +5,7 @@ import hr.javafx.restaurant.repository.ContractRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -15,6 +16,8 @@ import javafx.scene.control.TextField;
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static javafx.collections.FXCollections.observableArrayList;
 
 public class ContractController {
     public void onSearchCategoryClick(ActionEvent event) {
@@ -122,6 +125,8 @@ public class ContractController {
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getContractType()))
                 );
 
+        contractTableView.getSortOrder().add(contractColumnID);
+
     }
 
     public void filterContracts() {
@@ -165,11 +170,13 @@ public class ContractController {
                     .collect(Collectors.toSet());
         }
 
-        ObservableList<Contract> contractObservableList = javafx.collections.FXCollections.observableArrayList(initialContractList);
-        contractTableView.setItems(contractObservableList);
+        ObservableList<Contract> contractObservableList = observableArrayList(initialContractList);
 
+        SortedList<Contract> sortedList = new SortedList<>(contractObservableList);
+
+        sortedList.comparatorProperty().bind(contractTableView.comparatorProperty());
+
+        contractTableView.setItems(sortedList);
     }
-
-
 
 }

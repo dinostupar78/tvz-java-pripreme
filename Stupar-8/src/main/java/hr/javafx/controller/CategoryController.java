@@ -4,7 +4,6 @@ import hr.javafx.restaurant.model.Category;
 import hr.javafx.restaurant.repository.CategoryRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
@@ -15,6 +14,8 @@ import javafx.scene.control.TextField;
 
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static javafx.collections.FXCollections.observableArrayList;
 
 public class CategoryController {
     public void onSearchCategoryClick(ActionEvent event) {
@@ -137,7 +138,7 @@ public class CategoryController {
                     .collect(Collectors.toSet());
         }
 
-        ObservableList<Category> categoryObservableList = FXCollections.observableArrayList(initialCategoryList);
+        ObservableList<Category> categoryObservableList = observableArrayList(initialCategoryList);
 
         SortedList<Category> sortedList = new SortedList<>(categoryObservableList);
 

@@ -15,19 +15,19 @@
         <Menu mnemonicParsing="false" text="Ingredients">
             <items>
                 <MenuItem mnemonicParsing="false" onAction="#onSearchIngredientClick" text="Search" />
-            <MenuItem mnemonicParsing="false" onAction="#onSearchIngredientClick" text="Add new Ingredient" />
+            <MenuItem mnemonicParsing="false" onAction="#onAddIngredientClick" text="Add new Ingredient" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Meals">
             <items>
                 <MenuItem mnemonicParsing="false" onAction="#onSearchMealClick" text="Search" />
-            <MenuItem mnemonicParsing="false" onAction="#onSearchMealClick" text="Add new Meal" />
+            <MenuItem mnemonicParsing="false" onAction="#onAddMealClick" text="Add new Meal" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Contracts">
             <items>
                 <MenuItem mnemonicParsing="false" onAction="#onSearchContractClick" text="Search" />
-            <MenuItem mnemonicParsing="false" onAction="#onSearchContractClick" text="Add new Contract" />
+            <MenuItem mnemonicParsing="false" onAction="#onAddContractClick" text="Add new Contract" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Chefs">

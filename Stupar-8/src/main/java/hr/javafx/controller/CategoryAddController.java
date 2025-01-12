@@ -2,22 +2,16 @@ package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Category;
 import hr.javafx.restaurant.repository.CategoryRepository;
-import hr.javafx.utils.HandleAddClickUtils;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
-public class CategoriesAddController {
+public class CategoryAddController {
     public void onSearchCategoryClick(ActionEvent event) {
         HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
         searchClickUtils.handleSearchClickCategories(event);
-    }
-
-    public void onAddCategoryClick(ActionEvent event) {
-        HandleAddClickUtils addClickUtils = new HandleAddClickUtils();
-        addClickUtils.handleAddClickCategories(event);
     }
 
     @FXML

@@ -6,6 +6,7 @@ import hr.javafx.restaurant.repository.IngredientRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -14,6 +15,8 @@ import javafx.scene.control.TextField;
 
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static javafx.collections.FXCollections.observableArrayList;
 
 public class IngredientController {
     public void onSearchCategoryClick(ActionEvent event) {
@@ -110,6 +113,8 @@ public class IngredientController {
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getPreparationMethod()))
         );
 
+        ingredientTableView.getSortOrder().add(ingredientColumnID);
+
     }
 
     public void filterIngredients() {
@@ -151,13 +156,13 @@ public class IngredientController {
         }
 
 
-        ObservableList<Ingredient> ingredientObservableList = javafx.collections.FXCollections.observableArrayList(initialIngredientList);
-        ingredientTableView.setItems(ingredientObservableList);
+        ObservableList<Ingredient> ingredientObservableList = observableArrayList(initialIngredientList);
 
+        SortedList<Ingredient> sortedList = new SortedList<>(ingredientObservableList);
+
+        sortedList.comparatorProperty().bind(ingredientTableView.comparatorProperty());
+
+        ingredientTableView.setItems(sortedList);
 
     }
-
-
-
-
 }

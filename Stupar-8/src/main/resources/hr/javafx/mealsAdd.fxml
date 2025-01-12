@@ -2,12 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="0.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.controller.MealController">
-    <fx:include source="menuBar.fxml" />
-    <children>
+<VBox alignment="CENTER" spacing="0.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.controller.MealAddController">
+   <fx:include source="menuBar.fxml" />
+   <children>
       <GridPane prefHeight="600.0" prefWidth="800.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="462.0" minWidth="10.0" prefWidth="409.0" />
@@ -33,7 +29,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Meals Search" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+            <Label text="Meals Add" GridPane.columnSpan="2" GridPane.halignment="CENTER">
                <font>
                   <Font name="Consolas Bold" size="24.0" />
                </font>
@@ -41,7 +37,7 @@
                   <Insets top="5.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Enter Meal ID:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Label text="Enter Meal Name:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="5.0" top="-40.0" />
                </GridPane.margin>
@@ -49,7 +45,7 @@
                   <Font name="Calibri Bold Italic" size="20.0" />
                </font>
             </Label>
-            <Label text="Enter Meal Name:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Label text="Enter Meal Category :" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <font>
                   <Font name="Calibri Bold" size="20.0" />
                </font>
@@ -57,70 +53,48 @@
                   <Insets right="5.0" top="20.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="mealTextFieldName" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" top="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <Label text="Enter Meal Category :" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Calibri Bold Italic" size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets right="5.0" top="-60.0" />
-               </GridPane.margin>
-            </Label>
-            <TextField fx:id="mealTextFieldCategory" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" top="-60.0" />
-               </GridPane.margin>
-            </TextField>
-            <Button fx:id="filterMeals" mnemonicParsing="false" onAction="#filterMeals" text="Search" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets top="10.0" />
-               </GridPane.margin>
-               <font>
-                  <Font name="Calibri Bold Italic" size="18.0" />
-               </font>
-            </Button>
-            <TableView fx:id="mealTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="3">
-              <columns>
-                <TableColumn fx:id="mealColumnID" prefWidth="78.0" text="ID" />
-                <TableColumn fx:id="mealColumnName" prefWidth="163.0" text="Name" />
-                  <TableColumn fx:id="mealColumnCategory" prefWidth="250.0" text="Category" />
-                  <TableColumn fx:id="mealColumnPrice" prefWidth="88.0" text="price" />
-                  <TableColumn fx:id="mealColumnCalories" prefWidth="220.0" text="calories" />
-              </columns>
-            </TableView>
-            <TextField fx:id="mealTextFieldID" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" top="-40.0" />
-               </GridPane.margin>
-            </TextField>
             <Label text="Enter Ingredient price:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <font>
                   <Font name="Calibri Bold Italic" size="20.0" />
                </font>
                <GridPane.margin>
-                  <Insets right="5.0" />
+                  <Insets right="5.0" top="-90.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="mealTextFieldPrice" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#addNewMeal" text="Add" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <GridPane.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets top="-100.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Calibri Bold Italic" size="18.0" />
+               </font>
+            </Button>
+            <TextField fx:id="mealTextFieldName" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" top="-40.0" />
                </GridPane.margin>
             </TextField>
-            <Label text="Enter Meal calories:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Label text="Enter Meal calories:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <font>
                   <Font name="Calibri Bold Italic" size="20.0" />
                </font>
                <GridPane.margin>
-                  <Insets left="10.0" right="10.0" top="-75.0" />
+                  <Insets right="5.0" top="-30.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="mealTextFieldCalories" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="mealTextFieldCalories" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="10.0" right="10.0" top="-75.0" />
+                  <Insets left="10.0" right="10.0" top="-30.0" />
+               </GridPane.margin>
+            </TextField>
+            <ComboBox fx:id="mealComboBoxCategory" prefHeight="25.0" prefWidth="372.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" top="20.0" />
+               </GridPane.margin>
+            </ComboBox>
+            <TextField fx:id="mealTextFieldPrice" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" top="80.0" />
                </GridPane.margin>
             </TextField>
          </children>

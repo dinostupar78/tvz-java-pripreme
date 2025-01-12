@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -69,11 +70,6 @@ public class IngredientRepository <T extends Ingredient> extends AbstractReposit
     }
 
     @Override
-    public void save(T entity) {
-
-    }
-
-    @Override
     public void save(Set<T> entities) {
         try(PrintWriter writer = new PrintWriter(INGREDIENTS_FILE_PATH)) {
             for(T entity : entities){
@@ -88,5 +84,21 @@ public class IngredientRepository <T extends Ingredient> extends AbstractReposit
         } catch (FileNotFoundException e) {
             throw new RuntimeException("Failed to save entities to file: " + INGREDIENTS_FILE_PATH, e);
         }
+    }
+
+    @Override
+    public void save(T entity) {
+        Set<T> entities = findAll();
+        if(Optional.ofNullable(entity.getId()).isEmpty()){
+            entity.setId(generateNewId());
+        }
+        entities.add(entity);
+        save(entities);
+
+    }
+
+    private Long generateNewId(){
+        return findAll().stream().map(b -> b.getId())
+                .max((i1, i2) -> i1.compareTo(i2)).orElse(1l) + 1;
     }
 }

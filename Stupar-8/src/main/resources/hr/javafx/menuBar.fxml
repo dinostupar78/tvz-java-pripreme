@@ -33,19 +33,19 @@
         <Menu mnemonicParsing="false" text="Chefs">
             <items>
                 <MenuItem mnemonicParsing="false" onAction="#onSearchChefClick" text="Search" />
-            <MenuItem mnemonicParsing="false" onAction="#onSearchChefClick" text="Add new Chef" />
+            <MenuItem mnemonicParsing="false" onAction="#onAddChefClick" text="Add new Chef" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Waiters">
             <items>
                 <MenuItem mnemonicParsing="false" onAction="#onSearchWaiterClick" text="Search" />
-            <MenuItem mnemonicParsing="false" onAction="#onSearchWaiterClick" text="Add new Waiter" />
+            <MenuItem mnemonicParsing="false" onAction="#onAddWaiterClick" text="Add new Waiter" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Deliverers">
             <items>
                 <MenuItem mnemonicParsing="false" onAction="#onSearchDelivererClick" text="Search" />
-            <MenuItem mnemonicParsing="false" onAction="#onSearchDelivererClick" text="Add new Deliverer" />
+            <MenuItem mnemonicParsing="false" onAction="#onAddDelivererClick" text="Add new Deliverer" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Restaurants">

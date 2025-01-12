@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -75,12 +76,6 @@ public class WaiterRepository <T extends Waiter> extends AbstractRepository<T>{
     }
 
     @Override
-    public void save(T entity) {
-
-    }
-
-
-    @Override
     public void save(Set<T> entities) { // RADI
         try(PrintWriter writer = new PrintWriter(WAITERS_FILE_PATH)){
             for(T entity : entities){
@@ -91,7 +86,7 @@ public class WaiterRepository <T extends Waiter> extends AbstractRepository<T>{
                 writer.println(entity.getFirstName());
                 writer.println(entity.getLastName());
                 writer.println(entity.getContract().getId());
-                writer.println(entity.getBonus());
+                writer.println(entity.getBonusKonobara().iznosBonusaNaOsnovnuPlacu());
 
             }
             writer.flush();
@@ -99,5 +94,20 @@ public class WaiterRepository <T extends Waiter> extends AbstractRepository<T>{
         } catch (FileNotFoundException e) {
             throw new RuntimeException("Failed to save entities to file: " + WAITERS_FILE_PATH, e);
         }
+    }
+
+    @Override
+    public void save(T entity) {
+        Set<T> entities = findAll();
+        if(Optional.ofNullable(entity.getId()).isEmpty()){
+            entity.setId(generateNewId());
+        }
+        entities.add(entity);
+        save(entities);
+    }
+
+    private Long generateNewId(){
+        return findAll().stream().map(b -> b.getId())
+                .max((i1, i2) -> i1.compareTo(i2)).orElse(1l) + 1;
     }
 }

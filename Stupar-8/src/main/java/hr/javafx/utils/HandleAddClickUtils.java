@@ -68,4 +68,49 @@ public class HandleAddClickUtils {
             e.printStackTrace();
         }
     }
+
+    public void handleAddClickChefs(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/javafx/chefsAdd.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            MenuItem menuItem = (MenuItem) event.getSource();
+            Stage stage = (Stage) ((MenuItem) menuItem).getParentPopup().getOwnerWindow();
+
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleAddClickWaiters(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/javafx/waitersAdd.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            MenuItem menuItem = (MenuItem) event.getSource();
+            Stage stage = (Stage) ((MenuItem) menuItem).getParentPopup().getOwnerWindow();
+
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleAddClickDeliverers(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/javafx/deliverersAdd.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            MenuItem menuItem = (MenuItem) event.getSource();
+            Stage stage = (Stage) ((MenuItem) menuItem).getParentPopup().getOwnerWindow();
+
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -6,6 +6,8 @@ import hr.javafx.restaurant.repository.ContractRepository;
 import hr.javafx.restaurant.repository.WaiterRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -14,6 +16,8 @@ import javafx.scene.control.TextField;
 
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static javafx.collections.FXCollections.observableArrayList;
 
 public class WaiterController {
     public void onSearchCategoryClick(ActionEvent event) {
@@ -119,6 +123,8 @@ public class WaiterController {
             Bonus bonus = waiter.getBonusKonobara();
             return new SimpleStringProperty(bonus.iznosBonusaNaOsnovnuPlacu().toString());
         });
+
+        waiterTableView.getSortOrder().add(waiterColumnID);
     }
 
     public void filterWaiters(){
@@ -162,8 +168,13 @@ public class WaiterController {
                     .collect(Collectors.toSet());
         }
 
-        javafx.collections.ObservableList<Waiter> waiterObservableList = javafx.collections.FXCollections.observableArrayList(initialWaiterList);
-        waiterTableView.setItems(waiterObservableList);
+        ObservableList<Waiter> waiterObservableList = observableArrayList(initialWaiterList);
+
+        SortedList<Waiter> sortedList = new SortedList<>(waiterObservableList);
+
+        sortedList.comparatorProperty().bind(waiterTableView.comparatorProperty());
+
+        waiterTableView.setItems(sortedList);
 
     }
 }

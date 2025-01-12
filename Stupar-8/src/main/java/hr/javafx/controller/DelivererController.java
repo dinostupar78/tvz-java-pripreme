@@ -6,6 +6,8 @@ import hr.javafx.restaurant.repository.ContractRepository;
 import hr.javafx.restaurant.repository.DelivererRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -14,6 +16,8 @@ import javafx.scene.control.TextField;
 
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static javafx.collections.FXCollections.observableArrayList;
 
 public class DelivererController {
     public void onSearchCategoryClick(ActionEvent event) {
@@ -119,6 +123,9 @@ public class DelivererController {
             Bonus bonus = deliverer.getBonusDostavljaca();
             return new SimpleStringProperty(bonus.iznosBonusaNaOsnovnuPlacu().toString());
         });
+
+        delivererTableView.getSortOrder().add(delivererColumnID);
+
     }
 
     public void filterDeliverers(){
@@ -162,8 +169,13 @@ public class DelivererController {
                     .collect(Collectors.toSet());
         }
 
-        javafx.collections.ObservableList<Deliverer> delivererObservableList = javafx.collections.FXCollections.observableArrayList(initialDelivererList);
-        delivererTableView.setItems(delivererObservableList);
+        ObservableList<Deliverer> delivererObservableList = observableArrayList(initialDelivererList);
+
+        SortedList<Deliverer> sortedList = new SortedList<>(delivererObservableList);
+
+        sortedList.comparatorProperty().bind(delivererTableView.comparatorProperty());
+
+        delivererTableView.setItems(sortedList);
 
     }
 }

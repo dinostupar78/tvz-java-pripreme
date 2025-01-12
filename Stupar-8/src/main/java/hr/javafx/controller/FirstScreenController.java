@@ -86,6 +86,21 @@ public class FirstScreenController {
         addClickUtils.handleAddClickContracts(event);
     }
 
+    public void onAddChefClick(ActionEvent event) {
+        HandleAddClickUtils addClickUtils = new HandleAddClickUtils();
+        addClickUtils.handleAddClickChefs(event);
+    }
+
+    public void onAddWaiterClick(ActionEvent event) {
+        HandleAddClickUtils addClickUtils = new HandleAddClickUtils();
+        addClickUtils.handleAddClickWaiters(event);
+    }
+
+    public void onAddDelivererClick(ActionEvent event) {
+        HandleAddClickUtils addClickUtils = new HandleAddClickUtils();
+        addClickUtils.handleAddClickDeliverers(event);
+    }
+
 
 
 }

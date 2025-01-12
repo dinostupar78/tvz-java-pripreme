@@ -87,8 +87,6 @@ public class IngredientController {
     @FXML
     private TableColumn<Ingredient, String> ingredientColumnPreparationMethod;
 
-
-
     private CategoryRepository categoryRepository = new CategoryRepository<>();
     private IngredientRepository ingredientRepository = new IngredientRepository<>(categoryRepository);
 

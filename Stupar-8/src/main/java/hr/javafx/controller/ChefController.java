@@ -6,6 +6,8 @@ import hr.javafx.restaurant.repository.ChefRepository;
 import hr.javafx.restaurant.repository.ContractRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -14,6 +16,8 @@ import javafx.scene.control.TextField;
 
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static javafx.collections.FXCollections.observableArrayList;
 
 public class ChefController {
     public void onSearchCategoryClick(ActionEvent event) {
@@ -119,6 +123,9 @@ public class ChefController {
             Bonus bonus = chef.getBonusKuhara();
             return new SimpleStringProperty(bonus.iznosBonusaNaOsnovnuPlacu().toString());
         });
+
+        chefTableView.getSortOrder().add(chefColumnID);
+
     }
 
     public void filterChefs(){
@@ -162,8 +169,13 @@ public class ChefController {
                     .collect(Collectors.toSet());
         }
 
-        javafx.collections.ObservableList<Chef> chefObservableList = javafx.collections.FXCollections.observableArrayList(initialChefList);
-        chefTableView.setItems(chefObservableList);
+        ObservableList<Chef> chefObservableList = observableArrayList(initialChefList);
+
+        SortedList<Chef> sortedList = new SortedList<>(chefObservableList);
+
+        sortedList.comparatorProperty().bind(chefTableView.comparatorProperty());
+
+        chefTableView.setItems(sortedList);
 
     }
 

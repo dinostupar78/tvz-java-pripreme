@@ -113,4 +113,34 @@ public class HandleAddClickUtils {
             e.printStackTrace();
         }
     }
+
+    public void handleAddClickRestaurants(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/javafx/restaurantsAdd.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            MenuItem menuItem = (MenuItem) event.getSource();
+            Stage stage = (Stage) ((MenuItem) menuItem).getParentPopup().getOwnerWindow();
+
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleAddClickOrders(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/javafx/ordersAdd.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            MenuItem menuItem = (MenuItem) event.getSource();
+            Stage stage = (Stage) ((MenuItem) menuItem).getParentPopup().getOwnerWindow();
+
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

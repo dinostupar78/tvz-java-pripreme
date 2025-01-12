@@ -51,13 +51,13 @@
         <Menu mnemonicParsing="false" text="Restaurants">
             <items>
                 <MenuItem mnemonicParsing="false" onAction="#onSearchRestaurantClick" text="Search" />
-            <MenuItem mnemonicParsing="false" onAction="#onSearchRestaurantClick" text="Add new Restaurant" />
+            <MenuItem mnemonicParsing="false" onAction="#onAddRestaurantClick" text="Add new Restaurant" />
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Orders">
             <items>
                 <MenuItem mnemonicParsing="false" onAction="#onSearchOrderClick" text="Search" />
-            <MenuItem mnemonicParsing="false" onAction="#onSearchOrderClick" text="Add new Order" />
+            <MenuItem mnemonicParsing="false" onAction="#onAddOrderClick" text="Add new Order" />
             </items>
         </Menu>
     </menus>

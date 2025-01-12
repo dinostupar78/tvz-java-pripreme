@@ -101,6 +101,16 @@ public class FirstScreenController {
         addClickUtils.handleAddClickDeliverers(event);
     }
 
+    public void onAddRestaurantClick(ActionEvent event) {
+        HandleAddClickUtils addClickUtils = new HandleAddClickUtils();
+        addClickUtils.handleAddClickRestaurants(event);
+    }
+
+    public void onAddOrderClick(ActionEvent event) {
+        HandleAddClickUtils addClickUtils = new HandleAddClickUtils();
+        addClickUtils.handleAddClickOrders(event);
+    }
+
 
 
 }

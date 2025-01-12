@@ -7,10 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -156,6 +153,16 @@ public class RestaurantRepository <T extends Restaurant> extends AbstractReposit
 
     @Override
     public void save(T entity) {
+        Set<T> entities = findAll();
+        if(Optional.ofNullable(entity.getId()).isEmpty()){
+            entity.setId(generateNewId());
+        }
+        entities.add(entity);
+        save(entities);
+    }
 
+    private Long generateNewId(){
+        return findAll().stream().map(b -> b.getId())
+                .max((i1, i2) -> i1.compareTo(i2)).orElse(1l) + 1;
     }
 }

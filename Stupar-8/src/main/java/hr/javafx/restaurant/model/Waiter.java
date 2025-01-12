@@ -98,4 +98,9 @@ public class Waiter extends Person implements Serializable {
     public int hashCode() {
         return Objects.hash(contract, bonusKonobara);
     }
+
+    @Override
+    public String toString() {
+        return getFirstName() + " " + getLastName() + " - Salary: " + contract.getSalary();
+    }
 }

@@ -4,6 +4,8 @@ import hr.javafx.restaurant.model.Order;
 import hr.javafx.restaurant.repository.*;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -13,6 +15,8 @@ import javafx.scene.control.TextField;
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static javafx.collections.FXCollections.observableArrayList;
 
 public class OrderController {
     public void onSearchCategoryClick(ActionEvent event) {
@@ -133,6 +137,9 @@ public class OrderController {
                         cellData.getValue().getDeliveryDateAndTime().format(formatter) // Format the date and time
                 )
         );
+
+        orderTableView.getSortOrder().add(orderColumnID);
+
     }
 
     public void filterOrders(){
@@ -174,8 +181,13 @@ public class OrderController {
                     .collect(Collectors.toSet());
         }
 
-        javafx.collections.ObservableList<Order> orderObservableList = javafx.collections.FXCollections.observableArrayList(initialOrderList);
-        orderTableView.setItems(orderObservableList);
+        ObservableList<Order> orderObservableList = observableArrayList(initialOrderList);
+
+        SortedList<Order> sortedList = new SortedList<>(orderObservableList);
+
+        sortedList.comparatorProperty().bind(orderTableView.comparatorProperty());
+
+        orderTableView.setItems(sortedList);
     }
 
 }

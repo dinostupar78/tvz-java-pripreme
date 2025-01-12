@@ -98,5 +98,10 @@ public class Chef extends Person implements Serializable {
     public int hashCode() {
         return Objects.hash(contract, BonusKuhara);
     }
+
+    @Override
+    public String toString() {
+        return getFirstName() + " " + getLastName() + " - Salary: " + contract.getSalary();
+    }
 }
 

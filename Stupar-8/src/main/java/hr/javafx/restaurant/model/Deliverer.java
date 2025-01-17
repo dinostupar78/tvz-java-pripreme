@@ -1,6 +1,8 @@
 package hr.javafx.restaurant.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -13,6 +15,7 @@ public class Deliverer extends Person implements Serializable {
     private Contract contract;
     private int brojDostava;
     private Bonus bonusDostavljaca;
+    private List<String> imagePaths = new ArrayList<>();
 
     /**
      * Privatni konstruktor za stvaranje instanci klase Deliverer.
@@ -58,6 +61,16 @@ public class Deliverer extends Person implements Serializable {
     public void setBonusDostavljaca(Bonus bonusDostavljaca) {
         this.bonusDostavljaca = bonusDostavljaca;
     }
+
+    public List<String> getImagePaths() {
+        return imagePaths;
+    }
+
+    public void setImagePaths(List<String> imagePaths) {
+        this.imagePaths = imagePaths;
+    }
+
+
 
     /**
      * Builder obrazac za izgradnju objekta klase Deliverer.

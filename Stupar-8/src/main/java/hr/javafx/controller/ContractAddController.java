@@ -32,40 +32,73 @@ public class ContractAddController {
     }
 
     public void addNewContract(){
+        StringBuilder errorMessages = new StringBuilder();
+
         String contractSalary = contractTextFieldSalary.getText();
-        BigDecimal salary = new BigDecimal(contractSalary);
+        BigDecimal salary = null;
+        if (contractSalary.isEmpty()) {
+            errorMessages.append("Unos plaće je obavezan!\n");
+        } else {
+            try {
+                salary = new BigDecimal(contractSalary);
+                if (salary.compareTo(BigDecimal.ZERO) <= 0) {
+                    errorMessages.append("Plaća mora biti pozitivan broj!\n");
+                }
+            } catch (NumberFormatException e) {
+                errorMessages.append("Pogreška pri unosu plaće. Provjerite format!\n");
+            }
+        }
 
-        String contractStartTime = String.valueOf(contractDatePickerStartTime.getValue());
-        LocalDate startTime = LocalDate.parse(contractStartTime);
+        LocalDate startTime = contractDatePickerStartTime.getValue();
+        if (startTime == null) {
+            errorMessages.append("Odabir početnog datuma ugovora je obavezan!\n");
+        }
 
-        String contractEndTime = String.valueOf(contractDatePickerEndTime.getValue());
-        LocalDate endTime = LocalDate.parse(contractEndTime);
+        LocalDate endTime = contractDatePickerEndTime.getValue();
+        if (endTime == null) {
+            errorMessages.append("Odabir završnog datuma ugovora je obavezan!\n");
+        } else if (endTime.isBefore(startTime)) {
+            errorMessages.append("Završni datum ugovora ne može biti prije početnog!\n");
+        }
 
         ContractType selectedContract = contractComboBoxContractType.getValue();
+        if (selectedContract == null) {
+            errorMessages.append("Odabir tipa ugovora je obavezan!\n");
+        }
 
-        Contract contract = new Contract(null, salary, startTime, endTime, selectedContract);
-        contractRepository.save(contract);
+        if (errorMessages.length() > 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Pogreške kod unosa novog ugovora");
+            alert.setHeaderText("Ugovor nije spremljen zbog pogreški kod unosa");
+            alert.setContentText(errorMessages.toString());
+            alert.showAndWait();
+        } else {
+            Contract contract = new Contract(null, salary, startTime, endTime, selectedContract);
+            contractRepository.save(contract);
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Uspješno spremanje novog ugovora");
-        alert.setHeaderText("Ugovor je uspješno spremljen");
-        StringBuilder sb = new StringBuilder();
-        sb.append("Plaća ugovora: ")
-                .append(salary)
-                .append("\n");
-        sb.append("Početak ugovora: ")
-                .append(startTime)
-                .append("\n");
-        sb.append("Završetak ugovora: ")
-                .append(endTime)
-                .append("\n");
-        alert.setContentText(sb.toString());
-        alert.showAndWait();
+            // Show success message
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Uspješno spremanje novog ugovora");
+            alert.setHeaderText("Ugovor je uspješno spremljen");
+            StringBuilder sb = new StringBuilder();
+            sb.append("Plaća ugovora: ")
+                    .append(salary)
+                    .append("\n");
+            sb.append("Početak ugovora: ")
+                    .append(startTime)
+                    .append("\n");
+            sb.append("Završetak ugovora: ")
+                    .append(endTime)
+                    .append("\n");
+            alert.setContentText(sb.toString());
+            alert.showAndWait();
 
-        contractTextFieldSalary.clear();
-        contractDatePickerStartTime.setValue(null);
-        contractDatePickerEndTime.setValue(null);
-        contractComboBoxContractType.setValue(null);
+            // Clear fields after successful save
+            contractTextFieldSalary.clear();
+            contractDatePickerStartTime.setValue(null);
+            contractDatePickerEndTime.setValue(null);
+            contractComboBoxContractType.setValue(null);
+        }
 
     }
 

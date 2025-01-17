@@ -53,48 +53,87 @@ public class DelivererAddController {
     }
 
     public void addNewDeliverer(){
+        StringBuilder errorMessages = new StringBuilder();
+
         String delivererFirstName = delivererTextFieldFirstName.getText();
+        if(delivererFirstName.isEmpty()){
+            errorMessages.append("Unos imena Dostavljača je obavezan!\n");
+        }
 
         String delivererLastName = delivererTextFieldLastName.getText();
+        if(delivererLastName.isEmpty()){
+            errorMessages.append("Unos prezimena Dostavljača je obavezan!\n");
+        }
 
         Contract selectedContract = delivererComboBoxContract.getValue();
+        if (selectedContract == null) {
+            errorMessages.append("Odabir ugovora je obavezan!\n");
+        }
 
         String delivererBonus = delivererTextFieldBonus.getText();
-        BigDecimal bonusAmount = new BigDecimal(delivererBonus);
-        Bonus bonus = new Bonus(bonusAmount);
+        Bonus bonus = null;
+        if (delivererBonus.isEmpty()) {
+            errorMessages.append("Unos bonusa Dostavljača je obavezan!\n");
+        } else {
+            try {
+                if (!delivererBonus.matches("^[0-9]+(\\.[0-9]{1,4})?$")) {
+                    errorMessages.append("Bonus mora biti pozitivan broj, npr. 10.00!\n");
+                } else {
+                    BigDecimal bonusAmount = new BigDecimal(delivererBonus);
+                    if (bonusAmount.compareTo(BigDecimal.ZERO) <= 0) {
+                        errorMessages.append("Bonus mora biti veći od 0.00!\n");
+                    } else {
+                        bonus = new Bonus(bonusAmount);
+                    }
+                }
+            } catch (NumberFormatException e) {
+                errorMessages.append("Pogrešan format bonusa!\n");
+            }
+        }
 
-        Deliverer deliverer = new Deliverer.BuilderDeliverer(null)
-                .delivererFirstName(delivererFirstName)
-                .delivererLastName(delivererLastName)
-                .delivererContract(selectedContract)
-                .delivererBonusDostavljaca(bonus)
-                .build();
 
-        delivererRepository.save(deliverer);
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Uspješno spremanje novog dostavljača");
-        alert.setHeaderText("Dostavljač je uspješno spremljen");
-        StringBuilder sb = new StringBuilder();
-        sb.append("Ime dostavljača: ")
-                .append(delivererFirstName)
-                .append("\n");
-        sb.append("Prezime dostavljača: ")
-                .append(delivererLastName)
-                .append("\n");
-        sb.append("Ugovor dostavljača: ")
-                .append(selectedContract)
-                .append("\n");
-        sb.append("Bonus dostavljača: ")
-                .append(bonus)
-                .append("\n");
-        alert.setContentText(sb.toString());
-        alert.showAndWait();
+        if (errorMessages.length() > 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Pogreške kod unosa novog dostavljača");
+            alert.setHeaderText("Dostavljač nije spremljen zbog pogreški kod unosa");
+            alert.setContentText(errorMessages.toString());
+            alert.showAndWait();
+        } else{
 
-        delivererTextFieldFirstName.clear();
-        delivererTextFieldLastName.clear();
-        delivererComboBoxContract.setValue(null);
-        delivererTextFieldBonus.clear();
+            Deliverer deliverer = new Deliverer.BuilderDeliverer(null)
+                    .delivererFirstName(delivererFirstName)
+                    .delivererLastName(delivererLastName)
+                    .delivererContract(selectedContract)
+                    .delivererBonusDostavljaca(bonus)
+                    .build();
+
+            delivererRepository.save(deliverer);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Uspješno spremanje novog dostavljača");
+            alert.setHeaderText("Dostavljač je uspješno spremljen");
+            StringBuilder sb = new StringBuilder();
+            sb.append("Ime dostavljača: ")
+                    .append(delivererFirstName)
+                    .append("\n");
+            sb.append("Prezime dostavljača: ")
+                    .append(delivererLastName)
+                    .append("\n");
+            sb.append("Ugovor dostavljača: ")
+                    .append(selectedContract)
+                    .append("\n");
+            sb.append("Bonus dostavljača: ")
+                    .append(bonus)
+                    .append("\n");
+            alert.setContentText(sb.toString());
+            alert.showAndWait();
+
+            delivererTextFieldFirstName.clear();
+            delivererTextFieldLastName.clear();
+            delivererComboBoxContract.setValue(null);
+            delivererTextFieldBonus.clear();
+
+        }
     }
-
 }

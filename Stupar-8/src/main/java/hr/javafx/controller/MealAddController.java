@@ -54,43 +54,83 @@ public class MealAddController {
     }
 
     public void addNewMeal() {
+        StringBuilder errorMessages = new StringBuilder();
+
         String mealName = mealTextFieldName.getText();
+        if(mealName.isEmpty()){
+            errorMessages.append("Unos imena jela je obavezan!\n");
+        }
         Category selectedCategory = mealComboBoxCategory.getValue();
+        if (selectedCategory == null) {
+            errorMessages.append("Odabir kategorije je obavezan!\n");
+        }
 
         Set<Ingredient> ingredients = ingredientRepository.findAll();
 
         String mealPrice = mealTextFieldPrice.getText();
-        BigDecimal price = new BigDecimal(mealPrice);
+        BigDecimal price = null;
+        if (mealPrice.isEmpty()) {
+            errorMessages.append("Unos cijene jela je obavezan!\n");
+        } else if (!mealPrice.matches("^[0-9]{1,12}(?:\\.[0-9]{1,4})?$")) {
+            errorMessages.append("Unos cijene jela mora biti pozitivan i u formatu, npr. 10.00!\n");
+        } else {
+            try {
+                price = new BigDecimal(mealPrice);
+                if (price.compareTo(BigDecimal.ZERO) == 0) {
+                    errorMessages.append("Unesena cijena jela ne smije biti 0.00!\n");
+                }
+            } catch (NumberFormatException e) {
+                errorMessages.append("Pogreška pri unosu cijene jela. Provjerite format!\n");
+            }
+        }
 
         String mealCalories = mealTextFieldCalories.getText();
-        Integer calories = Integer.valueOf(mealCalories);
+        Integer calories = null;
+        if (mealCalories.isEmpty()) {
+            errorMessages.append("Unos kalorija je obavezan!\n");
+        } else {
+            try {
+                calories = Integer.valueOf(mealCalories);
+                if (calories <= 0) {
+                    errorMessages.append("Broj kalorija mora biti pozitivan broj!\n");
+                }
+            } catch (NumberFormatException e) {
+                errorMessages.append("Pogreška pri unosu kalorija. Unesite cijeli broj!\n");
+            }
+        }
 
-        Meal meal = new Meal(null, mealName, selectedCategory, ingredients, price, calories);
-        mealRepository.save(meal);
+        if (errorMessages.length() > 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Pogreške kod unosa novog jela");
+            alert.setHeaderText("Jelo nije spremljeno zbog pogreški kod unosa");
+            alert.setContentText(errorMessages.toString());
+            alert.showAndWait();
+        } else{
+            Meal meal = new Meal(null, mealName, selectedCategory, ingredients, price, calories);
+            mealRepository.save(meal);
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Uspješno spremanje novog jela");
-        alert.setHeaderText("Jelo " + mealName + " je uspješno spremljen");
-        StringBuilder sb = new StringBuilder();
-        sb.append("Ime kategorije: ")
-                .append(selectedCategory)
-                .append("\n");
-        sb.append("Cijena: ")
-                .append(price)
-                .append("\n");
-        sb.append("Kalorije: ")
-                .append(calories)
-                .append("\n");
-        alert.setContentText(sb.toString());
-        alert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Uspješno spremanje novog jela");
+            alert.setHeaderText("Jelo " + mealName + " je uspješno spremljen");
+            StringBuilder sb = new StringBuilder();
+            sb.append("Ime kategorije: ")
+                    .append(selectedCategory)
+                    .append("\n");
+            sb.append("Cijena: ")
+                    .append(price)
+                    .append("\n");
+            sb.append("Kalorije: ")
+                    .append(calories)
+                    .append("\n");
+            alert.setContentText(sb.toString());
+            alert.showAndWait();
 
-        mealTextFieldName.clear();
-        mealComboBoxCategory.setValue(null);
-        mealTextFieldPrice.clear();
-        mealTextFieldCalories.clear();
+            mealTextFieldName.clear();
+            mealComboBoxCategory.setValue(null);
+            mealTextFieldPrice.clear();
+            mealTextFieldCalories.clear();
 
+        }
     }
-
-
 
 }

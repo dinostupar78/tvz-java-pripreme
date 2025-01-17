@@ -53,48 +53,86 @@ public class WaiterAddController {
     }
 
     public void addNewWaiter(){
+        StringBuilder errorMessages = new StringBuilder();
+
         String waiterFirstName = waiterTextFieldFirstName.getText();
+        if(waiterFirstName.isEmpty()){
+            errorMessages.append("Unos imena Dostavljača je obavezan!\n");
+        }
 
         String waiterLastName = waiterTextFieldLastName.getText();
+        if(waiterLastName.isEmpty()){
+            errorMessages.append("Unos prezimena Dostavljača je obavezan!\n");
+        }
 
         Contract selectedContract = waiterComboBoxContract.getValue();
+        if (selectedContract == null) {
+            errorMessages.append("Odabir ugovora je obavezan!\n");
+        }
 
         String waiterBonus = waiterTextFieldBonus.getText();
-        BigDecimal bonusAmount = new BigDecimal(waiterBonus);
-        Bonus bonus = new Bonus(bonusAmount);
+        Bonus bonus = null;
 
-        Waiter waiter = new Waiter.BuilderWaiter(null)
-                .waiterFirstName(waiterFirstName)
-                .waiterLastName(waiterLastName)
-                .waiterContract(selectedContract)
-                .waiterBonusKonobara(bonus)
-                .build();
+        if (waiterBonus.isEmpty()) {
+            errorMessages.append("Unos bonusa Dostavljača je obavezan!\n");
+        } else {
+            try {
+                if (!waiterBonus.matches("^[0-9]+(\\.[0-9]{1,4})?$")) {
+                    errorMessages.append("Bonus mora biti pozitivan broj, npr. 10.00!\n");
+                } else {
+                    BigDecimal bonusAmount = new BigDecimal(waiterBonus);
+                    if (bonusAmount.compareTo(BigDecimal.ZERO) <= 0) {
+                        errorMessages.append("Bonus mora biti veći od 0.00!\n");
+                    } else {
+                        bonus = new Bonus(bonusAmount);
+                    }
+                }
+            } catch (NumberFormatException e) {
+                errorMessages.append("Pogrešan format bonusa!\n");
+            }
+        }
 
-        waiterRepository.save(waiter);
+        if (errorMessages.length() > 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Pogreške kod unosa novog konobara");
+            alert.setHeaderText("Konobar nije spremljen zbog pogreški kod unosa");
+            alert.setContentText(errorMessages.toString());
+            alert.showAndWait();
+        } else{
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Uspješno spremanje novog konobara");
-        alert.setHeaderText("Konobar je uspješno spremljen");
-        StringBuilder sb = new StringBuilder();
-        sb.append("Ime konobara: ")
-                .append(waiterFirstName)
-                .append("\n");
-        sb.append("Prezime konobara: ")
-                .append(waiterLastName)
-                .append("\n");
-        sb.append("Ugovor konobara: ")
-                .append(selectedContract)
-                .append("\n");
-        sb.append("Bonus konobara: ")
-                .append(bonus)
-                .append("\n");
-        alert.setContentText(sb.toString());
-        alert.showAndWait();
+            Waiter waiter = new Waiter.BuilderWaiter(null)
+                    .waiterFirstName(waiterFirstName)
+                    .waiterLastName(waiterLastName)
+                    .waiterContract(selectedContract)
+                    .waiterBonusKonobara(bonus)
+                    .build();
 
-        waiterTextFieldFirstName.clear();
-        waiterTextFieldLastName.clear();
-        waiterComboBoxContract.setValue(null);
-        waiterTextFieldBonus.clear();
+            waiterRepository.save(waiter);
 
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Uspješno spremanje novog konobara");
+            alert.setHeaderText("Konobar je uspješno spremljen");
+            StringBuilder sb = new StringBuilder();
+            sb.append("Ime konobara: ")
+                    .append(waiterFirstName)
+                    .append("\n");
+            sb.append("Prezime konobara: ")
+                    .append(waiterLastName)
+                    .append("\n");
+            sb.append("Ugovor konobara: ")
+                    .append(selectedContract)
+                    .append("\n");
+            sb.append("Bonus konobara: ")
+                    .append(bonus)
+                    .append("\n");
+            alert.setContentText(sb.toString());
+            alert.showAndWait();
+
+            waiterTextFieldFirstName.clear();
+            waiterTextFieldLastName.clear();
+            waiterComboBoxContract.setValue(null);
+            waiterTextFieldBonus.clear();
+
+        }
     }
 }

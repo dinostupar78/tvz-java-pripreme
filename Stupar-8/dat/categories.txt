@@ -1,21 +1,36 @@
+8
+
+
+3
+Health & Wellness
+Restoran u ovoj kategoriji nudi jela koja promoviraju zdravlje. Organski sastojci, proteini, i niski udio masti za optimalno zdravlje.
+12
+
+
+10
+wqeqeq
+
+11
+Meso
+mesnati proizvodi
+9
+
+
+1
+Fine Dining
+Ova kategorija je za ljubitelje fine hrane. Restoran nudi luksuzne obroke i izuzetnu uslugu u elegantnom okruženju.
+7
+nesto
+nesto
+4
+Fast Food
+Za one u žurbi, brza hrana je uvijek tu. Pizze, burgere, pomfrit i druge popularne brze grickalice.
+6
+Meso
+kategorija mesa
 2
 Vegetarian
 Restoran nudi bogatstvo jela bez mesa, koristeći svježe povrće i bilje. Idealno za vegane i vegetarijance.
 5
 Grill & BBQ
 Ova kategorija je posvećena ljubiteljima roštilja i BBQ jela. Ponuđena jela uključuju sočne odreske, pečene rebarce, kobasice i povrće s roštilja.
-1
-Fine Dining
-Ova kategorija je za ljubitelje fine hrane. Restoran nudi luksuzne obroke i izuzetnu uslugu u elegantnom okruženju.
-4
-Fast Food
-Za one u žurbi, brza hrana je uvijek tu. Pizze, burgere, pomfrit i druge popularne brze grickalice.
-3
-Health & Wellness
-Restoran u ovoj kategoriji nudi jela koja promoviraju zdravlje. Organski sastojci, proteini, i niski udio masti za optimalno zdravlje.
-7
-nesto
-nesto
-6
-Meso
-kategorija mesa

@@ -11,6 +11,8 @@ import java.io.Serializable;
 public class Category extends Entity implements Serializable {
     private String name;
     private String description;
+    private boolean isActive; // new
+    private String categoryType; // new
 
     /**
      * Konstruktor za stvaranje nove kategorije s danim ID-em, imenom i opisom.
@@ -19,10 +21,28 @@ public class Category extends Entity implements Serializable {
      * @param description detaljan opis kategorije.
      */
 
-    public Category( Long id, String name, String description) {
+    public Category(Long id, String name, String description, boolean isActive, String categoryType) {
         super(id);
         this.name = name;
         this.description = description;
+        this.isActive = isActive;
+        this.categoryType = categoryType;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        this.isActive = active;
+    }
+
+    public String getCategoryType() {
+        return categoryType;
+    }
+
+    public void setCategoryType(String categoryType) {
+        this.categoryType = categoryType;
     }
 
     public String getName() {
@@ -43,9 +63,10 @@ public class Category extends Entity implements Serializable {
 
     @Override
     public String toString() {
-        return " Category: " +
-                "name = '" + name + '\'' +
-                ", description='" + description;
-
+        return "Category: " +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", isActive=" + isActive +
+                ", categoryType='" + categoryType + '\'';
     }
 }

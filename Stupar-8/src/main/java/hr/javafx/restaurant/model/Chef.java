@@ -13,6 +13,9 @@ public class Chef extends Person implements Serializable {
 
     private Contract contract;
     private Bonus BonusKuhara;
+    private boolean isManager; // Nova varijabla povezena s CheckBox
+    private String mealPreference;
+
 
     /**
      * Konstruktor za stvaranje novog kuhara s danim atributima.
@@ -56,6 +59,7 @@ public class Chef extends Person implements Serializable {
         private String lastName;
         private Contract contract;
         private Bonus BonusKuhara;
+
 
         public BuilderChef(Long id){
             this.id = id;

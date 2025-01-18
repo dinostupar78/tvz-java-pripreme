@@ -10,6 +10,8 @@
             <items>
                 <MenuItem mnemonicParsing="false" onAction="#onSearchCategoryClick" text="Search" />
             <MenuItem mnemonicParsing="false" onAction="#onAddCategoryClick" text="Add new Category" />
+                <MenuItem mnemonicParsing="false" onAction="#onAddExportClick" text="Export" />
+
             </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Ingredients">

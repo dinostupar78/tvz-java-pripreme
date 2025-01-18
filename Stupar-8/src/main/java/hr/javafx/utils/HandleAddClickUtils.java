@@ -143,4 +143,18 @@ public class HandleAddClickUtils {
             e.printStackTrace();
         }
     }
+    public void handleAddClickExport(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/javafx/export.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            MenuItem menuItem = (MenuItem) event.getSource();
+            Stage stage = (Stage) ((MenuItem) menuItem).getParentPopup().getOwnerWindow();
+
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

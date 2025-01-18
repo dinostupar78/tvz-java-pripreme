@@ -1,0 +1,1 @@
+Category: name='Grill & BBQ', description='Ova kategorija je posvećena ljubiteljima roštilja i BBQ jela. Ponuđena jela uključuju sočne odreske, pečene rebarce, kobasice i povrće s roštilja.', isActive=true, categoryType='Type1'

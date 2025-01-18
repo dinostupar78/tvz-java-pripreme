@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+
+<MenuBar xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.controller.FirstScreenController">
+    <menus>
+        <Menu mnemonicParsing="false" text="Categories">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchCategoryClick" text="Search" />
+                <MenuItem mnemonicParsing="false" onAction="#onAddCategoryClick" text="Add new Category" />
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Ingredients">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchIngredientClick" text="Search" />
+                <MenuItem mnemonicParsing="false" onAction="#onAddIngredientClick" text="Add new Ingredient" />
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Meals">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchMealClick" text="Search" />
+                <MenuItem mnemonicParsing="false" onAction="#onAddMealClick" text="Add new Meal" />
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Contracts">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchContractClick" text="Search" />
+                <MenuItem mnemonicParsing="false" onAction="#onAddContractClick" text="Add new Contract" />
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Chefs">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchChefClick" text="Search" />
+                <MenuItem mnemonicParsing="false" onAction="#onAddChefClick" text="Add new Chef" />
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Waiters">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchWaiterClick" text="Search" />
+                <MenuItem mnemonicParsing="false" onAction="#onAddWaiterClick" text="Add new Waiter" />
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Deliverers">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchDelivererClick" text="Search" />
+                <MenuItem mnemonicParsing="false" onAction="#onAddDelivererClick" text="Add new Deliverer" />
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Restaurants">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchRestaurantClick" text="Search" />
+                <MenuItem mnemonicParsing="false" onAction="#onAddRestaurantClick" text="Add new Restaurant" />
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Orders">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#onSearchOrderClick" text="Search" />
+                <MenuItem mnemonicParsing="false" onAction="#onAddOrderClick" text="Add new Order" />
+            </items>
+        </Menu>
+    </menus>
+</MenuBar>

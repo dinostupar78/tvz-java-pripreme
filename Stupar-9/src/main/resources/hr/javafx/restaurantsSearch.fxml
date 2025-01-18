@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="0.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.controller.RestaurantController">
+   <fx:include source="menuBar.fxml" />
+   <children>
+      <GridPane prefHeight="600.0" prefWidth="800.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="462.0" minWidth="10.0" prefWidth="409.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="486.0" minWidth="10.0" prefWidth="391.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Restaurants Search" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Consolas Bold" size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Enter Restaurant ID:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="5.0" top="-40.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Calibri Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="filterRestaurants" mnemonicParsing="false" onAction="#filterRestaurants" text="Search" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Calibri Bold Italic" size="18.0" />
+               </font>
+            </Button>
+            <TableView fx:id="restaurantTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="3">
+              <columns>
+                <TableColumn fx:id="restaurantColumnID" prefWidth="70.0" text="ID" />
+                <TableColumn fx:id="restaurantColumnName" prefWidth="134.0" text="Name" />
+                  <TableColumn fx:id="restaurantColumnAddress" prefWidth="140.0" text="Address" />
+                  <TableColumn fx:id="restaurantColumnMeals" prefWidth="106.0" text="Meals" />
+                  <TableColumn fx:id="restaurantColumnChefs" prefWidth="107.0" text="Chefs" />
+                  <TableColumn fx:id="restaurantColumnWaiters" prefWidth="126.0" text="Waiters" />
+                  <TableColumn fx:id="restaurantColumnDeliverers" prefWidth="116.0" text="Delivers" />
+              </columns>
+            </TableView>
+            <TextField fx:id="restaurantTextFieldID" prefHeight="25.0" prefWidth="404.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" right="220.0" top="-40.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Enter Restaurant Name:" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Calibri Bold Italic" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" top="45.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="restaurantTextFieldName" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="220.0" right="5.0" top="45.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Enter Restaurant Address:" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Calibri Bold Italic" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="5.0" top="-15.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="restaurantTextFieldAddress" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="230.0" right="5.0" top="-15.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Enter Restaurant Meals:" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Calibri Bold Italic" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" top="65.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="restaurantTextFieldMeals" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="220.0" right="5.0" top="65.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Enter Restaurant Chefs:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Calibri Bold Italic" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" top="45.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="restaurantTextFieldChefs" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="220.0" right="10.0" top="45.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Enter Restaurant Waiters:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Calibri Bold Italic" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="5.0" top="-15.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="restaurantTextFieldWaiters" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="230.0" right="10.0" top="-15.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Enter Restaurant Delivers:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Calibri Bold Italic" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="5.0" top="65.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="restaurantTextFieldDeliverers" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="230.0" right="10.0" top="65.0" />
+               </GridPane.margin>
+            </TextField>
+         </children>
+      </GridPane>
+   </children>
+</VBox>

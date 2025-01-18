@@ -111,11 +111,6 @@ public class FirstScreenController {
         addClickUtils.handleAddClickOrders(event);
     }
 
-    public void onAddExportClick(ActionEvent event) {
-        HandleAddClickUtils addClickUtils = new HandleAddClickUtils();
-        addClickUtils.handleAddClickExport(event);
-    }
-
 
 
 }

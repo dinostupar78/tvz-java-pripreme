@@ -8,7 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -82,7 +84,6 @@ public class CategoryController {
     @FXML
     private TableColumn<Category, String> categoryColumnDescription;
 
-
     private CategoryRepository categoryRepository = new CategoryRepository();
 
     public void initialize() {
@@ -97,15 +98,15 @@ public class CategoryController {
 
         categoryColumnID.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getId()))
-                );
+        );
 
         categoryColumnName.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getName()))
-                );
+        );
 
         categoryColumnDescription.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getDescription()))
-                );
+        );
 
         categoryTableView.getSortOrder().add(categoryColumnID);
 

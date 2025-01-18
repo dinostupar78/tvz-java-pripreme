@@ -1,25 +1,15 @@
 1
 Grill & BBQ
 Ova kategorija je posvećena ljubiteljima roštilja i BBQ jela. Ponuđena jela uključuju sočne odreske, pečene rebarce, kobasice i povrće s roštilja.
-false
-Type2
 2
 Fine Dining
 Ova kategorija je za ljubitelje fine hrane. Restoran nudi luksuzne obroke i izuzetnu uslugu u elegantnom okruženju.
-false
-Type2
 3
 Vegetarian
 Restoran nudi bogatstvo jela bez mesa, koristeći svježe povrće i bilje. Idealno za vegane i vegetarijance.
-false
-Type2
 4
 Fast Food
 Za one u žurbi, brza hrana je uvijek tu. Pizze, burgere, pomfrit i druge popularne brze grickalice.
-false
-Type2
 5
 Health & Wellness
 Restoran u ovoj kategoriji nudi jela koja promoviraju zdravlje. Organski sastojci, proteini, i niski udio masti za optimalno zdravlje.
-true
-Type2

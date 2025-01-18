@@ -67,7 +67,7 @@ public class DataInputUtils {
         } while(!isValid);
 
         long id = categoryIdCounter++;
-        return new Category(id, categoryName, categoryDescription, false, null);
+        return new Category(id, categoryName, categoryDescription);
     }
 
     /**

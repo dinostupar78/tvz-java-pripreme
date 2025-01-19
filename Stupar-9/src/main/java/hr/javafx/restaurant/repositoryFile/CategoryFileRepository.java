@@ -1,4 +1,4 @@
-package hr.javafx.restaurant.repository;
+package hr.javafx.restaurant.repositoryFile;
 
 import hr.javafx.restaurant.model.Category;
 
@@ -20,7 +20,7 @@ import java.util.stream.Stream;
  * @param <T> a type parameter that extends {@link Category}.
  */
 
-public class CategoryRepository <T extends Category> extends AbstractRepository<T>{
+public class CategoryFileRepository<T extends Category> extends AbstractFileRepository<T> {
 
     private static final String CATEGORIES_FILE_PATH = "dat/categories.txt";
     private static final Integer NUMBER_OF_ROWS_PER_CATEGORY = 3;

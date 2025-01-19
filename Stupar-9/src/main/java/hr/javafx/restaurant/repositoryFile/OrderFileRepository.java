@@ -1,4 +1,4 @@
-package hr.javafx.restaurant.repository;
+package hr.javafx.restaurant.repositoryFile;
 
 import hr.javafx.restaurant.model.Deliverer;
 import hr.javafx.restaurant.model.Meal;
@@ -22,15 +22,15 @@ import java.util.stream.Stream;
  * @param <T> The type of the order, extending the Order class.
  */
 
-public class OrderRepository <T extends Order> extends AbstractRepository<T>{
+public class OrderFileRepository<T extends Order> extends AbstractFileRepository<T> {
     private static final String ORDERS_FILE_PATH = "dat/orders.txt";
     private static final Integer NUMBER_OF_ROWS_PER_ORDER = 5;
 
-    public RestaurantRepository<Restaurant> restaurantRepository;
-    public MealsRepository<Meal> mealRepository;
-    public DelivererRepository<Deliverer> delivererRepository;
+    public RestaurantFileRepository<Restaurant> restaurantRepository;
+    public MealFileRepository<Meal> mealRepository;
+    public DelivererFileRepository<Deliverer> delivererRepository;
 
-    public OrderRepository(RestaurantRepository<Restaurant> restaurantRepository, MealsRepository<Meal> mealRepository, DelivererRepository<Deliverer> delivererRepository) {
+    public OrderFileRepository(RestaurantFileRepository<Restaurant> restaurantRepository, MealFileRepository<Meal> mealRepository, DelivererFileRepository<Deliverer> delivererRepository) {
         this.restaurantRepository = restaurantRepository;
         this.mealRepository = mealRepository;
         this.delivererRepository = delivererRepository;

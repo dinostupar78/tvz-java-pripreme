@@ -1,4 +1,4 @@
-package hr.javafx.restaurant.repository;
+package hr.javafx.restaurant.repositoryFile;
 
 import hr.javafx.restaurant.model.Bonus;
 import hr.javafx.restaurant.model.Chef;
@@ -23,13 +23,13 @@ import java.util.stream.Stream;
  * @param <T> <T> a type parameter that extends {@link Chef}.
  */
 
-public class ChefRepository <T extends Chef> extends AbstractRepository<T>{
+public class ChefFileRepository<T extends Chef> extends AbstractFileRepository<T> {
     private static final String CHEFS_FILE_PATH = "dat/chefs.txt";
     private static final Integer NUMBER_OF_ROWS_PER_CHEFS = 5;
 
-    public ContractRepository<Contract> contractRepository;
+    public ContractFileRepository<Contract> contractRepository;
 
-    public ChefRepository(ContractRepository<Contract> contractRepository) {
+    public ChefFileRepository(ContractFileRepository<Contract> contractRepository) {
         this.contractRepository = contractRepository;
     }
 

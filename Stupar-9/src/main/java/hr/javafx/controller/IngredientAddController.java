@@ -2,8 +2,8 @@ package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Category;
 import hr.javafx.restaurant.model.Ingredient;
-import hr.javafx.restaurant.repository.CategoryRepository;
-import hr.javafx.restaurant.repository.IngredientRepository;
+import hr.javafx.restaurant.repositoryDatabase.CategoryDatabaseRepository;
+import hr.javafx.restaurant.repositoryDatabase.IngredientDatabaseRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -28,8 +28,11 @@ public class IngredientAddController {
     @FXML
     private TextField ingredientTextFieldPreparationMethod;
 
-    private final CategoryRepository<Category> categoryRepository = new CategoryRepository<>();
-    private final IngredientRepository<Ingredient> ingredientRepository = new IngredientRepository<>(categoryRepository);
+    //private final CategoryFileRepository<Category> categoryRepository = new CategoryFileRepository<>();
+    //private final IngredientFileRepository<Ingredient> ingredientRepository = new IngredientFileRepository<>(categoryRepository);
+
+    private final CategoryDatabaseRepository<Category> categoryRepository = new CategoryDatabaseRepository<>();
+    private final IngredientDatabaseRepository<Ingredient> ingredientRepository = new IngredientDatabaseRepository<>();
 
     public void initialize() {
         Set<Category> categories = categoryRepository.findAll();

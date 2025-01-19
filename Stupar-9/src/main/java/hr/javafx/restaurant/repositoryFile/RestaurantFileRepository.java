@@ -1,4 +1,4 @@
-package hr.javafx.restaurant.repository;
+package hr.javafx.restaurant.repositoryFile;
 
 import hr.javafx.restaurant.model.*;
 
@@ -17,17 +17,17 @@ import java.util.stream.Stream;
  * @param <T> the type of restaurant that extends the {@link Restaurant} class
  */
 
-public class RestaurantRepository <T extends Restaurant> extends AbstractRepository<T>{
+public class RestaurantFileRepository<T extends Restaurant> extends AbstractFileRepository<T> {
     private static final String RESTAURANTS_FILE_PATH = "dat/restaurants.txt";
     private static final Integer NUMBER_OF_ROWS_PER_RESTAURANTS = 7;
 
-    public AddressRepository<Address> addressRepository;
-    public MealsRepository<Meal> mealRepository;
-    public ChefRepository<Chef> chefRepository;
-    public WaiterRepository<Waiter> waiterRepository;
-    public DelivererRepository<Deliverer> delivererRepository;
+    public AddressFileRepository<Address> addressRepository;
+    public MealFileRepository<Meal> mealRepository;
+    public ChefFileRepository<Chef> chefRepository;
+    public WaiterFileRepository<Waiter> waiterRepository;
+    public DelivererFileRepository<Deliverer> delivererRepository;
 
-    public RestaurantRepository(AddressRepository<Address> addressRepository, MealsRepository<Meal> mealsRepository, ChefRepository<Chef> chefRepository, WaiterRepository<Waiter> waiterRepository, DelivererRepository<Deliverer> delivererRepository) {
+    public RestaurantFileRepository(AddressFileRepository<Address> addressRepository, MealFileRepository<Meal> mealsRepository, ChefFileRepository<Chef> chefRepository, WaiterFileRepository<Waiter> waiterRepository, DelivererFileRepository<Deliverer> delivererRepository) {
         this.addressRepository = addressRepository;
         this.mealRepository = mealsRepository;
         this.chefRepository = chefRepository;

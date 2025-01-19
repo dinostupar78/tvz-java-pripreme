@@ -2,7 +2,7 @@ package hr.javafx.main;
 
 import hr.javafx.restaurant.generics.RestaurantLabourExchangeOffice;
 import hr.javafx.restaurant.model.*;
-import hr.javafx.restaurant.repository.*;
+import hr.javafx.restaurant.repositoryFile.*;
 import hr.javafx.utils.ComparatorUtils;
 import hr.javafx.utils.LambdaUtils;
 
@@ -19,16 +19,16 @@ import static hr.javafx.utils.MealRestaurantUtils.mapMealsToRestaurants;
 public class FilesMain {
     public static void main(String[] args) {
 
-        CategoryRepository<Category> categoryRepository = new CategoryRepository<>();
-        IngredientRepository<Ingredient> ingredientRepository = new IngredientRepository<>(categoryRepository);
-        MealsRepository<Meal> mealsRepository = new MealsRepository<>(categoryRepository);
-        ContractRepository<Contract> contractRepository = new ContractRepository<>();
-        ChefRepository<Chef> chefRepository = new ChefRepository<>(contractRepository);
-        WaiterRepository<Waiter> waiterRepository = new WaiterRepository<>(contractRepository);
-        DelivererRepository<Deliverer> delivererRepository = new DelivererRepository<>(contractRepository);
-        AddressRepository<Address> addressRepository = new AddressRepository<>();
-        RestaurantRepository<Restaurant> restaurantRepository = new RestaurantRepository<>(addressRepository, mealsRepository, chefRepository, waiterRepository, delivererRepository);
-        OrderRepository<Order> orderRepository = new OrderRepository<>(restaurantRepository, mealsRepository, delivererRepository);
+        CategoryFileRepository<Category> categoryRepository = new CategoryFileRepository<>();
+        IngredientFileRepository<Ingredient> ingredientRepository = new IngredientFileRepository<>(categoryRepository);
+        MealFileRepository<Meal> mealsRepository = new MealFileRepository<>(categoryRepository);
+        ContractFileRepository<Contract> contractRepository = new ContractFileRepository<>();
+        ChefFileRepository<Chef> chefRepository = new ChefFileRepository<>(contractRepository);
+        WaiterFileRepository<Waiter> waiterRepository = new WaiterFileRepository<>(contractRepository);
+        DelivererFileRepository<Deliverer> delivererRepository = new DelivererFileRepository<>(contractRepository);
+        AddressFileRepository<Address> addressRepository = new AddressFileRepository<>();
+        RestaurantFileRepository<Restaurant> restaurantRepository = new RestaurantFileRepository<>(addressRepository, mealsRepository, chefRepository, waiterRepository, delivererRepository);
+        OrderFileRepository<Order> orderRepository = new OrderFileRepository<>(restaurantRepository, mealsRepository, delivererRepository);
 
 
         Set<Contract> contracts = contractRepository.findAll();

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2025-01-18">
-<meta name="description" content="declaration: module: hr.javafx.stupar7, package: hr.javafx.restaurant.repository, class: RestaurantRepository">
+<meta name="description" content="declaration: module: hr.javafx.stupar7, package: hr.javafx.restaurant.repositoryFile, class: RestaurantRepository">
 <meta name="generator" content="javadoc/ClassWriter">
 <link rel="stylesheet" type="text/css" href="../../../../../resource-files/jquery-ui.min.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../resource-files/stylesheet.css" title="Style">
@@ -41,7 +41,7 @@ loadScripts(document, 'script');</script>
 <div class="nav-content">
 <ol class="sub-nav-list">
 <li><a href="../../../../module-summary.html">hr.javafx.stupar7</a></li>
-<li><a href="package-summary.html">hr.javafx.restaurant.repository</a></li>
+<li><a href="package-summary.html">hr.javafx.restaurant.repositoryFile</a></li>
 <li><a href="RestaurantRepository.html" class="current-selection">RestaurantRepository</a></li>
 </ol>
 <div class="nav-list-search">
@@ -95,8 +95,8 @@ loadScripts(document, 'script');</script>
 <h1 title="Class RestaurantRepository" class="title">Class RestaurantRepository&lt;T extends <a href="../model/Restaurant.html" title="class in hr.javafx.restaurant.model">Restaurant</a>&gt;</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance"><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repository">hr.javafx.restaurant.repository.AbstractRepository</a>&lt;T&gt;
-<div class="inheritance">hr.javafx.restaurant.repository.RestaurantRepository&lt;T&gt;</div>
+<div class="inheritance"><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repositoryFile">hr.javafx.restaurant.repositoryFile.AbstractFileRepository</a>&lt;T&gt;
+<div class="inheritance">hr.javafx.restaurant.repositoryFile.RestaurantRepository&lt;T&gt;</div>
 </div>
 </div>
 <section class="class-description" id="class-description">
@@ -107,7 +107,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">RestaurantRepository&lt;T extends <a href="../model/Restaurant.html" title="class in hr.javafx.restaurant.model">Restaurant</a>&gt;</span>
-<span class="extends-implements">extends <a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repository">AbstractRepository</a>&lt;T&gt;</span></div>
+<span class="extends-implements">extends <a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repositoryFile">AbstractRepository</a>&lt;T&gt;</span></div>
 <div class="block">Repository class responsible for managing restaurant entities.
  Provides methods for saving restaurants to a file and reading restaurants from a file.</div>
 </div>
@@ -123,19 +123,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code><a href="AddressRepository.html" title="class in hr.javafx.restaurant.repository">AddressRepository</a><wbr>&lt;<a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;</code></div>
+<div class="col-first even-row-color"><code><a href="AddressRepository.html" title="class in hr.javafx.restaurant.repositoryFile">AddressRepository</a><wbr>&lt;<a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><a href="#addressRepository" class="member-name-link">addressRepository</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code><a href="ChefRepository.html" title="class in hr.javafx.restaurant.repository">ChefRepository</a><wbr>&lt;<a href="../model/Chef.html" title="class in hr.javafx.restaurant.model">Chef</a>&gt;</code></div>
+<div class="col-first odd-row-color"><code><a href="ChefRepository.html" title="class in hr.javafx.restaurant.repositoryFile">ChefRepository</a><wbr>&lt;<a href="../model/Chef.html" title="class in hr.javafx.restaurant.model">Chef</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><a href="#chefRepository" class="member-name-link">chefRepository</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code><a href="DelivererRepository.html" title="class in hr.javafx.restaurant.repository">DelivererRepository</a><wbr>&lt;<a href="../model/Deliverer.html" title="class in hr.javafx.restaurant.model">Deliverer</a>&gt;</code></div>
+<div class="col-first even-row-color"><code><a href="DelivererRepository.html" title="class in hr.javafx.restaurant.repositoryFile">DelivererRepository</a><wbr>&lt;<a href="../model/Deliverer.html" title="class in hr.javafx.restaurant.model">Deliverer</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><a href="#delivererRepository" class="member-name-link">delivererRepository</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code><a href="MealsRepository.html" title="class in hr.javafx.restaurant.repository">MealsRepository</a><wbr>&lt;<a href="../model/Meal.html" title="class in hr.javafx.restaurant.model">Meal</a>&gt;</code></div>
+<div class="col-first odd-row-color"><code><a href="MealsRepository.html" title="class in hr.javafx.restaurant.repositoryFile">MealsRepository</a><wbr>&lt;<a href="../model/Meal.html" title="class in hr.javafx.restaurant.model">Meal</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><a href="#mealRepository" class="member-name-link">mealRepository</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code><a href="WaiterRepository.html" title="class in hr.javafx.restaurant.repository">WaiterRepository</a><wbr>&lt;<a href="../model/Waiter.html" title="class in hr.javafx.restaurant.model">Waiter</a>&gt;</code></div>
+<div class="col-first even-row-color"><code><a href="WaiterRepository.html" title="class in hr.javafx.restaurant.repositoryFile">WaiterRepository</a><wbr>&lt;<a href="../model/Waiter.html" title="class in hr.javafx.restaurant.model">Waiter</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><a href="#waiterRepository" class="member-name-link">waiterRepository</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
@@ -149,11 +149,11 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(hr.javafx.restaurant.repository.AddressRepository,hr.javafx.restaurant.repository.MealsRepository,hr.javafx.restaurant.repository.ChefRepository,hr.javafx.restaurant.repository.WaiterRepository,hr.javafx.restaurant.repository.DelivererRepository)" class="member-name-link">RestaurantRepository</a><wbr>(<a href="AddressRepository.html" title="class in hr.javafx.restaurant.repository">AddressRepository</a>&lt;<a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;&nbsp;addressRepository,
- <a href="MealsRepository.html" title="class in hr.javafx.restaurant.repository">MealsRepository</a>&lt;<a href="../model/Meal.html" title="class in hr.javafx.restaurant.model">Meal</a>&gt;&nbsp;mealsRepository,
- <a href="ChefRepository.html" title="class in hr.javafx.restaurant.repository">ChefRepository</a>&lt;<a href="../model/Chef.html" title="class in hr.javafx.restaurant.model">Chef</a>&gt;&nbsp;chefRepository,
- <a href="WaiterRepository.html" title="class in hr.javafx.restaurant.repository">WaiterRepository</a>&lt;<a href="../model/Waiter.html" title="class in hr.javafx.restaurant.model">Waiter</a>&gt;&nbsp;waiterRepository,
- <a href="DelivererRepository.html" title="class in hr.javafx.restaurant.repository">DelivererRepository</a>&lt;<a href="../model/Deliverer.html" title="class in hr.javafx.restaurant.model">Deliverer</a>&gt;&nbsp;delivererRepository)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(hr.javafx.restaurant.repository.AddressRepository,hr.javafx.restaurant.repository.MealsRepository,hr.javafx.restaurant.repository.ChefRepository,hr.javafx.restaurant.repository.WaiterRepository,hr.javafx.restaurant.repository.DelivererRepository)" class="member-name-link">RestaurantRepository</a><wbr>(<a href="AddressRepository.html" title="class in hr.javafx.restaurant.repositoryFile">AddressRepository</a>&lt;<a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;&nbsp;addressRepository,
+ <a href="MealsRepository.html" title="class in hr.javafx.restaurant.repositoryFile">MealsRepository</a>&lt;<a href="../model/Meal.html" title="class in hr.javafx.restaurant.model">Meal</a>&gt;&nbsp;mealsRepository,
+ <a href="ChefRepository.html" title="class in hr.javafx.restaurant.repositoryFile">ChefRepository</a>&lt;<a href="../model/Chef.html" title="class in hr.javafx.restaurant.model">Chef</a>&gt;&nbsp;chefRepository,
+ <a href="WaiterRepository.html" title="class in hr.javafx.restaurant.repositoryFile">WaiterRepository</a>&lt;<a href="../model/Waiter.html" title="class in hr.javafx.restaurant.model">Waiter</a>&gt;&nbsp;waiterRepository,
+ <a href="DelivererRepository.html" title="class in hr.javafx.restaurant.repositoryFile">DelivererRepository</a>&lt;<a href="../model/Deliverer.html" title="class in hr.javafx.restaurant.model">Deliverer</a>&gt;&nbsp;delivererRepository)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -202,7 +202,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="addressRepository">
 <h3>addressRepository</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="AddressRepository.html" title="class in hr.javafx.restaurant.repository">AddressRepository</a>&lt;<a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;</span>&nbsp;<span class="element-name">addressRepository</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="AddressRepository.html" title="class in hr.javafx.restaurant.repositoryFile">AddressRepository</a>&lt;<a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;</span>&nbsp;<span class="element-name">addressRepository</span></div>
 </div>
 </section>
 </li>
@@ -210,7 +210,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="mealRepository">
 <h3>mealRepository</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="MealsRepository.html" title="class in hr.javafx.restaurant.repository">MealsRepository</a>&lt;<a href="../model/Meal.html" title="class in hr.javafx.restaurant.model">Meal</a>&gt;</span>&nbsp;<span class="element-name">mealRepository</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="MealsRepository.html" title="class in hr.javafx.restaurant.repositoryFile">MealsRepository</a>&lt;<a href="../model/Meal.html" title="class in hr.javafx.restaurant.model">Meal</a>&gt;</span>&nbsp;<span class="element-name">mealRepository</span></div>
 </div>
 </section>
 </li>
@@ -218,7 +218,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="chefRepository">
 <h3>chefRepository</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ChefRepository.html" title="class in hr.javafx.restaurant.repository">ChefRepository</a>&lt;<a href="../model/Chef.html" title="class in hr.javafx.restaurant.model">Chef</a>&gt;</span>&nbsp;<span class="element-name">chefRepository</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ChefRepository.html" title="class in hr.javafx.restaurant.repositoryFile">ChefRepository</a>&lt;<a href="../model/Chef.html" title="class in hr.javafx.restaurant.model">Chef</a>&gt;</span>&nbsp;<span class="element-name">chefRepository</span></div>
 </div>
 </section>
 </li>
@@ -226,7 +226,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="waiterRepository">
 <h3>waiterRepository</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="WaiterRepository.html" title="class in hr.javafx.restaurant.repository">WaiterRepository</a>&lt;<a href="../model/Waiter.html" title="class in hr.javafx.restaurant.model">Waiter</a>&gt;</span>&nbsp;<span class="element-name">waiterRepository</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="WaiterRepository.html" title="class in hr.javafx.restaurant.repositoryFile">WaiterRepository</a>&lt;<a href="../model/Waiter.html" title="class in hr.javafx.restaurant.model">Waiter</a>&gt;</span>&nbsp;<span class="element-name">waiterRepository</span></div>
 </div>
 </section>
 </li>
@@ -234,7 +234,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="delivererRepository">
 <h3>delivererRepository</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="DelivererRepository.html" title="class in hr.javafx.restaurant.repository">DelivererRepository</a>&lt;<a href="../model/Deliverer.html" title="class in hr.javafx.restaurant.model">Deliverer</a>&gt;</span>&nbsp;<span class="element-name">delivererRepository</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="DelivererRepository.html" title="class in hr.javafx.restaurant.repositoryFile">DelivererRepository</a>&lt;<a href="../model/Deliverer.html" title="class in hr.javafx.restaurant.model">Deliverer</a>&gt;</span>&nbsp;<span class="element-name">delivererRepository</span></div>
 </div>
 </section>
 </li>
@@ -250,11 +250,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(hr.javafx.restaurant.repository.AddressRepository,hr.javafx.restaurant.repository.MealsRepository,hr.javafx.restaurant.repository.ChefRepository,hr.javafx.restaurant.repository.WaiterRepository,hr.javafx.restaurant.repository.DelivererRepository)">
 <h3>RestaurantRepository</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">RestaurantRepository</span><wbr><span class="parameters">(<a href="AddressRepository.html" title="class in hr.javafx.restaurant.repository">AddressRepository</a>&lt;<a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;&nbsp;addressRepository,
- <a href="MealsRepository.html" title="class in hr.javafx.restaurant.repository">MealsRepository</a>&lt;<a href="../model/Meal.html" title="class in hr.javafx.restaurant.model">Meal</a>&gt;&nbsp;mealsRepository,
- <a href="ChefRepository.html" title="class in hr.javafx.restaurant.repository">ChefRepository</a>&lt;<a href="../model/Chef.html" title="class in hr.javafx.restaurant.model">Chef</a>&gt;&nbsp;chefRepository,
- <a href="WaiterRepository.html" title="class in hr.javafx.restaurant.repository">WaiterRepository</a>&lt;<a href="../model/Waiter.html" title="class in hr.javafx.restaurant.model">Waiter</a>&gt;&nbsp;waiterRepository,
- <a href="DelivererRepository.html" title="class in hr.javafx.restaurant.repository">DelivererRepository</a>&lt;<a href="../model/Deliverer.html" title="class in hr.javafx.restaurant.model">Deliverer</a>&gt;&nbsp;delivererRepository)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">RestaurantRepository</span><wbr><span class="parameters">(<a href="AddressRepository.html" title="class in hr.javafx.restaurant.repositoryFile">AddressRepository</a>&lt;<a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;&nbsp;addressRepository,
+ <a href="MealsRepository.html" title="class in hr.javafx.restaurant.repositoryFile">MealsRepository</a>&lt;<a href="../model/Meal.html" title="class in hr.javafx.restaurant.model">Meal</a>&gt;&nbsp;mealsRepository,
+ <a href="ChefRepository.html" title="class in hr.javafx.restaurant.repositoryFile">ChefRepository</a>&lt;<a href="../model/Chef.html" title="class in hr.javafx.restaurant.model">Chef</a>&gt;&nbsp;chefRepository,
+ <a href="WaiterRepository.html" title="class in hr.javafx.restaurant.repositoryFile">WaiterRepository</a>&lt;<a href="../model/Waiter.html" title="class in hr.javafx.restaurant.model">Waiter</a>&gt;&nbsp;waiterRepository,
+ <a href="DelivererRepository.html" title="class in hr.javafx.restaurant.repositoryFile">DelivererRepository</a>&lt;<a href="../model/Deliverer.html" title="class in hr.javafx.restaurant.model">Deliverer</a>&gt;&nbsp;delivererRepository)</span></div>
 </div>
 </section>
 </li>
@@ -273,7 +273,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="RestaurantRepository.html" title="type parameter in RestaurantRepository">T</a></span>&nbsp;<span class="element-name">findById</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="AbstractRepository.html#findById(java.lang.Long)">findById</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repository">AbstractRepository</a>&lt;<a href="RestaurantRepository.html" title="type parameter in RestaurantRepository">T</a> extends <a href="../model/Restaurant.html" title="class in hr.javafx.restaurant.model">Restaurant</a>&gt;</code></dd>
+<dd><code><a href="AbstractRepository.html#findById(java.lang.Long)">findById</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repositoryFile">AbstractRepository</a>&lt;<a href="RestaurantRepository.html" title="type parameter in RestaurantRepository">T</a> extends <a href="../model/Restaurant.html" title="class in hr.javafx.restaurant.model">Restaurant</a>&gt;</code></dd>
 </dl>
 </div>
 </section>
@@ -285,7 +285,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="RestaurantRepository.html" title="type parameter in RestaurantRepository">T</a>&gt;</span>&nbsp;<span class="element-name">findAll</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="AbstractRepository.html#findAll()">findAll</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repository">AbstractRepository</a>&lt;<a href="RestaurantRepository.html" title="type parameter in RestaurantRepository">T</a> extends <a href="../model/Restaurant.html" title="class in hr.javafx.restaurant.model">Restaurant</a>&gt;</code></dd>
+<dd><code><a href="AbstractRepository.html#findAll()">findAll</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repositoryFile">AbstractRepository</a>&lt;<a href="RestaurantRepository.html" title="type parameter in RestaurantRepository">T</a> extends <a href="../model/Restaurant.html" title="class in hr.javafx.restaurant.model">Restaurant</a>&gt;</code></dd>
 </dl>
 </div>
 </section>
@@ -297,7 +297,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">save</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="RestaurantRepository.html" title="type parameter in RestaurantRepository">T</a>&gt;&nbsp;entities)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="AbstractRepository.html#save(java.util.Set)">save</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repository">AbstractRepository</a>&lt;<a href="RestaurantRepository.html" title="type parameter in RestaurantRepository">T</a> extends <a href="../model/Restaurant.html" title="class in hr.javafx.restaurant.model">Restaurant</a>&gt;</code></dd>
+<dd><code><a href="AbstractRepository.html#save(java.util.Set)">save</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repositoryFile">AbstractRepository</a>&lt;<a href="RestaurantRepository.html" title="type parameter in RestaurantRepository">T</a> extends <a href="../model/Restaurant.html" title="class in hr.javafx.restaurant.model">Restaurant</a>&gt;</code></dd>
 </dl>
 </div>
 </section>
@@ -309,7 +309,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">save</span><wbr><span class="parameters">(<a href="RestaurantRepository.html" title="type parameter in RestaurantRepository">T</a>&nbsp;entity)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="AbstractRepository.html#save(T)">save</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repository">AbstractRepository</a>&lt;<a href="RestaurantRepository.html" title="type parameter in RestaurantRepository">T</a> extends <a href="../model/Restaurant.html" title="class in hr.javafx.restaurant.model">Restaurant</a>&gt;</code></dd>
+<dd><code><a href="AbstractRepository.html#save(T)">save</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repositoryFile">AbstractRepository</a>&lt;<a href="RestaurantRepository.html" title="type parameter in RestaurantRepository">T</a> extends <a href="../model/Restaurant.html" title="class in hr.javafx.restaurant.model">Restaurant</a>&gt;</code></dd>
 </dl>
 </div>
 </section>

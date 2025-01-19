@@ -2,7 +2,6 @@ package hr.javafx.restaurant.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.SortedSet;
@@ -15,7 +14,7 @@ import java.util.SortedSet;
 public class Meal extends Entity implements Serializable {
     private String name;
     private Category category;
-    private Set<Ingredient> ingredient = new HashSet<Ingredient>();
+    private Set<Ingredient> ingredient;
     private BigDecimal price;
     private Integer calories;
 

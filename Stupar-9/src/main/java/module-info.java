@@ -2,6 +2,7 @@ module hr.javafx.stupar7 {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.slf4j;
+    requires java.sql;
 
 
     exports hr.javafx.main;

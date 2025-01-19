@@ -1,4 +1,4 @@
-package hr.javafx.restaurant.repository;
+package hr.javafx.restaurant.repositoryFile;
 
 import hr.javafx.restaurant.model.Bonus;
 import hr.javafx.restaurant.model.Contract;
@@ -23,15 +23,15 @@ import java.util.stream.Stream;
  * @param <T> a type parameter that extends {@link Waiter}.
  */
 
-public class WaiterRepository <T extends Waiter> extends AbstractRepository<T>{
+public class WaiterFileRepository<T extends Waiter> extends AbstractFileRepository<T> {
     private static final String WAITERS_FILE_PATH = "dat/waiters.txt";
     private static final Integer NUMBER_OF_ROWS_PER_WAITERS = 5;
 
-    public WaiterRepository(ContractRepository<Contract> contractRepository) {
+    public WaiterFileRepository(ContractFileRepository<Contract> contractRepository) {
         this.contractRepository = contractRepository;
     }
 
-    public ContractRepository<Contract> contractRepository;
+    public ContractFileRepository<Contract> contractRepository;
     @Override
     public T findById(Long id) {
         return findAll().stream()

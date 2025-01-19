@@ -1,4 +1,4 @@
-package hr.javafx.restaurant.repository;
+package hr.javafx.restaurant.repositoryFile;
 
 import hr.javafx.restaurant.model.Category;
 import hr.javafx.restaurant.model.Ingredient;
@@ -20,13 +20,13 @@ import java.util.stream.Stream;
  * @param <T> a type parameter that extends {@link Meal}.
  */
 
-public class MealsRepository <T extends Meal> extends AbstractRepository<T>{
+public class MealFileRepository<T extends Meal> extends AbstractFileRepository<T> {
     private static final String MEALS_FILE_PATH = "dat/meals.txt";
     private static final Integer NUMBER_OF_ROWS_PER_MEALS = 6;
 
-    public CategoryRepository<Category> categoryRepository;
+    public CategoryFileRepository<Category> categoryRepository;
 
-    public MealsRepository(CategoryRepository<Category> categoryRepository) {
+    public MealFileRepository(CategoryFileRepository<Category> categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
@@ -54,7 +54,7 @@ public class MealsRepository <T extends Meal> extends AbstractRepository<T>{
 
                 String ingredientsIds = fileRows.get(i * NUMBER_OF_ROWS_PER_MEALS + 3);
 
-                IngredientRepository ingredientRepository = new IngredientRepository(categoryRepository);
+                IngredientFileRepository ingredientRepository = new IngredientFileRepository(categoryRepository);
                 Set<Ingredient> ingredients = Arrays.stream(ingredientsIds.split(","))
                         .map(idString -> Long.parseLong(idString))
                         .map(idLong -> ingredientRepository.findById(idLong))

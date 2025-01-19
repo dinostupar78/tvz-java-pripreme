@@ -3,9 +3,9 @@ package hr.javafx.controller;
 import hr.javafx.restaurant.model.Category;
 import hr.javafx.restaurant.model.Ingredient;
 import hr.javafx.restaurant.model.Meal;
-import hr.javafx.restaurant.repository.CategoryRepository;
-import hr.javafx.restaurant.repository.IngredientRepository;
-import hr.javafx.restaurant.repository.MealsRepository;
+import hr.javafx.restaurant.repositoryDatabase.CategoryDatabaseRepository;
+import hr.javafx.restaurant.repositoryDatabase.IngredientDatabaseRepository;
+import hr.javafx.restaurant.repositoryDatabase.MealDatabaseRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -30,9 +30,13 @@ public class MealAddController {
     @FXML
     private TextField mealTextFieldCalories;
 
-    CategoryRepository<Category> categoryRepository = new CategoryRepository<>();
-    IngredientRepository<Ingredient> ingredientRepository = new IngredientRepository<>(categoryRepository);
-    MealsRepository<Meal> mealRepository = new MealsRepository<>(categoryRepository);
+    //CategoryFileRepository<Category> categoryRepository = new CategoryFileRepository<>();
+    //IngredientFileRepository<Ingredient> ingredientRepository = new IngredientFileRepository<>(categoryRepository);
+    //MealFileRepository<Meal> mealRepository = new MealFileRepository<>(categoryRepository);
+
+    private CategoryDatabaseRepository categoryRepository = new CategoryDatabaseRepository();
+    private IngredientDatabaseRepository ingredientRepository = new IngredientDatabaseRepository();
+    private MealDatabaseRepository mealRepository = new MealDatabaseRepository();
 
     public void initialize(){
         Set<Category> categories = categoryRepository.findAll();

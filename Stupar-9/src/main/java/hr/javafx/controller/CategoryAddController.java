@@ -1,7 +1,7 @@
 package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Category;
-import hr.javafx.restaurant.repository.CategoryRepository;
+import hr.javafx.restaurant.repositoryDatabase.CategoryDatabaseRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,7 +44,8 @@ public class CategoryAddController {
         } else{
             Category category = new Category(null, categoryName, categoryDescription);
 
-            CategoryRepository<Category> categoryRepository = new CategoryRepository<>();
+            //CategoryFileRepository<Category> categoryRepository = new CategoryFileRepository<>();
+            CategoryDatabaseRepository<Category> categoryRepository = new CategoryDatabaseRepository<>();
             categoryRepository.save(category);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

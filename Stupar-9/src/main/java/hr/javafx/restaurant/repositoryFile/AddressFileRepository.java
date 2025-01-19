@@ -1,4 +1,4 @@
-package hr.javafx.restaurant.repository;
+package hr.javafx.restaurant.repositoryFile;
 
 import hr.javafx.restaurant.model.Address;
 
@@ -18,7 +18,7 @@ import java.util.stream.Stream;
  * @param <T> a type parameter that extends {@link Address}.
  */
 
-public class AddressRepository <T extends Address> extends AbstractRepository<T> {
+public class AddressFileRepository<T extends Address> extends AbstractFileRepository<T> {
     private static final String ADDRESSES_FILE_PATH = "dat/addresses.txt";
     private static final Integer NUMBER_OF_ROWS_PER_ADDRESSES = 5;
 

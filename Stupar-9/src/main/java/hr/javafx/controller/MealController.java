@@ -1,8 +1,8 @@
 package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Meal;
-import hr.javafx.restaurant.repository.CategoryRepository;
-import hr.javafx.restaurant.repository.MealsRepository;
+import hr.javafx.restaurant.repositoryDatabase.CategoryDatabaseRepository;
+import hr.javafx.restaurant.repositoryDatabase.MealDatabaseRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
@@ -97,8 +97,11 @@ public class MealController {
     @FXML
     private TableColumn<Meal, String> mealColumnCalories;
 
-    private CategoryRepository categoryRepository = new CategoryRepository<>();
-    private MealsRepository mealsRepository = new MealsRepository<>(categoryRepository);
+    //private CategoryFileRepository categoryRepository = new CategoryFileRepository<>();
+    //private MealFileRepository mealRepository = new MealsFileRepository<>(categoryRepository);
+
+    private CategoryDatabaseRepository categoryRepository = new CategoryDatabaseRepository();
+    private MealDatabaseRepository mealRepository = new MealDatabaseRepository();
 
     public void initialize(){
         mealColumnID.setCellValueFactory(cellData ->
@@ -126,7 +129,7 @@ public class MealController {
     }
 
     public void filterMeals(){
-        Set<Meal> initialMealList = mealsRepository.findAll();
+        Set<Meal> initialMealList = mealRepository.findAll();
 
         String mealID = mealTextFieldID.getText();
         if(!mealID.isEmpty()){

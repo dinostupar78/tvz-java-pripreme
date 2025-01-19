@@ -1,4 +1,4 @@
-package hr.javafx.restaurant.repository;
+package hr.javafx.restaurant.repositoryFile;
 
 import hr.javafx.restaurant.model.Bonus;
 import hr.javafx.restaurant.model.Contract;
@@ -23,15 +23,15 @@ import java.util.stream.Stream;
  * @param <T> a type parameter that extends {@link Deliverer}.
  */
 
-public class DelivererRepository <T extends Deliverer> extends AbstractRepository<T>{
+public class DelivererFileRepository<T extends Deliverer> extends AbstractFileRepository<T> {
     private static final String DELIVERERS_FILE_PATH = "dat/deliverers.txt";
     private static final Integer NUMBER_OF_ROWS_PER_DELIVERERS = 5;
 
-    public DelivererRepository(ContractRepository<Contract> contractRepository) {
+    public DelivererFileRepository(ContractFileRepository<Contract> contractRepository) {
         this.contractRepository = contractRepository;
     }
 
-    public ContractRepository<Contract> contractRepository;
+    public ContractFileRepository<Contract> contractRepository;
 
     @Override
     public T findById(Long id) {

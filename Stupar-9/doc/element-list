@@ -6,6 +6,6 @@ hr.javafx.restaurant.exception
 hr.javafx.restaurant.generics
 hr.javafx.restaurant.helper
 hr.javafx.restaurant.model
-hr.javafx.restaurant.repository
+hr.javafx.restaurant.repositoryFile
 hr.javafx.restaurant.sort
 hr.javafx.utils

@@ -1,4 +1,4 @@
-package hr.javafx.restaurant.repository;
+package hr.javafx.restaurant.repositoryFile;
 
 import hr.javafx.restaurant.model.Category;
 import hr.javafx.restaurant.model.Ingredient;
@@ -22,13 +22,13 @@ import java.util.stream.Stream;
  * @param <T> <T> a type parameter that extends {@link Ingredient}.
  */
 
-public class IngredientRepository <T extends Ingredient> extends AbstractRepository<T>{
+public class IngredientFileRepository<T extends Ingredient> extends AbstractFileRepository<T> {
 
     private static final String INGREDIENTS_FILE_PATH = "dat/ingredients.txt";
     private static final Integer NUMBER_OF_ROWS_PER_INGREDIENT = 5;
-    public CategoryRepository<Category> categoryRepository;
+    public CategoryFileRepository<Category> categoryRepository;
 
-    public IngredientRepository(CategoryRepository<Category> categoryRepository) {
+    public IngredientFileRepository(CategoryFileRepository<Category> categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 

@@ -1,8 +1,7 @@
 package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Ingredient;
-import hr.javafx.restaurant.repository.CategoryRepository;
-import hr.javafx.restaurant.repository.IngredientRepository;
+import hr.javafx.restaurant.repositoryDatabase.IngredientDatabaseRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
@@ -87,8 +86,10 @@ public class IngredientController {
     @FXML
     private TableColumn<Ingredient, String> ingredientColumnPreparationMethod;
 
-    private CategoryRepository categoryRepository = new CategoryRepository<>();
-    private IngredientRepository ingredientRepository = new IngredientRepository<>(categoryRepository);
+    //private CategoryFileRepository categoryRepository = new CategoryFileRepository<>();
+    //private IngredientFileRepository ingredientRepository = new IngredientFileRepository<>(categoryRepository);
+
+    private IngredientDatabaseRepository ingredientRepository = new IngredientDatabaseRepository();
 
     public void initialize() {
         ingredientColumnID.setCellValueFactory(cellData ->

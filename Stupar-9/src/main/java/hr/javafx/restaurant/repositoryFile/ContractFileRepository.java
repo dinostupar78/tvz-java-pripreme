@@ -1,4 +1,4 @@
-package hr.javafx.restaurant.repository;
+package hr.javafx.restaurant.repositoryFile;
 
 import hr.javafx.restaurant.enums.ContractType;
 import hr.javafx.restaurant.model.Contract;
@@ -22,7 +22,7 @@ import java.util.stream.Stream;
  * @param <T> a type parameter that extends {@link Contract}.
  */
 
-public class ContractRepository <T extends Contract> extends AbstractRepository<T>{
+public class ContractFileRepository<T extends Contract> extends AbstractFileRepository<T> {
     private static final String CONTRACTS_FILE_PATH = "dat/contracts.txt";
     private static final Integer NUMBER_OF_ROWS_PER_CONTRACTS = 5;
 

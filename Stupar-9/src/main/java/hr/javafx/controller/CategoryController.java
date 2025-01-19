@@ -1,7 +1,7 @@
 package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Category;
-import hr.javafx.restaurant.repository.CategoryRepository;
+import hr.javafx.restaurant.repositoryDatabase.CategoryDatabaseRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
@@ -84,7 +84,8 @@ public class CategoryController {
     @FXML
     private TableColumn<Category, String> categoryColumnDescription;
 
-    private CategoryRepository categoryRepository = new CategoryRepository();
+    //private CategoryFileRepository categoryRepository = new CategoryFileRepository();
+    private CategoryDatabaseRepository categoryRepository = new CategoryDatabaseRepository();
 
     public void initialize() {
         /*categoryColumnName.setCellValueFactory(

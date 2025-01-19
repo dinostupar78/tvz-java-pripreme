@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2025-01-18">
-<meta name="description" content="declaration: module: hr.javafx.stupar7, package: hr.javafx.restaurant.repository, class: AddressRepository">
+<meta name="description" content="declaration: module: hr.javafx.stupar7, package: hr.javafx.restaurant.repositoryFile, class: AddressRepository">
 <meta name="generator" content="javadoc/ClassWriter">
 <link rel="stylesheet" type="text/css" href="../../../../../resource-files/jquery-ui.min.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../resource-files/stylesheet.css" title="Style">
@@ -41,7 +41,7 @@ loadScripts(document, 'script');</script>
 <div class="nav-content">
 <ol class="sub-nav-list">
 <li><a href="../../../../module-summary.html">hr.javafx.stupar7</a></li>
-<li><a href="package-summary.html">hr.javafx.restaurant.repository</a></li>
+<li><a href="package-summary.html">hr.javafx.restaurant.repositoryFile</a></li>
 <li><a href="AddressRepository.html" class="current-selection">AddressRepository</a></li>
 </ol>
 <div class="nav-list-search">
@@ -85,8 +85,8 @@ loadScripts(document, 'script');</script>
 <h1 title="Class AddressRepository" class="title">Class AddressRepository&lt;T extends <a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance"><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repository">hr.javafx.restaurant.repository.AbstractRepository</a>&lt;T&gt;
-<div class="inheritance">hr.javafx.restaurant.repository.AddressRepository&lt;T&gt;</div>
+<div class="inheritance"><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repositoryFile">hr.javafx.restaurant.repositoryFile.AbstractFileRepository</a>&lt;T&gt;
+<div class="inheritance">hr.javafx.restaurant.repositoryFile.AddressRepository&lt;T&gt;</div>
 </div>
 </div>
 <section class="class-description" id="class-description">
@@ -97,7 +97,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">AddressRepository&lt;T extends <a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;</span>
-<span class="extends-implements">extends <a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repository">AbstractRepository</a>&lt;T&gt;</span></div>
+<span class="extends-implements">extends <a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repositoryFile">AbstractRepository</a>&lt;T&gt;</span></div>
 <div class="block">Represents a repository for managing <a href="../model/Address.html" title="class in hr.javafx.restaurant.model"><code>Address</code></a> objects.
  This class provides methods to retrieve, save, and manage addresses from a data source.</div>
 </div>
@@ -180,7 +180,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="AddressRepository.html" title="type parameter in AddressRepository">T</a></span>&nbsp;<span class="element-name">findById</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;id)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="AbstractRepository.html#findById(java.lang.Long)">findById</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repository">AbstractRepository</a>&lt;<a href="AddressRepository.html" title="type parameter in AddressRepository">T</a> extends <a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;</code></dd>
+<dd><code><a href="AbstractRepository.html#findById(java.lang.Long)">findById</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repositoryFile">AbstractRepository</a>&lt;<a href="AddressRepository.html" title="type parameter in AddressRepository">T</a> extends <a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;</code></dd>
 </dl>
 </div>
 </section>
@@ -192,7 +192,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/HashSet.html" title="class or interface in java.util" class="external-link">HashSet</a>&lt;<a href="AddressRepository.html" title="type parameter in AddressRepository">T</a>&gt;</span>&nbsp;<span class="element-name">findAll</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="AbstractRepository.html#findAll()">findAll</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repository">AbstractRepository</a>&lt;<a href="AddressRepository.html" title="type parameter in AddressRepository">T</a> extends <a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;</code></dd>
+<dd><code><a href="AbstractRepository.html#findAll()">findAll</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repositoryFile">AbstractRepository</a>&lt;<a href="AddressRepository.html" title="type parameter in AddressRepository">T</a> extends <a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;</code></dd>
 </dl>
 </div>
 </section>
@@ -204,7 +204,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">save</span><wbr><span class="parameters">(<a href="AddressRepository.html" title="type parameter in AddressRepository">T</a>&nbsp;entity)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="AbstractRepository.html#save(T)">save</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repository">AbstractRepository</a>&lt;<a href="AddressRepository.html" title="type parameter in AddressRepository">T</a> extends <a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;</code></dd>
+<dd><code><a href="AbstractRepository.html#save(T)">save</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repositoryFile">AbstractRepository</a>&lt;<a href="AddressRepository.html" title="type parameter in AddressRepository">T</a> extends <a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;</code></dd>
 </dl>
 </div>
 </section>
@@ -216,7 +216,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">save</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="AddressRepository.html" title="type parameter in AddressRepository">T</a>&gt;&nbsp;entities)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="AbstractRepository.html#save(java.util.Set)">save</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repository">AbstractRepository</a>&lt;<a href="AddressRepository.html" title="type parameter in AddressRepository">T</a> extends <a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;</code></dd>
+<dd><code><a href="AbstractRepository.html#save(java.util.Set)">save</a></code>&nbsp;in class&nbsp;<code><a href="AbstractRepository.html" title="class in hr.javafx.restaurant.repositoryFile">AbstractRepository</a>&lt;<a href="AddressRepository.html" title="type parameter in AddressRepository">T</a> extends <a href="../model/Address.html" title="class in hr.javafx.restaurant.model">Address</a>&gt;</code></dd>
 </dl>
 </div>
 </section>

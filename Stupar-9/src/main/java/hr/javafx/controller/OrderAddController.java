@@ -1,7 +1,7 @@
 package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.*;
-import hr.javafx.restaurant.repository.*;
+import hr.javafx.restaurant.repositoryFile.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -39,16 +39,16 @@ public class OrderAddController {
     @FXML
     private DatePicker orderDatePickerDeliveryDateAndTime;
 
-    private CategoryRepository<Category> categoryRepository = new CategoryRepository<>();
-    private AddressRepository<Address> addressRepository = new AddressRepository<>();
-    private ContractRepository<Contract> contractRepository = new ContractRepository<>();
-    private MealsRepository<Meal> mealsRepository = new MealsRepository<>(categoryRepository);
-    private ChefRepository<Chef> chefRepository = new ChefRepository<>(contractRepository);
-    private WaiterRepository<Waiter> waiterRepository = new WaiterRepository(contractRepository);
-    private DelivererRepository<Deliverer> delivererRepository = new DelivererRepository<>(contractRepository);
-    private RestaurantRepository<Restaurant> restaurantRepository = new RestaurantRepository<>(addressRepository,
+    private CategoryFileRepository<Category> categoryRepository = new CategoryFileRepository<>();
+    private AddressFileRepository<Address> addressRepository = new AddressFileRepository<>();
+    private ContractFileRepository<Contract> contractRepository = new ContractFileRepository<>();
+    private MealFileRepository<Meal> mealsRepository = new MealFileRepository<>(categoryRepository);
+    private ChefFileRepository<Chef> chefRepository = new ChefFileRepository<>(contractRepository);
+    private WaiterFileRepository<Waiter> waiterRepository = new WaiterFileRepository(contractRepository);
+    private DelivererFileRepository<Deliverer> delivererRepository = new DelivererFileRepository<>(contractRepository);
+    private RestaurantFileRepository<Restaurant> restaurantRepository = new RestaurantFileRepository<>(addressRepository,
             mealsRepository, chefRepository, waiterRepository, delivererRepository);
-    private OrderRepository<Order> orderRepository = new OrderRepository<>(restaurantRepository, mealsRepository, delivererRepository);
+    private OrderFileRepository<Order> orderRepository = new OrderFileRepository<>(restaurantRepository, mealsRepository, delivererRepository);
 
     private Set<Meal> selectedMeals = new HashSet<>();
 

@@ -1,7 +1,7 @@
 package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Restaurant;
-import hr.javafx.restaurant.repository.*;
+import hr.javafx.restaurant.repositoryFile.*;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
@@ -108,14 +108,14 @@ public class RestaurantController {
     @FXML
     private TableColumn<Restaurant, String> restaurantColumnDeliverers;
 
-    private CategoryRepository categoryRepository = new CategoryRepository<>();
-    private AddressRepository addressRepository = new AddressRepository<>();
-    private ContractRepository contractRepository = new ContractRepository<>();
-    private MealsRepository mealsRepository = new MealsRepository<>(categoryRepository);
-    private ChefRepository chefRepository = new ChefRepository<>(contractRepository);
-    private WaiterRepository waiterRepository = new WaiterRepository(contractRepository);
-    private DelivererRepository delivererRepository = new DelivererRepository<>(contractRepository);
-    private RestaurantRepository restaurantRepository = new RestaurantRepository<>(addressRepository,
+    private CategoryFileRepository categoryRepository = new CategoryFileRepository<>();
+    private AddressFileRepository addressRepository = new AddressFileRepository<>(); // POPRAVIT SVUGDJE KAD DODE VRIJEME
+    private ContractFileRepository contractRepository = new ContractFileRepository<>();
+    private MealFileRepository mealsRepository = new MealFileRepository<>(categoryRepository);
+    private ChefFileRepository chefRepository = new ChefFileRepository<>(contractRepository);
+    private WaiterFileRepository waiterRepository = new WaiterFileRepository(contractRepository);
+    private DelivererFileRepository delivererRepository = new DelivererFileRepository<>(contractRepository);
+    private RestaurantFileRepository restaurantRepository = new RestaurantFileRepository<>(addressRepository,
             mealsRepository, chefRepository, waiterRepository, delivererRepository);
 
     public void initialize(){

@@ -1,7 +1,7 @@
 package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Contract;
-import hr.javafx.restaurant.repository.ContractRepository;
+import hr.javafx.restaurant.repositoryFile.ContractFileRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
@@ -102,7 +102,7 @@ public class ContractController {
     @FXML
     private TableColumn<Contract, String> c;
 
-    private ContractRepository contractRepository = new ContractRepository();
+    private ContractFileRepository contractRepository = new ContractFileRepository();
 
     public void initialize() {
         contractColumnID.setCellValueFactory(cellData ->

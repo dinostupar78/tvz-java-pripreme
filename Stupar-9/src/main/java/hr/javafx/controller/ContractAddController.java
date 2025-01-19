@@ -2,7 +2,7 @@ package hr.javafx.controller;
 
 import hr.javafx.restaurant.enums.ContractType;
 import hr.javafx.restaurant.model.Contract;
-import hr.javafx.restaurant.repositoryFile.ContractFileRepository;
+import hr.javafx.restaurant.repositoryDatabase.ContractDatabaseRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -25,7 +25,8 @@ public class ContractAddController {
     @FXML
     private ComboBox<ContractType> contractComboBoxContractType;
 
-    ContractFileRepository<Contract> contractRepository = new ContractFileRepository<>();
+    //ContractFileRepository<Contract> contractRepository = new ContractFileRepository<>();
+    private ContractDatabaseRepository contractRepository = new ContractDatabaseRepository();
 
     public void initialize(){
         contractComboBoxContractType.getItems().addAll(ContractType.values());
@@ -93,7 +94,6 @@ public class ContractAddController {
             alert.setContentText(sb.toString());
             alert.showAndWait();
 
-            // Clear fields after successful save
             contractTextFieldSalary.clear();
             contractDatePickerStartTime.setValue(null);
             contractDatePickerEndTime.setValue(null);

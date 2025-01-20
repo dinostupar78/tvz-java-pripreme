@@ -30,10 +30,6 @@ public class ChefDatabaseRepository<T extends Chef> extends AbstractDatabaseRepo
     private void disconnectFromDatabase(Connection connection) throws SQLException {
         connection.close();
     }
-    @Override
-    public T findById(Long id) throws RepositoryAccessException {
-        return null;
-    }
 
     @Override
     public Set<T> findAll() throws RepositoryAccessException {

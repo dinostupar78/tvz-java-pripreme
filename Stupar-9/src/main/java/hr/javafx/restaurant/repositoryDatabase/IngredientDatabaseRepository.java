@@ -29,12 +29,6 @@ public class IngredientDatabaseRepository<T extends Ingredient> extends Abstract
         connection.close();
     }
 
-
-    @Override
-    public T findById(Long id) throws RepositoryAccessException {
-        return null;
-    }
-
     @Override
     public Set<T> findAll() throws RepositoryAccessException {
         Set<T> ingredients = new HashSet<>();

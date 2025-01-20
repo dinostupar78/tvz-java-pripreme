@@ -32,11 +32,6 @@ public class WaiterDatabaseRepository<T extends Waiter> extends AbstractDatabase
     }
 
     @Override
-    public T findById(Long id) throws RepositoryAccessException {
-        return null;
-    }
-
-    @Override
     public Set<T> findAll() throws RepositoryAccessException {
         Set<T> waiters = new HashSet<>();
         try{

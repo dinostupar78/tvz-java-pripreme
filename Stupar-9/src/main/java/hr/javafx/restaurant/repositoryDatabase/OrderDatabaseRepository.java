@@ -32,11 +32,6 @@ public class OrderDatabaseRepository<T extends Order> extends AbstractDatabaseRe
     }
 
     @Override
-    public T findById(Long id) throws RepositoryAccessException {
-        return null;
-    }
-
-    @Override
     public Set<T> findAll() throws RepositoryAccessException {
         Set<T> orders = new HashSet<>();
         try (Connection connection = connectToDatabase();

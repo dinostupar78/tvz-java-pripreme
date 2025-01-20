@@ -30,11 +30,6 @@ public class ContractDatabaseRepository<T extends Contract> extends AbstractData
     }
 
     @Override
-    public T findById(Long id) throws RepositoryAccessException {
-        return null;
-    }
-
-    @Override
     public Set<T> findAll() throws RepositoryAccessException {
         Set<T> contracts = new HashSet<>();
         try{

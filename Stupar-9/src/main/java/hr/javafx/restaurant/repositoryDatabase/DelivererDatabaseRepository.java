@@ -32,11 +32,6 @@ public class DelivererDatabaseRepository<T extends Deliverer> extends AbstractDa
     }
 
     @Override
-    public T findById(Long id) throws RepositoryAccessException {
-        return null;
-    }
-
-    @Override
     public Set<T> findAll() throws RepositoryAccessException {
         Set<T> deliverers = new HashSet<>();
         try{

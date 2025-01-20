@@ -28,11 +28,6 @@ public class RestaurantDatabaseRepository<T extends Restaurant> extends Abstract
     }
 
     @Override
-    public T findById(Long id) throws RepositoryAccessException {
-        return null;
-    }
-
-    @Override
     public Set<T> findAll() throws RepositoryAccessException {
         Set<T> restaurants = new HashSet<>();
         try (Connection connection = connectToDatabase();

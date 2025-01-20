@@ -25,12 +25,6 @@ public class CategoryDatabaseRepository<T extends Category> extends AbstractData
         connection.close();
     }
 
-
-    @Override
-    public T findById(Long id) {
-        return null;
-    }
-
     @Override
     public Set<T> findAll() throws RepositoryAccessException {
         Set<T> categories = new HashSet<>();

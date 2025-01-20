@@ -30,11 +30,6 @@ public class MealDatabaseRepository<T extends Meal> extends AbstractDatabaseRepo
     }
 
     @Override
-    public T findById(Long id) throws RepositoryAccessException {
-        return null;
-    }
-
-    @Override
     public Set<T> findAll() throws RepositoryAccessException {
         Set<T> meals = new HashSet<>();
         try{

@@ -87,8 +87,6 @@ public class OrderDatabaseRepository<T extends Order> extends AbstractDatabaseRe
         return meals;
     }
 
-
-
     private Restaurant getRestaurantById(Long restaurantId) throws SQLException, IOException {
         String query = "SELECT * FROM RESTAURANT WHERE ID = ?";
 

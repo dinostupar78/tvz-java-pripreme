@@ -13,9 +13,6 @@ public class Chef extends Person implements Serializable {
 
     private Contract contract;
     private Bonus BonusKuhara;
-    private boolean isManager; // Nova varijabla povezena s CheckBox
-    private String mealPreference;
-
 
     /**
      * Konstruktor za stvaranje novog kuhara s danim atributima.

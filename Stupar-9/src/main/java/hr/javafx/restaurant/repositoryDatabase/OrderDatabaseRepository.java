@@ -140,7 +140,6 @@ public class OrderDatabaseRepository<T extends Order> extends AbstractDatabaseRe
     @Override
     public void save(Set<T> entities) throws RepositoryAccessException {
         try (Connection connection = connectToDatabase()) {
-            // PreparedStatement for inserting orders into RESTAURANT_ORDER table
             PreparedStatement stmt = connection.prepareStatement(
                     "INSERT INTO RESTAURANT_ORDER (RESTAURANT_ID, DELIVERER_ID, DATE_AND_TIME) VALUES (?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
@@ -155,7 +154,6 @@ public class OrderDatabaseRepository<T extends Order> extends AbstractDatabaseRe
                     if (generatedKeys.next()) {
                         long orderId = generatedKeys.getLong(1);
 
-                        // Now insert meals into the RESTAURANT_ORDER_MEAL table
                         String mealQuery = "INSERT INTO RESTAURANT_ORDER_MEAL (RESTAURANT_ORDER_ID, MEAL_ID) VALUES (?, ?)";
                         try (PreparedStatement mealStmt = connection.prepareStatement(mealQuery)) {
                             for (Meal meal : entity.getMeals()) {

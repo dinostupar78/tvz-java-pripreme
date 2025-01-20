@@ -3,8 +3,8 @@ package hr.javafx.controller;
 import hr.javafx.restaurant.model.Bonus;
 import hr.javafx.restaurant.model.Contract;
 import hr.javafx.restaurant.model.Deliverer;
-import hr.javafx.restaurant.repositoryFile.ContractFileRepository;
-import hr.javafx.restaurant.repositoryFile.DelivererFileRepository;
+import hr.javafx.restaurant.repositoryDatabase.ContractDatabaseRepository;
+import hr.javafx.restaurant.repositoryDatabase.DelivererDatabaseRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -29,8 +29,11 @@ public class DelivererAddController {
     @FXML
     private TextField delivererTextFieldBonus;
 
-    ContractFileRepository<Contract> contractRepository = new ContractFileRepository<>();
-    DelivererFileRepository<Deliverer> delivererRepository = new DelivererFileRepository<>(contractRepository);
+    //ContractFileRepository<Contract> contractRepository = new ContractFileRepository<>();
+    //DelivererFileRepository<Deliverer> delivererRepository = new DelivererFileRepository<>(contractRepository);
+
+    private ContractDatabaseRepository contractRepository = new ContractDatabaseRepository();
+    private DelivererDatabaseRepository delivererRepository = new DelivererDatabaseRepository();
 
     public void initialize(){
         Set<Contract> contracts = contractRepository.findAll();

@@ -2,8 +2,8 @@ package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Bonus;
 import hr.javafx.restaurant.model.Waiter;
-import hr.javafx.restaurant.repositoryFile.ContractFileRepository;
-import hr.javafx.restaurant.repositoryFile.WaiterFileRepository;
+import hr.javafx.restaurant.repositoryDatabase.ContractDatabaseRepository;
+import hr.javafx.restaurant.repositoryDatabase.WaiterDatabaseRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
@@ -98,8 +98,11 @@ public class WaiterController {
     @FXML
     private TableColumn<Waiter, String> waiterColumnBonus;
 
-    private ContractFileRepository contractRepository = new ContractFileRepository();
-    private WaiterFileRepository waiterRepository = new WaiterFileRepository<>(contractRepository);
+    //private ContractFileRepository contractRepository = new ContractFileRepository();
+    //private WaiterFileRepository waiterRepository = new WaiterFileRepository<>(contractRepository);
+
+    private ContractDatabaseRepository contractRepository = new ContractDatabaseRepository();
+    private WaiterDatabaseRepository waiterRepository = new WaiterDatabaseRepository();
 
     public void initialize(){
         waiterColumnID.setCellValueFactory(cellData ->

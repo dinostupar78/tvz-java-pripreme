@@ -70,7 +70,7 @@ public class MealDatabaseRepository<T extends Meal> extends AbstractDatabaseRepo
 
     }
 
-    private static Category getCategoryById(Long categoryId) throws SQLException{
+    public static Category getCategoryById(Long categoryId) throws SQLException{
         String query = "SELECT * FROM CATEGORY WHERE id = ?";
         try (Connection connection = connectToDatabase();
              PreparedStatement stmt = connection.prepareStatement(query)) {

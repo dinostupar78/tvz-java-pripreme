@@ -1,7 +1,7 @@
 package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Restaurant;
-import hr.javafx.restaurant.repositoryFile.*;
+import hr.javafx.restaurant.repositoryDatabase.RestaurantDatabaseRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
@@ -108,15 +108,17 @@ public class RestaurantController {
     @FXML
     private TableColumn<Restaurant, String> restaurantColumnDeliverers;
 
-    private CategoryFileRepository categoryRepository = new CategoryFileRepository<>();
-    private AddressFileRepository addressRepository = new AddressFileRepository<>(); // POPRAVIT SVUGDJE KAD DODE VRIJEME
-    private ContractFileRepository contractRepository = new ContractFileRepository<>();
-    private MealFileRepository mealsRepository = new MealFileRepository<>(categoryRepository);
-    private ChefFileRepository chefRepository = new ChefFileRepository<>(contractRepository);
-    private WaiterFileRepository waiterRepository = new WaiterFileRepository(contractRepository);
-    private DelivererFileRepository delivererRepository = new DelivererFileRepository<>(contractRepository);
-    private RestaurantFileRepository restaurantRepository = new RestaurantFileRepository<>(addressRepository,
-            mealsRepository, chefRepository, waiterRepository, delivererRepository);
+    //private CategoryFileRepository categoryRepository = new CategoryFileRepository<>();
+    //private AddressFileRepository addressRepository = new AddressFileRepository<>(); // POPRAVIT SVUGDJE KAD DODE VRIJEME
+    //private ContractFileRepository contractRepository = new ContractFileRepository<>();
+    //private MealFileRepository mealsRepository = new MealFileRepository<>(categoryRepository);
+    //private ChefFileRepository chefRepository = new ChefFileRepository<>(contractRepository);
+    //private WaiterFileRepository waiterRepository = new WaiterFileRepository(contractRepository);
+    //private DelivererFileRepository delivererRepository = new DelivererFileRepository<>(contractRepository);
+    //private RestaurantFileRepository restaurantRepository = new RestaurantFileRepository<>(addressRepository,
+            //mealsRepository, chefRepository, waiterRepository, delivererRepository);
+
+    private RestaurantDatabaseRepository restaurantRepository = new RestaurantDatabaseRepository();
 
     public void initialize(){
         restaurantColumnID.setCellValueFactory(cellData ->

@@ -38,7 +38,7 @@ public class AddressDatabaseRepository<T extends Address> extends AbstractDataba
             Connection connection = connectToDatabase();
 
             Statement stmt = connection.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM INGREDIENT");
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM ADDRESS");
             while (resultSet.next()){
                 Address address = extractAddressFromResultSet(resultSet);
                 addresses.add((T) address);
@@ -54,10 +54,10 @@ public class AddressDatabaseRepository<T extends Address> extends AbstractDataba
 
     private static Address extractAddressFromResultSet(ResultSet resultSet) throws SQLException{
         Long id = resultSet.getLong("id");
-        String street = resultSet.getString("street");
-        String house_number = resultSet.getString("house_number");
-        String city = resultSet.getString("city");
-        String postal_code = resultSet.getString("postal_code");
+        String street = resultSet.getString("STREET");
+        String house_number = resultSet.getString("HOUSE_NUMBER");
+        String city = resultSet.getString("CITY");
+        String postal_code = resultSet.getString("POSTAL_CODE");
 
         Address address = new Address(id, street, house_number, city, postal_code);
         return address;

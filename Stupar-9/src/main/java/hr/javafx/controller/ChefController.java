@@ -2,8 +2,8 @@ package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Bonus;
 import hr.javafx.restaurant.model.Chef;
-import hr.javafx.restaurant.repositoryFile.ChefFileRepository;
-import hr.javafx.restaurant.repositoryFile.ContractFileRepository;
+import hr.javafx.restaurant.repositoryDatabase.ChefDatabaseRepository;
+import hr.javafx.restaurant.repositoryDatabase.ContractDatabaseRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
@@ -98,8 +98,11 @@ public class ChefController {
     @FXML
     private TableColumn<Chef, String> chefColumnBonus;
 
-    private ContractFileRepository contractRepository = new ContractFileRepository();
-    private ChefFileRepository chefRepository = new ChefFileRepository<>(contractRepository);
+    //private ContractFileRepository contractRepository = new ContractFileRepository();
+    //private ChefFileRepository chefRepository = new ChefFileRepository<>(contractRepository);
+
+    private ContractDatabaseRepository contractRepository = new ContractDatabaseRepository();
+    private ChefDatabaseRepository chefRepository = new ChefDatabaseRepository();
 
     public void initialize(){
         chefColumnID.setCellValueFactory(cellData ->

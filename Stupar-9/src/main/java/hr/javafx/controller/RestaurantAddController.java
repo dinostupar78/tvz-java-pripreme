@@ -1,7 +1,7 @@
 package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.*;
-import hr.javafx.restaurant.repositoryFile.*;
+import hr.javafx.restaurant.repositoryDatabase.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -32,23 +32,31 @@ public class RestaurantAddController {
     @FXML
     private ComboBox<Deliverer> restaurantComboBoxDeliverers;
 
-    private ContractFileRepository<Contract> contractRepository = new ContractFileRepository<>();
-    private CategoryFileRepository<Category> categoryRepository = new CategoryFileRepository<>();
-    private AddressFileRepository<Address> addressRepository;
-    private MealFileRepository<Meal> mealsRepository;
-    private ChefFileRepository<Chef> chefRepository;
-    private WaiterFileRepository<Waiter> waiterRepository;
-    private DelivererFileRepository<Deliverer> delivererRepository;
-    private RestaurantFileRepository<Restaurant> restaurantRepository;
+    //private ContractFileRepository<Contract> contractRepository = new ContractFileRepository<>();
+    //private CategoryFileRepository<Category> categoryRepository = new CategoryFileRepository<>();
+    //private AddressFileRepository<Address> addressRepository;
+    //private MealFileRepository<Meal> mealsRepository;
+    //private ChefFileRepository<Chef> chefRepository;
+    //private WaiterFileRepository<Waiter> waiterRepository;
+    //private DelivererFileRepository<Deliverer> delivererRepository;
+    //private RestaurantFileRepository<Restaurant> restaurantRepository;
+
+    private ContractDatabaseRepository<Contract> contractRepository = new ContractDatabaseRepository<>();
+    private CategoryDatabaseRepository<Category> categoryRepository = new CategoryDatabaseRepository<>();
+    private AddressDatabaseRepository<Address> addressRepository;
+    private MealDatabaseRepository<Meal> mealsRepository;
+    private ChefDatabaseRepository<Chef> chefRepository;
+    private WaiterDatabaseRepository<Waiter> waiterRepository;
+    private DelivererDatabaseRepository<Deliverer> delivererRepository;
+    private RestaurantDatabaseRepository<Restaurant> restaurantRepository;
 
     public RestaurantAddController() {
-        this.addressRepository = new AddressFileRepository<>();
-        this.mealsRepository = new MealFileRepository<>(categoryRepository);
-        this.chefRepository = new ChefFileRepository<>(contractRepository);
-        this.waiterRepository = new WaiterFileRepository<>(contractRepository);
-        this.delivererRepository = new DelivererFileRepository<>(contractRepository);
-        this.restaurantRepository = new RestaurantFileRepository<>(addressRepository,
-                mealsRepository, chefRepository, waiterRepository, delivererRepository);
+        this.addressRepository = new AddressDatabaseRepository<>();
+        this.mealsRepository = new MealDatabaseRepository<>();
+        this.chefRepository = new ChefDatabaseRepository<>();
+        this.waiterRepository = new WaiterDatabaseRepository<>();
+        this.delivererRepository = new DelivererDatabaseRepository<>();
+        this.restaurantRepository = new RestaurantDatabaseRepository<>();
     }
 
     public void initialize(){

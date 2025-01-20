@@ -2,8 +2,8 @@ package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Bonus;
 import hr.javafx.restaurant.model.Deliverer;
-import hr.javafx.restaurant.repositoryFile.ContractFileRepository;
-import hr.javafx.restaurant.repositoryFile.DelivererFileRepository;
+import hr.javafx.restaurant.repositoryDatabase.ContractDatabaseRepository;
+import hr.javafx.restaurant.repositoryDatabase.DelivererDatabaseRepository;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
@@ -98,8 +98,11 @@ public class DelivererController {
     @FXML
     private TableColumn<Deliverer, String> delivererColumnBonus;
 
-    private ContractFileRepository contractRepository = new ContractFileRepository();
-    private DelivererFileRepository delivererRepository = new DelivererFileRepository<>(contractRepository);
+    //private ContractFileRepository contractRepository = new ContractFileRepository();
+    //private DelivererFileRepository delivererRepository = new DelivererFileRepository<>(contractRepository);
+
+    private ContractDatabaseRepository contractRepository = new ContractDatabaseRepository();
+    private DelivererDatabaseRepository delivererRepository = new DelivererDatabaseRepository();
 
     public void initialize(){
         delivererColumnID.setCellValueFactory(cellData ->

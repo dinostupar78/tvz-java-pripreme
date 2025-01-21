@@ -130,4 +130,59 @@ public class WaiterDatabaseRepository<T extends Waiter> extends AbstractDatabase
         }
 
     }
+
+    public void update(T entity) throws RepositoryAccessException {
+        String query = "UPDATE WAITER SET FIRST_NAME = ?, LAST_NAME = ?, CONTRACT_ID = ?, BONUS = ? WHERE ID = ?";
+        try (Connection connection = connectToDatabase();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setString(1, entity.getFirstName());
+            stmt.setString(2, entity.getLastName());
+            stmt.setLong(3, entity.getContract().getId());
+            stmt.setBigDecimal(4, entity.getBonusKonobara().iznosBonusaNaOsnovnuPlacu());
+            stmt.setLong(5, entity.getId());
+            stmt.executeUpdate();
+
+        } catch (IOException | SQLException e) {
+            throw new RepositoryAccessException(e);
+        }
+    }
+
+    public void delete(Long id) throws RepositoryAccessException {
+        try (Connection connection = connectToDatabase()) {
+            // Start a transaction to ensure data integrity
+            connection.setAutoCommit(false);
+
+            try {
+                // Delete related records from RESTAURANT_WAITER table
+                String deleteRestaurantWaiterQuery = "DELETE FROM RESTAURANT_WAITER WHERE WAITER_ID = ?";
+                try (PreparedStatement stmt = connection.prepareStatement(deleteRestaurantWaiterQuery)) {
+                    stmt.setLong(1, id);
+                    stmt.executeUpdate();
+                }
+
+                // Delete the waiter from the WAITER table
+                String deleteWaiterQuery = "DELETE FROM WAITER WHERE ID = ?";
+                try (PreparedStatement stmt = connection.prepareStatement(deleteWaiterQuery)) {
+                    stmt.setLong(1, id);
+                    stmt.executeUpdate();
+                }
+
+                String deleteContractQuery = "DELETE FROM CONTRACT WHERE ID = (SELECT CONTRACT_ID FROM WAITER WHERE ID = ?)";
+                try (PreparedStatement stmt = connection.prepareStatement(deleteContractQuery)) {
+                    stmt.setLong(1, id);
+                    stmt.executeUpdate();
+                }
+
+            } catch (SQLException e) {
+                connection.rollback();
+                throw new RepositoryAccessException(e);
+            } finally {
+                connection.setAutoCommit(true);
+            }
+        } catch (IOException | SQLException e) {
+            throw new RepositoryAccessException(e);
+        }
+    }
+
 }

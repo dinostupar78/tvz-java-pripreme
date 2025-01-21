@@ -10,10 +10,15 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -98,6 +103,8 @@ public class WaiterController {
     @FXML
     private TableColumn<Waiter, String> waiterColumnBonus;
 
+    private Waiter selectedWaiter;
+
     //private ContractFileRepository contractRepository = new ContractFileRepository();
     //private WaiterFileRepository waiterRepository = new WaiterFileRepository<>(contractRepository);
 
@@ -132,6 +139,10 @@ public class WaiterController {
 
     public void filterWaiters(){
         Set<Waiter> initialWaiterList = waiterRepository.findAll();
+
+        waiterTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            selectedWaiter = newValue; // Set the selected waiter
+        });
 
         String waiterID = waiterTextFieldID.getText();
         if(!waiterID.isEmpty()){
@@ -179,5 +190,67 @@ public class WaiterController {
 
         waiterTableView.setItems(sortedList);
 
+    }
+
+    public void onEditClick(ActionEvent actionEvent) {
+        if (selectedWaiter == null) {
+            System.out.println("Please select a waiter to edit.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/hr/javafx/waitersEdit.fxml"));
+            Parent root = loader.load();
+
+            WaiterEditController editController = loader.getController();
+            editController.setWaiterData(selectedWaiter);
+
+            Stage stage = new Stage();
+            stage.setTitle("Edit Waiter");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+            stage.showAndWait();
+
+            refreshWaiterList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void refreshWaiterList() {
+        ObservableList<Waiter> waiterObservableList = observableArrayList(waiterRepository.findAll());
+        waiterTableView.setItems(waiterObservableList);
+    }
+
+    public void onDeleteClick(ActionEvent actionEvent) {
+        if (selectedWaiter == null) {
+            System.out.println("Please select a waiter to delete.");
+            return;
+        }
+
+        // Display a confirmation dialog to the user
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Waiter");
+        alert.setHeaderText("Are you sure you want to delete this waiter?");
+        alert.setContentText("This action cannot be undone.");
+
+        // Wait for the user's response
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                // Delete the selected waiter from the repository
+                waiterRepository.delete(selectedWaiter.getId());
+
+                // Refresh the list of waiters in the TableView
+                refreshWaiterList();
+
+                // Optionally, show a success message to the user
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Deletion Successful");
+                successAlert.setHeaderText("Waiter Deleted");
+                successAlert.setContentText("The selected waiter has been deleted successfully.");
+                successAlert.showAndWait();
+            }
+        });
     }
 }

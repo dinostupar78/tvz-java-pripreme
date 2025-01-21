@@ -111,6 +111,11 @@ public class FirstScreenController {
         addClickUtils.handleAddClickOrders(event);
     }
 
+    public void onSearchElseClick(ActionEvent event) {
+        HandleSearchClickUtils searchClickUtils = new HandleSearchClickUtils();
+        searchClickUtils.handleSearchClickElse(event);
+    }
+
 
 
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.beans.property.*?>
+<?import javafx.collections.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="hr.javafx.controller.ElseController"
+      prefHeight="600.0" prefWidth="900.0" spacing="20.0">
+
+    <!-- Meal Section -->
+    <VBox spacing="10.0">
+        <TextField fx:id="mealTextField" promptText="Filter Meals" onKeyReleased="#filterMeals"/>
+        <TableView fx:id="mealTableView" prefHeight="200.0" prefWidth="400.0">
+            <columns>
+                <TableColumn fx:id="mealColumnID" text="ID" />
+                <TableColumn fx:id="mealColumnName" text="Name" />
+                <TableColumn fx:id="mealColumnCategory" text="Category" />
+                <TableColumn fx:id="mealColumnPrice" text="Price" />
+                <TableColumn fx:id="mealColumnCalories" text="Calories" />
+            </columns>
+        </TableView>
+    </VBox>
+
+    <!-- Ingredient Section -->
+    <VBox spacing="10.0">
+        <TextField fx:id="ingredientTextField" promptText="Filter Ingredients" onKeyReleased="#filterIngredients"/>
+        <TableView fx:id="ingredientTableView" prefHeight="200.0" prefWidth="400.0">
+            <columns>
+                <TableColumn fx:id="ingredientColumnID" text="ID" />
+                <TableColumn fx:id="ingredientColumnName" text="Name" />
+                <TableColumn fx:id="ingredientColumnCategory" text="Category" />
+                <TableColumn fx:id="ingredientColumnKcal" text="Kcal" />
+                <TableColumn fx:id="ingredientColumnPreparationMethod" text="Preparation Method" />
+            </columns>
+        </TableView>
+    </VBox>
+
+    <!-- Category Section -->
+    <VBox spacing="10.0">
+        <TextField fx:id="categoryTextField" promptText="Filter Categories" onKeyReleased="#filterCategories"/>
+        <TableView fx:id="categoryTableView" prefHeight="200.0" prefWidth="400.0">
+            <columns>
+                <TableColumn fx:id="categoryColumnID" text="ID" />
+                <TableColumn fx:id="categoryColumnName" text="Name" />
+                <TableColumn fx:id="categoryColumnDescription" text="Description" />
+            </columns>
+        </TableView>
+    </VBox>
+
+</VBox>

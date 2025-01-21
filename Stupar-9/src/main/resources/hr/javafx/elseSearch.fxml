@@ -10,6 +10,8 @@
       fx:controller="hr.javafx.controller.ElseController"
       prefHeight="600.0" prefWidth="900.0" spacing="20.0">
 
+
+
     <!-- Meal Section -->
     <VBox spacing="10.0">
         <TextField fx:id="mealTextField" promptText="Filter Meals" onKeyReleased="#filterMeals"/>

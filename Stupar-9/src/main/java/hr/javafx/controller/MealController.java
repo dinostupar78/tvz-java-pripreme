@@ -173,6 +173,5 @@ public class MealController {
         sortedList.comparatorProperty().bind(mealTableView.comparatorProperty());
 
         mealTableView.setItems(sortedList);
-
     }
 }

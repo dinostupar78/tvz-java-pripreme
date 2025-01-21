@@ -14,6 +14,7 @@
 
     <!-- Meal Section -->
     <VBox spacing="10.0">
+        <fx:include source="menuBar.fxml" />
         <TextField fx:id="mealTextField" promptText="Filter Meals" onKeyReleased="#filterMeals"/>
         <TableView fx:id="mealTableView" prefHeight="200.0" prefWidth="400.0">
             <columns>

@@ -181,4 +181,5 @@ public class WaiterDatabaseRepository<T extends Waiter> extends AbstractDatabase
             throw new RepositoryAccessException(e);
         }
     }
+
 }

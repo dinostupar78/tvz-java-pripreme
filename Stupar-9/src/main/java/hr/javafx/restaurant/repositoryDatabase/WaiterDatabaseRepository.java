@@ -150,18 +150,15 @@ public class WaiterDatabaseRepository<T extends Waiter> extends AbstractDatabase
 
     public void delete(Long id) throws RepositoryAccessException {
         try (Connection connection = connectToDatabase()) {
-            // Start a transaction to ensure data integrity
             connection.setAutoCommit(false);
 
             try {
-                // Delete related records from RESTAURANT_WAITER table
                 String deleteRestaurantWaiterQuery = "DELETE FROM RESTAURANT_WAITER WHERE WAITER_ID = ?";
                 try (PreparedStatement stmt = connection.prepareStatement(deleteRestaurantWaiterQuery)) {
                     stmt.setLong(1, id);
                     stmt.executeUpdate();
                 }
 
-                // Delete the waiter from the WAITER table
                 String deleteWaiterQuery = "DELETE FROM WAITER WHERE ID = ?";
                 try (PreparedStatement stmt = connection.prepareStatement(deleteWaiterQuery)) {
                     stmt.setLong(1, id);

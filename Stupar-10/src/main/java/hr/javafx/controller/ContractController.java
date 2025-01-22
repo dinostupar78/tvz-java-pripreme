@@ -2,16 +2,14 @@ package hr.javafx.controller;
 
 import hr.javafx.restaurant.model.Contract;
 import hr.javafx.restaurant.repositoryDatabase.ContractDatabaseRepository;
+import hr.javafx.threads.SortingContractsThread;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
@@ -100,7 +98,7 @@ public class ContractController {
     private TableColumn<Contract, String> contractColumnContractType;
 
     @FXML
-    private TableColumn<Contract, String> c;
+    private Label highestSalaryLabel;
 
     //private ContractFileRepository contractRepository = new ContractFileRepository();
     private ContractDatabaseRepository contractRepository = new ContractDatabaseRepository();
@@ -127,6 +125,11 @@ public class ContractController {
                 );
 
         contractTableView.getSortOrder().add(contractColumnID);
+
+        SortingContractsThread thread = new SortingContractsThread(contractRepository, contractTableView);
+        Thread runner = new Thread(thread);
+        runner.start();
+
 
     }
 

@@ -49,7 +49,7 @@ public class ContractDatabaseRepository<T extends Contract> extends AbstractData
         }
     }
 
-    private static Contract extractContractFromResultSet(ResultSet resultSet) throws SQLException{
+    private T extractContractFromResultSet(ResultSet resultSet) throws SQLException{
         Long id = resultSet.getLong("id");
         BigDecimal salary = resultSet.getBigDecimal("salary");
         LocalDate start_date = resultSet.getDate("start_date").toLocalDate();
@@ -60,7 +60,7 @@ public class ContractDatabaseRepository<T extends Contract> extends AbstractData
 
         Contract contract = new Contract(id, salary, start_date, end_date, contractType);
 
-        return contract;
+        return (T) contract;
     }
 
     @Override
@@ -96,4 +96,5 @@ public class ContractDatabaseRepository<T extends Contract> extends AbstractData
             throw new RepositoryAccessException(e);
         }
     }
+
 }

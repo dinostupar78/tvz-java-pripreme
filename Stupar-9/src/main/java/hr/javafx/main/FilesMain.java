@@ -44,7 +44,6 @@ public class FilesMain {
         employees.addAll(waiters);
         employees.addAll(deliverers);
 
-        // Convert Set to List where necessary
         List<Restaurant> restaurantList = new ArrayList<>(restaurants); // Convert Set to List
 
         RestaurantLabourExchangeOffice<Restaurant> restaurantLabourExchangeOffice = new RestaurantLabourExchangeOffice<>(restaurantList);
@@ -81,7 +80,6 @@ public class FilesMain {
             office.getRestaurants().forEach(restaurant -> System.out.println(restaurant));
         });
 
-        // Contract seralization
         try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("contract.dat"))){
             out.writeObject(contractRepository.findAll());
             System.out.println("\nContracts serialized successfully.");
@@ -89,7 +87,6 @@ public class FilesMain {
             e.printStackTrace();
         }
 
-        // Contract deseralization
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("contract.dat"))){
             contracts = (Set<Contract>) in.readObject();
             System.out.println("Contracts deserialized successfully.");
@@ -105,7 +102,6 @@ public class FilesMain {
             e.printStackTrace();
         }
 
-        // Restaurant seralization
         try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("restaurant.dat"))){
             out.writeObject(restaurantRepository.findAll());
             System.out.println("\nRestaurants serialized successfully.");
@@ -113,7 +109,6 @@ public class FilesMain {
             e.printStackTrace();
         }
 
-        // Restaurant deseralization
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("restaurant.dat"))){
             restaurants = (Set<Restaurant>) in.readObject();
             System.out.println("Restaurants deserialized successfully.");
@@ -123,7 +118,6 @@ public class FilesMain {
             e.printStackTrace();
         }
 
-        // Order seralization
         try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("order.dat"))){
             out.writeObject(orderRepository.findAll());
             System.out.println("\nOrders serialized successfully.");
@@ -131,7 +125,6 @@ public class FilesMain {
             e.printStackTrace();
         }
 
-        // Order deseralization
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("order.dat"))){
             HashSet<Order> hashSetOrders = (HashSet<Order>) in.readObject();
             orders = new ArrayList<>(hashSetOrders);

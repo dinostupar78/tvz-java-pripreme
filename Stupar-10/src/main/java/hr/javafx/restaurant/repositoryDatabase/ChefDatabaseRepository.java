@@ -16,7 +16,19 @@ import java.util.Properties;
 import java.util.Set;
 
 public class ChefDatabaseRepository<T extends Chef> extends AbstractDatabaseRepository<T> {
-    private static Connection connectToDatabase() throws IOException, SQLException {
+    private Boolean activeConnectionWithDatabase = false;
+
+    private synchronized Connection connectToDatabase() throws IOException, SQLException {
+        while (activeConnectionWithDatabase) {
+            try {
+                wait();
+            }  catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        activeConnectionWithDatabase = true;
+
         Properties props = new Properties();
         props.load(new FileReader("C:\\Users\\Dino\\Desktop\\Pripreme - Java\\Lab9\\Stupar-9\\src\\main\\resources\\database.properties"));
 
@@ -27,76 +39,72 @@ public class ChefDatabaseRepository<T extends Chef> extends AbstractDatabaseRepo
 
     }
 
-    private void disconnectFromDatabase(Connection connection) throws SQLException {
-        connection.close();
+    private synchronized void disconnectFromDatabase() throws RepositoryAccessException{
+        activeConnectionWithDatabase = false;
+        notifyAll();
     }
 
     @Override
-    public Set<T> findAll() throws RepositoryAccessException {
+    public synchronized Set<T> findAll() throws RepositoryAccessException {
         Set<T> chefs = new HashSet<>();
-        try{
-            Connection connection = connectToDatabase();
+        Connection connection;
 
-            Statement stmt = connection.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM CHEF");
-            while (resultSet.next()){
-                Chef chef = extractChefFromResultSet(resultSet);
-                chefs.add((T) chef);
+        try {
+            connection = connectToDatabase();
+            try (Statement stmt = connection.createStatement();
+                 ResultSet resultSet = stmt.executeQuery("SELECT * FROM CHEF")) {
+                while (resultSet.next()) {
+                    Chef chef = extractChefFromResultSet(resultSet, connection);
+                    chefs.add((T) chef);
+                }
             }
-
-            return chefs;
-
-        }catch(IOException | SQLException e){
+        } catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
+        } finally {
+            disconnectFromDatabase();
         }
+
+        return chefs;
     }
 
-    private static Chef extractChefFromResultSet(ResultSet resultSet) throws SQLException{
+    private Chef extractChefFromResultSet(ResultSet resultSet, Connection connection) throws SQLException {
         Long id = resultSet.getLong("id");
-        String first_name = resultSet.getString("first_name");
-        String last_name = resultSet.getString("last_name");
-        Long contract_id = resultSet.getLong("contract_id");
+        String firstName = resultSet.getString("first_name");
+        String lastName = resultSet.getString("last_name");
+        Long contractId = resultSet.getLong("contract_id");
         BigDecimal bonus = resultSet.getBigDecimal("bonus");
 
         Bonus chefBonus = new Bonus(bonus);
 
-        Contract contract = getContractById(contract_id);
+        Contract contract = getContractById(contractId, connection);
 
-        Chef chef = new Chef(id, first_name, last_name, contract, chefBonus);
-
-        return chef;
+        return new Chef(id, firstName, lastName, contract, chefBonus);
     }
 
-    public static Contract getContractById(Long contractId){
+    public static Contract getContractById(Long contractId, Connection connection) throws SQLException {
         String query = "SELECT * FROM CONTRACT WHERE id = ?";
-        try (Connection connection = connectToDatabase();
-             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setLong(1, contractId);
 
             try (ResultSet resultSet = stmt.executeQuery()) {
                 if (resultSet.next()) {
                     Long id = resultSet.getLong("id");
                     BigDecimal salary = resultSet.getBigDecimal("salary");
-                    LocalDate start_date = resultSet.getDate("start_date").toLocalDate();
-                    LocalDate end_date = resultSet.getDate("end_date").toLocalDate();
-                    String contract_type = resultSet.getString("contract_type");
+                    LocalDate startDate = resultSet.getDate("start_date").toLocalDate();
+                    LocalDate endDate = resultSet.getDate("end_date").toLocalDate();
+                    String contractType = resultSet.getString("contract_type");
 
-                    ContractType contractType = ContractType.valueOf(contract_type);
-
-                    return new Contract(id, salary, start_date, end_date, contractType);
+                    return new Contract(id, salary, startDate, endDate, ContractType.valueOf(contractType));
                 } else {
                     throw new SQLException("Contract not found for id: " + contractId);
                 }
-            }catch(SQLException e){
-                throw new RepositoryAccessException(e);
             }
-        } catch (IOException | SQLException e) {
-            throw new RepositoryAccessException(e);
         }
     }
 
     @Override
-    public void save(Set<T> entities) throws RepositoryAccessException {
+    public synchronized void save(Set<T> entities) throws RepositoryAccessException {
         try(Connection connection = connectToDatabase()){
             PreparedStatement stmt = connection.prepareStatement(
                     "INSERT INTO CHEF(FIRST_NAME, LAST_NAME, CONTRACT_ID, BONUS)" + " VALUES(?, ?, ?, ?)");
@@ -110,12 +118,13 @@ public class ChefDatabaseRepository<T extends Chef> extends AbstractDatabaseRepo
 
         }catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
+        } finally {
+            disconnectFromDatabase();
         }
-
     }
 
     @Override
-    public void save(T entity) throws RepositoryAccessException {
+    public synchronized void save(T entity) throws RepositoryAccessException {
         try(Connection connection = connectToDatabase()){
             PreparedStatement stmt = connection.prepareStatement(
                     "INSERT INTO CHEF(FIRST_NAME, LAST_NAME, CONTRACT_ID, BONUS)" + " VALUES(?, ?, ?, ?)");
@@ -127,7 +136,8 @@ public class ChefDatabaseRepository<T extends Chef> extends AbstractDatabaseRepo
 
         }catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
+        } finally {
+            disconnectFromDatabase();
         }
-
     }
 }

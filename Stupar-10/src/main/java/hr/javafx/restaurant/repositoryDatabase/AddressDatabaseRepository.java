@@ -11,7 +11,19 @@ import java.util.Properties;
 import java.util.Set;
 
 public class AddressDatabaseRepository<T extends Address> extends AbstractDatabaseRepository<T> {
-    private static Connection connectToDatabase() throws IOException, SQLException {
+    private Boolean activeConnectionWithDatabase = false;
+
+    private synchronized Connection connectToDatabase() throws IOException, SQLException {
+        while (activeConnectionWithDatabase) {
+            try {
+                wait();
+            }  catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        activeConnectionWithDatabase = true;
+
         Properties props = new Properties();
         props.load(new FileReader("C:\\Users\\Dino\\Desktop\\Pripreme - Java\\Lab9\\Stupar-9\\src\\main\\resources\\database.properties"));
 
@@ -22,32 +34,33 @@ public class AddressDatabaseRepository<T extends Address> extends AbstractDataba
 
     }
 
-    private void disconnectFromDatabase(Connection connection) throws SQLException {
-        connection.close();
+    private synchronized void disconnectFromDatabase() throws RepositoryAccessException{
+        activeConnectionWithDatabase = false;
+        notifyAll();
     }
 
     @Override
-    public Set<T> findAll() throws RepositoryAccessException {
+    public synchronized Set<T> findAll() throws RepositoryAccessException {
         Set<T> addresses = new HashSet<>();
-        try{
-            Connection connection = connectToDatabase();
-
-            Statement stmt = connection.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM ADDRESS");
-            while (resultSet.next()){
-                Address address = extractAddressFromResultSet(resultSet);
-                addresses.add((T) address);
+        Connection connection;
+        try {
+            connection = connectToDatabase();
+            try (Statement stmt = connection.createStatement();
+                 ResultSet resultSet = stmt.executeQuery("SELECT * FROM ADDRESS")) {
+                while (resultSet.next()) {
+                    Address address = extractAddressFromResultSet(resultSet, connection);
+                    addresses.add((T) address);
+                }
             }
-
-            return addresses;
-
-
-        }catch(IOException | SQLException e){
+        } catch(IOException | SQLException e){
             throw new RepositoryAccessException(e);
+        } finally {
+            disconnectFromDatabase();
         }
+        return addresses;
     }
 
-    private static Address extractAddressFromResultSet(ResultSet resultSet) throws SQLException{
+    private static Address extractAddressFromResultSet(ResultSet resultSet, Connection connection) throws SQLException{
         Long id = resultSet.getLong("id");
         String street = resultSet.getString("STREET");
         String house_number = resultSet.getString("HOUSE_NUMBER");
@@ -59,7 +72,7 @@ public class AddressDatabaseRepository<T extends Address> extends AbstractDataba
     }
 
     @Override
-    public void save(Set<T> entities) throws RepositoryAccessException {
+    public synchronized void save(Set<T> entities) throws RepositoryAccessException {
         try(Connection connection = connectToDatabase()){
             PreparedStatement stmt = connection.prepareStatement(
                     "INSERT INTO ADDRESS(STREET, HOUSE_NUMBER, CITY, POSTAL_CODE)" + " VALUES(?, ?, ?, ?)");
@@ -74,12 +87,13 @@ public class AddressDatabaseRepository<T extends Address> extends AbstractDataba
 
         }catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
+        } finally {
+            disconnectFromDatabase();
         }
-
     }
 
     @Override
-    public void save(T entity) throws RepositoryAccessException {
+    public synchronized void save(T entity) throws RepositoryAccessException {
         try(Connection connection = connectToDatabase()){
             PreparedStatement stmt = connection.prepareStatement(
                     "INSERT INTO ADDRESS(STREET, HOUSE_NUMBER, CITY, POSTAL_CODE)" + " VALUES(?, ?, ?, ?)");
@@ -93,6 +107,8 @@ public class AddressDatabaseRepository<T extends Address> extends AbstractDataba
 
         }catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
+        } finally {
+            disconnectFromDatabase();
         }
     }
 }

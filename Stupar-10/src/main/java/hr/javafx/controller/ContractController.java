@@ -130,7 +130,6 @@ public class ContractController {
         Thread runner = new Thread(thread);
         runner.start();
 
-
     }
 
     public void filterContracts() {

@@ -4,9 +4,8 @@ import hr.javafx.restaurant.model.Bonus;
 import hr.javafx.restaurant.model.Chef;
 import hr.javafx.restaurant.repositoryDatabase.ChefDatabaseRepository;
 import hr.javafx.restaurant.repositoryDatabase.ContractDatabaseRepository;
-import hr.javafx.threads.HighestEmployeeSalaryThread;
+import hr.javafx.threads.LowestEmployeeSalaryThread;
 import hr.javafx.utils.HandleSearchClickUtils;
-import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
@@ -138,7 +137,7 @@ public class ChefController {
 
         chefTableView.getSortOrder().add(chefColumnID);
 
-        HighestEmployeeSalaryThread highestEmployeeSalaryThread = new HighestEmployeeSalaryThread(
+        /*HighestEmployeeSalaryThread highestEmployeeSalaryThread = new HighestEmployeeSalaryThread(
                 contractRepository,
                 title -> {
                     System.out.println("Updating title: " + title);
@@ -146,10 +145,14 @@ public class ChefController {
                 },
                 stage,
                 "Chef"
-        );
+        );*/
 
-        Thread runner = new Thread(highestEmployeeSalaryThread);
-        runner.start();
+        //Thread runner = new Thread(highestEmployeeSalaryThread);
+        //runner.start();
+
+        LowestEmployeeSalaryThread lowestSalaryThread = new LowestEmployeeSalaryThread(contractRepository, stage, "Chef");
+        Thread thread = new Thread(lowestSalaryThread);
+        thread.start();
 
     }
 

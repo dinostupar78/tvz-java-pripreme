@@ -3,12 +3,15 @@ package hr.javafx.controller;
 import hr.javafx.restaurant.model.Meal;
 import hr.javafx.restaurant.repositoryDatabase.CategoryDatabaseRepository;
 import hr.javafx.restaurant.repositoryDatabase.MealDatabaseRepository;
+import hr.javafx.threads.MealCountThread;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -97,6 +100,9 @@ public class MealController {
     @FXML
     private TableColumn<Meal, String> mealColumnCalories;
 
+    @FXML
+    private Label mealCountLabel;
+
     //private CategoryFileRepository categoryRepository = new CategoryFileRepository<>();
     //private MealFileRepository mealRepository = new MealsFileRepository<>(categoryRepository);
 
@@ -125,6 +131,11 @@ public class MealController {
         );
 
         mealTableView.getSortOrder().add(mealColumnID);
+
+        Set<Meal> initialMealList = mealRepository.findAll();
+
+        MealCountThread countThread = new MealCountThread(FXCollections.observableArrayList(initialMealList), mealCountLabel);
+        countThread.run();
 
     }
 
@@ -173,5 +184,7 @@ public class MealController {
         sortedList.comparatorProperty().bind(mealTableView.comparatorProperty());
 
         mealTableView.setItems(sortedList);
+
+
     }
 }

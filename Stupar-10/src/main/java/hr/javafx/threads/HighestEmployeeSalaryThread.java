@@ -47,6 +47,7 @@ public class HighestEmployeeSalaryThread implements Runnable{
 
     @Override
     public void run() {
+        System.out.println("Thread started...");
         Set<Contract> contracts = contractRepository.findAll();
         if(contracts.isEmpty()){
             throw new RuntimeException("No contracts found");

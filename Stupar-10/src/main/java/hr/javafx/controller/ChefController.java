@@ -141,6 +141,7 @@ public class ChefController {
         HighestEmployeeSalaryThread highestEmployeeSalaryThread = new HighestEmployeeSalaryThread(
                 contractRepository,
                 title -> {
+                    System.out.println("Updating title: " + title);
                     Platform.runLater(() -> stage.setTitle(title));
                 },
                 stage,

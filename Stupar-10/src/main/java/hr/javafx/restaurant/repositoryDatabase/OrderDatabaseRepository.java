@@ -16,19 +16,7 @@ import java.util.Set;
 import static java.sql.DriverManager.getConnection;
 
 public class OrderDatabaseRepository<T extends Order> extends AbstractDatabaseRepository<T> {
-    private Boolean activeConnectionWithDatabase = false;
-
-    private synchronized Connection connectToDatabase() throws IOException, SQLException {
-        while (activeConnectionWithDatabase) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        activeConnectionWithDatabase = true;
-
+    private static Connection connectToDatabase() throws IOException, SQLException {
         Properties props = new Properties();
         props.load(new FileReader("C:\\Users\\Dino\\Desktop\\Pripreme - Java\\Lab9\\Stupar-9\\src\\main\\resources\\database.properties"));
 
@@ -36,15 +24,15 @@ public class OrderDatabaseRepository<T extends Order> extends AbstractDatabaseRe
                 props.getProperty("databaseUrl"),
                 props.getProperty("username"),
                 props.getProperty("password"));
+
     }
 
-    private synchronized void disconnectFromDatabase() throws RepositoryAccessException{
-        activeConnectionWithDatabase = false;
-        notifyAll();
+    private void disconnectFromDatabase(Connection connection) throws SQLException {
+        connection.close();
     }
 
     @Override
-    public synchronized Set<T> findAll() throws RepositoryAccessException {
+    public Set<T> findAll() throws RepositoryAccessException {
         Set<T> orders = new HashSet<>();
         try (Connection connection = connectToDatabase();
              Statement stmt = connection.createStatement();
@@ -53,13 +41,13 @@ public class OrderDatabaseRepository<T extends Order> extends AbstractDatabaseRe
             while (resultSet.next()) {
                 Order order = extractOrderFromResultSet(resultSet);
                 orders.add((T) order);
+
             }
+
             return orders;
 
         } catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
-        } finally {
-            disconnectFromDatabase();
         }
 
     }
@@ -82,7 +70,7 @@ public class OrderDatabaseRepository<T extends Order> extends AbstractDatabaseRe
 
     public Set<Meal> getMealsForOrder(Long orderId) throws SQLException, IOException {
         Set<Meal> meals = new HashSet<>();
-        String query = "SELECT * FROM RESTAURANT_ORDER_MEAL WHERE RESTAURANT_ORDER_ID = ?";
+        String query = "SELECT * FROM RESTAURANT_ORDER_MEAL WHERE ID = ?";
 
         try (Connection connection = connectToDatabase();
              PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -91,14 +79,13 @@ public class OrderDatabaseRepository<T extends Order> extends AbstractDatabaseRe
             try (ResultSet resultSet = stmt.executeQuery()) {
                 while (resultSet.next()) {
                     Long mealId = resultSet.getLong("meal_id");
-                    Meal meal = RestaurantDatabaseRepository.getMealById(mealId, connection);
+                    Meal meal = RestaurantDatabaseRepository.getMealById(mealId);
                     meals.add(meal);
                 }
             }
         }
         return meals;
     }
-
 
     private Restaurant getRestaurantById(Long restaurantId) throws SQLException, IOException {
         String query = "SELECT * FROM RESTAURANT WHERE ID = ?";
@@ -114,7 +101,8 @@ public class OrderDatabaseRepository<T extends Order> extends AbstractDatabaseRe
                     String name = resultSet.getString("name");
                     Long addressId = resultSet.getLong("address_id");
 
-                    Address address = RestaurantDatabaseRepository.getAddressById(addressId, connection);
+                    // Assuming Address fetching logic exists
+                    Address address = RestaurantDatabaseRepository.getAddressById(addressId);
 
                     return new Restaurant(id, name, address, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
                 }
@@ -124,12 +112,12 @@ public class OrderDatabaseRepository<T extends Order> extends AbstractDatabaseRe
         throw new SQLException("Restaurant not found for ID: " + restaurantId);
     }
 
-    private Deliverer findDelivererById(Long delivererId) throws SQLException, IOException {
+    private Deliverer findDelivererById(Long waiterId) throws SQLException, IOException {
         String query = "SELECT * FROM DELIVERER WHERE ID = ?";
         try (Connection connection = connectToDatabase();
              PreparedStatement stmt = connection.prepareStatement(query)) {
 
-            stmt.setLong(1, delivererId);
+            stmt.setLong(1, waiterId);
             try (ResultSet resultSet = stmt.executeQuery()) {
                 if (resultSet.next()) {
                     Long id = resultSet.getLong("id");
@@ -138,17 +126,17 @@ public class OrderDatabaseRepository<T extends Order> extends AbstractDatabaseRe
                     Long contractId = resultSet.getLong("contract_id");
                     BigDecimal bonus = resultSet.getBigDecimal("bonus");
 
-                    Contract contract = DelivererDatabaseRepository.getContractById(contractId, connection);
+                    Contract contract = ChefDatabaseRepository.getContractById(contractId);
                     return new Deliverer(id, firstName, lastName, contract, new Bonus(bonus));
                 } else {
-                    throw new SQLException("Deliverer not found for ID: " + delivererId);
+                    throw new SQLException("Chef not found for ID: " + waiterId);
                 }
             }
         }
     }
 
     @Override
-    public synchronized void save(Set<T> entities) throws RepositoryAccessException {
+    public void save(Set<T> entities) throws RepositoryAccessException {
         try (Connection connection = connectToDatabase()) {
             PreparedStatement stmt = connection.prepareStatement(
                     "INSERT INTO RESTAURANT_ORDER (RESTAURANT_ID, DELIVERER_ID, DATE_AND_TIME) VALUES (?, ?, ?)",
@@ -179,20 +167,18 @@ public class OrderDatabaseRepository<T extends Order> extends AbstractDatabaseRe
             }
         } catch (IOException | SQLException e) {
             throw new RepositoryAccessException("Error saving restaurant order(s)", e);
-        } finally {
-            disconnectFromDatabase();
         }
     }
 
     @Override
-    public synchronized void save(T entity) throws RepositoryAccessException {
+    public void save(T entity) throws RepositoryAccessException {
         String query = "INSERT INTO RESTAURANT_ORDER (RESTAURANT_ID, DELIVERER_ID, DATE_AND_TIME) VALUES (?, ?, ?)";
         try (Connection connection = connectToDatabase();
              PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setLong(1, entity.getRestaurant().getId());
             stmt.setLong(2, entity.getDeliverer().getId());
-            stmt.setDate(3, Date.valueOf(entity.getDeliveryDateAndTime().toLocalDate()));
+            stmt.setDate(3, java.sql.Date.valueOf(entity.getDeliveryDateAndTime().toLocalDate()));
             stmt.executeUpdate();
 
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
@@ -214,8 +200,6 @@ public class OrderDatabaseRepository<T extends Order> extends AbstractDatabaseRe
 
         } catch (SQLException | IOException e) {
             throw new RepositoryAccessException("Error saving restaurant order", e);
-        } finally {
-            disconnectFromDatabase();
         }
     }
 }

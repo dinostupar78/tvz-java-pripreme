@@ -11,62 +11,46 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
-import static java.sql.DriverManager.getConnection;
-
 public class RestaurantDatabaseRepository<T extends Restaurant> extends AbstractDatabaseRepository<T> {
-    private Boolean activeConnectionWithDatabase = false;
-
-    private synchronized Connection connectToDatabase() throws IOException, SQLException {
-        while (activeConnectionWithDatabase) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        activeConnectionWithDatabase = true;
-
+    private static Connection connectToDatabase() throws IOException, SQLException {
         Properties props = new Properties();
         props.load(new FileReader("C:\\Users\\Dino\\Desktop\\Pripreme - Java\\Lab9\\Stupar-9\\src\\main\\resources\\database.properties"));
 
-        return getConnection(
+        return DriverManager.getConnection(
                 props.getProperty("databaseUrl"),
                 props.getProperty("username"),
                 props.getProperty("password"));
+
     }
 
-    private synchronized void disconnectFromDatabase() throws RepositoryAccessException{
-        activeConnectionWithDatabase = false;
-        notifyAll();
+    private void disconnectFromDatabase(Connection connection) throws SQLException {
+        connection.close();
     }
 
     @Override
-    public synchronized Set<T> findAll() throws RepositoryAccessException {
+    public Set<T> findAll() throws RepositoryAccessException {
         Set<T> restaurants = new HashSet<>();
         try (Connection connection = connectToDatabase();
              Statement stmt = connection.createStatement();
              ResultSet resultSet = stmt.executeQuery("SELECT * FROM RESTAURANT")) {
 
             while (resultSet.next()) {
-                Restaurant restaurant = extractRestaurantFromResultSet(resultSet, connection);
+                Restaurant restaurant = extractRestaurantFromResultSet(resultSet);
                 restaurants.add((T) restaurant);
             }
 
             return restaurants;
         } catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
-        } finally {
-            disconnectFromDatabase();
         }
     }
 
-    public Restaurant extractRestaurantFromResultSet(ResultSet resultSet, Connection connection) throws SQLException, IOException {
+    public Restaurant extractRestaurantFromResultSet(ResultSet resultSet) throws SQLException, IOException {
         Long id = resultSet.getLong("id");
         String name = resultSet.getString("name");
         Long addressId = resultSet.getLong("address_id");
 
-        Address address = getAddressById(addressId, connection);
+        Address address = getAddressById(addressId);
 
         Set<Meal> meals = getMealsForRestaurant(id);
         Set<Chef> chefs = getChefsForRestaurant(id);
@@ -76,12 +60,12 @@ public class RestaurantDatabaseRepository<T extends Restaurant> extends Abstract
         return new Restaurant(id, name, address, meals, chefs, waiters, deliverers);
     }
 
-    public static Address getAddressById(Long addressId, Connection connection) throws SQLException {
+    public static Address getAddressById(Long addressId) throws SQLException, IOException {
         String query = "SELECT * FROM ADDRESS WHERE ID = ?";
+        try (Connection connection = connectToDatabase();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
 
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setLong(1, addressId);
-
             try (ResultSet resultSet = stmt.executeQuery()) {
                 if (resultSet.next()) {
                     Long id = resultSet.getLong("id");
@@ -107,7 +91,7 @@ public class RestaurantDatabaseRepository<T extends Restaurant> extends Abstract
             try (ResultSet resultSet = stmt.executeQuery()) {
                 while (resultSet.next()) {
                     Long mealId = resultSet.getLong("meal_id");
-                    Meal meal = getMealById(mealId, connection);
+                    Meal meal = getMealById(mealId);
                     meals.add(meal);
                 }
             } catch (IOException e) {
@@ -117,11 +101,12 @@ public class RestaurantDatabaseRepository<T extends Restaurant> extends Abstract
         return meals;
     }
 
-    public static Meal getMealById(Long mealId, Connection connection) throws SQLException, IOException {
+    public static Meal getMealById(Long mealId) throws SQLException, IOException {
         String query = "SELECT * FROM MEAL WHERE ID = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setLong(1, mealId);
+        try (Connection connection = connectToDatabase();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
 
+            stmt.setLong(1, mealId);
             try (ResultSet resultSet = stmt.executeQuery()) {
                 if (resultSet.next()) {
                     Long id = resultSet.getLong("id");
@@ -131,7 +116,7 @@ public class RestaurantDatabaseRepository<T extends Restaurant> extends Abstract
                     BigDecimal price = resultSet.getBigDecimal("price");
                     Integer calories = resultSet.getInt("calories");
 
-                    Category category = MealDatabaseRepository.getCategoryById(category_id, connection);
+                    Category category = MealDatabaseRepository.getCategoryById(category_id);
 
                     return new Meal(id, name, category, ingredients, price, calories);
                 } else {
@@ -139,7 +124,6 @@ public class RestaurantDatabaseRepository<T extends Restaurant> extends Abstract
                 }
             }
         }
-
     }
 
     private Set<Chef> getChefsForRestaurant(Long restaurantId) throws SQLException {
@@ -176,7 +160,7 @@ public class RestaurantDatabaseRepository<T extends Restaurant> extends Abstract
                     Long contractId = resultSet.getLong("contract_id");
                     BigDecimal bonus = resultSet.getBigDecimal("bonus");
 
-                    Contract contract = ChefDatabaseRepository.getContractById(contractId, connection);
+                    Contract contract = ChefDatabaseRepository.getContractById(contractId);
                     return new Chef(id, firstName, lastName, contract, new Bonus(bonus));
                 } else {
                     throw new SQLException("Chef not found for ID: " + chefId);
@@ -219,7 +203,7 @@ public class RestaurantDatabaseRepository<T extends Restaurant> extends Abstract
                     Long contractId = resultSet.getLong("contract_id");
                     BigDecimal bonus = resultSet.getBigDecimal("bonus");
 
-                    Contract contract = WaiterDatabaseRepository.getContractById(contractId, connection);
+                    Contract contract = ChefDatabaseRepository.getContractById(contractId);
                     return new Waiter(id, firstName, lastName, contract, new Bonus(bonus));
                 } else {
                     throw new SQLException("Chef not found for ID: " + waiterId);
@@ -262,7 +246,7 @@ public class RestaurantDatabaseRepository<T extends Restaurant> extends Abstract
                     Long contractId = resultSet.getLong("contract_id");
                     BigDecimal bonus = resultSet.getBigDecimal("bonus");
 
-                    Contract contract = DelivererDatabaseRepository.getContractById(contractId, connection);
+                    Contract contract = ChefDatabaseRepository.getContractById(contractId);
                     return new Deliverer(id, firstName, lastName, contract, new Bonus(bonus));
                 } else {
                     throw new SQLException("Chef not found for ID: " + waiterId);
@@ -272,7 +256,7 @@ public class RestaurantDatabaseRepository<T extends Restaurant> extends Abstract
     }
 
     @Override
-    public synchronized void save(Set<T> entities) throws RepositoryAccessException {
+    public void save(Set<T> entities) throws RepositoryAccessException {
         try(Connection connection = connectToDatabase()){
             PreparedStatement stmt = connection.prepareStatement(
                     "INSERT INTO RESTAURANT (NAME, ADDRESS_ID) VALUES (?, ?)");
@@ -289,14 +273,12 @@ public class RestaurantDatabaseRepository<T extends Restaurant> extends Abstract
 
         }catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
-        } finally {
-            disconnectFromDatabase();
         }
 
     }
 
     @Override
-    public synchronized void save(T entity) throws RepositoryAccessException {
+    public void save(T entity) throws RepositoryAccessException {
         try(Connection connection = connectToDatabase()){
             PreparedStatement stmt = connection.prepareStatement(
                     "INSERT INTO RESTAURANT (NAME, ADDRESS_ID) VALUES (?, ?)",
@@ -321,8 +303,6 @@ public class RestaurantDatabaseRepository<T extends Restaurant> extends Abstract
 
         }catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
-        } finally {
-            disconnectFromDatabase();
         }
     }
 

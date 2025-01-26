@@ -71,7 +71,7 @@ public class ContractFileRepository<T extends Contract> extends AbstractFileRepo
             writer.flush();
 
         } catch (IOException e) {
-            throw new RuntimeException("Failed to save entities to file: " + CONTRACTS_FILE_PATH, e);
+            throw new RuntimeException(e);
         }
     }
 

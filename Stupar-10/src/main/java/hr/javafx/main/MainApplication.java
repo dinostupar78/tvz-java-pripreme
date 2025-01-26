@@ -10,7 +10,6 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         stage.setScene(new FirstScreenController().showItemSearchScreen());
-        stage.show();
         stage.setTitle("Restaurant Management Application");
         stage.show();
     }

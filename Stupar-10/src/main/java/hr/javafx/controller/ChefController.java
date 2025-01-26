@@ -4,7 +4,9 @@ import hr.javafx.restaurant.model.Bonus;
 import hr.javafx.restaurant.model.Chef;
 import hr.javafx.restaurant.repositoryDatabase.ChefDatabaseRepository;
 import hr.javafx.restaurant.repositoryDatabase.ContractDatabaseRepository;
+import hr.javafx.threads.HighestEmployeeSalaryThread;
 import hr.javafx.utils.HandleSearchClickUtils;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
@@ -13,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -98,6 +101,12 @@ public class ChefController {
     @FXML
     private TableColumn<Chef, String> chefColumnBonus;
 
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     //private ContractFileRepository contractRepository = new ContractFileRepository();
     //private ChefFileRepository chefRepository = new ChefFileRepository<>(contractRepository);
 
@@ -128,6 +137,18 @@ public class ChefController {
         });
 
         chefTableView.getSortOrder().add(chefColumnID);
+
+        HighestEmployeeSalaryThread highestEmployeeSalaryThread = new HighestEmployeeSalaryThread(
+                contractRepository,
+                title -> {
+                    Platform.runLater(() -> stage.setTitle(title));
+                },
+                stage,
+                "Chef"
+        );
+
+        Thread runner = new Thread(highestEmployeeSalaryThread);
+        runner.start();
 
     }
 

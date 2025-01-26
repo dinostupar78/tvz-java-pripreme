@@ -9,18 +9,8 @@ import java.sql.*;
 import java.util.*;
 
 public class CategoryDatabaseRepository<T extends Category> extends AbstractDatabaseRepository<T> {
-    private Boolean activeConnectionWithDatabase = false;
 
-    private synchronized Connection connectToDatabase() throws IOException, SQLException {
-        while (activeConnectionWithDatabase) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        activeConnectionWithDatabase = true;
-
+    private Connection connectToDatabase() throws IOException, SQLException {
         Properties props = new Properties();
         props.load(new FileReader("C:\\Users\\Dino\\Desktop\\Pripreme - Java\\Lab9\\Stupar-9\\src\\main\\resources\\database.properties"));
 
@@ -28,71 +18,72 @@ public class CategoryDatabaseRepository<T extends Category> extends AbstractData
                 props.getProperty("databaseUrl"),
                 props.getProperty("username"),
                 props.getProperty("password"));
+
     }
 
-    private synchronized void disconnectFromDatabase() throws RepositoryAccessException {
-        activeConnectionWithDatabase = false;
-        notifyAll();
+    private void disconnectFromDatabase(Connection connection) throws SQLException {
+        connection.close();
     }
 
     @Override
     public Set<T> findAll() throws RepositoryAccessException {
         Set<T> categories = new HashSet<>();
-        Connection connection;
         try{
-            connection = connectToDatabase();
+            Connection connection = connectToDatabase();
+
             Statement stmt = connection.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM CATEGORY");
-            while (resultSet.next()) {
+            while (resultSet.next()){
                 Category category = extractCategoryFromResultSet(resultSet);
                 categories.add((T) category);
             }
+
             return categories;
-        } catch (IOException | SQLException e) {
+
+
+        }catch(IOException | SQLException e){
             throw new RepositoryAccessException(e);
-        } finally {
-            disconnectFromDatabase();
         }
     }
 
-    private static Category extractCategoryFromResultSet(ResultSet resultSet) throws SQLException {
+    private static Category extractCategoryFromResultSet(ResultSet resultSet) throws SQLException{
         Long id = resultSet.getLong("id");
         String name = resultSet.getString("name");
         String description = resultSet.getString("description");
 
-        return new Category(id, name, description);
+        Category category = new Category(id, name, description);
+        return category;
     }
 
     @Override
     public void save(Set<T> entities) {
-        try (Connection connection = connectToDatabase()) {
+        try(Connection connection = connectToDatabase()){
             PreparedStatement stmt = connection.prepareStatement(
-                    "INSERT INTO CATEGORY(NAME, DESCRIPTION) VALUES(?, ?)");
+                    "INSERT INTO CATEGORY(NAME, DESCRIPTION)" + " VALUES(?, ?)");
 
-            for (T entity : entities) {
+            for(T entity : entities){
                 stmt.setString(1, entity.getName());
                 stmt.setString(2, entity.getDescription());
                 stmt.executeUpdate();
             }
-        } catch (IOException | SQLException e) {
+
+        }catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
-        } finally {
-            disconnectFromDatabase();
         }
+
     }
 
     @Override
     public void save(T entity) {
-        try (Connection connection = connectToDatabase()) { // Try-with-resources ensures the connection is closed
+        try(Connection connection = connectToDatabase()){
             PreparedStatement stmt = connection.prepareStatement(
-                    "INSERT INTO CATEGORY(NAME, DESCRIPTION) VALUES(?, ?)");
+                    "INSERT INTO CATEGORY(NAME, DESCRIPTION)" + " VALUES(?, ?)");
             stmt.setString(1, entity.getName());
             stmt.setString(2, entity.getDescription());
             stmt.executeUpdate();
-        } catch (IOException | SQLException e) {
+
+        }catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
-        } finally {
-            disconnectFromDatabase();
         }
     }
 }

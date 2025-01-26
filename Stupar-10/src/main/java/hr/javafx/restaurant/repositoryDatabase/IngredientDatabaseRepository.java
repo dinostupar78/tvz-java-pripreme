@@ -13,19 +13,8 @@ import java.util.Properties;
 import java.util.Set;
 
 public class IngredientDatabaseRepository<T extends Ingredient> extends AbstractDatabaseRepository<T> {
-    private Boolean activeConnectionWithDatabase = false;
 
-    private synchronized Connection connectToDatabase() throws IOException, SQLException {
-        while (activeConnectionWithDatabase) {
-            try {
-                wait();
-            }  catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        activeConnectionWithDatabase = true;
-
+    private static Connection connectToDatabase() throws IOException, SQLException {
         Properties props = new Properties();
         props.load(new FileReader("C:\\Users\\Dino\\Desktop\\Pripreme - Java\\Lab9\\Stupar-9\\src\\main\\resources\\database.properties"));
 
@@ -36,39 +25,39 @@ public class IngredientDatabaseRepository<T extends Ingredient> extends Abstract
 
     }
 
-    private synchronized void disconnectFromDatabase() throws RepositoryAccessException{
-        activeConnectionWithDatabase = false;
-        notifyAll();
+    private void disconnectFromDatabase(Connection connection) throws SQLException {
+        connection.close();
     }
 
     @Override
-    public synchronized Set<T> findAll() throws RepositoryAccessException {
+    public Set<T> findAll() throws RepositoryAccessException {
         Set<T> ingredients = new HashSet<>();
-        Connection connection;
-        try {
-            connection = connectToDatabase();
-            try (Statement stmt = connection.createStatement();
-                 ResultSet resultSet = stmt.executeQuery("SELECT * FROM INGREDIENT")) {
-                while (resultSet.next()) {
-                    Ingredient ingredient = extractIngredientFromResultSet(resultSet, connection);
-                    ingredients.add((T) ingredient);
-                }
+        try{
+            Connection connection = connectToDatabase();
+
+            Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM INGREDIENT");
+            while (resultSet.next()){
+                Ingredient ingredient = extractIngredientFromResultSet(resultSet);
+                ingredients.add((T) ingredient);
             }
+
+            return ingredients;
+
+
         }catch(IOException | SQLException e){
             throw new RepositoryAccessException(e);
         }
-
-        return ingredients;
     }
 
-    private Ingredient extractIngredientFromResultSet(ResultSet resultSet, Connection connection) throws SQLException{
+    private static Ingredient extractIngredientFromResultSet(ResultSet resultSet) throws SQLException{
         Long id = resultSet.getLong("id");
         String name = resultSet.getString("name");
         Long category_id = resultSet.getLong("category_id");
         BigDecimal kcal = resultSet.getBigDecimal("kcal");
         String preparation_method = resultSet.getString("preparation_method");
 
-        Category category = getCategoryById(category_id, connection);
+        Category category = getCategoryById(category_id);
 
         Ingredient ingredient = new Ingredient(id, name, category, kcal, preparation_method);
 
@@ -76,9 +65,10 @@ public class IngredientDatabaseRepository<T extends Ingredient> extends Abstract
 
     }
 
-    private static Category getCategoryById(Long categoryId, Connection connection) throws SQLException{
+    private static Category getCategoryById(Long categoryId) throws SQLException{
         String query = "SELECT * FROM CATEGORY WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+        try (Connection connection = connectToDatabase();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setLong(1, categoryId);
 
             try (ResultSet resultSet = stmt.executeQuery()) {
@@ -90,12 +80,16 @@ public class IngredientDatabaseRepository<T extends Ingredient> extends Abstract
                 } else {
                     throw new SQLException("Category not found for id: " + categoryId);
                 }
+            }catch(SQLException e){
+                throw new RepositoryAccessException(e);
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @Override
-    public synchronized void save(Set<T> entities) throws RepositoryAccessException {
+    public void save(Set<T> entities) throws RepositoryAccessException {
         try(Connection connection = connectToDatabase()){
             PreparedStatement stmt = connection.prepareStatement(
                     "INSERT INTO INGREDIENT(NAME, CATEGORY_ID, KCAL, PREPARATION_METHOD)" + " VALUES(?, ?, ?, ?)");
@@ -109,14 +103,12 @@ public class IngredientDatabaseRepository<T extends Ingredient> extends Abstract
 
         }catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
-        } finally {
-            disconnectFromDatabase();
         }
 
     }
 
     @Override
-    public synchronized void save(T entity) throws RepositoryAccessException {
+    public void save(T entity) throws RepositoryAccessException {
         try(Connection connection = connectToDatabase()){
             PreparedStatement stmt = connection.prepareStatement(
                     "INSERT INTO INGREDIENT(NAME, CATEGORY_ID, KCAL, PREPARATION_METHOD)" + " VALUES(?, ?, ?, ?)");
@@ -128,8 +120,6 @@ public class IngredientDatabaseRepository<T extends Ingredient> extends Abstract
 
         }catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
-        } finally {
-            disconnectFromDatabase();
         }
 
     }

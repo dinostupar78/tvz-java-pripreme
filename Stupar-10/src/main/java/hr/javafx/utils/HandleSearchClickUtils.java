@@ -1,5 +1,8 @@
 package hr.javafx.utils;
 
+import hr.javafx.controller.ChefController;
+import hr.javafx.controller.DelivererController;
+import hr.javafx.controller.WaiterController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -7,6 +10,7 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
 
 public class HandleSearchClickUtils {
     public void handleSearchClickCategories(ActionEvent event) {
@@ -74,8 +78,12 @@ public class HandleSearchClickUtils {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/javafx/chefsSearch.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
 
+            ChefController chefController = fxmlLoader.getController();
+
             MenuItem menuItem = (MenuItem) event.getSource();
-            Stage stage = (Stage) ((MenuItem) menuItem).getParentPopup().getOwnerWindow();
+            Stage stage = (Stage) menuItem.getParentPopup().getOwnerWindow();
+
+            chefController.setStage(stage);
 
             stage.setScene(scene);
             stage.show();
@@ -84,16 +92,23 @@ public class HandleSearchClickUtils {
         }
     }
 
+
+
     public void handleSearchClickWaiters(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/javafx/waitersSearch.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
 
+            WaiterController waiterController = fxmlLoader.getController();
+
             MenuItem menuItem = (MenuItem) event.getSource();
             Stage stage = (Stage) ((MenuItem) menuItem).getParentPopup().getOwnerWindow();
 
+            waiterController.setStage(stage);
+
             stage.setScene(scene);
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -104,11 +119,16 @@ public class HandleSearchClickUtils {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/javafx/deliverersSearch.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
 
+            DelivererController delivererController = fxmlLoader.getController();
+
             MenuItem menuItem = (MenuItem) event.getSource();
             Stage stage = (Stage) ((MenuItem) menuItem).getParentPopup().getOwnerWindow();
 
+            delivererController.setStage(stage);
+
             stage.setScene(scene);
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

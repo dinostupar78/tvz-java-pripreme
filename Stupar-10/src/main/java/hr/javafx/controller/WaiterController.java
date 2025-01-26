@@ -4,7 +4,9 @@ import hr.javafx.restaurant.model.Bonus;
 import hr.javafx.restaurant.model.Waiter;
 import hr.javafx.restaurant.repositoryDatabase.ContractDatabaseRepository;
 import hr.javafx.restaurant.repositoryDatabase.WaiterDatabaseRepository;
+import hr.javafx.threads.HighestEmployeeSalaryThread;
 import hr.javafx.utils.HandleSearchClickUtils;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
@@ -13,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -98,7 +101,11 @@ public class WaiterController {
     @FXML
     private TableColumn<Waiter, String> waiterColumnBonus;
 
-    private Waiter selectedWaiter;
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     //private ContractFileRepository contractRepository = new ContractFileRepository();
     //private WaiterFileRepository waiterRepository = new WaiterFileRepository<>(contractRepository);
@@ -130,14 +137,22 @@ public class WaiterController {
         });
 
         waiterTableView.getSortOrder().add(waiterColumnID);
+
+        HighestEmployeeSalaryThread highestEmployeeSalaryThread = new HighestEmployeeSalaryThread(
+                contractRepository,
+                title -> {
+                    Platform.runLater(() -> stage.setTitle(title));
+                },
+                stage,
+                "Waiter"
+        );
+
+        Thread runner = new Thread(highestEmployeeSalaryThread);
+        runner.start();
     }
 
     public void filterWaiters(){
         Set<Waiter> initialWaiterList = waiterRepository.findAll();
-
-        waiterTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            selectedWaiter = newValue; // Set the selected waiter
-        });
 
         String waiterID = waiterTextFieldID.getText();
         if(!waiterID.isEmpty()){

@@ -14,19 +14,7 @@ import java.util.Properties;
 import java.util.Set;
 
 public class ContractDatabaseRepository<T extends Contract> extends AbstractDatabaseRepository<T> {
-    private Boolean activeConnectionWithDatabase = false;
-
-    private synchronized Connection connectToDatabase() throws IOException, SQLException {
-        while (activeConnectionWithDatabase) {
-            try {
-                wait();
-            }  catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        activeConnectionWithDatabase = true;
-
+    private static Connection connectToDatabase() throws IOException, SQLException {
         Properties props = new Properties();
         props.load(new FileReader("C:\\Users\\Dino\\Desktop\\Pripreme - Java\\Lab9\\Stupar-9\\src\\main\\resources\\database.properties"));
 
@@ -37,35 +25,31 @@ public class ContractDatabaseRepository<T extends Contract> extends AbstractData
 
     }
 
-    private synchronized void disconnectFromDatabase() throws RepositoryAccessException{
-        activeConnectionWithDatabase = false;
-        notifyAll();
+    private void disconnectFromDatabase(Connection connection) throws SQLException {
+        connection.close();
     }
 
     @Override
-    public synchronized Set<T> findAll() throws RepositoryAccessException {
+    public Set<T> findAll() throws RepositoryAccessException {
         Set<T> contracts = new HashSet<>();
-        Connection connection;
+        try{
+            Connection connection = connectToDatabase();
 
-        try {
-            connection = connectToDatabase();
-            try (Statement stmt = connection.createStatement();
-                 ResultSet resultSet = stmt.executeQuery("SELECT * FROM CONTRACT")) {
-                while (resultSet.next()) {
-                    Contract contract = extractContractFromResultSet(resultSet, connection);
-                    contracts.add((T) contract);
-                }
+            Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM CONTRACT");
+            while (resultSet.next()){
+                Contract contract = extractContractFromResultSet(resultSet);
+                contracts.add((T) contract);
             }
-        } catch (IOException | SQLException e) {
-            throw new RepositoryAccessException(e);
-        } finally {
-            disconnectFromDatabase();
-        }
 
-        return contracts;
+            return contracts;
+
+        }catch(IOException | SQLException e){
+            throw new RepositoryAccessException(e);
+        }
     }
 
-    private Contract extractContractFromResultSet(ResultSet resultSet, Connection connection) throws SQLException{
+    private static Contract extractContractFromResultSet(ResultSet resultSet) throws SQLException{
         Long id = resultSet.getLong("id");
         BigDecimal salary = resultSet.getBigDecimal("salary");
         LocalDate start_date = resultSet.getDate("start_date").toLocalDate();
@@ -80,7 +64,7 @@ public class ContractDatabaseRepository<T extends Contract> extends AbstractData
     }
 
     @Override
-    public synchronized void save(Set<T> entities) throws RepositoryAccessException {
+    public void save(Set<T> entities) throws RepositoryAccessException {
         try(Connection connection = connectToDatabase()){
             PreparedStatement stmt = connection.prepareStatement(
                     "INSERT INTO CONTRACT(SALARY, START_DATE, END_DATE, CONTRACT_TYPE)" + " VALUES(?, ?, ?, ?)");
@@ -94,13 +78,11 @@ public class ContractDatabaseRepository<T extends Contract> extends AbstractData
 
         }catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
-        } finally {
-            disconnectFromDatabase();
         }
     }
 
     @Override
-    public synchronized void save(T entity) throws RepositoryAccessException {
+    public void save(T entity) throws RepositoryAccessException {
         try(Connection connection = connectToDatabase()){
             PreparedStatement stmt = connection.prepareStatement(
                     "INSERT INTO CONTRACT(SALARY, START_DATE, END_DATE, CONTRACT_TYPE)" + " VALUES(?, ?, ?, ?)");
@@ -112,10 +94,6 @@ public class ContractDatabaseRepository<T extends Contract> extends AbstractData
 
         }catch (IOException | SQLException e) {
             throw new RepositoryAccessException(e);
-        } finally {
-            disconnectFromDatabase();
         }
     }
-
-
 }

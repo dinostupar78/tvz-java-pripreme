@@ -6,7 +6,6 @@ import hr.javafx.restaurant.repositoryDatabase.MealDatabaseRepository;
 import hr.javafx.threads.MealCountThread;
 import hr.javafx.utils.HandleSearchClickUtils;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
@@ -134,7 +133,7 @@ public class MealController {
 
         Set<Meal> initialMealList = mealRepository.findAll();
 
-        MealCountThread countThread = new MealCountThread(FXCollections.observableArrayList(initialMealList), mealCountLabel);
+        MealCountThread countThread = new MealCountThread(observableArrayList(initialMealList), mealCountLabel);
         countThread.run();
 
     }

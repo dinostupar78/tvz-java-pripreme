@@ -4,8 +4,10 @@ import hr.javafx.restaurant.model.Bonus;
 import hr.javafx.restaurant.model.Waiter;
 import hr.javafx.restaurant.repositoryDatabase.ContractDatabaseRepository;
 import hr.javafx.restaurant.repositoryDatabase.WaiterDatabaseRepository;
+import hr.javafx.threads.HighestEmployeeSalaryThread;
 import hr.javafx.threads.LowestEmployeeSalaryThread;
 import hr.javafx.utils.HandleSearchClickUtils;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
@@ -137,7 +139,7 @@ public class WaiterController {
 
         waiterTableView.getSortOrder().add(waiterColumnID);
 
-        /*HighestEmployeeSalaryThread highestEmployeeSalaryThread = new HighestEmployeeSalaryThread(
+        HighestEmployeeSalaryThread highestEmployeeSalaryThread = new HighestEmployeeSalaryThread(
                 contractRepository,
                 title -> {
                     Platform.runLater(() -> stage.setTitle(title));
@@ -147,9 +149,9 @@ public class WaiterController {
         );
 
         Thread runner = new Thread(highestEmployeeSalaryThread);
-        runner.start();*/
+        runner.start();
 
-        LowestEmployeeSalaryThread lowestSalaryThread = new LowestEmployeeSalaryThread(contractRepository, stage, "Chef");
+        LowestEmployeeSalaryThread lowestSalaryThread = new LowestEmployeeSalaryThread(contractRepository, stage, "Waiter");
         Thread thread = new Thread(lowestSalaryThread);
         thread.start();
     }

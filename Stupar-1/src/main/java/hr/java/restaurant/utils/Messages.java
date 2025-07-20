@@ -76,6 +76,59 @@ public class Messages {
 
     public static final String DELIVERER_INPUT_SALARY = "Unesite plaću dostavljača.";
 
-    public static final String DELIVERER_INPUT_SALARY_ERROR = "Krivi unos, unesite točnu plaću..";
+    public static final String DELIVERER_INPUT_SALARY_ERROR = "Krivi unos, unesite točnu plaću.";
+
+    public static final String ADDRESS_INPUT_STREET = "Unesite ulicu.";
+
+    public static final String ADDRESS_INPUT_STREET_ERROR = "Krivi Unos, Unesite ulicu koja ima barem 2 slova.";
+
+    public static final String ADDRESS_INPUT_HOUSE_NUMBER = "Unesite kućnu adresu.";
+
+    public static final String ADDRESS_INPUT_HOUSE_NUMBER_ERROR = "Krivi Unos, Unesite kućnu adresu koja ima barem 2 slova.";
+
+    public static final String ADDRESS_INPUT_CITY = "Unesite grad.";
+
+    public static final String ADDRESS_INPUT_CITY_ERROR = "Krivi Unos, Unesite grad koja ima barem 3 slova.";
+
+    public static final String ADDRESS_INPUT_POSTAL_CODE = "Unesite poštanski broj.";
+
+    public static final String ADDRESS_INPUT_POSTAL_CODE_ERROR = "Krivi Unos, Unesite postanski broj koja ima barem 2 slova.";
+
+    public static final String RESTAURANT_INPUT_NAME = "Unesite Ime restorana.";
+
+    public static final String RESTAURANT_INPUT_NAME_ERROR = "Krivi Unos, Unesite Ume restorana koji ne sadrži brojeve i ima barem 3 slova.";
+
+    public static final String RESTAURANT_INPUT_MEAL = "Popis Jela, Birate jela dok ne unesete 0.";
+
+    public static final String RESTAURANT_INPUT_MEAL_ERROR = "Krivi unos, pokušajte ponovo.";
+
+    public static final String RESTAURANT_INPUT_CHEF = "Popis Kuhara, Birate kuhare dok ne unesete 0.";
+
+    public static final String RESTAURANT_INPUT_CHEF_ERROR = "Krivi unos, pokušajte ponovo.";
+
+    public static final String RESTAURANT_INPUT_WAITER = "Popis Konobara, Odaberite jednog.";
+
+    public static final String RESTAURANT_INPUT_WAITER_ERROR = "Krivi unos, pokušajte ponovo.";
+
+    public static final String RESTAURANT_INPUT_DELIVERER = "Popis Dostavljača, Odaberite jednog.";
+
+    public static final String RESTAURANT_INPUT_DELIVERER_ERROR = "Krivi unos, pokušajte ponovo.";
+
+    public static final String ORDER_INPUT_RESTAURANT = "Popis restorana, odaberite jedan brojem 1 - ";
+
+    public static final String ORDER_INPUT_RESTAURANT_ERROR = "Krivi unos, pokušajte ponovo.";
+
+    public static final String ORDER_INPUT_SELECTED_RESTAURANT = "Odabrani restoran je nevažeći. Pokušajte ponovo.";
+
+    public static final String ORDER_INPUT_NO_MEALS = "Nema dostupnih jela za restoran ";
+
+    public static final String ORDER_INPUT_MEALS = "Popis jela za restoran ";
+
+    public static final String ORDER_INPUT_MEALS_SELECT = "Odaberite jedno: ";
+
+    public static final String ORDER_INPUT_MEALS_ERROR = "Prekoračili ste maksimalni broj jela (10).";
+
+    public static final String ORDER_INPUT_ERROR = "Krivi unos, pokušajte ponovo.";
+
 
 }

@@ -1,86 +1,87 @@
 package hr.java.production.main;
-
 import hr.java.restaurant.model.*;
-
+import hr.java.restaurant.utils.Messages;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
-    private static final Integer numberOfCategories = 3;
-    private static final Integer numberOfIngredients = 5;
-    private static final Integer numberOfMeals = 3;
-    private static final Integer numberOfChefs = 3;
-    private static final Integer numberOfWaiters = 3;
-    private static final Integer numberOfDeliverers = 3;
-    private static final Integer numberOfRestaurants = 3;
-    private static final Integer restaurantAddress = 3;
-    private static final Integer numberOfOrders = 3;
+    private static final Integer NUMBER_OF_CATEGORIES = 3;
+    private static final Integer NUMBER_OF_INGREDIENTS = 5;
+    private static final Integer NUMBER_OF_MEALS = 3;
+    private static final Integer NUMBER_OF_CHEFS = 3;
+    private static final Integer NUMBER_OF_WAITERS = 3;
+    private static final Integer NUMBER_OF_DELIVERERS = 3;
+    private static final Integer NUMBER_OF_RESTAURANTS = 3;
+    private static final Integer NUMBER_OF_ADDRESSES = 3;
+    private static final Integer NUMBER_OF_ORDERS = 3;
 
     public static void main(String[] args) {
-        Category[] categories = new Category[numberOfCategories];
-        Ingredient[] ingredients = new Ingredient[numberOfIngredients];
-        Meal[] meals = new Meal[numberOfMeals];
-        Chef[] chefs = new Chef[numberOfChefs];
-        Waiter[] waiters = new Waiter[numberOfWaiters];
-        Deliverer[] deliverers = new Deliverer[numberOfDeliverers];
-        Restaurant[] restaurants = new Restaurant[numberOfRestaurants];
-        Address[] addresses = new Address[restaurantAddress];
-        Order[] orderers = new Order[numberOfOrders];
+        Category[] categories = new Category[NUMBER_OF_CATEGORIES];
+        Ingredient[] ingredients = new Ingredient[NUMBER_OF_INGREDIENTS];
+        Meal[] meals = new Meal[NUMBER_OF_MEALS];
+        Chef[] chefs = new Chef[NUMBER_OF_CHEFS];
+        Waiter[] waiters = new Waiter[NUMBER_OF_WAITERS];
+        Deliverer[] deliverers = new Deliverer[NUMBER_OF_DELIVERERS];
+        Restaurant[] restaurants = new Restaurant[NUMBER_OF_RESTAURANTS];
+        Address[] addresses = new Address[NUMBER_OF_ADDRESSES];
+        Order[] orders = new Order[NUMBER_OF_ORDERS];
 
         Scanner scanner = new Scanner(System.in);
 
         for(int i = 0; i < categories.length; i++){
-            System.out.println("Unesite podatke za " + (i + 1) + " kategoriju");
-            Category kategorija = categoryInput(scanner);
-            categories[i] = kategorija;
+            System.out.println(Messages.DATA_INPUT + (i + 1) + "." + " kategoriju:");
+            Category cat = categoryInput(scanner);
+            categories[i] = cat;
         }
 
         for(int i = 0; i < ingredients.length; i++){
-            System.out.println("Unesite podatke za " + (i + 1) + " sastojak");
-            Ingredient sastojak = ingredientInput(scanner, categories);
-            ingredients[i] = sastojak;
+            System.out.println(Messages.CATEGORY_INPUT_NAME);
+            Ingredient ingredient = ingredientInput(scanner, categories);
+            ingredients[i] = ingredient;
         }
 
         for(int i = 0; i < meals.length; i++){
-            System.out.println("Unesite podatke za " + (i+1) + " jelo");
-            Meal jela = mealsInput(scanner, categories, ingredients);
-            meals[i] = jela;
+            System.out.println(Messages.DATA_INPUT + (i + 1) + "." + " jelo.");
+            Meal meal = mealsInput(scanner, categories, ingredients);
+            meals[i] = meal;
         }
 
         for(int i = 0; i < chefs.length; i++){
-            System.out.println("Unesite podatke za " + (i+1) + " kuhara");
-            Chef kuhara = chefInput(scanner);
-            chefs[i] = kuhara;
+            System.out.println(Messages.DATA_INPUT + (i + 1) + "." + " kuhara.");
+            Chef chef = chefInput(scanner);
+            chefs[i] = chef;
         }
 
         for(int i = 0; i < waiters.length; i++){
-            System.out.println("Unesite podatke za " + (i+1) + " konobara");
-            Waiter konobar = waiterInput(scanner);
-            waiters[i] = konobar;
+            System.out.println(Messages.DATA_INPUT + (i + 1) + "." + " konobara.");
+            Waiter waiter = waiterInput(scanner);
+            waiters[i] = waiter;
         }
 
         for(int i = 0; i < deliverers.length; i++){
-            System.out.println("Unesite podatke za " + (i+1) + " dostavljača");
-            Deliverer dostavljac = delivererInput(scanner);
-            deliverers[i] = dostavljac;
+            System.out.println(Messages.DATA_INPUT + (i + 1) + "." + " dostavljača.");
+            Deliverer deliverer = delivererInput(scanner);
+            deliverers[i] = deliverer;
         }
 
         for(int i = 0; i < restaurants.length; i++){
-            System.out.println("Unesite podatke za " + (i+1) + " restoran");
-            Restaurant restoran = restoranInput(scanner, addresses, meals, chefs, waiters, deliverers);
-            restaurants[i] = restoran;
+            System.out.println(Messages.DATA_INPUT + (i + 1) + "." + " restoran.");
+            Restaurant restaurant = restoranInput(scanner, addresses, meals,
+                    chefs, waiters, deliverers);
+            restaurants[i] = restaurant;
         }
 
-        for(int i = 0; i < orderers.length; i++){
-            System.out.println("Unesite podatke za " + (i+1) + " narudžbu");
+        for(int i = 0; i < orders.length; i++){
+            System.out.println(Messages.DATA_INPUT + (i + 1) + "." + " narudžbu.");
             Order order = orderInput(scanner, restaurants, meals, deliverers);
-            orderers[i] = order;
+            orders[i] = order;
         }
 
-        nadiRestoranSaNajvecomNarudzbom(orderers);
+        nadiRestoranSaNajvecomNarudzbom(orders);
 
         nadiDostavljacaSaNajviseDostava(deliverers);
 
@@ -99,119 +100,120 @@ public class Main {
     }
 
     public static Category categoryInput(Scanner scanner) {
-        String imeKategorije;
-        String opisKategorije;
-        boolean jeIspravan;
+        String catName;
+        String catDesc;
+        boolean isValid;
 
         do {
-            jeIspravan = true;
-            System.out.println("Unesite ime kategorije: ");
-            imeKategorije = scanner.nextLine();
-            if (imeKategorije.length() < 3 || isNumber(imeKategorije)) {
-                System.out.println("Krivi unos, unesite ime kategorije koje ne sadrži brojeve i ima barem 3 slova.");
-                jeIspravan = false;
+            isValid = true;
+            System.out.println(Messages.CATEGORY_INPUT_NAME);
+            catName = scanner.nextLine();
+            if (catName.length() < 3 || isNumber(catName)) {
+                System.out.println(Messages.CATEGORY_INPUT_ERROR);
+                isValid = false;
             }
-        } while (!jeIspravan);
+        } while (!isValid);
 
         do {
-            jeIspravan = true;
-            System.out.println("Unesite opis kategorije: ");
-            opisKategorije = scanner.nextLine();
-            if (opisKategorije.length() < 3 || isNumber(opisKategorije)) {
-                System.out.println("Krivi unos, unesite opis kategorije koji ne sadrži brojeve i ima barem 3 slova.");
-                jeIspravan = false;
+            isValid = true;
+            System.out.println(Messages.CATEGORY_INPUT_DESC);
+            catDesc = scanner.nextLine();
+            if (catDesc.length() < 3 || isNumber(catDesc)) {
+                System.out.println(Messages.CATEGORY_INPUT_ERROR);
+                isValid = false;
             }
-        } while (!jeIspravan);
+        } while (!isValid);
 
-        return new Category(imeKategorije, opisKategorije);
+        return new Category(catName, catDesc);
     }
 
     public static Ingredient ingredientInput(Scanner scanner, Category[] categories) {
-        BigDecimal kcal = BigDecimal.valueOf(0);
-        String metodaPreparacije;
-        Category odabranaKategorija = new Category("None", "No description");
-        int categoryChoice;
-        Boolean jeIspravan;
-        String imeSastojka;
+        String ingredientName;
+        String prepMethod;
+        BigDecimal kcal;
+
+        Category selectedCat = Optional.ofNullable(categories[0]).orElse(categories[0]); // TEK SE RADI NA 4. LABOSU
+        Integer catChoice;
+        boolean isValid;
+
         do {
-            jeIspravan = true;
-            System.out.println("Unesite ime sastojka: ");
-            imeSastojka = scanner.nextLine();
-            if (imeSastojka.length() < 3 || isNumber(imeSastojka)) {
-                System.out.println("Krivi unos, unesite ime sastojka koji ne sadrži brojeve i ima barem 3 slova.");
-                jeIspravan = false;
+            isValid = true;
+            System.out.println(Messages.INGREDIENT_INPUT_NAME);
+            ingredientName = scanner.nextLine();
+            if (ingredientName.length() < 3 || isNumber(ingredientName)) {
+                System.out.println(Messages.INGREDIENT_INPUT_ERROR);
+                isValid = false;
             }
 
-        } while (!jeIspravan);
+        } while (!isValid);
 
         do {
-            jeIspravan = true;
-            System.out.println("Popis kategorija, odaberite jednu brojem 1-3: ");
+            isValid = true;
+            System.out.println(Messages.INGREDIENT_INPUT_CATEGORY);
             for (int i = 0; i < categories.length; i++) {
                 System.out.println((i + 1) + ". " + categories[i].getName());
             }
 
-            categoryChoice = scanner.nextInt();
+            catChoice = scanner.nextInt();
             scanner.nextLine();
 
-            if (categoryChoice >= 1 && categoryChoice <= categories.length) {
-                odabranaKategorija = categories[categoryChoice - 1];
+            if (catChoice >= 1 && catChoice <= categories.length) {
+                selectedCat = categories[catChoice - 1];
             } else {
-                System.out.println("Krivi unos, pokušajte ponovo.");
-                jeIspravan = false;
+                System.out.println(Messages.INGREDIENT_INPUT_ERROR);
+                isValid = false;
             }
-        } while (!jeIspravan);
-
+        } while (!isValid);
 
 
         do {
-            jeIspravan = true;
-            System.out.println("Unesite broj kcal: ");
+            isValid = true;
+            System.out.println(Messages.INGREDIENT_INPUT_KCAL);
             kcal = scanner.nextBigDecimal();
             scanner.nextLine();
             if (kcal.compareTo(BigDecimal.ZERO) < 0 || kcal.compareTo(BigDecimal.valueOf(1000)) > 0) {
-                System.out.println("Krivi unos, unesite broj kcal u rasponu od 0 do 1000.");
-                jeIspravan = false;
+                System.out.println(Messages.INGREDIENT_INPUT_KCAL_ERROR);
+                isValid = false;
             }
 
-        } while (!jeIspravan);
+        } while (!isValid);
 
         do {
-            jeIspravan = true;
-            System.out.println("Unesite metodu preparacije: ");
-            metodaPreparacije = scanner.nextLine();
-            if (metodaPreparacije.length() < 3 || isNumber(metodaPreparacije)) {
-                System.out.println("Krivi unos, unesite metodu preparacije koji ne sadrži brojeve i ima barem 3 slova.");
-                jeIspravan = false;
+            isValid = true;
+            System.out.println(Messages.INGREDIENT_INPUT_PREP_METHOD);
+            prepMethod = scanner.nextLine();
+            if (prepMethod.length() < 3 || isNumber(prepMethod)) {
+                System.out.println(Messages.INGREDIENT_INPUT_PREP_METHOD_ERROR);
+                isValid = false;
             }
 
-        } while (!jeIspravan);
+        } while (!isValid);
 
-        return new Ingredient(imeSastojka, odabranaKategorija, kcal, metodaPreparacije);
+        return new Ingredient(ingredientName, selectedCat, kcal, prepMethod);
 
     }
 
     public static Meal mealsInput(Scanner scanner, Category[] categories, Ingredient[] ingredients){
-        String imeJela;
-        Category odabranaKategorija = new Category("None", "No description");
-        Ingredient[] odabraniSastojak = new Ingredient[numberOfIngredients];
+        String mealName;
+        Category selectedCat = Optional.ofNullable(categories[0]).orElse(categories[0]);
+        Ingredient[] selectedIngredient = new Ingredient[NUMBER_OF_INGREDIENTS];
         BigDecimal price;
-        Boolean jeIspravan;
-        int brojSastojka = 0;
+        boolean isValid;
+        Integer ingredientCounter = 0;
 
         do{
-            jeIspravan = true;
-            System.out.println("Unesite ime jela: ");
-            imeJela = scanner.nextLine();
-            if (imeJela.length() < 3 || isNumber(imeJela)) {
-                System.out.println("Krivi unos, unesite ime jela koji ne sadrži brojeve i ima barem 3 slova.");
-                jeIspravan = false;
+            isValid = true;
+            System.out.println(Messages.MEAL_INPUT_NAME);
+            mealName = scanner.nextLine();
+            if (mealName.length() < 3 || isNumber(mealName)) {
+                System.out.println(Messages.MEAL_INPUT_ERROR);
+                isValid = false;
             }
-        }while(!jeIspravan);
+        }while(!isValid);
 
         do{
-            jeIspravan = true;
-            System.out.println("Popis kategorija, odaberite jednu brojem 1-3: ");
+            isValid = true;
+            System.out.println(Messages.MEAL_INPUT_CATEGORY);
             for (int i = 0; i < categories.length; i++) {
                 System.out.println((i + 1) + ". " + categories[i].getName());
             }
@@ -220,16 +222,16 @@ public class Main {
             scanner.nextLine();
 
             if (categoryChoice >= 1 && categoryChoice <= categories.length) {
-                odabranaKategorija = categories[categoryChoice - 1];
+                selectedCat = categories[categoryChoice - 1];
             } else {
-                System.out.println("Krivi unos, pokušajte ponovo.");
-                jeIspravan = false;
+                System.out.println(Messages.MEAL_INPUT_CATEGORY_ERROR);
+                isValid = false;
             }
-        }while(!jeIspravan);
+        }while(!isValid);
 
         do{
-            jeIspravan = true;
-            System.out.println("Popis sastojaka, birate sastojke dok ne unesete 0 ");
+            isValid = true;
+            System.out.println(Messages.MEAL_INPUT_INGREDIENT);
             for(int i=0; i < ingredients.length; i++) {
                 System.out.println((i + 1) + ". " + ingredients[i].getName());
             }
@@ -238,12 +240,12 @@ public class Main {
                 scanner.nextLine();
 
                 if(ingredientChoice >= 1 && ingredientChoice <= categories.length){
-                    odabraniSastojak[brojSastojka] = ingredients[ingredientChoice - 1];
-                    brojSastojka++;
+                    selectedIngredient[ingredientCounter] = ingredients[ingredientChoice - 1];
+                    ingredientCounter++;
 
                 } else {
-                    System.out.println("Krivi unos, pokušajte ponovo.");
-                    jeIspravan = false;
+                    System.out.println(Messages.MEAL_INPUT_INGREDIENT_ERROR);
+                    isValid = false;
                     continue;
                 }
 
@@ -251,209 +253,209 @@ public class Main {
                     ingredientChoice = scanner.nextInt();
                     scanner.nextLine();
                     if(ingredientChoice >= 1 && ingredientChoice <= categories.length){
-                        odabraniSastojak[brojSastojka] = ingredients[ingredientChoice - 1];
-                        brojSastojka++;
+                        selectedIngredient[ingredientCounter] = ingredients[ingredientChoice - 1];
+                        ingredientCounter++;
 
                     }else if(ingredientChoice == 0) {
-                        jeIspravan = true;
+                        isValid = true;
                         break;
                     }else{
-                        System.out.println("Krivi unos, pokušajte ponovo.");
-                        jeIspravan = false;
+                        System.out.println(Messages.MEAL_INPUT_INGREDIENT_ERROR);
+                        isValid = false;
                     }
                 }
-        }while(!jeIspravan);
+        }while(!isValid);
 
         do{
-            jeIspravan = true;
-            System.out.println("Unesite cijenu: ");
+            isValid = true;
+            System.out.println(Messages.MEAL_INPUT_PRICE);
             price = scanner.nextBigDecimal();
             scanner.nextLine();
             if(price.compareTo(BigDecimal.ZERO) < 0 || price.compareTo(BigDecimal.valueOf(10000)) > 0){
-                System.out.println("Krivi unos, unesite točnu cijenu.");
-                jeIspravan = false;
+                System.out.println(Messages.MEAL_INPUT_PRICE_ERROR);
+                isValid = false;
             }
 
-        }while(!jeIspravan);
+        }while(!isValid);
 
-        return new Meal(imeJela, odabranaKategorija, odabraniSastojak, price);
+        return new Meal(mealName, selectedCat, selectedIngredient, price);
     }
 
     public static Chef chefInput(Scanner scanner){
-        String imeKuhara;
-        String prezimeKuhara;
-        BigDecimal placa;
-        Boolean jeIspravan;
+        String chefName;
+        String chefSurname;
+        BigDecimal chefSalary;
+        boolean isValid;
 
         do {
-            jeIspravan = true;
-            System.out.println("Unesite ime kuhara: ");
-            imeKuhara = scanner.nextLine();
-            if (imeKuhara.length() < 3 || isNumber(imeKuhara)) {
-                System.out.println("Krivi unos, unesite ime kuhara koje ne sadrži brojeve i ima barem 3 slova.");
-                jeIspravan = false;
+            isValid = true;
+            System.out.println(Messages.CHEF_INPUT_NAME);
+            chefName = scanner.nextLine();
+            if (chefName.length() < 3 || isNumber(chefName)) {
+                System.out.println(Messages.CHEF_INPUT_NAME_ERROR);
+                isValid = false;
             }
-        } while (!jeIspravan);
+        } while (!isValid);
 
         do {
-            jeIspravan = true;
-            System.out.println("Unesite prezime kuhara: ");
-            prezimeKuhara = scanner.nextLine();
-            if (prezimeKuhara.length() < 3 || isNumber(prezimeKuhara)) {
-                System.out.println("Krivi unos, unesite prezime kuhara koje ne sadrži brojeve i ima barem 3 slova.");
-                jeIspravan = false;
+            isValid = true;
+            System.out.println(Messages.CHEF_INPUT_SURNAME);
+            chefSurname = scanner.nextLine();
+            if (chefSurname.length() < 3 || isNumber(chefSurname)) {
+                System.out.println(Messages.CHEF_INPUT_SURNAME_ERROR);
+                isValid = false;
             }
-        } while (!jeIspravan);
+        } while (!isValid);
 
         do{
-            jeIspravan = true;
-            System.out.println("Unesite plaću: ");
-            placa = scanner.nextBigDecimal();
+            isValid = true;
+            System.out.println(Messages.CHEF_INPUT_SALARY);
+            chefSalary = scanner.nextBigDecimal();
             scanner.nextLine();
-            if(placa.compareTo(BigDecimal.ZERO) < 0 || placa.compareTo(BigDecimal.valueOf(10000)) > 0){
-                System.out.println("Krivi unos, unesite točnu plaću.");
-                jeIspravan = false;
+            if(chefSalary.compareTo(BigDecimal.ZERO) < 0 || chefSalary.compareTo(BigDecimal.valueOf(10000)) > 0){
+                System.out.println(Messages.CHEF_INPUT_SALARY_ERROR);
+                isValid = false;
             }
 
-        }while(!jeIspravan);
+        }while(!isValid);
 
-        return new Chef(imeKuhara, prezimeKuhara, placa);
+        return new Chef(chefName, chefSurname, chefSalary);
     }
 
     public static Waiter waiterInput(Scanner scanner){
-        String imeKonobara;
-        String prezimeKonobara;
-        BigDecimal placa;
-        Boolean jeIspravan;
+        String waiterName;
+        String waiterSurname;
+        BigDecimal waiterSalary;
+        boolean isValid;
 
         do {
-            jeIspravan = true;
-            System.out.println("Unesite ime konobara: ");
-            imeKonobara = scanner.nextLine();
-            if (imeKonobara.length() < 3 || isNumber(imeKonobara)) {
-                System.out.println("Krivi unos, unesite ime konobara koje ne sadrži brojeve i ima barem 3 slova.");
-                jeIspravan = false;
+            isValid = true;
+            System.out.println(Messages.WAITER_INPUT_NAME);
+            waiterName = scanner.nextLine();
+            if (waiterName.length() < 3 || isNumber(waiterName)) {
+                System.out.println(Messages.WAITER_INPUT_NAME_ERROR);
+                isValid = false;
             }
-        } while (!jeIspravan);
+        } while (!isValid);
 
         do {
-            jeIspravan = true;
-            System.out.println("Unesite prezime kuhara: ");
-            prezimeKonobara = scanner.nextLine();
-            if (prezimeKonobara.length() < 3 || isNumber(prezimeKonobara)) {
-                System.out.println("Krivi unos, unesite prezime konobara koje ne sadrži brojeve i ima barem 3 slova.");
-                jeIspravan = false;
+            isValid = true;
+            System.out.println(Messages.WAITER_INPUT_SURNAME);
+            waiterSurname = scanner.nextLine();
+            if (waiterSurname.length() < 3 || isNumber(waiterSurname)) {
+                System.out.println(Messages.WAITER_INPUT_SURNAME_ERROR);
+                isValid = false;
             }
-        } while (!jeIspravan);
+        } while (!isValid);
 
         do{
-            jeIspravan = true;
-            System.out.println("Unesite plaću: ");
-            placa = scanner.nextBigDecimal();
+            isValid = true;
+            System.out.println(Messages.WAITER_INPUT_SALARY);
+            waiterSalary = scanner.nextBigDecimal();
             scanner.nextLine();
-            if(placa.compareTo(BigDecimal.ZERO) < 0 || placa.compareTo(BigDecimal.valueOf(10000)) > 0){
-                System.out.println("Krivi unos, unesite točnu plaću.");
-                jeIspravan = false;
+            if(waiterSalary.compareTo(BigDecimal.ZERO) < 0 || waiterSalary.compareTo(BigDecimal.valueOf(10000)) > 0){
+                System.out.println(Messages.WAITER_INPUT_SALARY_ERROR);
+                isValid = false;
             }
 
-        }while(!jeIspravan);
+        }while(!isValid);
 
-        return new Waiter(imeKonobara, prezimeKonobara, placa);
+        return new Waiter(waiterName, waiterSurname, waiterSalary);
     }
 
     public static Deliverer delivererInput(Scanner scanner){
-        String imeDostavljaca;
-        String prezimeDostavljaca;
-        BigDecimal placa;
-        Boolean jeIspravan;
+        String delivererName;
+        String delivererSurname;
+        BigDecimal delivererSalary;
+        boolean isValid;
 
         do {
-            jeIspravan = true;
-            System.out.println("Unesite ime dostavljača: ");
-            imeDostavljaca = scanner.nextLine();
-            if (imeDostavljaca.length() < 3 || isNumber(imeDostavljaca)) {
-                System.out.println("Krivi unos, unesite ime dostavljača koje ne sadrži brojeve i ima barem 3 slova.");
-                jeIspravan = false;
+            isValid = true;
+            System.out.println(Messages.DELIVERER_INPUT_NAME);
+            delivererName = scanner.nextLine();
+            if (delivererName.length() < 3 || isNumber(delivererName)) {
+                System.out.println(Messages.DELIVERER_INPUT_NAME_ERROR);
+                isValid = false;
             }
-        } while (!jeIspravan);
+        } while (!isValid);
 
         do {
-            jeIspravan = true;
-            System.out.println("Unesite prezime dostavljača: ");
-            prezimeDostavljaca = scanner.nextLine();
-            if (prezimeDostavljaca.length() < 3 || isNumber(prezimeDostavljaca)) {
-                System.out.println("Krivi unos, unesite prezime dostavljača koje ne sadrži brojeve i ima barem 3 slova.");
-                jeIspravan = false;
+            isValid = true;
+            System.out.println(Messages.DELIVERER_INPUT_SURNAME);
+            delivererSurname = scanner.nextLine();
+            if (delivererSurname.length() < 3 || isNumber(delivererSurname)) {
+                System.out.println(Messages.DELIVERER_INPUT_SURNAME_ERROR);
+                isValid = false;
             }
-        } while (!jeIspravan);
+        } while (!isValid);
 
         do{
-            jeIspravan = true;
-            System.out.println("Unesite plaću: ");
-            placa = scanner.nextBigDecimal();
+            isValid = true;
+            System.out.println(Messages.DELIVERER_INPUT_SALARY);
+            delivererSalary = scanner.nextBigDecimal();
             scanner.nextLine();
-            if(placa.compareTo(BigDecimal.ZERO) < 0 || placa.compareTo(BigDecimal.valueOf(10000)) > 0){
-                System.out.println("Krivi unos, unesite točnu plaću.");
-                jeIspravan = false;
+            if(delivererSalary.compareTo(BigDecimal.ZERO) < 0 || delivererSalary.compareTo(BigDecimal.valueOf(10000)) > 0){
+                System.out.println(Messages.DELIVERER_INPUT_SALARY_ERROR);
+                isValid = false;
             }
 
-        }while(!jeIspravan);
+        }while(!isValid);
 
-        return new Deliverer(imeDostavljaca, prezimeDostavljaca, placa);
+        return new Deliverer(delivererName, delivererSurname, delivererSalary);
     }
 
     public static Address addressInput(Scanner scanner){
-        String ulica;
-        String brojKucneAdrese;
-        String grad;
+        String street;
+        String houseNumber;
+        String city;
         String postanskiBroj;
-        Boolean jeIspravan;
+        boolean isValid;
 
         do{
-            jeIspravan = true;
+            isValid = true;
             System.out.println("Unesite ulicu: ");
-            ulica = scanner.nextLine();
-            if (ulica.length() < 1) {
+            street = scanner.nextLine();
+            if (street.length() < 1) {
                 System.out.println("Krivi unos, unesite ulicu koja ima barem 2 slova.");
-                jeIspravan = false;
+                isValid = false;
             }
 
-        }while(!jeIspravan);
+        }while(!isValid);
 
         do{
-            jeIspravan = true;
+            isValid = true;
             System.out.println("Unesite kucnu adresu: ");
-            brojKucneAdrese = scanner.nextLine();
-            if (brojKucneAdrese.length() < 1) {
+            houseNumber = scanner.nextLine();
+            if (houseNumber.length() < 1) {
                 System.out.println("Krivi unos, unesite kućnu adresu koja ima barem 2 slova.");
-                jeIspravan = false;
+                isValid = false;
             }
 
-        }while(!jeIspravan);
+        }while(!isValid);
 
         do{
-            jeIspravan = true;
+            isValid = true;
             System.out.println("Unesite grad: ");
-            grad = scanner.nextLine();
-            if (grad.length() < 2) {
+            city = scanner.nextLine();
+            if (city.length() < 2) {
                 System.out.println("Krivi unos, unesite grad koja ima barem 3 slova.");
-                jeIspravan = false;
+                isValid = false;
             }
 
-        }while(!jeIspravan);
+        }while(!isValid);
 
         do{
-            jeIspravan = true;
+            isValid = true;
             System.out.println("Unesite postanski broj: ");
             postanskiBroj = scanner.nextLine();
             if (postanskiBroj.length() < 1) {
                 System.out.println("Krivi unos, unesite postanski broj koja ima barem 2 slova.");
-                jeIspravan = false;
+                isValid = false;
             }
 
-        }while(!jeIspravan);
+        }while(!isValid);
 
-        return new Address(ulica, brojKucneAdrese, grad, postanskiBroj);
+        return new Address(street, houseNumber, city, postanskiBroj);
     }
 
     public static Restaurant restoranInput(Scanner scanner, Address[] addresses, Meal[] meals, Chef[] chefs, Waiter[] waiters, Deliverer[] deliverers){
